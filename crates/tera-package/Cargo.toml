@@ -1,0 +1,11 @@
+[package]
+name = "tera-package"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+flate2 = { workspace = true }
+lzo = "0.1"
+memmap2 = { workspace = true }
+thiserror = { workspace = true }

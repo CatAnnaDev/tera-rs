@@ -1,0 +1,522 @@
+{
+  "C_ADD_CRYSTAL_COMBINE_MATERIAL": [
+    {
+      "fields": {
+        "dbid": "$.dbid",
+        "id": "$.id",
+        "slot": "$.slot",
+        "type": "$.type"
+      },
+      "packet": "S_ADD_CRYSTAL_COMBINE_MATERIAL"
+    }
+  ],
+  "C_ADMIN_HOLD_CHARACTER": [
+    {
+      "fields": {
+        "hold": false
+      },
+      "packet": "S_ADMIN_HOLD_CHARACTER"
+    }
+  ],
+  "C_APPLY_TITLE": [
+    {
+      "fields": {
+        "gameId": "$gameId",
+        "title": 0,
+        "titleCount": 0
+      },
+      "packet": "S_APPLY_TITLE"
+    }
+  ],
+  "C_AVAILABLE_EVENT_MATCHING_LIST": [
+    {
+      "fields": {
+        "level": 0,
+        "limitAll": 0,
+        "limitDungeon": 0,
+        "limitPvp": 0,
+        "limitSolo": 0,
+        "quests": [],
+        "vanguardCredits": 0
+      },
+      "packet": "S_AVAILABLE_EVENT_MATCHING_LIST"
+    }
+  ],
+  "C_CANCEL_PREPARE_CHANGE_USER_APPEARANCE": [
+    {
+      "fields": {},
+      "packet": "S_CANCEL_PREPARE_CHANGE_USER_APPEARANCE"
+    }
+  ],
+  "C_CAN_LOCKON_TARGET": [
+    {
+      "fields": {
+        "skill": "$.skill",
+        "success": true,
+        "target": "$.target",
+        "unk": "$.unk"
+      },
+      "packet": "S_CAN_LOCKON_TARGET"
+    }
+  ],
+  "C_CHANGE_ITEM_PASSIVE_LIST": [
+    {
+      "fields": {
+        "stats": [],
+        "success": false
+      },
+      "packet": "S_CHANGE_ITEM_PASSIVE_LIST"
+    }
+  ],
+  "C_CHAT": [
+    {
+      "fields": {
+        "channel": "$.channel",
+        "founder": false,
+        "gameId": "$gameId",
+        "gm": false,
+        "isWorldEventTarget": false,
+        "message": "$.message",
+        "name": "$name"
+      },
+      "packet": "S_CHAT"
+    }
+  ],
+  "C_CITY_WAR_SEASON_HISTROY": [
+    {
+      "fields": {
+        "seasons": []
+      },
+      "packet": "S_CITY_WAR_SEASON_HISTROY"
+    }
+  ],
+  "C_COLLECTION_PICKSTART": [
+    {
+      "fields": {
+        "collection": "$.gameId",
+        "duration": 3000,
+        "user": "$gameId"
+      },
+      "packet": "S_COLLECTION_PICKSTART"
+    }
+  ],
+  "C_CREST_APPLY": [
+    {
+      "fields": {
+        "enable": "$.enable",
+        "id": "$.id"
+      },
+      "packet": "S_CREST_APPLY"
+    }
+  ],
+  "C_DELETE_PARCEL": [
+    {
+      "fields": {
+        "ok": true
+      },
+      "packet": "S_DELETE_PARCEL"
+    }
+  ],
+  "C_DELETE_USER": [
+    {
+      "fields": {
+        "success": false
+      },
+      "packet": "S_DELETE_USER"
+    }
+  ],
+  "C_DUNGEON_CLEAR_COUNT_LIST": [
+    {
+      "fields": {
+        "dungeons": [],
+        "pid": "$playerId"
+      },
+      "packet": "S_DUNGEON_CLEAR_COUNT_LIST"
+    }
+  ],
+  "C_EVENT_GUIDE": [
+    {
+      "fields": {
+        "events": [],
+        "online": 0,
+        "weeks": []
+      },
+      "packet": "S_EVENT_GUIDE"
+    }
+  ],
+  "C_GET_GUILD_WARE_HISTORY": [
+    {
+      "fields": {
+        "events": [],
+        "page": "$.page",
+        "pages": 1
+      },
+      "packet": "S_GUILD_WARE_HISTORY"
+    }
+  ],
+  "C_GET_IN_SHUTTLE": [
+    {
+      "fields": {
+        "gameId": "$gameId",
+        "shuttle": "$.gameId",
+        "shuttleLoc": "$.shuttleLoc"
+      },
+      "packet": "S_GET_IN_SHUTTLE"
+    }
+  ],
+  "C_GET_USER_GUILD_LOGO": [
+    {
+      "fields": {
+        "guildId": "$.guildId",
+        "logo": [],
+        "playerId": "$.playerId"
+      },
+      "packet": "S_GET_USER_GUILD_LOGO"
+    }
+  ],
+  "C_JOIN_PRIVATE_CHANNEL": [
+    {
+      "fields": {
+        "channelId": 1,
+        "index": 0,
+        "name": "$.name",
+        "unk": []
+      },
+      "packet": "S_JOIN_PRIVATE_CHANNEL"
+    }
+  ],
+  "C_LEARN_EP_PERK": [
+    {
+      "fields": {
+        "perks": [],
+        "success": false,
+        "usedPoints": 0
+      },
+      "packet": "S_LEARN_EP_PERK"
+    }
+  ],
+  "C_LEAVE_PARTY": [
+    {
+      "fields": {},
+      "packet": "S_LEAVE_PARTY"
+    }
+  ],
+  "C_LIST_CHANNEL": [
+    {
+      "fields": {
+        "channels": [],
+        "unk": "$.unk",
+        "zone": "$.zone"
+      },
+      "packet": "S_LIST_CHANNEL"
+    }
+  ],
+  "C_NPCGUILD_LIST": [
+    {
+      "fields": {
+        "factions": [],
+        "gameId": "$gameId"
+      },
+      "packet": "S_NPCGUILD_LIST"
+    }
+  ],
+  "C_PARTY_MARKER": [
+    {
+      "fields": {
+        "markers": []
+      },
+      "packet": "S_PARTY_MARKER"
+    }
+  ],
+  "C_PRECONFIRM_INVITE_CODE": [
+    {
+      "fields": {
+        "success": false
+      },
+      "packet": "S_PRECONFIRM_INVITE_CODE"
+    }
+  ],
+  "C_PREVIEW_ITEM": [
+    {
+      "fields": {
+        "items": []
+      },
+      "packet": "S_PREVIEW_ITEM"
+    }
+  ],
+  "C_REQUEST_ABNORMALITY_TOOLTIP_VALUE": [
+    {
+      "fields": {
+        "gameId": "$.gameId",
+        "id": "$.id",
+        "values": []
+      },
+      "packet": "S_ABNORMALITY_TOOLTIP_VALUE"
+    }
+  ],
+  "C_REQUEST_ACCESSORY_COST_INFO": [
+    {
+      "fields": {
+        "amount": 0,
+        "item": 0,
+        "response": 1,
+        "unk": 0
+      },
+      "packet": "S_RESPONSE_ACCESSORY_COST_INFO"
+    }
+  ],
+  "C_REQUEST_CONTRACT": [
+    {
+      "fields": {
+        "type": "$.type"
+      },
+      "packet": "S_REPLY_REQUEST_CONTRACT"
+    }
+  ],
+  "C_REQUEST_COUPON_LIST": [
+    {
+      "fields": {
+        "coupons": [],
+        "error": false,
+        "lastPage": "$.page",
+        "page": "$.page"
+      },
+      "packet": "S_COUPON_LIST"
+    }
+  ],
+  "C_REQUEST_GUILD_LIST": [
+    {
+      "fields": {
+        "currentPage": 1,
+        "guilds": [],
+        "totalGuilds": 0,
+        "totalPages": 1
+      },
+      "packet": "S_REPLY_GUILD_LIST"
+    }
+  ],
+  "C_REQUEST_MY_PARTY_MATCH_INFO": [
+    {
+      "fields": {
+        "message": "",
+        "unk": 0
+      },
+      "packet": "S_MY_PARTY_MATCH_INFO"
+    }
+  ],
+  "C_REQUEST_ONGOING_FIELD_EVENT_LIST": [
+    {
+      "fields": {
+        "missions": []
+      },
+      "packet": "S_ONGOING_FIELD_EVENT_LIST"
+    }
+  ],
+  "C_REQUEST_OPEN_DUAL_OPTION_MATERIAL_INFO": [
+    {
+      "fields": {
+        "cost": 0,
+        "unk1": 0,
+        "unk2": 0
+      },
+      "packet": "S_OPEN_DUAL_OPTION_MATERIAL_INFO"
+    }
+  ],
+  "C_REQUEST_PARTY_MATCH_INFO": [
+    {
+      "fields": {
+        "listings": [],
+        "pageCount": 0,
+        "pageCurrent": 0
+      },
+      "packet": "S_SHOW_PARTY_MATCH_INFO"
+    }
+  ],
+  "C_REQUEST_PLAYTIME": [
+    {
+      "fields": {
+        "session": 0,
+        "total": 0
+      },
+      "packet": "S_PLAYTIME"
+    }
+  ],
+  "C_REQUEST_RIGHT_ITEM_LIST": [
+    {
+      "fields": {
+        "items": []
+      },
+      "packet": "S_RIGHT_ITEM_LIST"
+    }
+  ],
+  "C_REQUEST_SERVANT_INFO_LIST": [
+    {
+      "fields": {
+        "hidden": false,
+        "servants": [],
+        "slots": 0
+      },
+      "packet": "S_REQUEST_SERVANT_INFO_LIST"
+    }
+  ],
+  "C_REQUEST_USABLE_CHARACTER_NAME": [
+    {
+      "fields": {
+        "ok": true
+      },
+      "packet": "S_RESULT_USABLE_CHARACTER_NAME"
+    }
+  ],
+  "C_REQUEST_USER_ITEMLEVEL_INFO": [
+    {
+      "fields": {
+        "itemLevel": 0,
+        "itemLevelInventory": 0
+      },
+      "packet": "S_USER_ITEMLEVEL_INFO"
+    }
+  ],
+  "C_RQ_SKILL_POLISHING_LIST": [
+    {
+      "fields": {
+        "levelEffects": [],
+        "optionEffects": []
+      },
+      "packet": "S_RP_SKILL_POLISHING_LIST"
+    }
+  ],
+  "C_SERVER_TIME": [
+    {
+      "fields": {
+        "time": "$time"
+      },
+      "packet": "S_SERVER_TIME"
+    }
+  ],
+  "C_SET_GUILD_JOIN_CONDITION": [
+    {
+      "fields": {
+        "success": false
+      },
+      "packet": "S_SET_GUILD_JOIN_CONDITION"
+    }
+  ],
+  "C_SHOW_PARCEL_MESSAGE": [
+    {
+      "fields": {
+        "id": "$.id",
+        "message": ""
+      },
+      "packet": "S_SHOW_PARCEL_MESSAGE"
+    }
+  ],
+  "C_SIMPLE_TIP_REPEAT_CHECK": [
+    {
+      "fields": {
+        "hide": true,
+        "id": "$.id"
+      },
+      "packet": "S_SIMPLE_TIP_REPEAT_CHECK"
+    }
+  ],
+  "C_SOCIAL": [
+    {
+      "fields": {
+        "animation": "$.emote",
+        "target": "$gameId",
+        "unk1": 0,
+        "unk2": "$.unk"
+      },
+      "packet": "S_SOCIAL"
+    }
+  ],
+  "C_TRADE_BROKER_BOUGHT_ITEM_LIST": [
+    {
+      "fields": {
+        "purchases": []
+      },
+      "packet": "S_TRADE_BROKER_BOUGHT_ITEM_LIST"
+    }
+  ],
+  "C_TRADE_BROKER_INPUT_PRICE": [
+    {
+      "fields": {
+        "avgPrice": 0,
+        "minPrice": 0,
+        "unk1": 0,
+        "unk2": 0,
+        "unk3": 0
+      },
+      "packet": "S_TRADE_BROKER_INPUT_PRICE"
+    }
+  ],
+  "C_TRADE_BROKER_SUGGEST_DEAL": [
+    {
+      "fields": {
+        "ok": 0
+      },
+      "packet": "S_TRADE_BROKER_SUGGEST_DEAL"
+    }
+  ],
+  "C_USE_COUPON": [
+    {
+      "fields": {
+        "id": "$.id",
+        "success": false
+      },
+      "packet": "S_USE_COUPON"
+    }
+  ],
+  "C_USE_RIGHT_ITEM": [
+    {
+      "fields": {
+        "id": "$.id",
+        "item": "$.item",
+        "success": false
+      },
+      "packet": "S_USE_RIGHT_ITEM"
+    }
+  ],
+  "C_VIEW_BATTLE_FIELD_RESULT": [
+    {
+      "fields": {
+        "battlefields": [],
+        "days": 7,
+        "unk": 0
+      },
+      "packet": "S_VIEW_BATTLE_FIELD_RESULT"
+    }
+  ],
+  "C_VIEW_GUILD_WAR": [
+    {
+      "fields": {
+        "battles": [],
+        "maxPages": 0,
+        "page": "$.page"
+      },
+      "packet": "S_VIEW_GUILD_WAR"
+    }
+  ],
+  "C_VOTE_RESET_ALL_DUNGEON": [
+    {
+      "fields": {
+        "result": false
+      },
+      "packet": "S_VOTE_RESET_ALL_DUNGEON"
+    }
+  ],
+  "C_WHISPER": [
+    {
+      "fields": {
+        "channel": 11,
+        "founder": false,
+        "gameId": "$gameId",
+        "gm": false,
+        "isWorldEventTarget": false,
+        "message": "$.message",
+        "name": "$name"
+      },
+      "packet": "S_CHAT"
+    }
+  ]
+}

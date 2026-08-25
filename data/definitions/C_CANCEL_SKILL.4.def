@@ -1,0 +1,6 @@
+# majorPatchVersion >= 100, reconstructed from captured bytes: v3 with the same 8 byte prefix
+
+uint32  counter
+uint32  unk0
+skillid skill
+int32   type

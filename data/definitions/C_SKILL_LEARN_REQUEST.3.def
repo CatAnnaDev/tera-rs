@@ -1,0 +1,7 @@
+# majorPatchVersion >= 100, reconstructed from captured bytes: v2 with the same 8 byte prefix
+
+uint32 contract
+uint32 unk0
+uint32 unk1
+uint32 id
+bool   active

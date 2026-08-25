@@ -1,0 +1,4 @@
+# majorPatchVersion < 110
+
+int32 category
+bool  enabled

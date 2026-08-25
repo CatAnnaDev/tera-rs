@@ -1,0 +1,13 @@
+# majorPatchVersion >= 100, reconstructed from captured bytes: v7 with an 8 byte prefix
+
+uint32  counter
+uint32  unk0
+skillid skill
+angle   w
+vec3    loc
+vec3    dest
+bool    unk
+bool    moving
+bool    continue
+uint64  target
+bool    unk2

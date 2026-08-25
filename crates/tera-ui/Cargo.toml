@@ -1,0 +1,24 @@
+[package]
+name = "tera-ui"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "tera-studio"
+path = "src/main.rs"
+
+[dependencies]
+tera-crypto = { workspace = true }
+tera-datacenter = { workspace = true }
+tera-index = { workspace = true }
+tera-mapper = { workspace = true }
+tera-mod = { workspace = true }
+tera-package = { workspace = true }
+anyhow = { workspace = true }
+eframe = { version = "0.36", default-features = false, features = ["default_fonts", "glow", "wayland", "x11"] }
+egui = "0.36"
+memmap2 = { workspace = true }
+rayon = { workspace = true }
+rfd = "0.17"
+rodio = { version = "0.20", default-features = false, features = ["vorbis"] }

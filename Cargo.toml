@@ -1,0 +1,46 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/tera-crypto",
+    "crates/tera-index",
+    "crates/tera-datacenter",
+    "crates/tera-package",
+    "crates/tera-protocol",
+    "crates/tera-launcher",
+    "crates/tera-server",
+    "crates/tera-mapper",
+    "crates/tera-mod",
+    "crates/tera-cli",
+    "crates/tera-ui",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+
+[workspace.dependencies]
+tera-crypto = { path = "crates/tera-crypto" }
+tera-index = { path = "crates/tera-index" }
+tera-datacenter = { path = "crates/tera-datacenter" }
+tera-package = { path = "crates/tera-package" }
+tera-protocol = { path = "crates/tera-protocol" }
+tera-mapper = { path = "crates/tera-mapper" }
+tera-mod = { path = "crates/tera-mod" }
+aes = "0.8"
+anyhow = "1"
+clap = { version = "4", features = ["derive"] }
+flate2 = "1"
+memmap2 = "0.9"
+quick-xml = "0.42"
+rayon = "1"
+rusqlite = { version = "0.37", features = ["bundled"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 1
+panic = "abort"

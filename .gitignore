@@ -1,0 +1,10 @@
+target/
+work/
+*.dat
+*.gpk
+*.dds
+*.ogg
+data/characters.json
+data/world.db*
+*.md
+docs/

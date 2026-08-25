@@ -1,0 +1,5 @@
+# majorPatchVersion >= 93 && majorPatchVersion < 100
+
+uint64 accountId
+int32  antiCheatChecksumSeed
+string serverName

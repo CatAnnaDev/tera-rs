@@ -1,0 +1,29 @@
+[package]
+name = "tera-server"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lib]
+name = "tera_server"
+path = "src/lib.rs"
+
+[[bin]]
+name = "tera-serverd"
+path = "src/main.rs"
+
+[[bin]]
+name = "tera-proxy"
+path = "src/bin/proxy.rs"
+
+[[bin]]
+name = "tera-encode"
+path = "src/bin/encode.rs"
+
+[dependencies]
+tera-protocol = { workspace = true }
+anyhow = { workspace = true }
+clap = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+rusqlite = { workspace = true }

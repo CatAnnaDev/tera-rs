@@ -1,0 +1,11 @@
+[package]
+name = "tera-index"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+tera-package = { workspace = true }
+memmap2 = { workspace = true }
+rayon = { workspace = true }
+thiserror = { workspace = true }
