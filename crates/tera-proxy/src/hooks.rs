@@ -237,7 +237,15 @@ pub fn dispatch(
             codec,
             injections: &mut *injections,
         };
-        match handler(&mut event) {
+        let action =
+            match std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| handler(&mut event))) {
+                Ok(action) => action,
+                Err(_) => {
+                    eprintln!("[hooks] {name}: handler panicked, packet passed through");
+                    Action::Pass
+                }
+            };
+        match action {
             Action::Drop => dropped = true,
             Action::Modify => modified = true,
             Action::Pass => {}

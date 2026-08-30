@@ -6,11 +6,13 @@ use clap::Parser;
 use hooks::{dispatch, Codec, Direction, Engine, Handler, Outcome, Stats};
 use std::borrow::Cow;
 use std::collections::{HashMap, HashSet};
-use std::io::{BufWriter, Read, Write};
-use std::net::{TcpListener, TcpStream};
+use std::io::{BufWriter, ErrorKind, Read, Write};
+use std::net::{TcpListener, TcpStream, ToSocketAddrs};
 use std::path::PathBuf;
-use std::sync::mpsc::{self, Receiver, SyncSender};
+use std::sync::atomic::{AtomicBool, Ordering};
+use std::sync::mpsc::{self, Receiver, SyncSender, TrySendError};
 use std::sync::{Arc, Mutex};
+use std::time::{Duration, Instant};
 use tera_protocol::handshake::{random_key, ClientHandshake, ServerHandshake, Step, MAGIC};
 use tera_protocol::session::{Constants, Decrypting, Encrypting, KEY_LEN, LEGACY, MODERN};
 use tera_protocol::{value, Object, OpcodeMap, PacketBuffer, Registry};
@@ -223,12 +225,17 @@ fn writer_for<'a>(
     }
 }
 
+const MAX_BATCH: usize = 256 * 1024;
+
 fn writer_thread(mut encrypt: Encrypting, sink: Arc<TcpStream>, rx: Receiver<Vec<u8>>) {
     let mut output: &TcpStream = &sink;
     while let Ok(first) = rx.recv() {
         let mut batch = first;
-        while let Ok(more) = rx.try_recv() {
-            batch.extend_from_slice(&more);
+        while batch.len() < MAX_BATCH {
+            match rx.try_recv() {
+                Ok(more) => batch.extend_from_slice(&more),
+                Err(_) => break,
+            }
         }
         encrypt.apply(&mut batch);
         if output.write_all(&batch).is_err() {
@@ -236,6 +243,38 @@ fn writer_thread(mut encrypt: Encrypting, sink: Arc<TcpStream>, rx: Receiver<Vec
         }
     }
     let _ = sink.shutdown(std::net::Shutdown::Both);
+}
+
+struct ReaderTeardown {
+    client: Arc<TcpStream>,
+    server: Arc<TcpStream>,
+    overflow: Arc<AtomicBool>,
+}
+
+impl Drop for ReaderTeardown {
+    fn drop(&mut self) {
+        let mode = if self.overflow.load(Ordering::Relaxed) {
+            std::net::Shutdown::Both
+        } else {
+            std::net::Shutdown::Read
+        };
+        let _ = self.client.shutdown(mode);
+        let _ = self.server.shutdown(mode);
+    }
+}
+
+fn flush_capture(capture: &Capture) {
+    if let Ok(mut file) = capture.file.lock() {
+        let _ = file.flush();
+    }
+}
+
+fn forward(sender: &SyncSender<Vec<u8>>, frame: Vec<u8>) -> bool {
+    match sender.try_send(frame) {
+        Ok(()) => true,
+        Err(TrySendError::Full(frame)) => sender.send(frame).is_ok(),
+        Err(TrySendError::Disconnected(_)) => false,
+    }
 }
 
 #[allow(clippy::too_many_arguments)]
@@ -255,31 +294,47 @@ fn reader(
     let mut buffer = [0u8; 16384];
     let mut packets = PacketBuffer::new();
     let mut input: &TcpStream = &source;
-    let mut overflow = false;
+    let overflow = Arc::new(AtomicBool::new(false));
+    let _teardown = ReaderTeardown {
+        client: Arc::clone(&client_socket),
+        server: Arc::clone(&server_socket),
+        overflow: Arc::clone(&overflow),
+    };
     if !leftover.is_empty() {
         decrypt.apply(&mut leftover);
         packets.push(&leftover);
-        overflow = !drain(&mut packets, &mut hooks, direction, &capture, &codec, &to_client, &to_server);
-    }
-    while !overflow {
-        let read = match input.read(&mut buffer) {
-            Ok(0) | Err(_) => break,
-            Ok(read) => read,
-        };
-        let mut plain = buffer[..read].to_vec();
-        decrypt.apply(&mut plain);
-        packets.push(&plain);
         if !drain(&mut packets, &mut hooks, direction, &capture, &codec, &to_client, &to_server) {
-            overflow = true;
+            overflow.store(true, Ordering::Relaxed);
         }
+        flush_capture(&capture);
     }
-    let mode = if overflow {
-        std::net::Shutdown::Both
-    } else {
-        std::net::Shutdown::Read
-    };
-    let _ = client_socket.shutdown(mode);
-    let _ = server_socket.shutdown(mode);
+    let idle_limit = Duration::from_secs(120);
+    let mut last_activity = Instant::now();
+    while !overflow.load(Ordering::Relaxed) {
+        let read = match input.read(&mut buffer) {
+            Ok(0) => break,
+            Ok(read) => {
+                last_activity = Instant::now();
+                read
+            }
+            Err(error)
+                if error.kind() == ErrorKind::WouldBlock
+                    || error.kind() == ErrorKind::TimedOut =>
+            {
+                if last_activity.elapsed() > idle_limit {
+                    break;
+                }
+                continue;
+            }
+            Err(_) => break,
+        };
+        decrypt.apply(&mut buffer[..read]);
+        packets.push(&buffer[..read]);
+        if !drain(&mut packets, &mut hooks, direction, &capture, &codec, &to_client, &to_server) {
+            overflow.store(true, Ordering::Relaxed);
+        }
+        flush_capture(&capture);
+    }
 }
 
 fn drain(
@@ -306,7 +361,7 @@ fn drain(
         capture.record(direction, &name, packet.opcode, &packet.body, object.as_ref(), attempted);
 
         if !has_handler {
-            if writer_for(direction, to_client, to_server).try_send(packet.encode()).is_err() {
+            if !forward(writer_for(direction, to_client, to_server), packet.encode()) {
                 return false;
             }
             continue;
@@ -314,7 +369,7 @@ fn drain(
         let mut injections = Vec::new();
         match dispatch(hooks, packet.opcode, &name, object, &mut injections, codec) {
             Outcome::Pass => {
-                if writer_for(direction, to_client, to_server).try_send(packet.encode()).is_err() {
+                if !forward(writer_for(direction, to_client, to_server), packet.encode()) {
                     return false;
                 }
             }
@@ -325,16 +380,16 @@ fn drain(
                         .unwrap_or_else(|_| packet.encode()),
                     None => packet.encode(),
                 };
-                if writer_for(direction, to_client, to_server).try_send(frame).is_err() {
+                if !forward(writer_for(direction, to_client, to_server), frame) {
                     return false;
                 }
             }
         }
         for injection in injections {
-            if writer_for(injection.direction, to_client, to_server)
-                .try_send(injection.frame)
-                .is_err()
-            {
+            if !forward(
+                writer_for(injection.direction, to_client, to_server),
+                injection.frame,
+            ) {
                 return false;
             }
         }
@@ -345,9 +400,18 @@ fn drain(
 fn serve(client: TcpStream, upstream: &str, constants: Constants, capture: Arc<Capture>) -> Result<()> {
     let mut client = client;
     client.set_nodelay(true)?;
-    let mut server = TcpStream::connect(upstream)
+    client.set_read_timeout(Some(Duration::from_secs(30)))?;
+    client.set_write_timeout(Some(Duration::from_secs(30)))?;
+    let address = upstream
+        .to_socket_addrs()
+        .with_context(|| format!("resolving {upstream}"))?
+        .next()
+        .with_context(|| format!("no address for {upstream}"))?;
+    let mut server = TcpStream::connect_timeout(&address, Duration::from_secs(10))
         .with_context(|| format!("connecting to {upstream}"))?;
     server.set_nodelay(true)?;
+    server.set_read_timeout(Some(Duration::from_secs(30)))?;
+    server.set_write_timeout(Some(Duration::from_secs(30)))?;
 
     let greeting = read_exactly(&mut server, MAGIC.len())?;
     if greeting != MAGIC {
@@ -499,12 +563,16 @@ fn main() -> Result<()> {
             .map(|address| address.to_string())
             .unwrap_or_else(|_| "?".into());
         println!("client connected from {peer}");
-        if let Err(error) = serve(client, &cli.upstream, constants, Arc::clone(&capture)) {
-            println!("session ended: {error}");
-        } else {
-            println!("session closed");
-        }
+        let upstream = cli.upstream.clone();
+        let capture = Arc::clone(&capture);
+        let handle = std::thread::spawn(move || {
+            match serve(client, &upstream, constants, capture) {
+                Err(error) => println!("session ended: {error}"),
+                Ok(()) => println!("session closed"),
+            }
+        });
         if cli.once {
+            let _ = handle.join();
             break;
         }
     }
