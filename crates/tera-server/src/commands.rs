@@ -47,6 +47,7 @@ pub struct State {
     pub location: [f32; 3],
     pub angle: i64,
     pub next_npc: u64,
+    pub target: u64,
 }
 
 pub enum Action {
@@ -75,6 +76,7 @@ pub struct Tables<'a> {
     pub skills: &'a Skills,
     pub realm: &'a Realm,
     pub spawns: &'a Spawns,
+    pub villagers: &'a crate::villagers::Villagers,
 }
 
 pub fn run(line: &str, state: &mut State, world: &World, tables: &Tables<'_>) -> Vec<Action> {
@@ -85,6 +87,7 @@ pub fn run(line: &str, state: &mut State, world: &World, tables: &Tables<'_>) ->
         skills,
         realm,
         spawns,
+        villagers,
     } = tables;
     let plain = strip_markup(line);
     let line = plain.trim();
@@ -116,7 +119,17 @@ pub fn run(line: &str, state: &mut State, world: &World, tables: &Tables<'_>) ->
                 .first()
                 .and_then(|value| value.parse::<f32>().ok())
                 .unwrap_or(6000.0);
-            let placed = spawns.populate(realm, npcs, state.zone, state.location, radius, 60);
+            let placed = spawns.populate(
+                realm,
+                npcs,
+                villagers,
+                &crate::spawns::Around {
+                    continent: state.zone,
+                    origin: state.location,
+                    radius,
+                    limit: 60,
+                },
+            );
             vec![
                 Action::Refresh,
                 Action::Say(format!(

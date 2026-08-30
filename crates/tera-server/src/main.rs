@@ -69,20 +69,22 @@ struct Cli {
     spawns: PathBuf,
     #[arg(
         long,
+        default_value = "data/official-npc-skills.json",
+        help = "Creature attacks imported from the official server's NpcSkillData"
+    )]
+    npc_skills: PathBuf,
+    #[arg(
+        long,
+        default_value = "data/official-villagers.json",
+        help = "Npcs that hold a fixed post, imported from the official server's VillagerData"
+    )]
+    villagers: PathBuf,
+    #[arg(
+        long,
         default_value = "data/responses.json",
         help = "Table of extra replies, keyed by request packet name"
     )]
     responses: PathBuf,
-    #[arg(
-        long,
-        help = "Answer any unhandled C_X with a default-filled S_X when both are known"
-    )]
-    auto_reply: bool,
-    #[arg(
-        long,
-        help = "Also answer through request/reply naming rules, which some packets dislike"
-    )]
-    auto_reply_aliases: bool,
     #[arg(
         long,
         value_parser = parse_pin,
@@ -180,6 +182,28 @@ fn main() -> Result<()> {
         placements.len() - placements.placed()
     ));
 
+    let posts = tera_server::villagers::Villagers::load(&cli.villagers)?;
+    logger.line(match posts.is_empty() {
+        true => format!("no fixed posts loaded from {}", cli.villagers.display()),
+        false => format!(
+            "{} npcs hold a fixed post across {} hunting zones, from {}",
+            posts.len(),
+            posts.zones(),
+            cli.villagers.display()
+        ),
+    });
+
+    let attacks = tera_server::npcskills::Attacks::load(&cli.npc_skills)?;
+    logger.line(match attacks.is_empty() {
+        true => format!("no creature attacks loaded from {}", cli.npc_skills.display()),
+        false => format!(
+            "{} creature attacks for {} creatures loaded from {}",
+            attacks.len(),
+            attacks.creatures(),
+            cli.npc_skills.display()
+        ),
+    });
+
     let realm = realm::Realm::default();
     let server = session::Server {
         opcodes: &opcodes,
@@ -193,8 +217,8 @@ fn main() -> Result<()> {
         realm: &realm,
         spawns: &placements,
         responses: &table,
-        auto_reply: cli.auto_reply,
-        auto_reply_aliases: cli.auto_reply_aliases,
+        attacks: &attacks,
+        villagers: &posts,
     };
 
     let listener = TcpListener::bind(&cli.bind).with_context(|| format!("binding {}", cli.bind))?;

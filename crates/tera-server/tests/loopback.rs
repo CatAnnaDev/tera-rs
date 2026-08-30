@@ -31,6 +31,7 @@ fn client_completes_the_handshake_and_gets_an_answer() {
         let _ = serve(
             stream,
             &Server {
+                villagers: &tera_server::villagers::Villagers::default(),
                 opcodes: &opcode_map(),
                 registry: &registry,
                 logger: &logger,
@@ -42,8 +43,7 @@ fn client_completes_the_handshake_and_gets_an_answer() {
                 realm: &tera_server::realm::Realm::default(),
                 spawns: &tera_server::spawns::Spawns::default(),
                 responses: &Responses::default(),
-                auto_reply: false,
-                auto_reply_aliases: false,
+                attacks: &tera_server::npcskills::Attacks::default(),
             },
             false,
         );

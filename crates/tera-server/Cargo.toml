@@ -13,10 +13,6 @@ name = "tera-serverd"
 path = "src/main.rs"
 
 [[bin]]
-name = "tera-proxy"
-path = "src/bin/proxy.rs"
-
-[[bin]]
 name = "tera-encode"
 path = "src/bin/encode.rs"
 

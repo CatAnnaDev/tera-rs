@@ -33,6 +33,7 @@ pub struct Config {
     pub game: String,
     pub language: String,
     pub serverlist: Option<Vec<u8>>,
+    pub proxy: Option<(Ipv4Addr, u16)>,
     pub language_id: i32,
     pub probe: bool,
 }
@@ -48,6 +49,7 @@ impl Config {
             game: String::new(),
             language: "EUR".into(),
             serverlist: None,
+            proxy: None,
             language_id: 1,
             probe: false,
         };
@@ -60,6 +62,13 @@ impl Config {
                 "--host" => config.host = pair[1].clone(),
                 "--port" => config.port = pair[1].parse().unwrap_or(10001),
                 "--server-name" => config.server_name = pair[1].clone(),
+                "--proxy" => {
+                    if let Some((host, port)) = pair[1].rsplit_once(':') {
+                        if let (Ok(address), Ok(port)) = (host.parse::<Ipv4Addr>(), port.parse::<u16>()) {
+                            config.proxy = Some((address, port));
+                        }
+                    }
+                }
                 "--game" => config.game = pair[1].clone(),
                 "--language" => config.language = pair[1].clone(),
                 "--language-id" => config.language_id = pair[1].parse().unwrap_or(1),
@@ -75,14 +84,24 @@ impl Config {
     }
 
     fn server_list(&self, language: i32, encoding: Encoding) -> Vec<u8> {
-        ServerList {
-            servers: vec![Server::local(
-                1,
-                &self.server_name,
-                self.address(),
-                self.port,
+        let mut servers = vec![Server::local(
+            1,
+            &self.server_name,
+            self.address(),
+            self.port,
+            language,
+        )];
+        if let Some((address, port)) = self.proxy {
+            servers.push(Server::local(
+                2,
+                &format!("{}(Meow)", self.server_name),
+                address,
+                port,
                 language,
-            )],
+            ));
+        }
+        ServerList {
+            servers,
             last_played_id: 1,
             unknown: 0,
         }
@@ -208,7 +227,7 @@ unsafe extern "system" fn window_procedure(
                         sender,
                         window,
                         EVENT_TICKET_REPLY,
-                        &utf16_payload(&config.ticket),
+                        config.ticket.as_bytes(),
                     );
                 }
                 EVENT_SERVER_LIST_REQUEST => {

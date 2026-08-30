@@ -10,7 +10,38 @@ use mach2::vm_types::{mach_vm_address_t, mach_vm_size_t};
 
 const MAX_REGION_BYTES: u64 = 512 * 1024 * 1024;
 
+pub struct Region {
+    pub address: u64,
+    pub protection: i32,
+    pub bytes: Vec<u8>,
+}
+
+impl Region {
+    pub fn executable(&self) -> bool {
+        self.protection & mach2::vm_prot::VM_PROT_EXECUTE != 0
+    }
+
+    pub fn writable(&self) -> bool {
+        self.protection & mach2::vm_prot::VM_PROT_WRITE != 0
+    }
+
+    pub fn flags(&self) -> String {
+        let mut out = String::new();
+        out.push(if self.protection & VM_PROT_READ != 0 { 'r' } else { '-' });
+        out.push(if self.writable() { 'w' } else { '-' });
+        out.push(if self.executable() { 'x' } else { '-' });
+        out
+    }
+}
+
 pub fn read_all(pid: i32) -> Result<Vec<(u64, Vec<u8>)>> {
+    Ok(regions(pid)?
+        .into_iter()
+        .map(|region| (region.address, region.bytes))
+        .collect())
+}
+
+pub fn regions(pid: i32) -> Result<Vec<Region>> {
     unsafe {
         let mut task: mach_port_t = 0;
         let status = task_for_pid(mach_task_self(), pid, &mut task);
@@ -53,7 +84,11 @@ pub fn read_all(pid: i32) -> Result<Vec<(u64, Vec<u8>)>> {
                 );
                 if status == KERN_SUCCESS && read > 0 {
                     buffer.truncate(read as usize);
-                    regions.push((address, buffer));
+                    regions.push(Region {
+                        address,
+                        protection: info.protection,
+                        bytes: buffer,
+                    });
                 }
             }
             address = match address.checked_add(size.max(1)) {

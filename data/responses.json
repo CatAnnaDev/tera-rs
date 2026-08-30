@@ -48,17 +48,6 @@
       "packet": "S_CANCEL_PREPARE_CHANGE_USER_APPEARANCE"
     }
   ],
-  "C_CAN_LOCKON_TARGET": [
-    {
-      "fields": {
-        "skill": "$.skill",
-        "success": true,
-        "target": "$.target",
-        "unk": "$.unk"
-      },
-      "packet": "S_CAN_LOCKON_TARGET"
-    }
-  ],
   "C_CHANGE_ITEM_PASSIVE_LIST": [
     {
       "fields": {
@@ -90,16 +79,6 @@
       "packet": "S_CITY_WAR_SEASON_HISTROY"
     }
   ],
-  "C_COLLECTION_PICKSTART": [
-    {
-      "fields": {
-        "collection": "$.gameId",
-        "duration": 3000,
-        "user": "$gameId"
-      },
-      "packet": "S_COLLECTION_PICKSTART"
-    }
-  ],
   "C_CREST_APPLY": [
     {
       "fields": {
@@ -107,14 +86,6 @@
         "id": "$.id"
       },
       "packet": "S_CREST_APPLY"
-    }
-  ],
-  "C_DELETE_PARCEL": [
-    {
-      "fields": {
-        "ok": true
-      },
-      "packet": "S_DELETE_PARCEL"
     }
   ],
   "C_DELETE_USER": [
@@ -144,16 +115,6 @@
       "packet": "S_EVENT_GUIDE"
     }
   ],
-  "C_GET_GUILD_WARE_HISTORY": [
-    {
-      "fields": {
-        "events": [],
-        "page": "$.page",
-        "pages": 1
-      },
-      "packet": "S_GUILD_WARE_HISTORY"
-    }
-  ],
   "C_GET_IN_SHUTTLE": [
     {
       "fields": {
@@ -172,17 +133,6 @@
         "playerId": "$.playerId"
       },
       "packet": "S_GET_USER_GUILD_LOGO"
-    }
-  ],
-  "C_JOIN_PRIVATE_CHANNEL": [
-    {
-      "fields": {
-        "channelId": 1,
-        "index": 0,
-        "name": "$.name",
-        "unk": []
-      },
-      "packet": "S_JOIN_PRIVATE_CHANNEL"
     }
   ],
   "C_LEARN_EP_PERK": [
@@ -254,17 +204,6 @@
       "packet": "S_ABNORMALITY_TOOLTIP_VALUE"
     }
   ],
-  "C_REQUEST_ACCESSORY_COST_INFO": [
-    {
-      "fields": {
-        "amount": 0,
-        "item": 0,
-        "response": 1,
-        "unk": 0
-      },
-      "packet": "S_RESPONSE_ACCESSORY_COST_INFO"
-    }
-  ],
   "C_REQUEST_CONTRACT": [
     {
       "fields": {
@@ -282,17 +221,6 @@
         "page": "$.page"
       },
       "packet": "S_COUPON_LIST"
-    }
-  ],
-  "C_REQUEST_GUILD_LIST": [
-    {
-      "fields": {
-        "currentPage": 1,
-        "guilds": [],
-        "totalGuilds": 0,
-        "totalPages": 1
-      },
-      "packet": "S_REPLY_GUILD_LIST"
     }
   ],
   "C_REQUEST_MY_PARTY_MATCH_INFO": [
@@ -357,14 +285,6 @@
         "slots": 0
       },
       "packet": "S_REQUEST_SERVANT_INFO_LIST"
-    }
-  ],
-  "C_REQUEST_USABLE_CHARACTER_NAME": [
-    {
-      "fields": {
-        "ok": true
-      },
-      "packet": "S_RESULT_USABLE_CHARACTER_NAME"
     }
   ],
   "C_REQUEST_USER_ITEMLEVEL_INFO": [
@@ -477,16 +397,6 @@
       "packet": "S_USE_RIGHT_ITEM"
     }
   ],
-  "C_VIEW_BATTLE_FIELD_RESULT": [
-    {
-      "fields": {
-        "battlefields": [],
-        "days": 7,
-        "unk": 0
-      },
-      "packet": "S_VIEW_BATTLE_FIELD_RESULT"
-    }
-  ],
   "C_VIEW_GUILD_WAR": [
     {
       "fields": {
@@ -503,20 +413,6 @@
         "result": false
       },
       "packet": "S_VOTE_RESET_ALL_DUNGEON"
-    }
-  ],
-  "C_WHISPER": [
-    {
-      "fields": {
-        "channel": 11,
-        "founder": false,
-        "gameId": "$gameId",
-        "gm": false,
-        "isWorldEventTarget": false,
-        "message": "$.message",
-        "name": "$name"
-      },
-      "packet": "S_CHAT"
     }
   ]
 }

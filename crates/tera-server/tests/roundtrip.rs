@@ -36,10 +36,41 @@ fn sample() -> Character {
 }
 
 #[test]
+fn no_definition_meant_for_a_later_patch_is_ever_chosen() {
+    let registry = registry();
+    let directory = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../data/definitions");
+    let entries = std::fs::read_dir(&directory).expect("definitions");
+    let mut checked = 0usize;
+    for entry in entries.flatten() {
+        let path = entry.path();
+        if path.extension().map(|kind| kind != "def").unwrap_or(true) {
+            continue;
+        }
+        let Ok(file) = tera_protocol::defs::read_file(&path) else {
+            continue;
+        };
+        let Some(chosen) = registry.version(&file.name) else {
+            continue;
+        };
+        if chosen != file.version {
+            continue;
+        }
+        assert!(
+            file.patch.admits(100),
+            "{} version {} was chosen for a patch 100 client but its guard excludes it",
+            file.name,
+            file.version
+        );
+        checked += 1;
+    }
+    assert!(checked > 500, "only {checked} definitions were checked");
+}
+
+#[test]
 fn the_patch_version_picks_the_definitions_this_client_speaks() {
     let registry = registry();
     assert_eq!(registry.version("S_LOGIN"), Some(14));
-    assert_eq!(registry.version("S_GET_USER_LIST"), Some(15));
+    assert_eq!(registry.version("S_GET_USER_LIST"), Some(18));
     assert_eq!(registry.version("S_PLAYER_STAT_UPDATE"), Some(14));
     assert_eq!(registry.version("S_USER_STATUS"), Some(3));
     assert_eq!(registry.version("S_CHAT"), Some(3));

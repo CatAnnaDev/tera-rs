@@ -297,8 +297,9 @@ fn read_level(
                 let key = format!("{prefix}{name}");
                 let count = *references.counts.get(&key).unwrap_or(&0);
                 let mut offset = *references.offsets.get(&key).unwrap_or(&0);
-                let mut items = Vec::with_capacity(count);
-                let mut values = Vec::with_capacity(count);
+                let cap = count.min(packet.len().saturating_sub(offset) / 4);
+                let mut items = Vec::with_capacity(cap);
+                let mut values = Vec::with_capacity(cap);
                 for _ in 0..count {
                     if offset + 4 > packet.len() {
                         break;

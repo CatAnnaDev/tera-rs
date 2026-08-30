@@ -1,9 +1,12 @@
 mod datacenter;
+mod disasm;
+mod dump;
 mod gpk;
 mod index;
 mod keyfind;
 mod mapper;
 mod mods;
+mod serverdata;
 #[cfg(target_os = "macos")]
 mod macos_memory;
 
@@ -31,6 +34,12 @@ enum Command {
     Index(index::IndexCommand),
     #[command(subcommand, name = "mod", about = "Author, apply and revert mods")]
     Mod(mods::ModCommand),
+    #[command(about = "Read the memory of a running process, for binaries that unpack themselves")]
+    Dump(dump::DumpArgs),
+    #[command(about = "Disassemble a raw memory region as x86-64")]
+    Disasm(disasm::DisasmArgs),
+    #[command(subcommand, name = "server-data", about = "Import the official server's datasheets")]
+    ServerData(serverdata::ServerDataCommand),
 }
 
 fn main() -> Result<()> {
@@ -44,5 +53,8 @@ fn main() -> Result<()> {
         Command::Mapper(command) => mapper::run(command),
         Command::Index(command) => index::run(command),
         Command::Mod(command) => mods::run(command),
+        Command::Dump(args) => dump::run(args),
+        Command::Disasm(args) => disasm::run(args),
+        Command::ServerData(command) => serverdata::run(command),
     }
 }

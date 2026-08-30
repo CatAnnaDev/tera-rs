@@ -44,7 +44,7 @@ pub fn edit_in_place(
 ) -> Result<usize> {
     let path = path.as_ref();
     let source = DataCenter::open(path)?;
-    let keyiv = source.keyiv.clone();
+    let keyiv = source.keyiv;
     let mut builder = Builder::from_datacenter(&source)?;
     let outcome = edit(
         &mut builder,
@@ -168,7 +168,7 @@ pub fn apply(builder: &mut Builder, operation: &Operation) -> Result<usize> {
 pub fn apply_all(path: impl AsRef<Path>, operations: &[Operation]) -> Result<Vec<usize>> {
     let path = path.as_ref();
     let source = DataCenter::open(path)?;
-    let keyiv = source.keyiv.clone();
+    let keyiv = source.keyiv;
     let mut builder = Builder::from_datacenter(&source)?;
     let mut matched = Vec::with_capacity(operations.len());
     for operation in operations {

@@ -1,0 +1,14 @@
+[package]
+name = "tera-proxy"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "tera-proxy"
+path = "src/main.rs"
+
+[dependencies]
+tera-protocol = { workspace = true }
+anyhow = { workspace = true }
+clap = { workspace = true }

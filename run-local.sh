@@ -12,7 +12,7 @@ cargo build --release --manifest-path "$root/Cargo.toml" -p tera-server
 cargo build --release --manifest-path "$root/Cargo.toml" --target x86_64-pc-windows-gnu -p tera-launcher
 cp "$root/target/x86_64-pc-windows-gnu/release/tera-launcher.exe" "$temp/"
 
-"$root/target/release/tera-serverd" --opcodes "$opcodes" --definitions "$root/data/definitions" --database "$root/data/world.db" --auto-reply --hex &
+"$root/target/release/tera-serverd" --opcodes "$opcodes" --definitions "$root/data/definitions" --database "$root/data/world.db" --hex &
 server=$!
 trap 'kill $server 2>/dev/null' EXIT INT TERM
 sleep 1

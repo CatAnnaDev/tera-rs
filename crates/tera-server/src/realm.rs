@@ -1,5 +1,7 @@
+use crate::noise::{in_disc, mixed};
 use std::collections::HashMap;
 use std::sync::Mutex;
+use std::time::{Duration, Instant};
 use tera_protocol::value::{Object, Value};
 
 pub const DEFAULT_VISIBLE_RANGE: f32 = 3000.0;
@@ -21,6 +23,10 @@ pub struct Creature {
     pub walk_speed: i64,
     pub run_speed: i64,
     pub aggressive: bool,
+    pub anchor: [f32; 3],
+    pub roam: f32,
+    pub destination: [f32; 3],
+    pub restless: Option<Instant>,
 }
 
 impl Creature {
@@ -56,12 +62,12 @@ impl Creature {
             .with("npcName", Value::Str(String::new()))
     }
 
-    pub fn walk_packet(&self, destination: [f32; 3], facing: i64) -> Object {
+    pub fn walk_packet(&self, destination: [f32; 3], facing: i64, speed: i64) -> Object {
         Object::new()
             .with("gameId", Value::Uint(self.id))
             .with("loc", Value::Vec3(self.location))
             .with("w", Value::Int(facing))
-            .with("speed", Value::Int(self.run_speed))
+            .with("speed", Value::Int(speed))
             .with("dest", Value::Vec3(destination))
             .with("type", Value::Int(0))
     }
@@ -128,6 +134,8 @@ pub struct Spawn {
     pub walk_speed: i64,
     pub run_speed: i64,
     pub aggressive: bool,
+    pub anchor: [f32; 3],
+    pub roam: f32,
 }
 
 impl Default for Spawn {
@@ -143,7 +151,68 @@ impl Default for Spawn {
             walk_speed: 25,
             run_speed: 100,
             aggressive: false,
+            anchor: [0.0; 3],
+            roam: 0.0,
         }
+    }
+}
+
+pub const STROLL_PAUSE: Duration = Duration::from_secs(4);
+pub const STROLL_VARIETY: Duration = Duration::from_secs(6);
+const HOME_TOLERANCE: f32 = 30.0;
+
+impl Realm {
+    pub fn stroll(
+        &self,
+        zone: i64,
+        now: Instant,
+        stride: f32,
+        budget: usize,
+        busy: impl Fn(&Creature) -> bool,
+    ) -> Vec<(Creature, [f32; 3], i64)> {
+        let mut state = self.state.lock().expect("realm");
+        state.strolls += 1;
+        let turn = state.strolls;
+        let Some(creatures) = state.zones.get_mut(&zone) else {
+            return Vec::new();
+        };
+        let mut moved = Vec::new();
+        for creature in creatures.iter_mut() {
+            if moved.len() >= budget {
+                break;
+            }
+            if !creature.alive() || busy(creature) {
+                continue;
+            }
+            let leash = creature.roam.max(HOME_TOLERANCE);
+            let strayed = distance_squared(creature.location, creature.anchor) > leash * leash;
+            let due = creature.restless.map(|until| now >= until).unwrap_or(true);
+            if strayed {
+                creature.destination = creature.anchor;
+                creature.restless = Some(now + STROLL_PAUSE);
+            } else if due {
+                if creature.roam <= 0.0 {
+                    creature.restless = Some(now + STROLL_PAUSE);
+                    continue;
+                }
+                let seed = creature.id ^ mixed(turn);
+                creature.destination = in_disc(seed, creature.anchor, creature.roam);
+                let pause = STROLL_PAUSE
+                    + STROLL_VARIETY.mul_f32(crate::noise::unit(mixed(seed)));
+                creature.restless = Some(now + pause);
+            }
+            let gap = distance_squared(creature.location, creature.destination).sqrt();
+            if gap <= 1.0 {
+                continue;
+            }
+            let facing = bearing(creature.location, creature.destination);
+            let step = step_towards(creature.location, creature.destination, stride.min(gap));
+            let before = creature.clone();
+            creature.location = step;
+            creature.facing = facing;
+            moved.push((before, step, facing));
+        }
+        moved
     }
 }
 
@@ -185,6 +254,7 @@ struct State {
     zones: HashMap<i64, Vec<Creature>>,
     drops: Vec<Drop>,
     next: u64,
+    strolls: u64,
 }
 
 #[derive(Default)]
@@ -209,6 +279,10 @@ impl Realm {
             walk_speed: wanted.walk_speed,
             run_speed: wanted.run_speed,
             aggressive: wanted.aggressive,
+            anchor: wanted.anchor,
+            roam: wanted.roam,
+            destination: wanted.location,
+            restless: None,
         };
         state.zones.entry(zone).or_default().push(creature.clone());
         creature
@@ -221,7 +295,7 @@ impl Realm {
             .get(&zone)
             .map(|creatures| {
                 creatures.iter().any(|creature| {
-                    creature.template == template && distance_squared(creature.location, at) < 1.0
+                    creature.template == template && distance_squared(creature.anchor, at) < 1.0
                 })
             })
             .unwrap_or(false)
@@ -404,7 +478,7 @@ pub fn in_front_of(origin: [f32; 3], facing: i64, distance: f32) -> [f32; 3] {
     ]
 }
 
-fn distance_squared(a: [f32; 3], b: [f32; 3]) -> f32 {
+pub fn distance_squared(a: [f32; 3], b: [f32; 3]) -> f32 {
     let (dx, dy, dz) = (a[0] - b[0], a[1] - b[1], a[2] - b[2]);
     dx * dx + dy * dy + dz * dz
 }
@@ -412,6 +486,92 @@ fn distance_squared(a: [f32; 3], b: [f32; 3]) -> f32 {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    fn wanderer(anchor: [f32; 3], roam: f32) -> Spawn {
+        Spawn {
+            template: 7001,
+            hunting_zone: 13,
+            location: anchor,
+            anchor,
+            roam,
+            walk_speed: 60,
+            ..Default::default()
+        }
+    }
+
+    fn walk_for(realm: &Realm, creature: u64, ticks: u32) -> Vec<[f32; 3]> {
+        let mut now = Instant::now();
+        let mut path = Vec::new();
+        for _ in 0..ticks {
+            now += Duration::from_millis(700);
+            for (moved, to, _) in realm.stroll(13, now, 60.0, 8, |_| false) {
+                if moved.id == creature {
+                    path.push(to);
+                }
+            }
+        }
+        path
+    }
+
+    #[test]
+    fn a_wandering_creature_never_leaves_its_territory() {
+        let realm = Realm::default();
+        let anchor = [1000.0, 2000.0, 50.0];
+        let creature = realm.spawn(13, &wanderer(anchor, 400.0));
+        for step in walk_for(&realm, creature.id, 400) {
+            let leash = distance_squared(step, anchor).sqrt();
+            assert!(leash <= 400.0 + 1.0, "it strayed {leash:.0} units from home");
+            assert_eq!(step[2], anchor[2]);
+        }
+    }
+
+    #[test]
+    fn a_wandering_creature_actually_covers_ground() {
+        let realm = Realm::default();
+        let anchor = [0.0, 0.0, 0.0];
+        let creature = realm.spawn(13, &wanderer(anchor, 400.0));
+        let path = walk_for(&realm, creature.id, 400);
+        assert!(path.len() > 100, "it only moved {} times in 400 ticks", path.len());
+        let reached = path
+            .iter()
+            .map(|step| distance_squared(*step, anchor).sqrt())
+            .fold(0.0f32, f32::max);
+        assert!(reached > 200.0, "it never got further than {reached:.0} units out");
+    }
+
+    #[test]
+    fn a_creature_with_a_fixed_post_stays_on_it() {
+        let realm = Realm::default();
+        let anchor = [500.0, -500.0, 12.0];
+        let creature = realm.spawn(13, &wanderer(anchor, 0.0));
+        assert!(walk_for(&realm, creature.id, 200).is_empty());
+    }
+
+    #[test]
+    fn a_creature_that_chased_the_player_walks_back_to_its_post() {
+        let realm = Realm::default();
+        let anchor = [0.0, 0.0, 0.0];
+        let creature = realm.spawn(13, &wanderer(anchor, 0.0));
+        realm.move_to(creature.id, [3000.0, 0.0, 0.0], 0);
+        let path = walk_for(&realm, creature.id, 200);
+        let home = path.last().expect("it never headed home");
+        assert!(
+            distance_squared(*home, anchor).sqrt() <= 1.0,
+            "it stopped {:.0} units short of home",
+            distance_squared(*home, anchor).sqrt()
+        );
+    }
+
+    #[test]
+    fn a_creature_the_player_is_fighting_is_left_where_it_stands() {
+        let realm = Realm::default();
+        let creature = realm.spawn(13, &wanderer([0.0, 0.0, 0.0], 400.0));
+        let mut now = Instant::now();
+        for _ in 0..50 {
+            now += Duration::from_millis(700);
+            assert!(realm.stroll(13, now, 60.0, 8, |_| true).is_empty());
+        }
+    }
 
     fn realm() -> Realm {
         let realm = Realm::default();
@@ -500,6 +660,7 @@ mod occupancy_tests {
         let spot = Spawn {
             template: 7001,
             location: [1000.0, 2000.0, -30.0],
+            anchor: [1000.0, 2000.0, -30.0],
             ..Spawn::default()
         };
         assert!(!realm.occupied(13, 7001, spot.location));
@@ -508,6 +669,24 @@ mod occupancy_tests {
         assert!(!realm.occupied(13, 7002, spot.location), "a different creature may share the spot");
         assert!(!realm.occupied(2000, 7001, spot.location), "another zone is unrelated");
         assert!(!realm.occupied(13, 7001, [1100.0, 2000.0, -30.0]), "a metre away is a different point");
+    }
+
+    #[test]
+    fn a_creature_that_wandered_off_still_holds_its_spawn_point() {
+        let realm = Realm::default();
+        let spot = Spawn {
+            template: 7001,
+            location: [1000.0, 2000.0, -30.0],
+            anchor: [1000.0, 2000.0, -30.0],
+            roam: 500.0,
+            ..Spawn::default()
+        };
+        let creature = realm.spawn(13, &spot);
+        realm.move_to(creature.id, [1400.0, 2300.0, -30.0], 0);
+        assert!(
+            realm.occupied(13, 7001, spot.location),
+            "a second pass would spawn a twin while the first one is out walking"
+        );
     }
 }
 

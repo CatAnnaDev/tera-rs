@@ -12,6 +12,8 @@ members = [
     "crates/tera-mod",
     "crates/tera-cli",
     "crates/tera-ui",
+    "crates/tera-bot",
+    "crates/tera-proxy",
 ]
 
 [workspace.package]

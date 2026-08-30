@@ -44,6 +44,8 @@ impl Npc {
             walk_speed: self.walk,
             run_speed: self.run,
             aggressive: false,
+            anchor: location,
+            roam: 0.0,
         }
     }
 }

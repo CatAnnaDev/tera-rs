@@ -1,0 +1,21 @@
+[package]
+name = "tera-bot"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "tera-bot"
+path = "src/main.rs"
+
+[dependencies]
+tera-protocol = { workspace = true }
+anyhow = { workspace = true }
+clap = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+ureq = { version = "3", features = ["json"] }
+sha2 = "0.10"
+base64 = "0.22"
+url = "2"
+getrandom = "0.3"

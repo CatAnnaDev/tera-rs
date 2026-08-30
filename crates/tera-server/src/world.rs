@@ -708,3 +708,18 @@ pub fn user_list(characters: &[Character]) -> Object {
             Value::Array(characters.iter().map(Character::list_entry).collect()),
         )
 }
+
+impl World {
+    pub fn visit_section(&self, character: u32, map: i64, guard: i64, section: i64) -> bool {
+        let database = self.database.lock().expect("world");
+        database
+            .connection()
+            .execute(
+                "INSERT OR IGNORE INTO visited_sections (character, map, guard, section) \
+                 VALUES (?1, ?2, ?3, ?4)",
+                params![character, map, guard, section],
+            )
+            .map(|changed| changed == 1)
+            .unwrap_or(false)
+    }
+}

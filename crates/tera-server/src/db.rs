@@ -56,6 +56,13 @@ CREATE TABLE IF NOT EXISTS learned_skills (
     skill     INTEGER NOT NULL,
     PRIMARY KEY (character, skill)
 );
+CREATE TABLE IF NOT EXISTS visited_sections (
+    character INTEGER NOT NULL REFERENCES characters(id) ON DELETE CASCADE,
+    map       INTEGER NOT NULL,
+    guard     INTEGER NOT NULL,
+    section   INTEGER NOT NULL,
+    PRIMARY KEY (character, map, guard, section)
+);
 CREATE INDEX IF NOT EXISTS characters_by_account ON characters(account);
 ";
 
