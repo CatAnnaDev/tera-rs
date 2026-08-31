@@ -42,11 +42,11 @@ fn component_mesh(package: &Package<'_>, component_index: i32) -> Option<String>
 
 pub fn parse_level(package: &Package<'_>) -> Vec<Placement> {
     let mut placements = Vec::new();
-    for (index, export) in package.exports.iter().enumerate() {
-        if package.export_class(export) != "StaticMeshActor" {
+    for export in package.exports.iter() {
+        let class = package.export_class(export);
+        if class != "StaticMeshActor" && class != "InterpActor" && class != "DynamicSMActor" {
             continue;
         }
-        let _ = index;
         let Ok(blob) = package.export_data(export) else {
             continue;
         };
