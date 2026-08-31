@@ -29,6 +29,12 @@ pub enum Preview {
         handle: Option<egui::TextureHandle>,
         dirty: bool,
         texture: Option<(u32, u32, Vec<u8>)>,
+        file: PathBuf,
+        animations: Vec<tera_package::Animation>,
+        anims_loaded: bool,
+        anim: usize,
+        playing: bool,
+        time: f32,
     },
     Sound {
         ogg: Vec<u8>,
@@ -566,6 +572,12 @@ fn preview_ui(
             handle,
             dirty,
             texture,
+            file,
+            animations,
+            anims_loaded,
+            anim,
+            playing,
+            time,
         } => {
             theme::eyebrow(
                 ui,
@@ -590,7 +602,23 @@ fn preview_ui(
                 camera.distance = (camera.distance * (1.0 - scroll * 0.002)).clamp(1.0, 1.0e6);
                 *dirty = true;
             }
+            let has_anim = mesh.skin.is_some() && !animations.is_empty();
+            if has_anim && *playing {
+                let delta = ui.input(|input| input.stable_dt).min(0.1);
+                let duration = animations.get(*anim).map(|clip| clip.duration).unwrap_or(0.0).max(0.001);
+                *time = (*time + delta) % duration;
+                *dirty = true;
+                context.request_repaint();
+            }
             if handle.is_none() || *dirty {
+                let positions = if has_anim {
+                    animations
+                        .get(*anim)
+                        .and_then(|clip| crate::skinning::pose_vertices(mesh, clip, *time))
+                        .unwrap_or_else(|| mesh.vertices.clone())
+                } else {
+                    mesh.vertices.clone()
+                };
                 let width = size.x as usize;
                 let height = size.y as usize;
                 let mut raster = Raster::new(width.max(16), height.max(16));
@@ -598,7 +626,7 @@ fn preview_ui(
                 raster.sky_top = [accent.r(), accent.g(), accent.b()];
                 let background = theme::colors(palette).background;
                 raster.sky_bottom = [background.r(), background.g(), background.b()];
-                let mut scene = build_scene(mesh, texture.as_ref());
+                let mut scene = build_scene(mesh, &positions, texture.as_ref());
                 scene.shade();
                 raster.render(&scene, &camera.view_projection(size.x / size.y));
                 let image = egui::ColorImage::from_rgba_unmultiplied(
@@ -619,6 +647,51 @@ fn preview_ui(
                     egui::Rect::from_min_max(egui::pos2(0.0, 0.0), egui::pos2(1.0, 1.0)),
                     egui::Color32::WHITE,
                 );
+            }
+            if mesh.skin.is_some() {
+                ui.add_space(6.0);
+                if !*anims_loaded {
+                    if ui.button("charger les animations").clicked() {
+                        let bones: std::collections::HashSet<&str> =
+                            mesh.skin.as_ref().unwrap().bones.iter().map(|bone| bone.name.as_str()).collect();
+                        let skeleton = bones.len().max(1);
+                        *animations = collect_animations(file.as_path(), &bones, skeleton, 60);
+                        *anims_loaded = true;
+                        *anim = 0;
+                        *time = 0.0;
+                        *dirty = true;
+                    }
+                } else if animations.is_empty() {
+                    theme::eyebrow(ui, palette, "aucune animation dans ce fichier");
+                } else {
+                    ui.horizontal(|ui| {
+                        let selected = animations.get(*anim).map(|clip| clip.name.clone()).unwrap_or_default();
+                        egui::ComboBox::from_id_salt("anim_pick")
+                            .selected_text(selected)
+                            .width(220.0)
+                            .show_ui(ui, |ui| {
+                                for (index, clip) in animations.iter().enumerate() {
+                                    if ui.selectable_label(*anim == index, &clip.name).clicked() {
+                                        *anim = index;
+                                        *time = 0.0;
+                                        *dirty = true;
+                                    }
+                                }
+                            });
+                        if ui.button(if *playing { "pause" } else { "play" }).clicked() {
+                            *playing = !*playing;
+                        }
+                        let duration = animations.get(*anim).map(|clip| clip.duration).unwrap_or(0.0).max(0.001);
+                        if ui.add(egui::Slider::new(time, 0.0..=duration).suffix(" s")).changed() {
+                            *dirty = true;
+                        }
+                    });
+                    theme::eyebrow(
+                        ui,
+                        palette,
+                        format!("{} clips · squelette {} os", animations.len(), mesh.skin.as_ref().unwrap().bones.len()),
+                    );
+                }
             }
             actions.push(Action {
                 label: "export OBJ",
@@ -729,9 +802,24 @@ fn draw_waveform(ui: &mut egui::Ui, palette: Palette, peaks: &[(f32, f32)]) {
     }
 }
 
-fn build_scene(mesh: &Mesh, texture: Option<&(u32, u32, Vec<u8>)>) -> Scene {
+fn bounds_of(positions: &[[f32; 3]]) -> ([f32; 3], [f32; 3]) {
+    let mut low = [f32::MAX; 3];
+    let mut high = [f32::MIN; 3];
+    for position in positions {
+        for axis in 0..3 {
+            low[axis] = low[axis].min(position[axis]);
+            high[axis] = high[axis].max(position[axis]);
+        }
+    }
+    if positions.is_empty() {
+        return ([0.0; 3], [0.0; 3]);
+    }
+    (low, high)
+}
+
+fn build_scene(mesh: &Mesh, positions: &[[f32; 3]], texture: Option<&(u32, u32, Vec<u8>)>) -> Scene {
     let mut scene = Scene::default();
-    let (low, high) = mesh.bounds();
+    let (low, high) = bounds_of(positions);
     let center = [
         (low[0] + high[0]) * 0.5,
         (low[1] + high[1]) * 0.5,
@@ -757,11 +845,12 @@ fn build_scene(mesh: &Mesh, texture: Option<&(u32, u32, Vec<u8>)>) -> Scene {
             [0.0, 0.0]
         }
     };
+    let vertex = |index: usize| -> [f32; 3] { positions.get(index).copied().unwrap_or([0.0; 3]) };
     for triangle in mesh.indices.as_chunks::<3>().0 {
         let points = [
-            convert(mesh.vertices[triangle[0] as usize]),
-            convert(mesh.vertices[triangle[1] as usize]),
-            convert(mesh.vertices[triangle[2] as usize]),
+            convert(vertex(triangle[0] as usize)),
+            convert(vertex(triangle[1] as usize)),
+            convert(vertex(triangle[2] as usize)),
         ];
         scene.triangles.push(Triangle {
             points,
@@ -865,6 +954,12 @@ fn load_object(
                         handle: None,
                         dirty: true,
                         texture,
+                        file: file.to_path_buf(),
+                        animations: Vec::new(),
+                        anims_loaded: false,
+                        anim: 0,
+                        playing: false,
+                        time: 0.0,
                     }
                 }
                 None => Preview::Raw,

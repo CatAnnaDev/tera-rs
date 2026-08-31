@@ -3,6 +3,7 @@ mod data;
 mod jobs;
 mod keys;
 mod mods;
+mod skinning;
 mod theme;
 mod view3d;
 
