@@ -6,11 +6,11 @@ use anyhow::{bail, Context, Result};
 use clap::Parser;
 use hooks::{dispatch, Codec, Direction, Engine, Handler, Outcome, Stats};
 use std::borrow::Cow;
-use std::collections::{HashMap, HashSet};
+use std::collections::{HashMap, HashSet, VecDeque};
 use std::io::{BufWriter, ErrorKind, Read, Write};
 use std::net::{TcpListener, TcpStream, ToSocketAddrs};
 use std::path::PathBuf;
-use std::sync::atomic::{AtomicBool, Ordering};
+use std::sync::atomic::{AtomicBool, AtomicU64, Ordering};
 use std::sync::mpsc::{self, Receiver, SyncSender, TrySendError};
 use std::sync::{Arc, Mutex};
 use std::time::{Duration, Instant};
@@ -18,7 +18,7 @@ use tera_protocol::handshake::{random_key, ClientHandshake, ServerHandshake, Ste
 use tera_protocol::session::{Constants, Decrypting, Encrypting, KEY_LEN, LEGACY, MODERN};
 use tera_protocol::{value, Object, OpcodeMap, PacketBuffer, Registry};
 
-#[derive(Parser)]
+#[derive(Parser, Clone)]
 #[command(name = "tera-proxy", about = "MITM between the client and a server: decrypts, inspects, hooks")]
 struct Cli {
     #[arg(long, default_value = "127.0.0.1:9250", help = "where the client connects")]
@@ -49,6 +49,8 @@ struct Cli {
     stats: bool,
     #[arg(long, help = "exit after serving a single connection")]
     once: bool,
+    #[arg(long, help = "open the live packet inspector window (needs the gui feature)")]
+    gui: bool,
     #[arg(long, default_value = "mods", help = "directory of dynamic mod libraries")]
     mods_dir: PathBuf,
     #[arg(long, help = "do not load any dynamic mods")]
@@ -56,6 +58,24 @@ struct Cli {
     #[arg(long, help = "disable a mod by name (repeatable)")]
     disable_mod: Vec<String>,
 }
+
+const MAX_EVENTS: usize = 20_000;
+static EVENT_SEQ: AtomicU64 = AtomicU64::new(0);
+
+#[derive(Clone)]
+#[cfg_attr(not(feature = "gui"), allow(dead_code))]
+struct PacketEvent {
+    seq: u64,
+    at: f64,
+    from_client: bool,
+    opcode: u16,
+    name: String,
+    len: usize,
+    hex: String,
+    fields: Option<String>,
+}
+
+type EventSink = Arc<Mutex<VecDeque<PacketEvent>>>;
 
 struct Capture {
     file: Mutex<BufWriter<std::fs::File>>,
@@ -69,6 +89,7 @@ struct Capture {
     show_stats: bool,
     stats: Mutex<Stats>,
     warned: Mutex<HashSet<String>>,
+    events: Option<EventSink>,
 }
 
 impl Capture {
@@ -168,6 +189,24 @@ impl Capture {
         );
         if let Ok(mut file) = self.file.lock() {
             let _ = writeln!(file, "{line}");
+        }
+
+        if let Some(events) = &self.events {
+            if let Ok(mut buffer) = events.lock() {
+                while buffer.len() >= MAX_EVENTS {
+                    buffer.pop_front();
+                }
+                buffer.push_back(PacketEvent {
+                    seq: EVENT_SEQ.fetch_add(1, Ordering::Relaxed),
+                    at: elapsed,
+                    from_client: matches!(direction, Direction::ClientToServer),
+                    opcode,
+                    name: name.to_string(),
+                    len: body.len(),
+                    hex: hex.clone(),
+                    fields: described.clone(),
+                });
+            }
         }
     }
 }
@@ -609,13 +648,7 @@ fn serve(
     Ok(())
 }
 
-fn main() -> Result<()> {
-    let cli = Cli::parse();
-    let opcodes = OpcodeMap::read(&cli.opcodes)
-        .with_context(|| format!("reading {}", cli.opcodes.display()))?;
-    let registry = Registry::load(&cli.definitions, Some(cli.patch_version))?;
-    let codec = Codec::new(opcodes, registry);
-
+fn build_capture(cli: &Cli, codec: Arc<Codec>, events: Option<EventSink>) -> Result<Arc<Capture>> {
     if let Some(parent) = cli.dump.parent() {
         let _ = std::fs::create_dir_all(parent);
     }
@@ -624,49 +657,61 @@ fn main() -> Result<()> {
         .append(true)
         .open(&cli.dump)
         .with_context(|| format!("opening {}", cli.dump.display()))?;
-    let capture = Arc::new(Capture {
+    Ok(Arc::new(Capture {
         file: Mutex::new(BufWriter::new(file)),
         codec,
         started: std::time::Instant::now(),
-        only: cli.only.into_iter().collect(),
-        hide: cli.hide.into_iter().collect(),
+        only: cli.only.iter().cloned().collect(),
+        hide: cli.hide.iter().cloned().collect(),
         show_fields: cli.show_fields,
         show_hex: cli.show_hex,
-        dump_fields: cli.dump_fields,
+        dump_fields: cli.dump_fields || events.is_some(),
         show_stats: cli.stats,
         stats: Mutex::new(Stats::default()),
         warned: Mutex::new(HashSet::new()),
-    });
-    let constants = if cli.legacy { LEGACY } else { MODERN };
+        events,
+    }))
+}
 
-    let mods: Arc<Mutex<Arc<loader::LoadedMods>>> = if cli.no_mods {
+fn build_mods(cli: &Cli) -> Arc<Mutex<Arc<loader::LoadedMods>>> {
+    if cli.no_mods {
         Arc::new(Mutex::new(Arc::new(loader::LoadedMods::empty())))
     } else {
         Arc::new(Mutex::new(Arc::new(loader::LoadedMods::load(
             &cli.mods_dir,
             &cli.disable_mod,
         ))))
-    };
-
-    if !cli.no_mods {
-        let mods = Arc::clone(&mods);
-        let dir = cli.mods_dir.clone();
-        let disabled = cli.disable_mod.clone();
-        std::thread::spawn(move || {
-            let mut last = loader::signature(&dir, &disabled);
-            loop {
-                std::thread::sleep(Duration::from_secs(1));
-                let current = loader::signature(&dir, &disabled);
-                if current != last {
-                    last = current;
-                    println!("[mods] change detected, reloading");
-                    let fresh = Arc::new(loader::LoadedMods::load(&dir, &disabled));
-                    *mods.lock().unwrap_or_else(|poison| poison.into_inner()) = fresh;
-                }
-            }
-        });
     }
+}
 
+fn spawn_mod_watcher(cli: &Cli, mods: &Arc<Mutex<Arc<loader::LoadedMods>>>) {
+    if cli.no_mods {
+        return;
+    }
+    let mods = Arc::clone(mods);
+    let dir = cli.mods_dir.clone();
+    let disabled = cli.disable_mod.clone();
+    std::thread::spawn(move || {
+        let mut last = loader::signature(&dir, &disabled);
+        loop {
+            std::thread::sleep(Duration::from_secs(1));
+            let current = loader::signature(&dir, &disabled);
+            if current != last {
+                last = current;
+                println!("[mods] change detected, reloading");
+                let fresh = Arc::new(loader::LoadedMods::load(&dir, &disabled));
+                *mods.lock().unwrap_or_else(|poison| poison.into_inner()) = fresh;
+            }
+        }
+    });
+}
+
+fn accept_loop(
+    cli: &Cli,
+    capture: Arc<Capture>,
+    mods: Arc<Mutex<Arc<loader::LoadedMods>>>,
+    constants: Constants,
+) -> Result<()> {
     let listener = TcpListener::bind(&cli.listen)
         .with_context(|| format!("binding {}", cli.listen))?;
     println!(
@@ -699,4 +744,214 @@ fn main() -> Result<()> {
         }
     }
     Ok(())
+}
+
+fn main() -> Result<()> {
+    let cli = Cli::parse();
+    let opcodes = OpcodeMap::read(&cli.opcodes)
+        .with_context(|| format!("reading {}", cli.opcodes.display()))?;
+    let registry = Registry::load(&cli.definitions, Some(cli.patch_version))?;
+    let codec = Codec::new(opcodes, registry);
+    let constants = if cli.legacy { LEGACY } else { MODERN };
+
+    let mods = build_mods(&cli);
+    spawn_mod_watcher(&cli, &mods);
+
+    if cli.gui {
+        #[cfg(feature = "gui")]
+        {
+            return gui::run(cli, codec, mods, constants);
+        }
+        #[cfg(not(feature = "gui"))]
+        {
+            anyhow::bail!("--gui needs a build with `--features gui`");
+        }
+    }
+
+    let capture = build_capture(&cli, codec, None)?;
+    accept_loop(&cli, capture, mods, constants)
+}
+
+#[cfg(feature = "gui")]
+mod gui {
+    use super::{accept_loop, build_capture, loader, Cli, EventSink, PacketEvent};
+    use anyhow::Result;
+    use eframe::egui;
+    use std::sync::{Arc, Mutex};
+    use tera_hook::Codec;
+    use tera_protocol::session::Constants;
+
+    pub fn run(
+        cli: Cli,
+        codec: Arc<Codec>,
+        mods: Arc<Mutex<Arc<loader::LoadedMods>>>,
+        constants: Constants,
+    ) -> Result<()> {
+        let events: EventSink = Arc::new(Mutex::new(std::collections::VecDeque::new()));
+        let capture = build_capture(&cli, codec, Some(Arc::clone(&events)))?;
+        {
+            let cli = cli.clone();
+            std::thread::spawn(move || {
+                if let Err(error) = accept_loop(&cli, capture, mods, constants) {
+                    eprintln!("proxy: {error}");
+                }
+            });
+        }
+        let app = ProxyApp::new(events);
+        eframe::run_native(
+            "tera-proxy",
+            eframe::NativeOptions::default(),
+            Box::new(|_cc| Ok(Box::new(app))),
+        )
+        .map_err(|error| anyhow::anyhow!("eframe: {error}"))?;
+        Ok(())
+    }
+
+    #[derive(PartialEq)]
+    enum DirFilter {
+        All,
+        ToServer,
+        ToClient,
+    }
+
+    struct ProxyApp {
+        events: EventSink,
+        rows: Vec<PacketEvent>,
+        filter: String,
+        dir: DirFilter,
+        paused: bool,
+        autoscroll: bool,
+        selected: Option<PacketEvent>,
+    }
+
+    impl ProxyApp {
+        fn new(events: EventSink) -> Self {
+            Self {
+                events,
+                rows: Vec::new(),
+                filter: String::new(),
+                dir: DirFilter::All,
+                paused: false,
+                autoscroll: true,
+                selected: None,
+            }
+        }
+    }
+
+    impl eframe::App for ProxyApp {
+        fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
+            ctx.request_repaint_after(std::time::Duration::from_millis(150));
+            if !self.paused {
+                let needle = self.filter.to_lowercase();
+                if let Ok(buffer) = self.events.lock() {
+                    self.rows = buffer
+                        .iter()
+                        .filter(|event| match self.dir {
+                            DirFilter::All => true,
+                            DirFilter::ToServer => event.from_client,
+                            DirFilter::ToClient => !event.from_client,
+                        })
+                        .filter(|event| {
+                            needle.is_empty() || event.name.to_lowercase().contains(&needle)
+                        })
+                        .cloned()
+                        .collect();
+                }
+            }
+
+            egui::TopBottomPanel::top("bar").show(ctx, |ui| {
+                ui.horizontal(|ui| {
+                    ui.label("filtre");
+                    ui.text_edit_singleline(&mut self.filter);
+                    ui.separator();
+                    ui.selectable_value(&mut self.dir, DirFilter::All, "tout");
+                    ui.selectable_value(&mut self.dir, DirFilter::ToServer, "-> serveur");
+                    ui.selectable_value(&mut self.dir, DirFilter::ToClient, "<- serveur");
+                    ui.separator();
+                    ui.checkbox(&mut self.paused, "pause");
+                    ui.checkbox(&mut self.autoscroll, "suivi");
+                    ui.separator();
+                    ui.label(format!("{} paquets", self.rows.len()));
+                });
+            });
+
+            egui::SidePanel::right("detail")
+                .min_width(360.0)
+                .show(ctx, |ui| match &self.selected {
+                    Some(event) => {
+                        ui.heading(&event.name);
+                        ui.label(format!(
+                            "opcode {}  ·  {} o  ·  {:.3}s  ·  {}",
+                            event.opcode,
+                            event.len,
+                            event.at,
+                            if event.from_client {
+                                "-> serveur"
+                            } else {
+                                "<- serveur"
+                            }
+                        ));
+                        ui.separator();
+                        egui::ScrollArea::vertical().show(ui, |ui| {
+                            ui.monospace(hex_dump(&event.hex));
+                            if let Some(fields) = &event.fields {
+                                ui.separator();
+                                ui.label("champs decodes:");
+                                ui.monospace(fields);
+                            }
+                        });
+                    }
+                    None => {
+                        ui.label("clique un paquet pour le detail");
+                    }
+                });
+
+            egui::CentralPanel::default().show(ctx, |ui| {
+                let row_height = 16.0;
+                let count = self.rows.len();
+                let mut area = egui::ScrollArea::vertical().auto_shrink([false, false]);
+                if self.autoscroll && !self.paused {
+                    area = area.stick_to_bottom(true);
+                }
+                area.show_rows(ui, row_height, count, |ui, range| {
+                    for index in range {
+                        let event = &self.rows[index];
+                        let arrow = if event.from_client { "->" } else { "<-" };
+                        let label = format!(
+                            "{:8.3}  {}  {:<34} {:>5} {:>6}o",
+                            event.at, arrow, event.name, event.opcode, event.len
+                        );
+                        let selected =
+                            self.selected.as_ref().map(|other| other.seq) == Some(event.seq);
+                        if ui
+                            .selectable_label(selected, egui::RichText::new(label).monospace())
+                            .clicked()
+                        {
+                            self.selected = Some(event.clone());
+                        }
+                    }
+                });
+            });
+        }
+    }
+
+    fn hex_dump(hex: &str) -> String {
+        let bytes: Vec<u8> = (0..hex.len() / 2)
+            .filter_map(|index| u8::from_str_radix(&hex[index * 2..index * 2 + 2], 16).ok())
+            .collect();
+        let mut out = String::new();
+        for (row, chunk) in bytes.chunks(16).enumerate() {
+            let hexpart: Vec<String> = chunk.iter().map(|byte| format!("{byte:02x}")).collect();
+            let ascii: String = chunk
+                .iter()
+                .map(|&byte| if (32..127).contains(&byte) { byte as char } else { '.' })
+                .collect();
+            out.push_str(&format!(
+                "{:04x}  {:<47}  {ascii}\n",
+                row * 16,
+                hexpart.join(" ")
+            ));
+        }
+        out
+    }
 }
