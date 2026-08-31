@@ -625,6 +625,10 @@ fn preview_ui(
                 run: export_obj,
             });
             actions.push(Action {
+                label: "export glTF + animations",
+                run: export_glb_anim,
+            });
+            actions.push(Action {
                 label: "export glTF (Blender)",
                 run: export_glb,
             });
@@ -969,6 +973,57 @@ fn export_glb(loaded: &Loaded, paths: &Paths) -> Result<String, String> {
         target.display(),
         materials.len()
     ))
+}
+
+fn export_glb_anim(loaded: &Loaded, paths: &Paths) -> Result<String, String> {
+    let Preview::Mesh { mesh, .. } = &loaded.preview else {
+        return Err("not a mesh".into());
+    };
+    let Some(skin) = &mesh.skin else {
+        return Err("mesh has no skeleton to animate".into());
+    };
+    let Some(target) = save_dialog(loaded, "glb") else {
+        return Ok("cancelled".into());
+    };
+    let leaf = loaded.path.rsplit('.').next().unwrap_or("mesh");
+    let materials = resolve_materials(loaded, mesh, leaf, &paths.cooked());
+    let bones: std::collections::HashSet<&str> = skin.bones.iter().map(|bone| bone.name.as_str()).collect();
+    let skeleton = bones.len().max(1);
+    let animations = collect_animations(&loaded.file, &bones, skeleton, 40);
+    let glb = tera_package::write_glb_animated(mesh, leaf, &materials, &animations);
+    std::fs::write(&target, glb).map_err(|error| error.to_string())?;
+    Ok(format!("wrote {} ({} clips animés)", target.display(), animations.len()))
+}
+
+fn collect_animations(
+    file: &Path,
+    bones: &std::collections::HashSet<&str>,
+    skeleton: usize,
+    limit: usize,
+) -> Vec<tera_package::Animation> {
+    let Ok(handle) = std::fs::File::open(file) else {
+        return Vec::new();
+    };
+    let Ok(map) = (unsafe { Mmap::map(&handle) }) else {
+        return Vec::new();
+    };
+    let mut scored: Vec<(usize, tera_package::Animation)> = Vec::new();
+    for package in Bundle::new(&map).flatten() {
+        for animation in tera_package::animations(&package) {
+            let hit = animation.tracks.iter().filter(|track| bones.contains(track.bone.as_str())).count();
+            if hit * 100 >= skeleton * 40 {
+                scored.push((hit, animation));
+            }
+        }
+    }
+    scored.sort_by(|a, b| b.0.cmp(&a.0));
+    let mut seen = std::collections::HashSet::new();
+    scored
+        .into_iter()
+        .filter(|(_, animation)| seen.insert(animation.name.to_ascii_lowercase()))
+        .take(limit)
+        .map(|(_, animation)| animation)
+        .collect()
 }
 
 fn resolve_materials(
