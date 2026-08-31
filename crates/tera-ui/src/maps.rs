@@ -29,12 +29,13 @@ impl MapsTab {
         let Ok(index) = Index::open(&paths.index) else {
             return;
         };
-        let hits = index.search_objects("", 2_000_000, Some("StaticMeshActor"));
         let mut counts: HashMap<u32, usize> = HashMap::new();
-        for hit in hits {
-            let object = index.object(hit as usize);
-            let entry = index.package(object.package as usize);
-            *counts.entry(entry.file).or_default() += 1;
+        for class in ["StaticMeshActor", "InterpActor", "DynamicSMActor"] {
+            for hit in index.search_objects("", 2_000_000, Some(class)) {
+                let object = index.object(hit as usize);
+                let entry = index.package(object.package as usize);
+                *counts.entry(entry.file).or_default() += 1;
+            }
         }
         let mut levels: Vec<(String, usize)> = counts
             .into_iter()
