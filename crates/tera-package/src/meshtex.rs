@@ -85,6 +85,7 @@ use crate::png;
 
 const DIFFUSE_PARAMS: [&str; 4] = ["DiffuseMap", "Diffuse", "BaseMap", "BaseColor"];
 const NORMAL_PARAMS: [&str; 3] = ["NormalMap", "Normal", "BumpMap"];
+const EMISSIVE_PARAMS: [&str; 4] = ["EmissiveMap", "Emissive", "EmissiveColor", "GlowMap"];
 
 pub fn mesh_material_inputs(package: &Package, mesh: &Mesh, cooked: &Path) -> Vec<MaterialInput> {
     mesh.material_refs
@@ -139,6 +140,13 @@ fn resolve_material(package: &Package, reference: i32, cooked: &Path) -> Materia
         if let Some((width, height, rgba)) = decode_rgba_by_leaf(package, &leaf, cooked) {
             if let Ok(png) = png::encode(&rgba, width, height) {
                 input.normal = Some((width, height, png));
+            }
+        }
+    }
+    if let Some(leaf) = parameter_texture(&parameters, &EMISSIVE_PARAMS) {
+        if let Some((width, height, rgba)) = decode_rgba_by_leaf(package, &leaf, cooked) {
+            if let Ok(png) = png::encode(&rgba, width, height) {
+                input.emissive = Some((width, height, png));
             }
         }
     }

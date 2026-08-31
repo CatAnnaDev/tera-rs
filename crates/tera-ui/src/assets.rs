@@ -454,7 +454,16 @@ impl Assets {
         );
         theme::rule(ui, palette);
 
-        let actions = preview_ui(ui, context, palette, loaded, &mut self.sink, &self.audio);
+        let actions = preview_ui(
+            ui,
+            context,
+            palette,
+            loaded,
+            &mut self.sink,
+            &self.audio,
+            self.index.clone(),
+            paths.cooked(),
+        );
         theme::rule(ui, palette);
         ui.horizontal_wrapped(|ui| {
             for action in actions {
@@ -513,8 +522,11 @@ fn preview_ui(
     loaded: &mut Loaded,
     sink: &mut Option<rodio::Sink>,
     audio: &Option<(rodio::OutputStream, rodio::OutputStreamHandle)>,
+    index: Option<Arc<Index>>,
+    cooked: PathBuf,
 ) -> Vec<Action> {
     let mut actions = Vec::new();
+    let mesh_leaf = loaded.path.rsplit('.').next().unwrap_or("mesh").to_string();
     match &mut loaded.preview {
         Preview::Texture {
             width,
@@ -652,10 +664,15 @@ fn preview_ui(
                 ui.add_space(6.0);
                 if !*anims_loaded {
                     if ui.button("charger les animations").clicked() {
-                        let bones: std::collections::HashSet<&str> =
-                            mesh.skin.as_ref().unwrap().bones.iter().map(|bone| bone.name.as_str()).collect();
+                        let bones: std::collections::HashSet<String> =
+                            mesh.skin.as_ref().unwrap().bones.iter().map(|bone| bone.name.clone()).collect();
                         let skeleton = bones.len().max(1);
-                        *animations = collect_animations(file.as_path(), &bones, skeleton, 60);
+                        let mut clips = find_animations(index.as_ref(), &cooked, &mesh_leaf, &bones, skeleton);
+                        if clips.is_empty() {
+                            let borrowed: std::collections::HashSet<&str> = bones.iter().map(String::as_str).collect();
+                            clips = collect_animations(file.as_path(), &borrowed, skeleton, 60);
+                        }
+                        *animations = clips;
                         *anims_loaded = true;
                         *anim = 0;
                         *time = 0.0;
@@ -1082,12 +1099,91 @@ fn export_glb_anim(loaded: &Loaded, paths: &Paths) -> Result<String, String> {
     };
     let leaf = loaded.path.rsplit('.').next().unwrap_or("mesh");
     let materials = resolve_materials(loaded, mesh, leaf, &paths.cooked());
-    let bones: std::collections::HashSet<&str> = skin.bones.iter().map(|bone| bone.name.as_str()).collect();
-    let skeleton = bones.len().max(1);
-    let animations = collect_animations(&loaded.file, &bones, skeleton, 40);
+    let owned: std::collections::HashSet<String> = skin.bones.iter().map(|bone| bone.name.clone()).collect();
+    let skeleton = owned.len().max(1);
+    let index = Index::open(&paths.index).ok().map(Arc::new);
+    let mut animations = find_animations(index.as_ref(), &paths.cooked(), leaf, &owned, skeleton);
+    if animations.is_empty() {
+        let borrowed: std::collections::HashSet<&str> = owned.iter().map(String::as_str).collect();
+        animations = collect_animations(&loaded.file, &borrowed, skeleton, 60);
+    }
     let glb = tera_package::write_glb_animated(mesh, leaf, &materials, &animations);
     std::fs::write(&target, glb).map_err(|error| error.to_string())?;
-    Ok(format!("wrote {} ({} clips animés)", target.display(), animations.len()))
+    let diffuse = materials.iter().filter(|m| m.diffuse.is_some()).count();
+    let normal = materials.iter().filter(|m| m.normal.is_some()).count();
+    let emissive = materials.iter().filter(|m| m.emissive.is_some()).count();
+    Ok(format!(
+        "wrote {} — {} matériaux ({diffuse} diff, {normal} norm, {emissive} emis), {} clips",
+        target.display(),
+        materials.len(),
+        animations.len()
+    ))
+}
+
+fn anim_stem(mesh_leaf: &str) -> String {
+    let lower = mesh_leaf.to_ascii_lowercase();
+    let base = match lower.find("_skel") {
+        Some(position) => lower[..position].to_string(),
+        None => lower,
+    };
+    let base = base.trim_end_matches("_dup").to_string();
+    match base.rsplit_once('_') {
+        Some((head, tail)) if !tail.is_empty() && tail.len() <= 3 && head.len() >= 4 => head.to_string(),
+        _ => base,
+    }
+}
+
+fn find_animations(
+    index: Option<&Arc<Index>>,
+    cooked: &Path,
+    mesh_leaf: &str,
+    bones: &std::collections::HashSet<String>,
+    skeleton: usize,
+) -> Vec<tera_package::Animation> {
+    let Some(index) = index else {
+        return Vec::new();
+    };
+    let stem = anim_stem(mesh_leaf);
+    if stem.len() < 3 {
+        return Vec::new();
+    }
+    let hits = index.search_objects(&stem, 8000, Some("AnimSet"));
+    let mut visited: std::collections::HashSet<(u32, u64)> = std::collections::HashSet::new();
+    let mut scored: Vec<(usize, tera_package::Animation)> = Vec::new();
+    for hit in hits {
+        if visited.len() > 200 {
+            break;
+        }
+        let object = index.object(hit as usize);
+        let entry = index.package(object.package as usize);
+        if !visited.insert((entry.file, entry.offset)) {
+            continue;
+        }
+        let file = cooked.join(index.file_name(entry.file as usize));
+        let Ok(handle) = std::fs::File::open(&file) else {
+            continue;
+        };
+        let Ok(map) = (unsafe { Mmap::map(&handle) }) else {
+            continue;
+        };
+        let Ok(package) = Package::parse(&map, entry.offset as usize) else {
+            continue;
+        };
+        for animation in tera_package::animations(&package) {
+            let overlap = animation.tracks.iter().filter(|track| bones.contains(track.bone.as_str())).count();
+            if overlap * 100 >= skeleton * 30 {
+                scored.push((overlap, animation));
+            }
+        }
+    }
+    scored.sort_by(|a, b| b.0.cmp(&a.0));
+    let mut seen = std::collections::HashSet::new();
+    scored
+        .into_iter()
+        .filter(|(_, animation)| seen.insert(animation.name.to_ascii_lowercase()))
+        .take(60)
+        .map(|(_, animation)| animation)
+        .collect()
 }
 
 fn collect_animations(

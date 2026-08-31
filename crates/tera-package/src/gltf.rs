@@ -11,6 +11,7 @@ const CHUNK_BIN: u32 = 0x004E_4942;
 pub struct MaterialInput {
     pub diffuse: Option<(u32, u32, Vec<u8>)>,
     pub normal: Option<(u32, u32, Vec<u8>)>,
+    pub emissive: Option<(u32, u32, Vec<u8>)>,
     pub alpha_mask: bool,
 }
 
@@ -18,6 +19,7 @@ pub fn write_glb(mesh: &Mesh, name: &str, texture: Option<(u32, u32, &[u8])>) ->
     let material = MaterialInput {
         diffuse: texture.map(|(width, height, bytes)| (width, height, bytes.to_vec())),
         normal: None,
+        emissive: None,
         alpha_mask: false,
     };
     write_glb_multi(mesh, name, &[material])
@@ -109,6 +111,15 @@ fn build_glb(mesh: &Mesh, name: &str, materials: &[MaterialInput], skinned: bool
                 let texture = textures.len();
                 textures.push(json!({ "source": image, "sampler": 0 }));
                 entry["normalTexture"] = json!({ "index": texture });
+            }
+            if let Some((_, _, png)) = &material.emissive {
+                let view = push_bytes(&mut bin, &mut views, png);
+                let image = images.len();
+                images.push(json!({ "bufferView": view, "mimeType": "image/png" }));
+                let texture = textures.len();
+                textures.push(json!({ "source": image, "sampler": 0 }));
+                entry["emissiveTexture"] = json!({ "index": texture });
+                entry["emissiveFactor"] = json!([1.0, 1.0, 1.0]);
             }
         }
         if material.alpha_mask {
