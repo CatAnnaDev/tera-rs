@@ -201,3 +201,69 @@ fn global_transforms(
     }
     global
 }
+
+#[cfg(test)]
+mod tests {
+    use super::pose_vertices;
+    use tera_package::mesh::{Bone, Mesh, Skin};
+    use tera_package::{Animation, AnimTrack};
+
+    fn bone(name: &str, parent: i32, t: [f32; 3]) -> Bone {
+        Bone { name: name.into(), name_index: 0, parent, translation: t, rotation: [0.0, 0.0, 0.0, 1.0] }
+    }
+
+    #[test]
+    fn rest_pose_is_undistorted() {
+        let skin = Skin {
+            bones: vec![bone("root", 0, [0.0, 0.0, 0.0]), bone("arm", 0, [1.0, 0.0, 0.0])],
+            joints: vec![[0, 0, 0, 0], [1, 0, 0, 0]],
+            weights: vec![[1.0, 0.0, 0.0, 0.0], [1.0, 0.0, 0.0, 0.0]],
+        };
+        let mesh = Mesh {
+            vertices: vec![[0.5, 0.2, 0.0], [2.0, 0.0, 0.3]],
+            indices: vec![0, 1, 0],
+            skin: Some(skin),
+            ..Default::default()
+        };
+        // animation that touches no real bone -> everything stays at rest
+        let anim = Animation {
+            name: "noop".into(),
+            duration: 1.0,
+            frames: 2,
+            tracks: vec![AnimTrack { bone: "ghost".into(), translations: vec![[9.0, 9.0, 9.0]], rotations: vec![[0.0, 0.0, 0.0, 1.0]] }],
+        };
+        let posed = pose_vertices(&mesh, &anim, 0.5).expect("posed");
+        for (a, b) in posed.iter().zip(mesh.vertices.iter()) {
+            for axis in 0..3 {
+                assert!((a[axis] - b[axis]).abs() < 1e-4, "rest distorted: {:?} vs {:?}", a, b);
+            }
+        }
+    }
+
+    #[test]
+    fn rotating_a_bone_moves_its_vertex() {
+        let skin = Skin {
+            bones: vec![bone("root", 0, [0.0, 0.0, 0.0])],
+            joints: vec![[0, 0, 0, 0]],
+            weights: vec![[1.0, 0.0, 0.0, 0.0]],
+        };
+        let mesh = Mesh {
+            vertices: vec![[1.0, 0.0, 0.0]],
+            indices: vec![0, 0, 0],
+            skin: Some(skin),
+            ..Default::default()
+        };
+        // rotate root 90 deg about Z at end: quat (0,0,sin45,cos45)
+        let q = [0.0, 0.0, std::f32::consts::FRAC_1_SQRT_2, std::f32::consts::FRAC_1_SQRT_2];
+        let anim = Animation {
+            name: "spin".into(),
+            duration: 1.0,
+            frames: 2,
+            tracks: vec![AnimTrack { bone: "root".into(), translations: vec![], rotations: vec![[0.0, 0.0, 0.0, 1.0], q] }],
+        };
+        let posed = pose_vertices(&mesh, &anim, 1.0).expect("posed");
+        // (1,0,0) rotated 90 about Z -> ~(0,1,0)
+        assert!((posed[0][0]).abs() < 1e-3, "x should be ~0: {:?}", posed[0]);
+        assert!((posed[0][1] - 1.0).abs() < 1e-3, "y should be ~1: {:?}", posed[0]);
+    }
+}
