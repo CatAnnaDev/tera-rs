@@ -564,11 +564,33 @@ fn main() -> Result<()> {
     });
     let constants = if cli.legacy { LEGACY } else { MODERN };
 
-    let mods = if cli.no_mods {
-        Arc::new(loader::LoadedMods::empty())
+    let mods: Arc<Mutex<Arc<loader::LoadedMods>>> = if cli.no_mods {
+        Arc::new(Mutex::new(Arc::new(loader::LoadedMods::empty())))
     } else {
-        Arc::new(loader::LoadedMods::load(&cli.mods_dir, &cli.disable_mod))
+        Arc::new(Mutex::new(Arc::new(loader::LoadedMods::load(
+            &cli.mods_dir,
+            &cli.disable_mod,
+        ))))
     };
+
+    if !cli.no_mods {
+        let mods = Arc::clone(&mods);
+        let dir = cli.mods_dir.clone();
+        let disabled = cli.disable_mod.clone();
+        std::thread::spawn(move || {
+            let mut last = loader::signature(&dir, &disabled);
+            loop {
+                std::thread::sleep(Duration::from_secs(1));
+                let current = loader::signature(&dir, &disabled);
+                if current != last {
+                    last = current;
+                    println!("[mods] change detected, reloading");
+                    let fresh = Arc::new(loader::LoadedMods::load(&dir, &disabled));
+                    *mods.lock().unwrap_or_else(|poison| poison.into_inner()) = fresh;
+                }
+            }
+        });
+    }
 
     let listener = TcpListener::bind(&cli.listen)
         .with_context(|| format!("binding {}", cli.listen))?;
@@ -586,7 +608,10 @@ fn main() -> Result<()> {
         println!("client connected from {peer}");
         let upstream = cli.upstream.clone();
         let capture = Arc::clone(&capture);
-        let mods = Arc::clone(&mods);
+        let mods = {
+            let guard = mods.lock().unwrap_or_else(|poison| poison.into_inner());
+            Arc::clone(&guard)
+        };
         let handle = std::thread::spawn(move || {
             match serve(client, &upstream, constants, capture, mods) {
                 Err(error) => println!("session ended: {error}"),
