@@ -41,7 +41,7 @@ fn shared_token_len(a: &str, b: &str) -> usize {
         .unwrap_or(0)
 }
 
-pub fn mesh_texture_index(package: &Package, mesh_leaf: &str, keywords: &[&str]) -> Option<usize> {
+pub fn mesh_texture_index(package: &Package, mesh_leaf: &str, keywords: &[&str], allow_base_fallback: bool) -> Option<usize> {
     let target = mesh_leaf.to_ascii_lowercase();
     let stem = texture_stem(mesh_leaf);
     if target.len() < 3 {
@@ -68,7 +68,7 @@ pub fn mesh_texture_index(package: &Package, mesh_leaf: &str, keywords: &[&str])
             }
         }
         if keyword_score == 0 {
-            if NON_BASE.iter().any(|keyword| leaf.contains(keyword)) {
+            if !allow_base_fallback || NON_BASE.iter().any(|keyword| leaf.contains(keyword)) {
                 continue;
             }
             keyword_score = 10;
@@ -100,7 +100,7 @@ pub fn mesh_diffuse_rgba(
     mesh_leaf: &str,
     cooked: &Path,
 ) -> Option<(u32, u32, Vec<u8>)> {
-    let index = mesh_texture_index(package, mesh_leaf, &DIFFUSE_KEYWORDS)?;
+    let index = mesh_texture_index(package, mesh_leaf, &DIFFUSE_KEYWORDS, true)?;
     decode_texture_at(package, index, cooked)
 }
 
@@ -204,24 +204,26 @@ pub fn mesh_material_by_name(package: &Package, mesh_leaf: &str, cooked: &Path) 
     if stem.len() < 3 {
         return input;
     }
-    let pick = |keywords: &[&str]| -> Option<usize> { mesh_texture_index(package, mesh_leaf, keywords) };
-    if let Some(i) = pick(&DIFFUSE_KEYWORDS) {
+    let pick = |keywords: &[&str], base: bool| -> Option<usize> {
+        mesh_texture_index(package, mesh_leaf, keywords, base)
+    };
+    if let Some(i) = pick(&DIFFUSE_KEYWORDS, true) {
         if let Some((w, h, alpha, png)) = encode_map(package, i, cooked) {
             input.diffuse = Some((w, h, png));
             input.alpha_mask = alpha;
         }
     }
-    if let Some(i) = pick(&["norm", "normal", "bump"]) {
+    if let Some(i) = pick(&["norm", "normal", "bump"], false) {
         if let Some((w, h, _, png)) = encode_map(package, i, cooked) {
             input.normal = Some((w, h, png));
         }
     }
-    if let Some(i) = pick(&["emis", "glow", "emissive"]) {
+    if let Some(i) = pick(&["emis", "glow", "emissive"], false) {
         if let Some((w, h, _, png)) = encode_map(package, i, cooked) {
             input.emissive = Some((w, h, png));
         }
     }
-    if let Some(i) = pick(&["spec", "specular"]) {
+    if let Some(i) = pick(&["spec", "specular"], false) {
         if let Some((w, h, _, png)) = encode_map(package, i, cooked) {
             input.specular = Some((w, h, png));
         }

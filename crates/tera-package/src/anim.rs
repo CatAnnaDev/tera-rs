@@ -67,7 +67,8 @@ fn anim_set_bones(package: &Package<'_>, export: &Export) -> Vec<String> {
             continue;
         }
         if let PropertyValue::Array { count, raw, .. } = &property.value {
-            return (0..*count as usize)
+            let bone_count = ((*count).max(0) as usize).min(raw.len() / 8);
+            return (0..bone_count)
                 .map(|slot| {
                     let base = slot * 8;
                     if base + 4 > raw.len() {

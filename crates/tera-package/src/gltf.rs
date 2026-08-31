@@ -456,6 +456,9 @@ fn push_weights(
     accessors: &mut Vec<serde_json::Value>,
     data: &[[f32; 4]],
 ) -> usize {
+    while bin.len() % 4 != 0 {
+        bin.push(0);
+    }
     let offset = bin.len();
     for weight in data {
         for value in weight {
@@ -480,6 +483,9 @@ fn push_matrices(
     accessors: &mut Vec<serde_json::Value>,
     data: &[[f32; 16]],
 ) -> usize {
+    while bin.len() % 4 != 0 {
+        bin.push(0);
+    }
     let offset = bin.len();
     for matrix in data {
         for value in matrix {
@@ -565,6 +571,9 @@ fn push_vec3(
     data: &[[f32; 3]],
     minmax: Option<([f32; 3], [f32; 3])>,
 ) -> usize {
+    while bin.len() % 4 != 0 {
+        bin.push(0);
+    }
     let offset = bin.len();
     for value in data {
         for component in value {
@@ -594,6 +603,9 @@ fn push_vec2(
     accessors: &mut Vec<serde_json::Value>,
     data: &[[f32; 2]],
 ) -> usize {
+    while bin.len() % 4 != 0 {
+        bin.push(0);
+    }
     let offset = bin.len();
     for value in data {
         bin.extend_from_slice(&value[0].to_le_bytes());
@@ -619,6 +631,9 @@ fn push_times(
     count: usize,
     duration: f32,
 ) -> usize {
+    while bin.len() % 4 != 0 {
+        bin.push(0);
+    }
     let offset = bin.len();
     let last = count.saturating_sub(1).max(1) as f32;
     for index in 0..count {
@@ -646,6 +661,9 @@ fn push_anim_vec3(
     accessors: &mut Vec<serde_json::Value>,
     data: &[[f32; 3]],
 ) -> usize {
+    while bin.len() % 4 != 0 {
+        bin.push(0);
+    }
     let offset = bin.len();
     for value in data {
         for component in value {
@@ -665,6 +683,9 @@ fn push_anim_vec4(
     accessors: &mut Vec<serde_json::Value>,
     data: &[[f32; 4]],
 ) -> usize {
+    while bin.len() % 4 != 0 {
+        bin.push(0);
+    }
     let offset = bin.len();
     for value in data {
         for component in value {

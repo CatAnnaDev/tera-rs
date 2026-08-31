@@ -339,6 +339,9 @@ pub fn parse_skeletal_mesh_blob(data: &[u8], start: usize) -> Option<Mesh> {
     }
     offset += 28;
 
+    if offset + 4 > end {
+        return None;
+    }
     let material_count = read_i32(offset);
     if !(0..=256).contains(&material_count) {
         return None;
@@ -391,7 +394,7 @@ pub fn parse_skeletal_mesh_blob(data: &[u8], start: usize) -> Option<Mesh> {
     let sections = sections
         .into_iter()
         .filter(|section| {
-            (section.index_start + section.index_count) as usize <= indices.len()
+            section.index_start as usize + section.index_count as usize <= indices.len()
         })
         .collect();
 
