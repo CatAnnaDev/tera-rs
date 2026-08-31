@@ -2,6 +2,7 @@ mod assets;
 mod data;
 mod jobs;
 mod keys;
+mod maps;
 mod mods;
 mod skinning;
 mod theme;
@@ -13,6 +14,7 @@ use theme::Palette;
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub enum Tab {
+    Maps,
     Assets,
     DataCenter,
     Mods,
@@ -64,6 +66,7 @@ pub struct Studio {
     data: data::DataTab,
     mods: mods::ModsTab,
     keys: keys::KeysTab,
+    maps: maps::MapsTab,
 }
 
 impl Studio {
@@ -82,6 +85,7 @@ impl Studio {
                         "datacenter" => Tab::DataCenter,
                         "mods" => Tab::Mods,
                         "keys" => Tab::Keys,
+                        "maps" => Tab::Maps,
                         _ => Tab::Assets,
                     }
                 }
@@ -106,6 +110,7 @@ impl Studio {
             data,
             mods: mods::ModsTab::default(),
             keys: keys::KeysTab::default(),
+            maps: maps::MapsTab::default(),
             paths,
         }
     }
@@ -124,6 +129,7 @@ impl eframe::App for Studio {
                     (Tab::DataCenter, "datacenter"),
                     (Tab::Mods, "mods"),
                     (Tab::Keys, "keys"),
+                    (Tab::Maps, "maps"),
                 ] {
                     if ui.selectable_label(self.tab == tab, label).clicked() {
                         self.tab = tab;
@@ -162,6 +168,9 @@ impl eframe::App for Studio {
                 .ui(ui, self.palette, &self.paths, &mut self.status),
             Tab::Keys => self
                 .keys
+                .ui(ui, self.palette, &self.paths, &mut self.status),
+            Tab::Maps => self
+                .maps
                 .ui(ui, self.palette, &self.paths, &mut self.status),
         });
         if let Some(name) = self.data.take_asset_request() {
