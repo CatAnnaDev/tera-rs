@@ -177,6 +177,7 @@ fn export_map(
     if placements.is_empty() {
         return Err("aucun placement dans cette zone".into());
     }
+    let placements = tera_package::dedup_placements(placements);
     let mut unique: Vec<String> = placements.iter().map(|p| p.mesh.clone()).collect();
     unique.sort();
     unique.dedup();

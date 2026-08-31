@@ -91,6 +91,23 @@ fn component_mesh(package: &Package<'_>, component_index: i32) -> Option<String>
     None
 }
 
+pub fn dedup_placements(placements: Vec<Placement>) -> Vec<Placement> {
+    let mut seen = std::collections::HashSet::with_capacity(placements.len());
+    let mut out = Vec::with_capacity(placements.len());
+    for placement in placements {
+        let key = (
+            placement.location.map(f32::to_bits),
+            placement.rotation,
+            placement.scale.map(f32::to_bits),
+            placement.mesh.clone(),
+        );
+        if seen.insert(key) {
+            out.push(placement);
+        }
+    }
+    out
+}
+
 pub fn parse_level(package: &Package<'_>) -> Vec<Placement> {
     let mut placements = Vec::new();
     for export in package.exports.iter() {

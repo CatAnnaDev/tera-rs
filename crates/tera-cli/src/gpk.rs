@@ -269,7 +269,12 @@ fn map_dump(args: &MapArgs) -> Result<()> {
     if level.is_empty() {
         bail!("no StaticMeshActor placements found");
     }
+    let before = level.len();
+    let level = tera_package::dedup_placements(level);
     println!("zone: {} packages fusionnés", siblings.len());
+    if before != level.len() {
+        println!("{} placements dupliqués retirés", before - level.len());
+    }
     let mut unique: Vec<String> = level.iter().map(|p| p.mesh.clone()).collect();
     unique.sort();
     unique.dedup();
