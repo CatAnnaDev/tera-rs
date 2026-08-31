@@ -1816,6 +1816,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "mod-antiafk"
+version = "0.1.0"
+dependencies = [
+ "tera-hook",
+ "tera-protocol",
+]
+
+[[package]]
 name = "mod-example"
 version = "0.1.0"
 dependencies = [

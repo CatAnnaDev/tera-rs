@@ -16,6 +16,7 @@ members = [
     "crates/tera-proxy",
     "crates/tera-hook",
     "crates/mod-example",
+    "crates/mod-antiafk",
 ]
 
 [workspace.package]

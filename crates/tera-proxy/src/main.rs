@@ -252,6 +252,63 @@ fn writer_thread(mut encrypt: Encrypting, sink: Arc<TcpStream>, rx: Receiver<Vec
     let _ = sink.shutdown(std::net::Shutdown::Both);
 }
 
+fn timer_thread(
+    mut timers: Vec<hooks::Timer>,
+    codec: Arc<Codec>,
+    to_client: SyncSender<Vec<u8>>,
+    to_server: SyncSender<Vec<u8>>,
+    closing: Arc<AtomicBool>,
+) {
+    let mut due: Vec<Instant> = timers
+        .iter()
+        .map(|timer| Instant::now() + timer.interval)
+        .collect();
+    let mut active: Vec<bool> = vec![true; timers.len()];
+    while !closing.load(Ordering::Relaxed) {
+        let mut wait = Duration::from_millis(250);
+        for index in 0..timers.len() {
+            if !active[index] {
+                continue;
+            }
+            if Instant::now() >= due[index] {
+                let injections = match std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| {
+                    timers[index].fire(&codec)
+                })) {
+                    Ok(injections) => injections,
+                    Err(_) => {
+                        eprintln!("[hooks] timer panicked, disabled");
+                        active[index] = false;
+                        Vec::new()
+                    }
+                };
+                for injection in injections {
+                    let sender = match injection.direction {
+                        Direction::ServerToClient => &to_client,
+                        Direction::ClientToServer => &to_server,
+                    };
+                    if !forward(sender, injection.frame) {
+                        return;
+                    }
+                }
+                if active[index] {
+                    if timers[index].repeat {
+                        due[index] = Instant::now() + timers[index].interval;
+                    } else {
+                        active[index] = false;
+                    }
+                }
+            }
+            if active[index] {
+                let remaining = due[index].saturating_duration_since(Instant::now());
+                if remaining < wait {
+                    wait = remaining;
+                }
+            }
+        }
+        std::thread::sleep(wait);
+    }
+}
+
 struct ReaderTeardown {
     client: Arc<TcpStream>,
     server: Arc<TcpStream>,
@@ -463,7 +520,8 @@ fn serve(
 
     let mut plugins = plugins::builtin();
     plugins.extend(mods.instantiate());
-    let (client_to_server, server_to_client) = Engine::build(plugins, &capture.codec).split();
+    let (client_to_server, server_to_client, timers) =
+        Engine::build(plugins, &capture.codec).split();
     let (client_encrypting, client_decrypting) = client_session.split();
     let (upstream_encrypting, upstream_decrypting) = upstream_session.split();
 
@@ -471,6 +529,7 @@ fn serve(
     let server = Arc::new(server);
     let (to_client_tx, to_client_rx) = mpsc::sync_channel::<Vec<u8>>(8192);
     let (to_server_tx, to_server_rx) = mpsc::sync_channel::<Vec<u8>>(8192);
+    let closing = Arc::new(AtomicBool::new(false));
 
     let client_writer = {
         let sink = Arc::clone(&client);
@@ -479,6 +538,18 @@ fn serve(
     let server_writer = {
         let sink = Arc::clone(&server);
         std::thread::spawn(move || writer_thread(upstream_encrypting, sink, to_server_rx))
+    };
+
+    let timer = if timers.is_empty() {
+        None
+    } else {
+        let codec = Arc::clone(&capture.codec);
+        let to_client = to_client_tx.clone();
+        let to_server = to_server_tx.clone();
+        let closing = Arc::clone(&closing);
+        Some(std::thread::spawn(move || {
+            timer_thread(timers, codec, to_client, to_server, closing)
+        }))
     };
 
     let upward = {
@@ -520,7 +591,11 @@ fn serve(
         Arc::clone(&server),
     );
 
+    closing.store(true, Ordering::Relaxed);
     let _ = upward.join();
+    if let Some(timer) = timer {
+        let _ = timer.join();
+    }
     let _ = client_writer.join();
     let _ = server_writer.join();
     if let Ok(mut file) = capture.file.lock() {
