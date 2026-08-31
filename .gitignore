@@ -17,3 +17,6 @@ tera-bot-auth.json
 tera-bot-auth.json.tmp
 captures/real-server.jsonl
 captures/reel.jsonl
+mods/*.dylib
+mods/*.so
+mods/*.dll

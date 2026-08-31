@@ -1,4 +1,5 @@
 mod hooks;
+mod loader;
 mod plugins;
 
 use anyhow::{bail, Context, Result};
@@ -48,6 +49,12 @@ struct Cli {
     stats: bool,
     #[arg(long, help = "exit after serving a single connection")]
     once: bool,
+    #[arg(long, default_value = "mods", help = "directory of dynamic mod libraries")]
+    mods_dir: PathBuf,
+    #[arg(long, help = "do not load any dynamic mods")]
+    no_mods: bool,
+    #[arg(long, help = "disable a mod by name (repeatable)")]
+    disable_mod: Vec<String>,
 }
 
 struct Capture {
@@ -397,7 +404,13 @@ fn drain(
     true
 }
 
-fn serve(client: TcpStream, upstream: &str, constants: Constants, capture: Arc<Capture>) -> Result<()> {
+fn serve(
+    client: TcpStream,
+    upstream: &str,
+    constants: Constants,
+    capture: Arc<Capture>,
+    mods: Arc<loader::LoadedMods>,
+) -> Result<()> {
     let mut client = client;
     client.set_nodelay(true)?;
     client.set_read_timeout(Some(Duration::from_secs(30)))?;
@@ -448,7 +461,9 @@ fn serve(client: TcpStream, upstream: &str, constants: Constants, capture: Arc<C
     let client_leftover = downward.leftover();
     println!("both handshakes complete, relaying");
 
-    let (client_to_server, server_to_client) = Engine::build(plugins::builtin(), &capture.codec).split();
+    let mut plugins = plugins::builtin();
+    plugins.extend(mods.instantiate());
+    let (client_to_server, server_to_client) = Engine::build(plugins, &capture.codec).split();
     let (client_encrypting, client_decrypting) = client_session.split();
     let (upstream_encrypting, upstream_decrypting) = upstream_session.split();
 
@@ -549,6 +564,12 @@ fn main() -> Result<()> {
     });
     let constants = if cli.legacy { LEGACY } else { MODERN };
 
+    let mods = if cli.no_mods {
+        Arc::new(loader::LoadedMods::empty())
+    } else {
+        Arc::new(loader::LoadedMods::load(&cli.mods_dir, &cli.disable_mod))
+    };
+
     let listener = TcpListener::bind(&cli.listen)
         .with_context(|| format!("binding {}", cli.listen))?;
     println!(
@@ -565,8 +586,9 @@ fn main() -> Result<()> {
         println!("client connected from {peer}");
         let upstream = cli.upstream.clone();
         let capture = Arc::clone(&capture);
+        let mods = Arc::clone(&mods);
         let handle = std::thread::spawn(move || {
-            match serve(client, &upstream, constants, capture) {
+            match serve(client, &upstream, constants, capture, mods) {
                 Err(error) => println!("session ended: {error}"),
                 Ok(()) => println!("session closed"),
             }

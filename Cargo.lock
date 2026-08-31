@@ -1816,6 +1816,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "mod-example"
+version = "0.1.0"
+dependencies = [
+ "tera-hook",
+ "tera-protocol",
+]
+
+[[package]]
 name = "moxcms"
 version = "0.8.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3150,6 +3158,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "tera-hook"
+version = "0.1.0"
+dependencies = [
+ "tera-protocol",
+]
+
+[[package]]
 name = "tera-index"
 version = "0.1.0"
 dependencies = [
@@ -3210,6 +3225,8 @@ version = "0.1.0"
 dependencies = [
  "anyhow",
  "clap",
+ "libloading",
+ "tera-hook",
  "tera-protocol",
 ]
 

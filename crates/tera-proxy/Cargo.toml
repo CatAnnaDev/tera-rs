@@ -10,5 +10,7 @@ path = "src/main.rs"
 
 [dependencies]
 tera-protocol = { workspace = true }
+tera-hook = { workspace = true }
 anyhow = { workspace = true }
 clap = { workspace = true }
+libloading = "0.8"
