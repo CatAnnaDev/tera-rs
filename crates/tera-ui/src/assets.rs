@@ -28,6 +28,7 @@ pub enum Preview {
         camera: Camera,
         handle: Option<egui::TextureHandle>,
         dirty: bool,
+        texture: Option<(u32, u32, Vec<u8>)>,
     },
     Sound {
         ogg: Vec<u8>,
@@ -564,6 +565,7 @@ fn preview_ui(
             camera,
             handle,
             dirty,
+            texture,
         } => {
             theme::eyebrow(
                 ui,
@@ -596,7 +598,7 @@ fn preview_ui(
                 raster.sky_top = [accent.r(), accent.g(), accent.b()];
                 let background = theme::colors(palette).background;
                 raster.sky_bottom = [background.r(), background.g(), background.b()];
-                let mut scene = build_scene(mesh);
+                let mut scene = build_scene(mesh, texture.as_ref());
                 scene.shade();
                 raster.render(&scene, &camera.view_projection(size.x / size.y));
                 let image = egui::ColorImage::from_rgba_unmultiplied(
@@ -723,7 +725,7 @@ fn draw_waveform(ui: &mut egui::Ui, palette: Palette, peaks: &[(f32, f32)]) {
     }
 }
 
-fn build_scene(mesh: &Mesh) -> Scene {
+fn build_scene(mesh: &Mesh, texture: Option<&(u32, u32, Vec<u8>)>) -> Scene {
     let mut scene = Scene::default();
     let (low, high) = mesh.bounds();
     let center = [
@@ -742,6 +744,15 @@ fn build_scene(mesh: &Mesh) -> Scene {
             (vertex[1] - center[1]) * scale,
         ]
     };
+    let has_uv = mesh.uvs.len() == mesh.vertices.len() && texture.is_some();
+    let texture_index = if has_uv { 0 } else { -1 };
+    let uv_of = |vertex: usize| -> [f32; 2] {
+        if has_uv {
+            mesh.uvs[vertex]
+        } else {
+            [0.0, 0.0]
+        }
+    };
     for triangle in mesh.indices.as_chunks::<3>().0 {
         let points = [
             convert(mesh.vertices[triangle[0] as usize]),
@@ -750,18 +761,24 @@ fn build_scene(mesh: &Mesh) -> Scene {
         ];
         scene.triangles.push(Triangle {
             points,
-            uv: [[0.0; 2]; 3],
-            texture: -1,
+            uv: [
+                uv_of(triangle[0] as usize),
+                uv_of(triangle[1] as usize),
+                uv_of(triangle[2] as usize),
+            ],
+            texture: texture_index,
             color: [196, 186, 200],
             light: [1.0; 3],
         });
     }
     scene.add_grid(160.0, 20.0, [70, 60, 72]);
-    let _ = RasterTexture {
-        width: 0,
-        height: 0,
-        rgba: Vec::new(),
-    };
+    if let Some((width, height, rgba)) = texture {
+        scene.textures.push(RasterTexture {
+            width: *width as usize,
+            height: *height as usize,
+            rgba: rgba.clone(),
+        });
+    }
     scene
 }
 
@@ -828,15 +845,24 @@ fn load_object(
                 tera_package::parse_static_mesh(&package, export)
             };
             match parsed {
-                Some(mesh) => Preview::Mesh {
-                    mesh,
-                    camera: Camera {
-                        distance: 420.0,
-                        ..Camera::default()
-                    },
-                    handle: None,
-                    dirty: true,
-                },
+                Some(mesh) => {
+                    let leaf = path.rsplit('.').next().unwrap_or("mesh");
+                    let texture = tera_package::mesh_diffuse_rgba(
+                        &package,
+                        leaf,
+                        &crate::Paths::default().cooked(),
+                    );
+                    Preview::Mesh {
+                        mesh,
+                        camera: Camera {
+                            distance: 420.0,
+                            ..Camera::default()
+                        },
+                        handle: None,
+                        dirty: true,
+                        texture,
+                    }
+                }
                 None => Preview::Raw,
             }
         }
@@ -924,33 +950,28 @@ fn export_obj(loaded: &Loaded, _paths: &Paths) -> Result<String, String> {
     Ok(format!("wrote {}", target.display()))
 }
 
-fn export_glb(loaded: &Loaded, paths: &Paths) -> Result<String, String> {
-    let Preview::Mesh { mesh, .. } = &loaded.preview else {
+fn export_glb(loaded: &Loaded, _paths: &Paths) -> Result<String, String> {
+    let Preview::Mesh { mesh, texture, .. } = &loaded.preview else {
         return Err("not a mesh".into());
     };
     let Some(target) = save_dialog(loaded, "glb") else {
         return Ok("cancelled".into());
     };
     let leaf = loaded.path.rsplit('.').next().unwrap_or("mesh");
-    let texture = load_mesh_texture(loaded, leaf, paths);
-    let texture_ref = texture.as_ref().map(|(w, h, png)| (*w, *h, png.as_slice()));
+    let png = texture.as_ref().and_then(|(width, height, rgba)| {
+        tera_package::png::encode(rgba, *width, *height)
+            .ok()
+            .map(|encoded| (*width, *height, encoded))
+    });
+    let texture_ref = png.as_ref().map(|(width, height, bytes)| (*width, *height, bytes.as_slice()));
     let glb = tera_package::write_glb(mesh, leaf, texture_ref);
     std::fs::write(&target, glb).map_err(|error| error.to_string())?;
-    match texture {
+    match png {
         Some(_) => Ok(format!("wrote {} (texture liée)", target.display())),
         None => Ok(format!("wrote {} (géométrie seule)", target.display())),
     }
 }
 
-fn load_mesh_texture(loaded: &Loaded, leaf: &str, paths: &Paths) -> Option<(u32, u32, Vec<u8>)> {
-    let handle = std::fs::File::open(&loaded.file).ok()?;
-    let map = unsafe { Mmap::map(&handle) }.ok()?;
-    let mut package = Package::parse(&map, loaded.package_offset as usize).ok()?;
-    package.name_hint = Some(loaded.package.clone());
-    let (width, height, rgba) = tera_package::mesh_diffuse_rgba(&package, leaf, &paths.cooked())?;
-    let png = tera_package::png::encode(&rgba, width, height).ok()?;
-    Some((width, height, png))
-}
 
 fn export_raw(loaded: &Loaded, _paths: &Paths) -> Result<String, String> {
     let Some(target) = save_dialog(loaded, "bin") else {
