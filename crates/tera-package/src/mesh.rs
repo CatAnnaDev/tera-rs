@@ -3,6 +3,22 @@ use crate::package::{Export, Package};
 use crate::properties::read_export_properties;
 
 #[derive(Clone, Debug, Default)]
+pub struct Bone {
+    pub name: String,
+    pub name_index: i32,
+    pub parent: i32,
+    pub translation: [f32; 3],
+    pub rotation: [f32; 4],
+}
+
+#[derive(Clone, Debug, Default)]
+pub struct Skin {
+    pub bones: Vec<Bone>,
+    pub joints: Vec<[u16; 4]>,
+    pub weights: Vec<[f32; 4]>,
+}
+
+#[derive(Clone, Debug, Default)]
 pub struct Mesh {
     pub vertices: Vec<[f32; 3]>,
     pub uvs: Vec<[f32; 2]>,
@@ -10,6 +26,7 @@ pub struct Mesh {
     pub position_offset: usize,
     pub properties_end: usize,
     pub material_refs: Vec<i32>,
+    pub skin: Option<Skin>,
 }
 
 impl Mesh {
@@ -262,6 +279,7 @@ pub fn parse_static_mesh_blob(data: &[u8], start: usize) -> Option<Mesh> {
                                 position_offset: position_start,
                                 properties_end: start,
                                 material_refs: Vec::new(),
+                                skin: None,
                             });
                         }
                     }
@@ -278,7 +296,15 @@ pub fn parse_skeletal_mesh(package: &Package<'_>, export: &Export) -> Option<Mes
     let start = read_export_properties(package, data)
         .map(|(_, consumed)| consumed)
         .unwrap_or(0);
-    parse_skeletal_mesh_blob(data, start)
+    let mut mesh = parse_skeletal_mesh_blob(data, start)?;
+    if let Some(skin) = mesh.skin.as_mut() {
+        for bone in &mut skin.bones {
+            if let Some(name) = package.names.get(bone.name_index.max(0) as usize) {
+                bone.name = name.clone();
+            }
+        }
+    }
+    Some(mesh)
 }
 
 pub fn parse_skeletal_mesh_blob(data: &[u8], start: usize) -> Option<Mesh> {
@@ -330,6 +356,7 @@ pub fn parse_skeletal_mesh_blob(data: &[u8], start: usize) -> Option<Mesh> {
     let reference_skeleton = offset;
 
     let mut lod_models = None;
+    let mut bone_stride = 52usize;
     for stride in [52usize, 48, 56, 44, 60] {
         let after = reference_skeleton.checked_add(bone_count as usize * stride)?;
         if after + 8 > end {
@@ -339,6 +366,7 @@ pub fn parse_skeletal_mesh_blob(data: &[u8], start: usize) -> Option<Mesh> {
         let count = read_i32(after + 4);
         if (1..=64).contains(&depth) && (1..=16).contains(&count) {
             lod_models = Some(after + 8);
+            bone_stride = stride;
             break;
         }
     }
@@ -346,17 +374,206 @@ pub fn parse_skeletal_mesh_blob(data: &[u8], start: usize) -> Option<Mesh> {
 
     let (indices, index_end) = find_skeletal_indices(data, lod_start, end)?;
     let vertex_count = *indices.iter().max()? as usize + 1;
-    let (vertices, uvs, position_offset) =
-        find_skeletal_vertices(data, index_end, end, vertex_count, origin, extent)?;
+    let buffer = find_skeletal_vertices(data, index_end, end, vertex_count, origin, extent)?;
+
+    let bones = parse_reference_skeleton(data, reference_skeleton, bone_count as usize, bone_stride);
+    let skin = build_skin(data, index_end, &buffer, bone_count as usize, bones);
 
     Some(Mesh {
-        vertices,
-        uvs,
+        vertices: buffer.vertices,
+        uvs: buffer.uvs,
         indices,
-        position_offset,
+        position_offset: buffer.data_start + buffer.position_in_stride,
         properties_end: start,
         material_refs,
+        skin,
     })
+}
+
+struct VertexBuffer {
+    vertices: Vec<[f32; 3]>,
+    uvs: Vec<[f32; 2]>,
+    data_start: usize,
+    stride: usize,
+    position_in_stride: usize,
+}
+
+struct Chunk {
+    start: usize,
+    len: usize,
+    bone_map: Vec<u16>,
+}
+
+fn parse_reference_skeleton(data: &[u8], start: usize, count: usize, stride: usize) -> Vec<Bone> {
+    let parent_offset = if stride >= 48 { 44 } else { stride.saturating_sub(8) };
+    let mut bones = Vec::with_capacity(count);
+    for index in 0..count {
+        let base = start + index * stride;
+        if base + parent_offset + 4 > data.len() {
+            break;
+        }
+        let name_index = read_u32(data, base) as i32;
+        let rotation = [
+            read_f32(data, base + 12),
+            read_f32(data, base + 16),
+            read_f32(data, base + 20),
+            read_f32(data, base + 24),
+        ];
+        let translation = [
+            read_f32(data, base + 28),
+            read_f32(data, base + 32),
+            read_f32(data, base + 36),
+        ];
+        let parent = read_u32(data, base + parent_offset) as i32;
+        bones.push(Bone {
+            name: String::new(),
+            name_index,
+            parent,
+            translation,
+            rotation,
+        });
+    }
+    bones
+}
+
+struct MapCandidate {
+    offset: usize,
+    end: usize,
+    len: usize,
+    map: Vec<u16>,
+}
+
+fn parse_chunks(data: &[u8], from: usize, to: usize, bone_count: usize, total: usize) -> Option<Vec<Chunk>> {
+    let mut candidates: Vec<MapCandidate> = Vec::new();
+    let mut offset = from;
+    while offset + 4 <= to {
+        let width = read_u32(data, offset) as usize;
+        if (1..=bone_count).contains(&width) {
+            let map_end = offset + 4 + width * 2;
+            if map_end + 12 <= to
+                && (0..width).all(|slot| {
+                    (u16::from_le_bytes([data[offset + 4 + slot * 2], data[offset + 5 + slot * 2]])
+                        as usize)
+                        < bone_count
+                })
+            {
+                let rigid = read_u32(data, map_end) as i64;
+                let soft = read_u32(data, map_end + 4) as i64;
+                let influences = read_u32(data, map_end + 8) as i64;
+                let chunk_len = (rigid + soft) as usize;
+                if rigid >= 0 && soft >= 0 && (1..=8).contains(&influences) && chunk_len > 0 && chunk_len <= total {
+                    let map: Vec<u16> = (0..width)
+                        .map(|slot| {
+                            u16::from_le_bytes([data[offset + 4 + slot * 2], data[offset + 5 + slot * 2]])
+                        })
+                        .collect();
+                    candidates.push(MapCandidate {
+                        offset,
+                        end: map_end + 12,
+                        len: chunk_len,
+                        map,
+                    });
+                    offset = map_end + 8;
+                    continue;
+                }
+            }
+        }
+        offset += 1;
+    }
+    if candidates.is_empty() || candidates.len() > 64 {
+        return None;
+    }
+    candidates.sort_by_key(|candidate| candidate.offset);
+    let mut chosen = Vec::new();
+    if !select_chunks(&candidates, 0, 0, 0, total, &mut chosen) {
+        return None;
+    }
+    let mut base = 0;
+    let mut chunks = Vec::with_capacity(chosen.len());
+    for index in chosen {
+        let candidate = &candidates[index];
+        chunks.push(Chunk {
+            start: base,
+            len: candidate.len,
+            bone_map: candidate.map.clone(),
+        });
+        base += candidate.len;
+    }
+    Some(chunks)
+}
+
+fn select_chunks(
+    candidates: &[MapCandidate],
+    index: usize,
+    sum: usize,
+    last_end: usize,
+    total: usize,
+    chosen: &mut Vec<usize>,
+) -> bool {
+    if sum == total {
+        return true;
+    }
+    if index >= candidates.len() || sum > total {
+        return false;
+    }
+    let candidate = &candidates[index];
+    if candidate.offset >= last_end && sum + candidate.len <= total {
+        chosen.push(index);
+        if select_chunks(candidates, index + 1, sum + candidate.len, candidate.end, total, chosen) {
+            return true;
+        }
+        chosen.pop();
+    }
+    select_chunks(candidates, index + 1, sum, last_end, total, chosen)
+}
+
+fn build_skin(data: &[u8], index_end: usize, buffer: &VertexBuffer, bone_count: usize, bones: Vec<Bone>) -> Option<Skin> {
+    if bones.is_empty() {
+        return None;
+    }
+    let count = buffer.vertices.len();
+    let chunk_end = buffer.data_start.saturating_sub(8);
+    let chunks = parse_chunks(data, index_end, chunk_end, bone_count, count)?;
+    if buffer.position_in_stride < 8 {
+        return None;
+    }
+    let influences = (buffer.position_in_stride - 8) / 2;
+    if influences == 0 {
+        return None;
+    }
+    let take = influences.min(4);
+    let bones_at = 8;
+    let weights_at = 8 + influences;
+    if weights_at + take > buffer.position_in_stride {
+        return None;
+    }
+    let mut joints = Vec::with_capacity(count);
+    let mut weights = Vec::with_capacity(count);
+    for index in 0..count {
+        let base = buffer.data_start + index * buffer.stride;
+        let chunk = chunks
+            .iter()
+            .find(|chunk| index >= chunk.start && index < chunk.start + chunk.len)
+            .unwrap_or(&chunks[0]);
+        let mut joint = [0u16; 4];
+        let mut weight = [0f32; 4];
+        for slot in 0..take {
+            let local = data[base + bones_at + slot] as usize;
+            joint[slot] = chunk.bone_map.get(local).copied().unwrap_or(0);
+            weight[slot] = data[base + weights_at + slot] as f32;
+        }
+        let sum: f32 = weight.iter().sum();
+        if sum > 0.0 {
+            for value in &mut weight {
+                *value /= sum;
+            }
+        } else {
+            weight[0] = 1.0;
+        }
+        joints.push(joint);
+        weights.push(weight);
+    }
+    Some(Skin { bones, joints, weights })
 }
 
 fn find_skeletal_indices(data: &[u8], from: usize, end: usize) -> Option<(Vec<u32>, usize)> {
@@ -400,7 +617,7 @@ fn find_skeletal_vertices(
     vertex_count: usize,
     origin: [f32; 3],
     extent: [f32; 3],
-) -> Option<(Vec<[f32; 3]>, Vec<[f32; 2]>, usize)> {
+) -> Option<VertexBuffer> {
     let within = |offset: usize, position_offset: usize, stride: usize| -> bool {
         (0..vertex_count)
             .step_by((vertex_count / 32).max(1))
@@ -455,7 +672,13 @@ fn find_skeletal_vertices(
                         } else {
                             Vec::new()
                         };
-                        return Some((vertices, uvs, bytes + position_offset));
+                        return Some(VertexBuffer {
+                            vertices,
+                            uvs,
+                            data_start: bytes,
+                            stride,
+                            position_in_stride: position_offset,
+                        });
                     }
                 }
             }
@@ -640,6 +863,7 @@ mod tests {
             position_offset: 0,
             properties_end: 0,
             material_refs: Vec::new(),
+            skin: None,
         };
         assert!(mesh.replace_vertices(&[0u8; 24], &[[1.0; 3]]).is_err());
     }

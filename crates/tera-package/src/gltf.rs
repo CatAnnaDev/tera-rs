@@ -1,4 +1,4 @@
-use crate::mesh::Mesh;
+use crate::mesh::{Mesh, Skin};
 use serde_json::json;
 
 const MAGIC_GLTF: u32 = 0x4654_6C67;
@@ -6,6 +6,19 @@ const CHUNK_JSON: u32 = 0x4E4F_534A;
 const CHUNK_BIN: u32 = 0x004E_4942;
 
 pub fn write_glb(mesh: &Mesh, name: &str, texture: Option<(u32, u32, &[u8])>) -> Vec<u8> {
+    match &mesh.skin {
+        Some(skin)
+            if !skin.bones.is_empty()
+                && skin.joints.len() == mesh.vertices.len()
+                && !mesh.vertices.is_empty() =>
+        {
+            write_glb_skinned(mesh, skin, name, texture)
+        }
+        _ => write_glb_static(mesh, name, texture),
+    }
+}
+
+fn write_glb_static(mesh: &Mesh, name: &str, texture: Option<(u32, u32, &[u8])>) -> Vec<u8> {
     let positions: Vec<[f32; 3]> = mesh.vertices.iter().map(|v| z_up_to_y_up(*v)).collect();
     let count = positions.len();
     let normals = compute_normals(&positions, &mesh.indices);
@@ -90,6 +103,315 @@ pub fn write_glb(mesh: &Mesh, name: &str, texture: Option<(u32, u32, &[u8])>) ->
 
 fn z_up_to_y_up(v: [f32; 3]) -> [f32; 3] {
     [v[0], v[2], -v[1]]
+}
+
+const ROOT_ROTATION: [f32; 4] = [-0.707_106_77, 0.0, 0.0, 0.707_106_77];
+
+fn write_glb_skinned(mesh: &Mesh, skin: &Skin, name: &str, texture: Option<(u32, u32, &[u8])>) -> Vec<u8> {
+    let positions = &mesh.vertices;
+    let count = positions.len();
+    let normals = compute_normals(positions, &mesh.indices);
+    let has_uv = mesh.uvs.len() == count && count > 0;
+
+    let mut bin: Vec<u8> = Vec::new();
+    let mut views: Vec<serde_json::Value> = Vec::new();
+    let mut accessors: Vec<serde_json::Value> = Vec::new();
+
+    let (min, max) = bounds_of(positions);
+    let position_accessor = push_vec3(&mut bin, &mut views, &mut accessors, positions, Some((min, max)));
+    let normal_accessor = push_vec3(&mut bin, &mut views, &mut accessors, &normals, None);
+    let uv_accessor = if has_uv {
+        Some(push_vec2(&mut bin, &mut views, &mut accessors, &mesh.uvs))
+    } else {
+        None
+    };
+    let joints_accessor = push_joints(&mut bin, &mut views, &mut accessors, &skin.joints);
+    let weights_accessor = push_weights(&mut bin, &mut views, &mut accessors, &skin.weights);
+    let index_accessor = push_indices(&mut bin, &mut views, &mut accessors, &mesh.indices);
+
+    let inverse_binds = inverse_bind_matrices(skin);
+    let inverse_accessor = push_matrices(&mut bin, &mut views, &mut accessors, &inverse_binds);
+
+    let bone_count = skin.bones.len();
+    let mesh_node = bone_count;
+    let root_node = bone_count + 1;
+    let mut children: Vec<Vec<usize>> = vec![Vec::new(); bone_count];
+    let mut roots: Vec<usize> = Vec::new();
+    for (index, bone) in skin.bones.iter().enumerate() {
+        let parent = bone.parent;
+        if parent < 0 || parent as usize >= bone_count || parent as usize == index {
+            roots.push(index);
+        } else {
+            children[parent as usize].push(index);
+        }
+    }
+
+    let mut nodes: Vec<serde_json::Value> = Vec::with_capacity(bone_count + 2);
+    for (index, bone) in skin.bones.iter().enumerate() {
+        let mut node = json!({
+            "translation": bone.translation,
+            "rotation": normalize_quat(bone.rotation),
+        });
+        if !bone.name.is_empty() {
+            node["name"] = json!(bone.name);
+        }
+        if !children[index].is_empty() {
+            node["children"] = json!(children[index]);
+        }
+        nodes.push(node);
+    }
+
+    let mut attributes = json!({
+        "POSITION": position_accessor,
+        "NORMAL": normal_accessor,
+        "JOINTS_0": joints_accessor,
+        "WEIGHTS_0": weights_accessor,
+    });
+    if let Some(accessor) = uv_accessor {
+        attributes["TEXCOORD_0"] = json!(accessor);
+    }
+    nodes.push(json!({ "mesh": 0, "skin": 0, "name": name }));
+
+    let mut root_children = vec![mesh_node];
+    root_children.extend(roots);
+    nodes.push(json!({ "rotation": ROOT_ROTATION, "children": root_children, "name": "root" }));
+
+    let joints: Vec<usize> = (0..bone_count).collect();
+
+    let mut images = Vec::new();
+    let mut textures = Vec::new();
+    let mut samplers = Vec::new();
+    let mut material = json!({
+        "name": name,
+        "pbrMetallicRoughness": { "metallicFactor": 0.0, "roughnessFactor": 1.0 },
+        "doubleSided": true,
+    });
+    if let (Some((width, height, png)), true) = (texture, has_uv) {
+        let view = push_bytes(&mut bin, &mut views, png);
+        images.push(json!({ "bufferView": view, "mimeType": "image/png" }));
+        samplers.push(json!({ "magFilter": 9729, "minFilter": 9987, "wrapS": 10497, "wrapT": 10497 }));
+        textures.push(json!({ "source": 0, "sampler": 0 }));
+        material["pbrMetallicRoughness"]["baseColorTexture"] = json!({ "index": 0 });
+        let _ = (width, height);
+    }
+
+    let mut doc = json!({
+        "asset": { "version": "2.0", "generator": "tera-package" },
+        "scene": 0,
+        "scenes": [{ "nodes": [root_node] }],
+        "nodes": nodes,
+        "meshes": [{
+            "name": name,
+            "primitives": [{ "attributes": attributes, "indices": index_accessor, "material": 0 }],
+        }],
+        "skins": [{ "joints": joints, "inverseBindMatrices": inverse_accessor, "skeleton": root_node }],
+        "materials": [material],
+        "buffers": [{ "byteLength": bin.len() }],
+        "bufferViews": views,
+        "accessors": accessors,
+    });
+    if !images.is_empty() {
+        doc["images"] = json!(images);
+        doc["textures"] = json!(textures);
+        doc["samplers"] = json!(samplers);
+    }
+
+    assemble(doc, bin)
+}
+
+fn assemble(doc: serde_json::Value, mut bin: Vec<u8>) -> Vec<u8> {
+    let mut json_bytes = serde_json::to_vec(&doc).unwrap_or_default();
+    pad(&mut json_bytes, 0x20);
+    pad(&mut bin, 0x00);
+    let total = 12 + 8 + json_bytes.len() + 8 + bin.len();
+    let mut out = Vec::with_capacity(total);
+    out.extend_from_slice(&MAGIC_GLTF.to_le_bytes());
+    out.extend_from_slice(&2u32.to_le_bytes());
+    out.extend_from_slice(&(total as u32).to_le_bytes());
+    out.extend_from_slice(&(json_bytes.len() as u32).to_le_bytes());
+    out.extend_from_slice(&CHUNK_JSON.to_le_bytes());
+    out.extend_from_slice(&json_bytes);
+    out.extend_from_slice(&(bin.len() as u32).to_le_bytes());
+    out.extend_from_slice(&CHUNK_BIN.to_le_bytes());
+    out.extend_from_slice(&bin);
+    out
+}
+
+fn normalize_quat(q: [f32; 4]) -> [f32; 4] {
+    let length = (q[0] * q[0] + q[1] * q[1] + q[2] * q[2] + q[3] * q[3]).sqrt();
+    if length > 1e-8 {
+        [q[0] / length, q[1] / length, q[2] / length, q[3] / length]
+    } else {
+        [0.0, 0.0, 0.0, 1.0]
+    }
+}
+
+fn quat_to_mat3(q: [f32; 4]) -> [[f32; 3]; 3] {
+    let [x, y, z, w] = normalize_quat(q);
+    [
+        [
+            1.0 - 2.0 * (y * y + z * z),
+            2.0 * (x * y - z * w),
+            2.0 * (x * z + y * w),
+        ],
+        [
+            2.0 * (x * y + z * w),
+            1.0 - 2.0 * (x * x + z * z),
+            2.0 * (y * z - x * w),
+        ],
+        [
+            2.0 * (x * z - y * w),
+            2.0 * (y * z + x * w),
+            1.0 - 2.0 * (x * x + y * y),
+        ],
+    ]
+}
+
+fn mat3_mul(a: [[f32; 3]; 3], b: [[f32; 3]; 3]) -> [[f32; 3]; 3] {
+    let mut out = [[0.0f32; 3]; 3];
+    for row in 0..3 {
+        for col in 0..3 {
+            out[row][col] = a[row][0] * b[0][col] + a[row][1] * b[1][col] + a[row][2] * b[2][col];
+        }
+    }
+    out
+}
+
+fn mat3_apply(m: [[f32; 3]; 3], v: [f32; 3]) -> [f32; 3] {
+    [
+        m[0][0] * v[0] + m[0][1] * v[1] + m[0][2] * v[2],
+        m[1][0] * v[0] + m[1][1] * v[1] + m[1][2] * v[2],
+        m[2][0] * v[0] + m[2][1] * v[1] + m[2][2] * v[2],
+    ]
+}
+
+fn inverse_bind_matrices(skin: &Skin) -> Vec<[f32; 16]> {
+    let count = skin.bones.len();
+    let mut global_rotation = vec![[[0.0f32; 3]; 3]; count];
+    let mut global_translation = vec![[0.0f32; 3]; count];
+    for (index, bone) in skin.bones.iter().enumerate() {
+        let local_rotation = quat_to_mat3(bone.rotation);
+        let local_translation = bone.translation;
+        let parent = bone.parent;
+        if parent >= 0 && (parent as usize) < index {
+            let parent = parent as usize;
+            global_rotation[index] = mat3_mul(global_rotation[parent], local_rotation);
+            let rotated = mat3_apply(global_rotation[parent], local_translation);
+            global_translation[index] = [
+                rotated[0] + global_translation[parent][0],
+                rotated[1] + global_translation[parent][1],
+                rotated[2] + global_translation[parent][2],
+            ];
+        } else {
+            global_rotation[index] = local_rotation;
+            global_translation[index] = local_translation;
+        }
+    }
+    let mut out = Vec::with_capacity(count);
+    for index in 0..count {
+        let rotation = global_rotation[index];
+        let translation = global_translation[index];
+        let inverse_rotation = [
+            [rotation[0][0], rotation[1][0], rotation[2][0]],
+            [rotation[0][1], rotation[1][1], rotation[2][1]],
+            [rotation[0][2], rotation[1][2], rotation[2][2]],
+        ];
+        let inverse_translation = mat3_apply(inverse_rotation, translation);
+        out.push([
+            inverse_rotation[0][0],
+            inverse_rotation[1][0],
+            inverse_rotation[2][0],
+            0.0,
+            inverse_rotation[0][1],
+            inverse_rotation[1][1],
+            inverse_rotation[2][1],
+            0.0,
+            inverse_rotation[0][2],
+            inverse_rotation[1][2],
+            inverse_rotation[2][2],
+            0.0,
+            -inverse_translation[0],
+            -inverse_translation[1],
+            -inverse_translation[2],
+            1.0,
+        ]);
+    }
+    out
+}
+
+fn push_joints(
+    bin: &mut Vec<u8>,
+    views: &mut Vec<serde_json::Value>,
+    accessors: &mut Vec<serde_json::Value>,
+    data: &[[u16; 4]],
+) -> usize {
+    while bin.len() % 4 != 0 {
+        bin.push(0);
+    }
+    let offset = bin.len();
+    for joint in data {
+        for value in joint {
+            bin.extend_from_slice(&value.to_le_bytes());
+        }
+    }
+    let view = views.len();
+    views.push(json!({ "buffer": 0, "byteOffset": offset, "byteLength": data.len() * 8, "target": 34962 }));
+    let index = accessors.len();
+    accessors.push(json!({
+        "bufferView": view,
+        "componentType": 5123,
+        "count": data.len(),
+        "type": "VEC4",
+    }));
+    index
+}
+
+fn push_weights(
+    bin: &mut Vec<u8>,
+    views: &mut Vec<serde_json::Value>,
+    accessors: &mut Vec<serde_json::Value>,
+    data: &[[f32; 4]],
+) -> usize {
+    let offset = bin.len();
+    for weight in data {
+        for value in weight {
+            bin.extend_from_slice(&value.to_le_bytes());
+        }
+    }
+    let view = views.len();
+    views.push(json!({ "buffer": 0, "byteOffset": offset, "byteLength": data.len() * 16, "target": 34962 }));
+    let index = accessors.len();
+    accessors.push(json!({
+        "bufferView": view,
+        "componentType": 5126,
+        "count": data.len(),
+        "type": "VEC4",
+    }));
+    index
+}
+
+fn push_matrices(
+    bin: &mut Vec<u8>,
+    views: &mut Vec<serde_json::Value>,
+    accessors: &mut Vec<serde_json::Value>,
+    data: &[[f32; 16]],
+) -> usize {
+    let offset = bin.len();
+    for matrix in data {
+        for value in matrix {
+            bin.extend_from_slice(&value.to_le_bytes());
+        }
+    }
+    let view = views.len();
+    views.push(json!({ "buffer": 0, "byteOffset": offset, "byteLength": data.len() * 64 }));
+    let index = accessors.len();
+    accessors.push(json!({
+        "bufferView": view,
+        "componentType": 5126,
+        "count": data.len(),
+        "type": "MAT4",
+    }));
+    index
 }
 
 fn bounds_of(positions: &[[f32; 3]]) -> ([f32; 3], [f32; 3]) {

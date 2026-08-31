@@ -252,8 +252,12 @@ fn mesh(args: &MeshArgs) -> Result<()> {
             match parsed {
                 Some(mesh) => {
                     let (low, high) = mesh.bounds();
+                    let skin = match &mesh.skin {
+                        Some(skin) => format!("  skin: {} bones, {} weighted", skin.bones.len(), skin.joints.len()),
+                        None => String::new(),
+                    };
                     println!(
-                        "{path} [{class}] {} verts {} tris  bounds {:.0},{:.0},{:.0} .. {:.0},{:.0},{:.0}",
+                        "{path} [{class}] {} verts {} tris  bounds {:.0},{:.0},{:.0} .. {:.0},{:.0},{:.0}{skin}",
                         mesh.vertices.len(),
                         mesh.triangle_count(),
                         low[0], low[1], low[2], high[0], high[1], high[2]
