@@ -9,12 +9,14 @@ const CHUNK_BIN: u32 = 0x004E_4942;
 pub struct MaterialInput {
     pub diffuse: Option<(u32, u32, Vec<u8>)>,
     pub normal: Option<(u32, u32, Vec<u8>)>,
+    pub alpha_mask: bool,
 }
 
 pub fn write_glb(mesh: &Mesh, name: &str, texture: Option<(u32, u32, &[u8])>) -> Vec<u8> {
     let material = MaterialInput {
         diffuse: texture.map(|(width, height, bytes)| (width, height, bytes.to_vec())),
         normal: None,
+        alpha_mask: false,
     };
     write_glb_multi(mesh, name, &[material])
 }
@@ -100,6 +102,10 @@ fn build_glb(mesh: &Mesh, name: &str, materials: &[MaterialInput], skinned: bool
                 textures.push(json!({ "source": image, "sampler": 0 }));
                 entry["normalTexture"] = json!({ "index": texture });
             }
+        }
+        if material.alpha_mask {
+            entry["alphaMode"] = json!("MASK");
+            entry["alphaCutoff"] = json!(0.4);
         }
         materials_json.push(entry);
     }

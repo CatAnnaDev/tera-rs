@@ -25,7 +25,7 @@ pub use error::{PackageError, Result};
 pub use gfx::{movies, replace_movie, Movie};
 pub use material::{materials, set_parameters, Material};
 pub use mesh::{parse_skeletal_mesh, parse_static_mesh, Mesh};
-pub use meshtex::{mesh_diffuse_rgba, mesh_material_inputs, mesh_texture_index, texture_stem};
+pub use meshtex::{mesh_diffuse_rgba, mesh_material_inputs, mesh_materials_or_diffuse, mesh_texture_index, texture_stem};
 pub use gltf::{write_glb, write_glb_multi, MaterialInput};
 pub use package::{Bundle, Export, Import, Name, Package, ParseMode};
 pub use objects::{find, set_properties, Edited, Found};

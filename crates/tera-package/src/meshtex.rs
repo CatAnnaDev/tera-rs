@@ -93,6 +93,31 @@ pub fn mesh_material_inputs(package: &Package, mesh: &Mesh, cooked: &Path) -> Ve
         .collect()
 }
 
+pub fn mesh_materials_or_diffuse(
+    package: &Package,
+    mesh: &Mesh,
+    mesh_leaf: &str,
+    cooked: &Path,
+) -> Vec<MaterialInput> {
+    let mut materials = mesh_material_inputs(package, mesh, cooked);
+    if materials.is_empty() {
+        materials.push(MaterialInput::default());
+    }
+    let fallback = mesh_diffuse_rgba(package, mesh_leaf, cooked);
+    if let Some((width, height, rgba)) = fallback {
+        let alpha = has_alpha(&rgba);
+        if let Ok(png) = png::encode(&rgba, width, height) {
+            for material in &mut materials {
+                if material.diffuse.is_none() {
+                    material.diffuse = Some((width, height, png.clone()));
+                    material.alpha_mask = alpha;
+                }
+            }
+        }
+    }
+    materials
+}
+
 fn resolve_material(package: &Package, reference: i32, cooked: &Path) -> MaterialInput {
     let mut input = MaterialInput::default();
     if reference <= 0 {
@@ -103,10 +128,19 @@ fn resolve_material(package: &Package, reference: i32, cooked: &Path) -> Materia
     };
     let parameters = export_parameters(package, export);
     if let Some(leaf) = parameter_texture(&parameters, &DIFFUSE_PARAMS) {
-        input.diffuse = decode_by_leaf(package, &leaf, cooked);
+        if let Some((width, height, rgba)) = decode_rgba_by_leaf(package, &leaf, cooked) {
+            input.alpha_mask = has_alpha(&rgba);
+            if let Ok(png) = png::encode(&rgba, width, height) {
+                input.diffuse = Some((width, height, png));
+            }
+        }
     }
     if let Some(leaf) = parameter_texture(&parameters, &NORMAL_PARAMS) {
-        input.normal = decode_by_leaf(package, &leaf, cooked);
+        if let Some((width, height, rgba)) = decode_rgba_by_leaf(package, &leaf, cooked) {
+            if let Ok(png) = png::encode(&rgba, width, height) {
+                input.normal = Some((width, height, png));
+            }
+        }
     }
     input
 }
@@ -126,7 +160,7 @@ fn parameter_texture(parameters: &[crate::material::Parameter], names: &[&str]) 
     None
 }
 
-fn decode_by_leaf(package: &Package, leaf: &str, cooked: &Path) -> Option<(u32, u32, Vec<u8>)> {
+fn decode_rgba_by_leaf(package: &Package, leaf: &str, cooked: &Path) -> Option<(u32, u32, Vec<u8>)> {
     let target = leaf.to_ascii_lowercase();
     let index = package.exports.iter().enumerate().find(|(position, export)| {
         package.export_class(export) == "Texture2D"
@@ -136,7 +170,14 @@ fn decode_by_leaf(package: &Package, leaf: &str, cooked: &Path) -> Option<(u32, 
                 .next()
                 .map_or(false, |candidate| candidate.eq_ignore_ascii_case(&target))
     })?;
-    let (width, height, rgba) = decode_texture_at(package, index.0, cooked)?;
-    let png = png::encode(&rgba, width, height).ok()?;
-    Some((width, height, png))
+    decode_texture_at(package, index.0, cooked)
+}
+
+fn has_alpha(rgba: &[u8]) -> bool {
+    let pixels = rgba.len() / 4;
+    if pixels == 0 {
+        return false;
+    }
+    let transparent = rgba.chunks_exact(4).filter(|pixel| pixel[3] < 100).count();
+    transparent * 100 >= pixels * 3
 }

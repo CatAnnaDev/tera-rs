@@ -21,6 +21,7 @@ pub enum GpkCommand {
     Extract(ExtractArgs),
     Index(IndexArgs),
     Mesh(MeshArgs),
+    Anim(PropsArgs),
     NewTexture(NewTextureArgs),
     Repack(RepackArgs),
     ReplaceTexture(ReplaceTextureArgs),
@@ -139,6 +140,7 @@ pub fn run(command: GpkCommand) -> Result<()> {
         GpkCommand::Extract(args) => extract(&args),
         GpkCommand::Index(args) => index(&args),
         GpkCommand::Mesh(args) => mesh(&args),
+        GpkCommand::Anim(args) => anim(&args),
         GpkCommand::NewTexture(args) => new_texture(&args),
         GpkCommand::Repack(args) => repack(&args),
         GpkCommand::ReplaceTexture(args) => replace_texture(&args),
@@ -227,6 +229,49 @@ fn collect_packages(root: &PathBuf, out: &mut Vec<PathBuf>) -> Result<()> {
     Ok(())
 }
 
+fn anim(args: &PropsArgs) -> Result<()> {
+    use tera_package::properties::{read_export_properties, PropertyValue};
+    let data = map(&args.file)?;
+    let needle = args.object.to_ascii_lowercase();
+    for package in Bundle::new(&data) {
+        let package = package?;
+        for (export_index, export) in package.exports.iter().enumerate() {
+            if package.export_class(export) != "AnimSequence" {
+                continue;
+            }
+            let path = package.export_path(export_index);
+            if !path.to_ascii_lowercase().contains(&needle) {
+                continue;
+            }
+            let blob = package.export_data(export)?;
+            let Ok((props, consumed)) = read_export_properties(&package, blob) else {
+                continue;
+            };
+            println!("=== {path} (blob {}) props_end={consumed} ===", blob.len());
+            let mut offsets: Vec<i32> = Vec::new();
+            for pr in &props {
+                match &pr.value {
+                    PropertyValue::Array { count, element_size, raw } => {
+                        println!("  {} [{count} x {element_size}b] value_offset={}", pr.name, pr.value_offset);
+                        if pr.name == "CompressedTrackOffsets" {
+                            for i in 0..*count as usize {
+                                offsets.push(i32::from_le_bytes([raw[i*4],raw[i*4+1],raw[i*4+2],raw[i*4+3]]));
+                            }
+                        }
+                    }
+                    other => println!("  {} = {}", pr.name, other.describe()),
+                }
+            }
+            println!("  CompressedTrackOffsets ints: {:?}", offsets);
+            let native = &blob[consumed..];
+            println!("  native region {} bytes; first 8 u32: {:?}", native.len(),
+                (0..8.min(native.len()/4)).map(|i| u32::from_le_bytes([native[i*4],native[i*4+1],native[i*4+2],native[i*4+3]])).collect::<Vec<_>>());
+            return Ok(());
+        }
+    }
+    bail!("no AnimSequence matching {}", args.object)
+}
+
 fn mesh(args: &MeshArgs) -> Result<()> {
     let data = map(&args.file)?;
     let needle = args.object.as_ref().map(|value| value.to_ascii_lowercase());
@@ -273,27 +318,12 @@ fn mesh(args: &MeshArgs) -> Result<()> {
                     if let Some(target) = &args.glb {
                         let name = path.rsplit('.').next().unwrap_or("mesh");
                         let cooked = args.file.parent().unwrap_or_else(|| std::path::Path::new("."));
-                        let materials = tera_package::mesh_material_inputs(&package, &mesh, cooked);
-                        let glb = if materials.iter().any(|m| m.diffuse.is_some() || m.normal.is_some()) {
-                            let diff = materials.iter().filter(|m| m.diffuse.is_some()).count();
-                            let norm = materials.iter().filter(|m| m.normal.is_some()).count();
-                            println!("{} materials ({diff} diffuse, {norm} normal)", materials.len());
-                            tera_package::write_glb_multi(&mesh, name, &materials)
-                        } else {
-                            let texture = tera_package::mesh_diffuse_rgba(&package, name, cooked)
-                                .and_then(|(w, h, rgba)| {
-                                    tera_package::png::encode(&rgba, w, h).ok().map(|png| (w, h, png))
-                                });
-                            match &texture {
-                                Some((w, h, _)) => println!("diffuse texture {w}x{h} embedded (by name)"),
-                                None => println!("no texture found (geometry only)"),
-                            }
-                            tera_package::write_glb(
-                                &mesh,
-                                name,
-                                texture.as_ref().map(|(w, h, png)| (*w, *h, png.as_slice())),
-                            )
-                        };
+                        let materials = tera_package::mesh_materials_or_diffuse(&package, &mesh, name, cooked);
+                        let diff = materials.iter().filter(|m| m.diffuse.is_some()).count();
+                        let norm = materials.iter().filter(|m| m.normal.is_some()).count();
+                        let alpha = materials.iter().filter(|m| m.alpha_mask).count();
+                        println!("{} materials ({diff} diffuse, {norm} normal, {alpha} alpha-mask)", materials.len());
+                        let glb = tera_package::write_glb_multi(&mesh, name, &materials);
                         std::fs::write(target, glb)?;
                         println!("wrote {}", target.display());
                         return Ok(());

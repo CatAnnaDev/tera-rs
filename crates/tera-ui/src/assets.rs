@@ -958,40 +958,36 @@ fn export_glb(loaded: &Loaded, paths: &Paths) -> Result<String, String> {
         return Ok("cancelled".into());
     };
     let leaf = loaded.path.rsplit('.').next().unwrap_or("mesh");
-    let materials = resolve_materials(loaded, mesh, &paths.cooked());
-    let (glb, note) = if materials.iter().any(|m| m.diffuse.is_some() || m.normal.is_some()) {
-        let diffuse = materials.iter().filter(|m| m.diffuse.is_some()).count();
-        let normal = materials.iter().filter(|m| m.normal.is_some()).count();
-        (
-            tera_package::write_glb_multi(mesh, leaf, &materials),
-            format!("{} matériaux ({diffuse} diffuse, {normal} normal)", materials.len()),
-        )
-    } else {
-        let png = texture.as_ref().and_then(|(width, height, rgba)| {
-            tera_package::png::encode(rgba, *width, *height)
-                .ok()
-                .map(|encoded| (*width, *height, encoded))
-        });
-        let texture_ref = png.as_ref().map(|(width, height, bytes)| (*width, *height, bytes.as_slice()));
-        let note = if png.is_some() { "texture liée" } else { "géométrie seule" }.to_string();
-        (tera_package::write_glb(mesh, leaf, texture_ref), note)
-    };
+    let _ = texture;
+    let materials = resolve_materials(loaded, mesh, leaf, &paths.cooked());
+    let diffuse = materials.iter().filter(|m| m.diffuse.is_some()).count();
+    let normal = materials.iter().filter(|m| m.normal.is_some()).count();
+    let glb = tera_package::write_glb_multi(mesh, leaf, &materials);
     std::fs::write(&target, glb).map_err(|error| error.to_string())?;
-    Ok(format!("wrote {} ({note})", target.display()))
+    Ok(format!(
+        "wrote {} ({} matériaux, {diffuse} diffuse, {normal} normal)",
+        target.display(),
+        materials.len()
+    ))
 }
 
-fn resolve_materials(loaded: &Loaded, mesh: &Mesh, cooked: &Path) -> Vec<tera_package::MaterialInput> {
+fn resolve_materials(
+    loaded: &Loaded,
+    mesh: &Mesh,
+    leaf: &str,
+    cooked: &Path,
+) -> Vec<tera_package::MaterialInput> {
     let Ok(handle) = std::fs::File::open(&loaded.file) else {
-        return Vec::new();
+        return vec![tera_package::MaterialInput::default()];
     };
     let Ok(map) = (unsafe { Mmap::map(&handle) }) else {
-        return Vec::new();
+        return vec![tera_package::MaterialInput::default()];
     };
     let Ok(mut package) = Package::parse(&map, loaded.package_offset as usize) else {
-        return Vec::new();
+        return vec![tera_package::MaterialInput::default()];
     };
     package.name_hint = Some(loaded.package.clone());
-    tera_package::mesh_material_inputs(&package, mesh, cooked)
+    tera_package::mesh_materials_or_diffuse(&package, mesh, leaf, cooked)
 }
 
 
