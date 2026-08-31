@@ -121,6 +121,33 @@ pub fn mesh_material_inputs(package: &Package, mesh: &Mesh, cooked: &Path) -> Ve
         .collect()
 }
 
+pub fn package_materials(package: &Package, cooked: &Path) -> Vec<MaterialInput> {
+    let mut instances = Vec::new();
+    let mut bases = Vec::new();
+    for export in package.exports.iter() {
+        match package.export_class(export).as_str() {
+            "MaterialInstanceConstant" => {
+                let input = resolve_material_export(package, export, cooked);
+                if input.diffuse.is_some() || input.normal.is_some() || input.specular.is_some() || input.emissive.is_some() {
+                    instances.push(input);
+                }
+            }
+            "Material" => {
+                let input = resolve_material_export(package, export, cooked);
+                if input.diffuse.is_some() {
+                    bases.push(input);
+                }
+            }
+            _ => {}
+        }
+    }
+    if !instances.is_empty() {
+        instances
+    } else {
+        bases
+    }
+}
+
 pub fn mesh_materials_or_diffuse(
     package: &Package,
     mesh: &Mesh,
@@ -128,6 +155,12 @@ pub fn mesh_materials_or_diffuse(
     cooked: &Path,
 ) -> Vec<MaterialInput> {
     let mut materials = mesh_material_inputs(package, mesh, cooked);
+    if materials.is_empty() || materials.iter().all(|material| material.diffuse.is_none()) {
+        let from_package = package_materials(package, cooked);
+        if !from_package.is_empty() {
+            materials = from_package;
+        }
+    }
     let fallback = mesh_material_by_name(package, mesh_leaf, cooked);
     if materials.is_empty() {
         return vec![fallback];
@@ -151,13 +184,21 @@ pub fn mesh_materials_or_diffuse(
 }
 
 fn resolve_material(package: &Package, reference: i32, cooked: &Path) -> MaterialInput {
-    let mut input = MaterialInput::default();
     if reference <= 0 {
-        return input;
+        return MaterialInput::default();
     }
-    let Some(export) = package.exports.get((reference - 1) as usize) else {
-        return input;
-    };
+    match package.exports.get((reference - 1) as usize) {
+        Some(export) => resolve_material_export(package, export, cooked),
+        None => MaterialInput::default(),
+    }
+}
+
+fn resolve_material_export(
+    package: &Package,
+    export: &crate::package::Export,
+    cooked: &Path,
+) -> MaterialInput {
+    let mut input = MaterialInput::default();
     let parameters = export_parameters(package, export);
     if let Some(leaf) = parameter_texture(&parameters, &DIFFUSE_PARAMS) {
         if let Some((width, height, rgba)) = decode_rgba_by_leaf(package, &leaf, cooked) {
