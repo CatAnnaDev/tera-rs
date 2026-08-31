@@ -22,6 +22,7 @@ pub enum GpkCommand {
     Index(IndexArgs),
     Mesh(MeshArgs),
     Anim(PropsArgs),
+    Map(MapArgs),
     NewTexture(NewTextureArgs),
     Repack(RepackArgs),
     ReplaceTexture(ReplaceTextureArgs),
@@ -91,6 +92,17 @@ pub struct ReplaceTextureArgs {
 }
 
 #[derive(Args)]
+pub struct MapArgs {
+    pub file: PathBuf,
+    #[arg(long, help = "Write the whole level as one glTF (glb)")]
+    pub glb: Option<PathBuf>,
+    #[arg(long, help = "Asset index (defaults to ~/.tera-studio/assets.idx)")]
+    pub index: Option<PathBuf>,
+    #[arg(long, default_value_t = 4000, help = "Max distinct meshes to load")]
+    pub max_meshes: usize,
+}
+
+#[derive(Args)]
 pub struct TargetArgs {
     pub file: PathBuf,
 }
@@ -149,6 +161,7 @@ pub fn run(command: GpkCommand) -> Result<()> {
         GpkCommand::Index(args) => index(&args),
         GpkCommand::Mesh(args) => mesh(&args),
         GpkCommand::Anim(args) => anim(&args),
+        GpkCommand::Map(args) => map_dump(&args),
         GpkCommand::NewTexture(args) => new_texture(&args),
         GpkCommand::Repack(args) => repack(&args),
         GpkCommand::ReplaceTexture(args) => replace_texture(&args),
@@ -234,6 +247,77 @@ fn collect_packages(root: &PathBuf, out: &mut Vec<PathBuf>) -> Result<()> {
             }
         }
     }
+    Ok(())
+}
+
+fn map_dump(args: &MapArgs) -> Result<()> {
+    use tera_index::Index;
+    use tera_package::{mesh_materials_or_diffuse, parse_level, parse_static_mesh, rotator_to_quaternion, write_map_glb, MapInstance};
+    let data = map(&args.file)?;
+    let mut level = Vec::new();
+    for package in Bundle::new(&data) {
+        let package = package?;
+        let placements = parse_level(&package);
+        if placements.is_empty() {
+            continue;
+        }
+        level = placements;
+        break;
+    }
+    if level.is_empty() {
+        bail!("no StaticMeshActor placements found");
+    }
+    let mut unique: Vec<String> = level.iter().map(|p| p.mesh.clone()).collect();
+    unique.sort();
+    unique.dedup();
+    println!("{} placements, {} unique meshes", level.len(), unique.len());
+    let Some(target) = &args.glb else {
+        for p in level.iter().take(6) {
+            println!("  loc={:?} rot={:?} scale={:?} mesh={}", p.location, p.rotation, p.scale, p.mesh);
+        }
+        return Ok(());
+    };
+    let index_path = args.index.clone().unwrap_or_else(|| {
+        std::path::PathBuf::from(std::env::var("HOME").unwrap_or_default()).join(".tera-studio/assets.idx")
+    });
+    let index = Index::open(&index_path)?;
+    let cooked = args.file.parent()
+        .and_then(|p| p.ancestors().find(|a| a.ends_with("CookedPC")))
+        .map(|p| p.to_path_buf())
+        .unwrap_or_else(|| args.file.parent().unwrap_or(std::path::Path::new(".")).to_path_buf());
+    let mut meshes: Vec<(tera_package::Mesh, Vec<tera_package::MaterialInput>)> = Vec::new();
+    let mut mesh_index: std::collections::HashMap<String, usize> = std::collections::HashMap::new();
+    let mut loaded = 0usize;
+    for name in unique.iter() {
+        if mesh_index.len() >= args.max_meshes { break; }
+        let hits = index.search_objects(name, 1, Some("StaticMesh"));
+        let Some(&hit) = hits.first() else { continue };
+        let object = index.object(hit as usize);
+        let entry = index.package(object.package as usize);
+        let file = cooked.join(index.file_name(entry.file as usize));
+        let Ok(handle) = std::fs::File::open(&file) else { continue };
+        let Ok(mmap) = (unsafe { memmap2::Mmap::map(&handle) }) else { continue };
+        let Ok(pkg) = tera_package::Package::parse(&mmap, entry.offset as usize) else { continue };
+        let Some(export) = pkg.exports.get(object.export as usize) else { continue };
+        let Some(mesh) = parse_static_mesh(&pkg, export) else { continue };
+        let materials = mesh_materials_or_diffuse(&pkg, &mesh, name, &cooked);
+        mesh_index.insert(name.clone(), meshes.len());
+        meshes.push((mesh, materials));
+        loaded += 1;
+    }
+    let instances: Vec<MapInstance> = level.iter().filter_map(|p| {
+        let &m = mesh_index.get(&p.mesh)?;
+        Some(MapInstance {
+            mesh: m,
+            translation: p.location,
+            rotation: rotator_to_quaternion(p.rotation),
+            scale: p.scale,
+        })
+    }).collect();
+    let leaf = args.file.file_stem().and_then(|s| s.to_str()).unwrap_or("level");
+    let glb = write_map_glb(&meshes, &instances, leaf);
+    std::fs::write(target, &glb)?;
+    println!("loaded {loaded}/{} meshes, {} instances -> {} ({} bytes)", unique.len(), instances.len(), target.display(), glb.len());
     Ok(())
 }
 

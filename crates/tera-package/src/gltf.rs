@@ -727,3 +727,159 @@ mod tests {
         assert_eq!(&glb[bin_start + 4..bin_start + 8], b"BIN\0");
     }
 }
+
+pub struct MapInstance {
+    pub mesh: usize,
+    pub translation: [f32; 3],
+    pub rotation: [f32; 4],
+    pub scale: [f32; 3],
+}
+
+pub fn write_map_glb(meshes: &[(Mesh, Vec<MaterialInput>)], instances: &[MapInstance], name: &str) -> Vec<u8> {
+    let mut bin: Vec<u8> = Vec::new();
+    let mut views: Vec<serde_json::Value> = Vec::new();
+    let mut accessors: Vec<serde_json::Value> = Vec::new();
+    let mut images: Vec<serde_json::Value> = Vec::new();
+    let mut textures: Vec<serde_json::Value> = Vec::new();
+    let mut materials_json: Vec<serde_json::Value> = Vec::new();
+    let mut meshes_json: Vec<serde_json::Value> = Vec::new();
+    let mut uses_specular = false;
+
+    for (mesh, materials) in meshes {
+        let positions = &mesh.vertices;
+        let count = positions.len();
+        if count == 0 || mesh.indices.is_empty() {
+            meshes_json.push(json!({ "primitives": [] }));
+            continue;
+        }
+        let normals = compute_normals(positions, &mesh.indices);
+        let has_uv = mesh.uvs.len() == count;
+        let (min, max) = bounds_of(positions);
+        let position_accessor = push_vec3(&mut bin, &mut views, &mut accessors, positions, Some((min, max)));
+        let normal_accessor = push_vec3(&mut bin, &mut views, &mut accessors, &normals, None);
+        let uv_accessor = if has_uv {
+            Some(push_vec2(&mut bin, &mut views, &mut accessors, &mesh.uvs))
+        } else {
+            None
+        };
+        let mut attributes = json!({ "POSITION": position_accessor, "NORMAL": normal_accessor });
+        if let Some(accessor) = uv_accessor {
+            attributes["TEXCOORD_0"] = json!(accessor);
+        }
+        let index_view = push_index_view(&mut bin, &mut views, &mesh.indices);
+        let sections: Vec<(u16, u32, u32)> = if mesh.sections.is_empty() {
+            vec![(0, 0, mesh.indices.len() as u32)]
+        } else {
+            mesh.sections.iter().map(|s| (s.material, s.index_start, s.index_count)).collect()
+        };
+        let material_base = materials_json.len();
+        for material in materials {
+            let mut entry = json!({
+                "name": name,
+                "pbrMetallicRoughness": { "metallicFactor": 0.0, "roughnessFactor": 1.0 },
+                "doubleSided": true,
+            });
+            if has_uv {
+                if let Some((_, _, png)) = &material.diffuse {
+                    let view = push_bytes(&mut bin, &mut views, png);
+                    let image = images.len();
+                    images.push(json!({ "bufferView": view, "mimeType": "image/png" }));
+                    let texture = textures.len();
+                    textures.push(json!({ "source": image, "sampler": 0 }));
+                    entry["pbrMetallicRoughness"]["baseColorTexture"] = json!({ "index": texture });
+                }
+                if let Some((_, _, png)) = &material.normal {
+                    let view = push_bytes(&mut bin, &mut views, png);
+                    let image = images.len();
+                    images.push(json!({ "bufferView": view, "mimeType": "image/png" }));
+                    let texture = textures.len();
+                    textures.push(json!({ "source": image, "sampler": 0 }));
+                    entry["normalTexture"] = json!({ "index": texture });
+                }
+                if let Some((_, _, png)) = &material.emissive {
+                    let view = push_bytes(&mut bin, &mut views, png);
+                    let image = images.len();
+                    images.push(json!({ "bufferView": view, "mimeType": "image/png" }));
+                    let texture = textures.len();
+                    textures.push(json!({ "source": image, "sampler": 0 }));
+                    entry["emissiveTexture"] = json!({ "index": texture });
+                    entry["emissiveFactor"] = json!([1.0, 1.0, 1.0]);
+                }
+                if let Some((_, _, png)) = &material.specular {
+                    let view = push_bytes(&mut bin, &mut views, png);
+                    let image = images.len();
+                    images.push(json!({ "bufferView": view, "mimeType": "image/png" }));
+                    let texture = textures.len();
+                    textures.push(json!({ "source": image, "sampler": 0 }));
+                    entry["extensions"] = json!({ "KHR_materials_specular": { "specularColorTexture": { "index": texture } } });
+                    uses_specular = true;
+                }
+            }
+            if material.alpha_mask {
+                entry["alphaMode"] = json!("MASK");
+                entry["alphaCutoff"] = json!(0.4);
+            }
+            materials_json.push(entry);
+        }
+        if materials.is_empty() {
+            materials_json.push(json!({
+                "name": name,
+                "pbrMetallicRoughness": { "metallicFactor": 0.0, "roughnessFactor": 1.0 },
+                "doubleSided": true,
+            }));
+        }
+        let material_count = materials.len().max(1);
+        let primitives: Vec<serde_json::Value> = sections
+            .iter()
+            .map(|(material, start, len)| {
+                let accessor = push_index_accessor(&mut accessors, index_view, *start, *len);
+                let material = material_base + (*material as usize).min(material_count - 1);
+                json!({ "attributes": attributes, "indices": accessor, "material": material })
+            })
+            .collect();
+        meshes_json.push(json!({ "primitives": primitives }));
+    }
+
+    let mut nodes: Vec<serde_json::Value> = Vec::new();
+    let mut instance_indices: Vec<usize> = Vec::new();
+    for instance in instances {
+        if instance.mesh >= meshes_json.len() {
+            continue;
+        }
+        instance_indices.push(nodes.len());
+        nodes.push(json!({
+            "mesh": instance.mesh,
+            "translation": instance.translation,
+            "rotation": normalize_quat(instance.rotation),
+            "scale": instance.scale,
+        }));
+    }
+    let root = nodes.len();
+    nodes.push(json!({ "rotation": ROOT_ROTATION, "children": instance_indices, "name": name }));
+
+    let mut samplers: Vec<serde_json::Value> = Vec::new();
+    if !textures.is_empty() {
+        samplers.push(json!({ "magFilter": 9729, "minFilter": 9987, "wrapS": 10497, "wrapT": 10497 }));
+    }
+
+    let mut doc = json!({
+        "asset": { "version": "2.0", "generator": "tera-package" },
+        "scene": 0,
+        "scenes": [{ "nodes": [root] }],
+        "nodes": nodes,
+        "meshes": meshes_json,
+        "materials": materials_json,
+        "buffers": [{ "byteLength": bin.len() }],
+        "bufferViews": views,
+        "accessors": accessors,
+    });
+    if !images.is_empty() {
+        doc["images"] = json!(images);
+        doc["textures"] = json!(textures);
+        doc["samplers"] = json!(samplers);
+    }
+    if uses_specular {
+        doc["extensionsUsed"] = json!(["KHR_materials_specular"]);
+    }
+    assemble(doc, bin)
+}
