@@ -43,6 +43,8 @@ pub struct MeshArgs {
     pub object: Option<String>,
     #[arg(long, help = "Write a Wavefront OBJ next to this path")]
     pub obj: Option<PathBuf>,
+    #[arg(long, help = "Write a binary glTF (glb) with embedded diffuse texture")]
+    pub glb: Option<PathBuf>,
 }
 
 #[derive(Args)]
@@ -259,6 +261,26 @@ fn mesh(args: &MeshArgs) -> Result<()> {
                     if let Some(target) = &args.obj {
                         let name = path.rsplit('.').next().unwrap_or("mesh");
                         std::fs::write(target, mesh.to_obj(name))?;
+                        println!("wrote {}", target.display());
+                        return Ok(());
+                    }
+                    if let Some(target) = &args.glb {
+                        let name = path.rsplit('.').next().unwrap_or("mesh");
+                        let cooked = args.file.parent().unwrap_or_else(|| std::path::Path::new("."));
+                        let texture = tera_package::mesh_diffuse_rgba(&package, name, cooked)
+                            .and_then(|(w, h, rgba)| {
+                                tera_package::png::encode(&rgba, w, h).ok().map(|png| (w, h, png))
+                            });
+                        match &texture {
+                            Some((w, h, _)) => println!("diffuse texture {w}x{h} embedded"),
+                            None => println!("no diffuse texture found (geometry only)"),
+                        }
+                        let glb = tera_package::write_glb(
+                            &mesh,
+                            name,
+                            texture.as_ref().map(|(w, h, png)| (*w, *h, png.as_slice())),
+                        );
+                        std::fs::write(target, glb)?;
                         println!("wrote {}", target.display());
                         return Ok(());
                     }

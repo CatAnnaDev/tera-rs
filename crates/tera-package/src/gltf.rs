@@ -6,17 +6,17 @@ const CHUNK_JSON: u32 = 0x4E4F_534A;
 const CHUNK_BIN: u32 = 0x004E_4942;
 
 pub fn write_glb(mesh: &Mesh, name: &str, texture: Option<(u32, u32, &[u8])>) -> Vec<u8> {
-    let positions = &mesh.vertices;
+    let positions: Vec<[f32; 3]> = mesh.vertices.iter().map(|v| z_up_to_y_up(*v)).collect();
     let count = positions.len();
-    let normals = compute_normals(positions, &mesh.indices);
+    let normals = compute_normals(&positions, &mesh.indices);
     let has_uv = mesh.uvs.len() == count && count > 0;
 
     let mut bin: Vec<u8> = Vec::new();
     let mut views: Vec<serde_json::Value> = Vec::new();
     let mut accessors: Vec<serde_json::Value> = Vec::new();
 
-    let (min, max) = mesh.bounds();
-    let position_accessor = push_vec3(&mut bin, &mut views, &mut accessors, positions, Some((min, max)));
+    let (min, max) = bounds_of(&positions);
+    let position_accessor = push_vec3(&mut bin, &mut views, &mut accessors, &positions, Some((min, max)));
     let normal_accessor = push_vec3(&mut bin, &mut views, &mut accessors, &normals, None);
     let uv_accessor = if has_uv {
         Some(push_vec2(&mut bin, &mut views, &mut accessors, &mesh.uvs))
@@ -86,6 +86,25 @@ pub fn write_glb(mesh: &Mesh, name: &str, texture: Option<(u32, u32, &[u8])>) ->
     out.extend_from_slice(&CHUNK_BIN.to_le_bytes());
     out.extend_from_slice(&bin);
     out
+}
+
+fn z_up_to_y_up(v: [f32; 3]) -> [f32; 3] {
+    [v[0], v[2], -v[1]]
+}
+
+fn bounds_of(positions: &[[f32; 3]]) -> ([f32; 3], [f32; 3]) {
+    let mut low = [f32::MAX; 3];
+    let mut high = [f32::MIN; 3];
+    for position in positions {
+        for axis in 0..3 {
+            low[axis] = low[axis].min(position[axis]);
+            high[axis] = high[axis].max(position[axis]);
+        }
+    }
+    if positions.is_empty() {
+        return ([0.0; 3], [0.0; 3]);
+    }
+    (low, high)
 }
 
 fn compute_normals(positions: &[[f32; 3]], indices: &[u32]) -> Vec<[f32; 3]> {

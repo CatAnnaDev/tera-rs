@@ -924,7 +924,7 @@ fn export_obj(loaded: &Loaded, _paths: &Paths) -> Result<String, String> {
     Ok(format!("wrote {}", target.display()))
 }
 
-fn export_glb(loaded: &Loaded, _paths: &Paths) -> Result<String, String> {
+fn export_glb(loaded: &Loaded, paths: &Paths) -> Result<String, String> {
     let Preview::Mesh { mesh, .. } = &loaded.preview else {
         return Err("not a mesh".into());
     };
@@ -932,9 +932,24 @@ fn export_glb(loaded: &Loaded, _paths: &Paths) -> Result<String, String> {
         return Ok("cancelled".into());
     };
     let leaf = loaded.path.rsplit('.').next().unwrap_or("mesh");
-    let glb = tera_package::write_glb(mesh, leaf, None);
+    let texture = load_mesh_texture(loaded, leaf, paths);
+    let texture_ref = texture.as_ref().map(|(w, h, png)| (*w, *h, png.as_slice()));
+    let glb = tera_package::write_glb(mesh, leaf, texture_ref);
     std::fs::write(&target, glb).map_err(|error| error.to_string())?;
-    Ok(format!("wrote {}", target.display()))
+    match texture {
+        Some(_) => Ok(format!("wrote {} (texture liée)", target.display())),
+        None => Ok(format!("wrote {} (géométrie seule)", target.display())),
+    }
+}
+
+fn load_mesh_texture(loaded: &Loaded, leaf: &str, paths: &Paths) -> Option<(u32, u32, Vec<u8>)> {
+    let handle = std::fs::File::open(&loaded.file).ok()?;
+    let map = unsafe { Mmap::map(&handle) }.ok()?;
+    let mut package = Package::parse(&map, loaded.package_offset as usize).ok()?;
+    package.name_hint = Some(loaded.package.clone());
+    let (width, height, rgba) = tera_package::mesh_diffuse_rgba(&package, leaf, &paths.cooked())?;
+    let png = tera_package::png::encode(&rgba, width, height).ok()?;
+    Some((width, height, png))
 }
 
 fn export_raw(loaded: &Loaded, _paths: &Paths) -> Result<String, String> {
