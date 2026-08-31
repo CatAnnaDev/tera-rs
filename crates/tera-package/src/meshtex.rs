@@ -20,9 +20,14 @@ pub fn texture_stem(mesh_leaf: &str) -> String {
     }
 }
 
+fn common_prefix_len(a: &str, b: &str) -> usize {
+    a.bytes().zip(b.bytes()).take_while(|(x, y)| x == y).count()
+}
+
 pub fn mesh_texture_index(package: &Package, mesh_leaf: &str, keywords: &[&str]) -> Option<usize> {
+    let target = mesh_leaf.to_ascii_lowercase();
     let stem = texture_stem(mesh_leaf);
-    if stem.len() < 3 {
+    if target.len() < 3 {
         return None;
     }
     let mut best: Option<(usize, i32)> = None;
@@ -32,24 +37,27 @@ pub fn mesh_texture_index(package: &Package, mesh_leaf: &str, keywords: &[&str])
         }
         let path = package.export_path(index);
         let leaf = path.rsplit('.').next().unwrap_or("").to_ascii_lowercase();
-        if !leaf.contains(&stem) {
+        let prefix = common_prefix_len(&leaf, &target);
+        let related = prefix >= 5 || (stem.len() >= 3 && leaf.contains(&stem));
+        if !related {
             continue;
         }
-        let mut score = 0;
+        let mut keyword_score = 0;
         for (rank, keyword) in keywords.iter().enumerate() {
             if leaf.contains(keyword) {
-                score = 100 - rank as i32;
+                keyword_score = 100 - rank as i32;
                 break;
             }
         }
-        if score == 0 {
+        if keyword_score == 0 {
             if NON_BASE.iter().any(|keyword| leaf.contains(keyword)) {
                 continue;
             }
-            score = 10;
+            keyword_score = 10;
         }
+        let mut score = keyword_score * 1000 + prefix as i32;
         if leaf.contains("lod") {
-            score -= 20;
+            score -= 5000;
         }
         if best.map_or(true, |(_, current)| score > current) {
             best = Some((index, score));
@@ -86,6 +94,7 @@ use crate::png;
 const DIFFUSE_PARAMS: [&str; 4] = ["DiffuseMap", "Diffuse", "BaseMap", "BaseColor"];
 const NORMAL_PARAMS: [&str; 3] = ["NormalMap", "Normal", "BumpMap"];
 const EMISSIVE_PARAMS: [&str; 4] = ["EmissiveMap", "Emissive", "EmissiveColor", "GlowMap"];
+const SPECULAR_PARAMS: [&str; 3] = ["SpecularMap", "Specular", "SpecMap"];
 
 pub fn mesh_material_inputs(package: &Package, mesh: &Mesh, cooked: &Path) -> Vec<MaterialInput> {
     mesh.material_refs
@@ -101,19 +110,23 @@ pub fn mesh_materials_or_diffuse(
     cooked: &Path,
 ) -> Vec<MaterialInput> {
     let mut materials = mesh_material_inputs(package, mesh, cooked);
+    let fallback = mesh_material_by_name(package, mesh_leaf, cooked);
     if materials.is_empty() {
-        materials.push(MaterialInput::default());
+        return vec![fallback];
     }
-    let fallback = mesh_diffuse_rgba(package, mesh_leaf, cooked);
-    if let Some((width, height, rgba)) = fallback {
-        let alpha = has_alpha(&rgba);
-        if let Ok(png) = png::encode(&rgba, width, height) {
-            for material in &mut materials {
-                if material.diffuse.is_none() {
-                    material.diffuse = Some((width, height, png.clone()));
-                    material.alpha_mask = alpha;
-                }
-            }
+    for material in &mut materials {
+        if material.diffuse.is_none() {
+            material.diffuse = fallback.diffuse.clone();
+            material.alpha_mask = fallback.alpha_mask;
+        }
+        if material.normal.is_none() {
+            material.normal = fallback.normal.clone();
+        }
+        if material.emissive.is_none() {
+            material.emissive = fallback.emissive.clone();
+        }
+        if material.specular.is_none() {
+            material.specular = fallback.specular.clone();
         }
     }
     materials
@@ -148,6 +161,51 @@ fn resolve_material(package: &Package, reference: i32, cooked: &Path) -> Materia
             if let Ok(png) = png::encode(&rgba, width, height) {
                 input.emissive = Some((width, height, png));
             }
+        }
+    }
+    if let Some(leaf) = parameter_texture(&parameters, &SPECULAR_PARAMS) {
+        if let Some((width, height, rgba)) = decode_rgba_by_leaf(package, &leaf, cooked) {
+            if let Ok(png) = png::encode(&rgba, width, height) {
+                input.specular = Some((width, height, png));
+            }
+        }
+    }
+    input
+}
+
+fn encode_map(package: &Package, index: usize, cooked: &Path) -> Option<(u32, u32, bool, Vec<u8>)> {
+    let (width, height, rgba) = decode_texture_at(package, index, cooked)?;
+    let alpha = has_alpha(&rgba);
+    let png = png::encode(&rgba, width, height).ok()?;
+    Some((width, height, alpha, png))
+}
+
+pub fn mesh_material_by_name(package: &Package, mesh_leaf: &str, cooked: &Path) -> MaterialInput {
+    let mut input = MaterialInput::default();
+    let stem = texture_stem(mesh_leaf);
+    if stem.len() < 3 {
+        return input;
+    }
+    let pick = |keywords: &[&str]| -> Option<usize> { mesh_texture_index(package, mesh_leaf, keywords) };
+    if let Some(i) = pick(&DIFFUSE_KEYWORDS) {
+        if let Some((w, h, alpha, png)) = encode_map(package, i, cooked) {
+            input.diffuse = Some((w, h, png));
+            input.alpha_mask = alpha;
+        }
+    }
+    if let Some(i) = pick(&["norm", "normal", "bump"]) {
+        if let Some((w, h, _, png)) = encode_map(package, i, cooked) {
+            input.normal = Some((w, h, png));
+        }
+    }
+    if let Some(i) = pick(&["emis", "glow", "emissive"]) {
+        if let Some((w, h, _, png)) = encode_map(package, i, cooked) {
+            input.emissive = Some((w, h, png));
+        }
+    }
+    if let Some(i) = pick(&["spec", "specular"]) {
+        if let Some((w, h, _, png)) = encode_map(package, i, cooked) {
+            input.specular = Some((w, h, png));
         }
     }
     input

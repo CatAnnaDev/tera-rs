@@ -12,6 +12,7 @@ pub struct MaterialInput {
     pub diffuse: Option<(u32, u32, Vec<u8>)>,
     pub normal: Option<(u32, u32, Vec<u8>)>,
     pub emissive: Option<(u32, u32, Vec<u8>)>,
+    pub specular: Option<(u32, u32, Vec<u8>)>,
     pub alpha_mask: bool,
 }
 
@@ -20,6 +21,7 @@ pub fn write_glb(mesh: &Mesh, name: &str, texture: Option<(u32, u32, &[u8])>) ->
         diffuse: texture.map(|(width, height, bytes)| (width, height, bytes.to_vec())),
         normal: None,
         emissive: None,
+        specular: None,
         alpha_mask: false,
     };
     write_glb_multi(mesh, name, &[material])
@@ -89,6 +91,7 @@ fn build_glb(mesh: &Mesh, name: &str, materials: &[MaterialInput], skinned: bool
     let mut images: Vec<serde_json::Value> = Vec::new();
     let mut textures: Vec<serde_json::Value> = Vec::new();
     let mut materials_json: Vec<serde_json::Value> = Vec::new();
+    let mut uses_specular = false;
     for material in materials {
         let mut entry = json!({
             "name": name,
@@ -120,6 +123,17 @@ fn build_glb(mesh: &Mesh, name: &str, materials: &[MaterialInput], skinned: bool
                 textures.push(json!({ "source": image, "sampler": 0 }));
                 entry["emissiveTexture"] = json!({ "index": texture });
                 entry["emissiveFactor"] = json!([1.0, 1.0, 1.0]);
+            }
+            if let Some((_, _, png)) = &material.specular {
+                let view = push_bytes(&mut bin, &mut views, png);
+                let image = images.len();
+                images.push(json!({ "bufferView": view, "mimeType": "image/png" }));
+                let texture = textures.len();
+                textures.push(json!({ "source": image, "sampler": 0 }));
+                entry["extensions"] = json!({
+                    "KHR_materials_specular": { "specularColorTexture": { "index": texture } }
+                });
+                uses_specular = true;
             }
         }
         if material.alpha_mask {
@@ -256,6 +270,9 @@ fn build_glb(mesh: &Mesh, name: &str, materials: &[MaterialInput], skinned: bool
     }
     if !animations_json.is_empty() {
         doc["animations"] = json!(animations_json);
+    }
+    if uses_specular {
+        doc["extensionsUsed"] = json!(["KHR_materials_specular"]);
     }
 
     assemble(doc, bin)
