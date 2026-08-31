@@ -1,5 +1,6 @@
 use crate::jobs::{Job, Message, Progress};
 use crate::theme::{self, Palette};
+use crate::view3d::{Camera, Raster, Scene, Triangle};
 use crate::Paths;
 use eframe::egui;
 use memmap2::Mmap;
@@ -11,6 +12,19 @@ use tera_package::{
     MapInstance, Mesh, MaterialInput, Package,
 };
 
+struct MapPreviewData {
+    scene: Scene,
+    label: String,
+}
+
+struct MapPreview {
+    scene: Scene,
+    camera: Camera,
+    handle: Option<egui::TextureHandle>,
+    dirty: bool,
+    label: String,
+}
+
 #[derive(Default)]
 pub struct MapsTab {
     levels: Vec<(String, usize)>,
@@ -19,6 +33,9 @@ pub struct MapsTab {
     selected: Option<usize>,
     job: Option<Job>,
     list_rx: Option<std::sync::mpsc::Receiver<Vec<(String, usize)>>>,
+    preview: Option<MapPreview>,
+    preview_rx: Option<std::sync::mpsc::Receiver<Result<MapPreviewData, String>>>,
+    preview_pending: bool,
 }
 
 fn build_level_list(index_path: &Path) -> Vec<(String, usize)> {
@@ -92,6 +109,35 @@ impl MapsTab {
             }
         }
 
+        if let Some(receiver) = &self.preview_rx {
+            match receiver.try_recv() {
+                Ok(Ok(data)) => {
+                    *status = data.label.clone();
+                    self.preview = Some(MapPreview {
+                        scene: data.scene,
+                        camera: Camera::default(),
+                        handle: None,
+                        dirty: true,
+                        label: data.label,
+                    });
+                    self.preview_rx = None;
+                    self.preview_pending = false;
+                }
+                Ok(Err(error)) => {
+                    *status = format!("error: {error}");
+                    self.preview_rx = None;
+                    self.preview_pending = false;
+                }
+                Err(std::sync::mpsc::TryRecvError::Empty) => {
+                    ui.ctx().request_repaint_after(std::time::Duration::from_millis(120));
+                }
+                Err(std::sync::mpsc::TryRecvError::Disconnected) => {
+                    self.preview_rx = None;
+                    self.preview_pending = false;
+                }
+            }
+        }
+
         egui::Panel::top("maps_head").show(ui, |ui| {
             ui.add_space(4.0);
             ui.horizontal(|ui| {
@@ -109,21 +155,59 @@ impl MapsTab {
                     ui.spinner();
                     theme::eyebrow(ui, palette, &job.label);
                 });
+            } else if self.preview_pending {
+                ui.horizontal(|ui| {
+                    ui.spinner();
+                    theme::eyebrow(ui, palette, "construction de la preview…");
+                });
             } else if let Some(selected) = self.selected {
                 if let Some((file, count)) = self.levels.get(selected).cloned() {
-                    if ui.button(format!("export glTF — {} ({} placements)", leaf(&file), count)).clicked() {
-                        if let Some(target) = rfd::FileDialog::new()
-                            .set_file_name(format!("{}.glb", leaf(&file)))
-                            .save_file()
-                        {
+                    ui.horizontal(|ui| {
+                        if ui.button(format!("prévisualiser ({count} placements)")).clicked() {
                             let level_file = paths.cooked().join(&file);
                             let index_path = paths.index.clone();
                             let cooked = paths.cooked();
-                            self.job = Some(Job::spawn(format!("export {}", leaf(&file)), move |sender| {
-                                export_map(&level_file, &index_path, &cooked, &target, sender)
-                            }));
+                            let label = leaf(&file).to_string();
+                            let (sender, receiver) = std::sync::mpsc::channel();
+                            self.preview_rx = Some(receiver);
+                            self.preview_pending = true;
+                            std::thread::spawn(move || {
+                                let (progress, _progress_rx) = std::sync::mpsc::channel();
+                                let result = collect_map_data(&level_file, &index_path, &cooked, &progress)
+                                    .map(|data| {
+                                        let (scene, shown, total) =
+                                            build_map_scene(&data.meshes, &data.instances);
+                                        let label = if shown < total {
+                                            format!(
+                                                "{label} — {} placements, {shown}/{total} triangles",
+                                                data.instances.len()
+                                            )
+                                        } else {
+                                            format!(
+                                                "{label} — {} placements, {total} triangles",
+                                                data.instances.len()
+                                            )
+                                        };
+                                        MapPreviewData { scene, label }
+                                    });
+                                let _ = sender.send(result);
+                            });
+                            ui.ctx().request_repaint_after(std::time::Duration::from_millis(120));
                         }
-                    }
+                        if ui.button("export glTF").clicked() {
+                            if let Some(target) = rfd::FileDialog::new()
+                                .set_file_name(format!("{}.glb", leaf(&file)))
+                                .save_file()
+                            {
+                                let level_file = paths.cooked().join(&file);
+                                let index_path = paths.index.clone();
+                                let cooked = paths.cooked();
+                                self.job = Some(Job::spawn(format!("export {}", leaf(&file)), move |sender| {
+                                    export_map(&level_file, &index_path, &cooked, &target, sender)
+                                }));
+                            }
+                        }
+                    });
                 }
             } else {
                 theme::eyebrow(ui, palette, "choisis un niveau à gauche");
@@ -131,7 +215,61 @@ impl MapsTab {
             ui.add_space(4.0);
         });
 
+        let mut close_preview = false;
         egui::CentralPanel::default().show(ui, |ui| {
+            if let Some(preview) = &mut self.preview {
+                ui.add_space(4.0);
+                ui.horizontal(|ui| {
+                    if ui.button("← fermer la preview").clicked() {
+                        close_preview = true;
+                    }
+                    theme::eyebrow(ui, palette, &preview.label);
+                });
+                ui.add_space(4.0);
+                let size = egui::vec2(ui.available_width(), ui.available_height().max(220.0));
+                let (rect, response) = ui.allocate_exact_size(size, egui::Sense::click_and_drag());
+                if response.dragged() {
+                    let delta = response.drag_delta();
+                    preview.camera.yaw += delta.x * 0.01;
+                    preview.camera.pitch = (preview.camera.pitch + delta.y * 0.01).clamp(-1.5, 1.5);
+                    preview.dirty = true;
+                }
+                let scroll = ui.input(|input| input.smooth_scroll_delta.y);
+                if response.hovered() && scroll.abs() > 0.1 {
+                    preview.camera.distance =
+                        (preview.camera.distance * (1.0 - scroll * 0.002)).clamp(1.0, 1.0e6);
+                    preview.dirty = true;
+                }
+                if preview.handle.is_none() || preview.dirty {
+                    let width = size.x as usize;
+                    let height = size.y as usize;
+                    let mut raster = Raster::new(width.max(16), height.max(16));
+                    let accent = theme::colors(palette).panel;
+                    raster.sky_top = [accent.r(), accent.g(), accent.b()];
+                    let background = theme::colors(palette).background;
+                    raster.sky_bottom = [background.r(), background.g(), background.b()];
+                    raster.render(&preview.scene, &preview.camera.view_projection(size.x / size.y));
+                    let image = egui::ColorImage::from_rgba_unmultiplied(
+                        [raster.width, raster.height],
+                        &raster.color,
+                    );
+                    preview.handle = Some(ui.ctx().load_texture(
+                        "map_preview",
+                        image,
+                        egui::TextureOptions::LINEAR,
+                    ));
+                    preview.dirty = false;
+                }
+                if let Some(handle) = &preview.handle {
+                    ui.painter().image(
+                        handle.id(),
+                        rect,
+                        egui::Rect::from_min_max(egui::pos2(0.0, 0.0), egui::pos2(1.0, 1.0)),
+                        egui::Color32::WHITE,
+                    );
+                }
+                return;
+            }
             let filter = self.filter.to_ascii_lowercase();
             egui::ScrollArea::vertical().auto_shrink([false, false]).show(ui, |ui| {
                 for (index, (file, count)) in self.levels.iter().enumerate() {
@@ -145,11 +283,176 @@ impl MapsTab {
                 }
             });
         });
+        if close_preview {
+            self.preview = None;
+        }
     }
 }
 
 fn leaf(path: &str) -> &str {
     path.rsplit(['/', '\\']).next().unwrap_or(path).trim_end_matches(".gpk")
+}
+
+const MAP_PREVIEW_TRI_BUDGET: usize = 1_200_000;
+
+fn quat_rotate(quaternion: [f32; 4], vertex: [f32; 3]) -> [f32; 3] {
+    let (x, y, z, w) = (quaternion[0], quaternion[1], quaternion[2], quaternion[3]);
+    let tx = 2.0 * (y * vertex[2] - z * vertex[1]);
+    let ty = 2.0 * (z * vertex[0] - x * vertex[2]);
+    let tz = 2.0 * (x * vertex[1] - y * vertex[0]);
+    [
+        vertex[0] + w * tx + (y * tz - z * ty),
+        vertex[1] + w * ty + (z * tx - x * tz),
+        vertex[2] + w * tz + (x * ty - y * tx),
+    ]
+}
+
+fn sane_vertex(vertex: [f32; 3]) -> bool {
+    vertex.iter().all(|value| value.is_finite() && value.abs() < 1.0e5)
+}
+
+fn instance_vertex(instance: &MapInstance, vertex: [f32; 3]) -> [f32; 3] {
+    let scaled = [
+        vertex[0] * instance.scale[0],
+        vertex[1] * instance.scale[1],
+        vertex[2] * instance.scale[2],
+    ];
+    let rotated = quat_rotate(instance.rotation, scaled);
+    [
+        rotated[0] + instance.translation[0],
+        rotated[1] + instance.translation[1],
+        rotated[2] + instance.translation[2],
+    ]
+}
+
+fn build_map_scene(
+    meshes: &[(Mesh, Vec<MaterialInput>)],
+    instances: &[MapInstance],
+) -> (Scene, usize, usize) {
+    let mut scene = Scene::default();
+    let mut mesh_bounds: Vec<([f32; 3], [f32; 3])> = Vec::with_capacity(meshes.len());
+    for (mesh, _) in meshes {
+        let mut low = [f32::MAX; 3];
+        let mut high = [f32::MIN; 3];
+        for vertex in mesh.vertices.iter().filter(|vertex| sane_vertex(**vertex)) {
+            for axis in 0..3 {
+                low[axis] = low[axis].min(vertex[axis]);
+                high[axis] = high[axis].max(vertex[axis]);
+            }
+        }
+        if low[0] > high[0] {
+            low = [0.0; 3];
+            high = [0.0; 3];
+        }
+        mesh_bounds.push((low, high));
+    }
+
+    let mut low = [f32::MAX; 3];
+    let mut high = [f32::MIN; 3];
+    for instance in instances {
+        let Some((bound_low, bound_high)) = mesh_bounds.get(instance.mesh) else {
+            continue;
+        };
+        for corner in 0..8 {
+            let local = [
+                if corner & 1 == 0 { bound_low[0] } else { bound_high[0] },
+                if corner & 2 == 0 { bound_low[1] } else { bound_high[1] },
+                if corner & 4 == 0 { bound_low[2] } else { bound_high[2] },
+            ];
+            let world = instance_vertex(instance, local);
+            for axis in 0..3 {
+                low[axis] = low[axis].min(world[axis]);
+                high[axis] = high[axis].max(world[axis]);
+            }
+        }
+    }
+    if low[0] > high[0] {
+        return (scene, 0, 0);
+    }
+    let mut center = [0.0f32; 3];
+    let mut placed = 0.0f32;
+    for instance in instances {
+        if mesh_bounds.get(instance.mesh).is_some() {
+            for axis in 0..3 {
+                center[axis] += instance.translation[axis];
+            }
+            placed += 1.0;
+        }
+    }
+    if placed > 0.0 {
+        for axis in 0..3 {
+            center[axis] /= placed;
+        }
+    } else {
+        for axis in 0..3 {
+            center[axis] = (low[axis] + high[axis]) * 0.5;
+        }
+    }
+    let footprint = (high[0] - low[0]).max(high[1] - low[1]).max(1.0);
+    let view_scale = 300.0 / footprint;
+    let grid_half = footprint * view_scale * 0.5 * 1.15;
+    let grid_step = (grid_half / 8.0).max(1.0);
+    let convert = |world: [f32; 3]| -> [f32; 3] {
+        [
+            (world[0] - center[0]) * view_scale,
+            (world[2] - center[2]) * view_scale,
+            (world[1] - center[1]) * view_scale,
+        ]
+    };
+
+    let mut total = 0usize;
+    let mut shown = 0usize;
+    let mut order: Vec<usize> = (0..instances.len()).collect();
+    order.sort_by_key(|&index| {
+        let count = meshes
+            .get(instances[index].mesh)
+            .map(|(mesh, _)| mesh.indices.len())
+            .unwrap_or(0);
+        std::cmp::Reverse(count)
+    });
+    for &index in &order {
+        let instance = &instances[index];
+        let Some((mesh, _)) = meshes.get(instance.mesh) else {
+            continue;
+        };
+        let triangles = mesh.indices.len() / 3;
+        total += triangles;
+        if shown + triangles > MAP_PREVIEW_TRI_BUDGET {
+            continue;
+        }
+        for face in mesh.indices.as_chunks::<3>().0 {
+            let corners = [
+                mesh.vertices[face[0] as usize],
+                mesh.vertices[face[1] as usize],
+                mesh.vertices[face[2] as usize],
+            ];
+            if !corners.iter().all(|corner| sane_vertex(*corner)) {
+                continue;
+            }
+            let points = [
+                convert(instance_vertex(instance, corners[0])),
+                convert(instance_vertex(instance, corners[1])),
+                convert(instance_vertex(instance, corners[2])),
+            ];
+            scene.triangles.push(Triangle {
+                points,
+                uv: [[0.0, 0.0]; 3],
+                texture: -1,
+                color: [190, 178, 198],
+                light: [1.0; 3],
+            });
+        }
+        shown += triangles;
+    }
+    scene.add_grid(grid_half, grid_step, [58, 52, 64]);
+    scene.shade();
+    (scene, shown, total)
+}
+
+struct MapData {
+    meshes: Vec<(Mesh, Vec<MaterialInput>)>,
+    instances: Vec<MapInstance>,
+    name: String,
 }
 
 fn export_map(
@@ -159,6 +462,23 @@ fn export_map(
     target: &Path,
     sender: &std::sync::mpsc::Sender<Message>,
 ) -> Result<String, String> {
+    let data = collect_map_data(level_file, index_path, cooked, sender)?;
+    let glb = write_map_glb(&data.meshes, &data.instances, &data.name);
+    std::fs::write(target, &glb).map_err(|error| error.to_string())?;
+    Ok(format!(
+        "wrote {} — {} meshes, {} placements",
+        target.display(),
+        data.meshes.len(),
+        data.instances.len()
+    ))
+}
+
+fn collect_map_data(
+    level_file: &Path,
+    index_path: &Path,
+    cooked: &Path,
+    sender: &std::sync::mpsc::Sender<Message>,
+) -> Result<MapData, String> {
     let siblings = tera_package::zone_siblings(level_file);
     let mut maps = Vec::new();
     for sibling in &siblings {
@@ -234,13 +554,11 @@ fn export_map(
         })
         .collect();
 
-    let name = leaf(level_file.to_str().unwrap_or("level"));
-    let glb = write_map_glb(&meshes, &instances, name);
-    std::fs::write(target, &glb).map_err(|error| error.to_string())?;
-    Ok(format!(
-        "wrote {} — {} meshes, {} placements",
-        target.display(),
-        meshes.len(),
-        instances.len()
-    ))
+    let name = leaf(level_file.to_str().unwrap_or("level")).to_string();
+    Ok(MapData {
+        meshes,
+        instances,
+        name,
+    })
 }
+
