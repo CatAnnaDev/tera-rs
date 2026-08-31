@@ -52,6 +52,8 @@ pub struct MeshArgs {
     pub anim_from: Option<PathBuf>,
     #[arg(long, default_value_t = 40, help = "Max animation clips to embed")]
     pub anim_limit: usize,
+    #[arg(long, help = "Dump skeleton bones (name/parent/translation/rotation)")]
+    pub bones: bool,
 }
 
 #[derive(Args)]
@@ -260,6 +262,18 @@ fn anim(args: &PropsArgs) -> Result<()> {
             let mut names: Vec<_> = anims.iter().map(|a| format!("{}({}f/{:.2}s,{}tr)", a.name, a.frames, a.duration, a.tracks.len())).collect();
             names.truncate(8);
             println!("  sample: {}", names.join(", "));
+            for a in &anims {
+                if let Some(tr) = a.tracks.iter().find(|t| t.bone == "Bip01-Pelvis") {
+                    if let Some(r0) = tr.rotations.first() {
+                        let r = r0.map(|v| (v*1000.0).round()/1000.0);
+                        println!("  [{}] Bip01-Pelvis rot[0] = {:?} (rest RefSkel = [0.5,-0.5,0.5,0.5])", a.name, r);
+                    }
+                    if let Some(t0) = tr.translations.first() {
+                        println!("  [{}] Bip01-Pelvis trans[0] = {:?}", a.name, t0.map(|v| (v*100.0).round()/100.0));
+                    }
+                    break;
+                }
+            }
         }
         return Ok(());
     }
@@ -293,6 +307,7 @@ fn anim(args: &PropsArgs) -> Result<()> {
                 }
             }
             println!("  CompressedTrackOffsets ints: {:?}", offsets);
+            let _ = &offsets;
             let native = &blob[consumed..];
             println!("  native region {} bytes; first 8 u32: {:?}", native.len(),
                 (0..8.min(native.len()/4)).map(|i| u32::from_le_bytes([native[i*4],native[i*4+1],native[i*4+2],native[i*4+3]])).collect::<Vec<_>>());
@@ -362,6 +377,16 @@ fn mesh(args: &MeshArgs) -> Result<()> {
                         mesh.triangle_count(),
                         low[0], low[1], low[2], high[0], high[1], high[2]
                     );
+                    if args.bones {
+                        if let Some(sk) = &mesh.skin {
+                            for (i, b) in sk.bones.iter().enumerate().take(6) {
+                                println!("  bone{i} '{}' parent={} T={:?} R={:?}", b.name, b.parent,
+                                    b.translation.map(|v| (v*1000.0).round()/1000.0),
+                                    b.rotation.map(|v| (v*1000.0).round()/1000.0));
+                            }
+                        }
+                        return Ok(());
+                    }
                     if let Some(target) = &args.obj {
                         let name = path.rsplit('.').next().unwrap_or("mesh");
                         std::fs::write(target, mesh.to_obj(name))?;

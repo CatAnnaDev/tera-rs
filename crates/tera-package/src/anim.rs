@@ -139,9 +139,9 @@ fn parse_sequence(package: &Package<'_>, export: &Export, bones: &[String]) -> O
             .map(|key| {
                 let base = offset + key * 16;
                 [
-                    f32le(blob, base),
-                    f32le(blob, base + 4),
-                    f32le(blob, base + 8),
+                    -f32le(blob, base),
+                    -f32le(blob, base + 4),
+                    -f32le(blob, base + 8),
                     f32le(blob, base + 12),
                 ]
             })
