@@ -1,3 +1,4 @@
+pub mod anim;
 pub mod author;
 pub mod bc;
 pub mod dds;
@@ -26,11 +27,12 @@ pub use gfx::{movies, replace_movie, Movie};
 pub use material::{materials, set_parameters, Material};
 pub use mesh::{parse_skeletal_mesh, parse_static_mesh, Mesh};
 pub use meshtex::{mesh_diffuse_rgba, mesh_material_inputs, mesh_materials_or_diffuse, mesh_texture_index, texture_stem};
-pub use gltf::{write_glb, write_glb_multi, MaterialInput};
+pub use gltf::{write_glb, write_glb_animated, write_glb_multi, MaterialInput};
 pub use package::{Bundle, Export, Import, Name, Package, ParseMode};
 pub use objects::{find, set_properties, Edited, Found};
 pub use properties::{read_export_properties, read_properties, Property, PropertyValue};
 pub use summary::{CompressedChunk, Summary, PACKAGE_MAGIC};
+pub use anim::{animations, Animation, AnimTrack};
 pub use author::{build_texture_package, texture_package, NewTexture, TextureSpec};
 pub use bc::{decode_blocks, encode_blocks, BlockFormat};
 pub use dds::Dds;

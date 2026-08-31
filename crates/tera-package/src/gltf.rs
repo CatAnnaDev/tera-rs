@@ -1,5 +1,7 @@
+use crate::anim::Animation;
 use crate::mesh::{Mesh, Skin};
 use serde_json::json;
+use std::collections::HashMap;
 
 const MAGIC_GLTF: u32 = 0x4654_6C67;
 const CHUNK_JSON: u32 = 0x4E4F_534A;
@@ -24,7 +26,13 @@ pub fn write_glb(mesh: &Mesh, name: &str, texture: Option<(u32, u32, &[u8])>) ->
 pub fn write_glb_multi(mesh: &Mesh, name: &str, materials: &[MaterialInput]) -> Vec<u8> {
     let skinned = matches!(&mesh.skin, Some(skin)
         if !skin.bones.is_empty() && skin.joints.len() == mesh.vertices.len() && !mesh.vertices.is_empty());
-    build_glb(mesh, name, materials, skinned)
+    build_glb(mesh, name, materials, skinned, &[])
+}
+
+pub fn write_glb_animated(mesh: &Mesh, name: &str, materials: &[MaterialInput], animations: &[Animation]) -> Vec<u8> {
+    let skinned = matches!(&mesh.skin, Some(skin)
+        if !skin.bones.is_empty() && skin.joints.len() == mesh.vertices.len() && !mesh.vertices.is_empty());
+    build_glb(mesh, name, materials, skinned, animations)
 }
 
 fn z_up_to_y_up(v: [f32; 3]) -> [f32; 3] {
@@ -33,7 +41,7 @@ fn z_up_to_y_up(v: [f32; 3]) -> [f32; 3] {
 
 const ROOT_ROTATION: [f32; 4] = [-0.707_106_77, 0.0, 0.0, 0.707_106_77];
 
-fn build_glb(mesh: &Mesh, name: &str, materials: &[MaterialInput], skinned: bool) -> Vec<u8> {
+fn build_glb(mesh: &Mesh, name: &str, materials: &[MaterialInput], skinned: bool, animations: &[Animation]) -> Vec<u8> {
     let positions: Vec<[f32; 3]> = if skinned {
         mesh.vertices.clone()
     } else {
@@ -173,6 +181,49 @@ fn build_glb(mesh: &Mesh, name: &str, materials: &[MaterialInput], skinned: bool
         samplers.push(json!({ "magFilter": 9729, "minFilter": 9987, "wrapS": 10497, "wrapT": 10497 }));
     }
 
+    let mut animations_json: Vec<serde_json::Value> = Vec::new();
+    if skinned && !animations.is_empty() {
+        let skin = mesh.skin.as_ref().unwrap();
+        let node_of: HashMap<&str, usize> = skin
+            .bones
+            .iter()
+            .enumerate()
+            .map(|(index, bone)| (bone.name.as_str(), index))
+            .collect();
+        for animation in animations {
+            let mut channels: Vec<serde_json::Value> = Vec::new();
+            let mut anim_samplers: Vec<serde_json::Value> = Vec::new();
+            let mut time_cache: HashMap<usize, usize> = HashMap::new();
+            for track in &animation.tracks {
+                let Some(&node) = node_of.get(track.bone.as_str()) else {
+                    continue;
+                };
+                if !track.rotations.is_empty() {
+                    let input = *time_cache.entry(track.rotations.len()).or_insert_with(|| {
+                        push_times(&mut bin, &mut views, &mut accessors, track.rotations.len(), animation.duration)
+                    });
+                    let output = push_anim_vec4(&mut bin, &mut views, &mut accessors, &track.rotations);
+                    let sampler = anim_samplers.len();
+                    anim_samplers.push(json!({ "input": input, "output": output, "interpolation": "LINEAR" }));
+                    channels.push(json!({ "sampler": sampler, "target": { "node": node, "path": "rotation" } }));
+                }
+                if track.translations.len() > 1 {
+                    let input = *time_cache.entry(track.translations.len()).or_insert_with(|| {
+                        push_times(&mut bin, &mut views, &mut accessors, track.translations.len(), animation.duration)
+                    });
+                    let output = push_anim_vec3(&mut bin, &mut views, &mut accessors, &track.translations);
+                    let sampler = anim_samplers.len();
+                    anim_samplers.push(json!({ "input": input, "output": output, "interpolation": "LINEAR" }));
+                    channels.push(json!({ "sampler": sampler, "target": { "node": node, "path": "translation" } }));
+                }
+            }
+            if !channels.is_empty() {
+                let label = if animation.name.is_empty() { "clip" } else { animation.name.as_str() };
+                animations_json.push(json!({ "name": label, "samplers": anim_samplers, "channels": channels }));
+            }
+        }
+    }
+
     let mut doc = json!({
         "asset": { "version": "2.0", "generator": "tera-package" },
         "scene": 0,
@@ -191,6 +242,9 @@ fn build_glb(mesh: &Mesh, name: &str, materials: &[MaterialInput], skinned: bool
         doc["images"] = json!(images);
         doc["textures"] = json!(textures);
         doc["samplers"] = json!(samplers);
+    }
+    if !animations_json.is_empty() {
+        doc["animations"] = json!(animations_json);
     }
 
     assemble(doc, bin)
@@ -529,6 +583,72 @@ fn push_vec2(
     index
 }
 
+
+fn push_times(
+    bin: &mut Vec<u8>,
+    views: &mut Vec<serde_json::Value>,
+    accessors: &mut Vec<serde_json::Value>,
+    count: usize,
+    duration: f32,
+) -> usize {
+    let offset = bin.len();
+    let last = count.saturating_sub(1).max(1) as f32;
+    for index in 0..count {
+        let time = if count <= 1 { 0.0 } else { index as f32 * duration / last };
+        bin.extend_from_slice(&time.to_le_bytes());
+    }
+    let view = views.len();
+    views.push(json!({ "buffer": 0, "byteOffset": offset, "byteLength": count * 4 }));
+    let index = accessors.len();
+    let max = if count <= 1 { 0.0 } else { duration };
+    accessors.push(json!({
+        "bufferView": view,
+        "componentType": 5126,
+        "count": count,
+        "type": "SCALAR",
+        "min": [0.0],
+        "max": [max],
+    }));
+    index
+}
+
+fn push_anim_vec3(
+    bin: &mut Vec<u8>,
+    views: &mut Vec<serde_json::Value>,
+    accessors: &mut Vec<serde_json::Value>,
+    data: &[[f32; 3]],
+) -> usize {
+    let offset = bin.len();
+    for value in data {
+        for component in value {
+            bin.extend_from_slice(&component.to_le_bytes());
+        }
+    }
+    let view = views.len();
+    views.push(json!({ "buffer": 0, "byteOffset": offset, "byteLength": data.len() * 12 }));
+    let index = accessors.len();
+    accessors.push(json!({ "bufferView": view, "componentType": 5126, "count": data.len(), "type": "VEC3" }));
+    index
+}
+
+fn push_anim_vec4(
+    bin: &mut Vec<u8>,
+    views: &mut Vec<serde_json::Value>,
+    accessors: &mut Vec<serde_json::Value>,
+    data: &[[f32; 4]],
+) -> usize {
+    let offset = bin.len();
+    for value in data {
+        for component in value {
+            bin.extend_from_slice(&component.to_le_bytes());
+        }
+    }
+    let view = views.len();
+    views.push(json!({ "buffer": 0, "byteOffset": offset, "byteLength": data.len() * 16 }));
+    let index = accessors.len();
+    accessors.push(json!({ "bufferView": view, "componentType": 5126, "count": data.len(), "type": "VEC4" }));
+    index
+}
 
 fn push_bytes(bin: &mut Vec<u8>, views: &mut Vec<serde_json::Value>, data: &[u8]) -> usize {
     while bin.len() % 4 != 0 {

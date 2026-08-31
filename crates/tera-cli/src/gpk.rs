@@ -46,6 +46,12 @@ pub struct MeshArgs {
     pub obj: Option<PathBuf>,
     #[arg(long, help = "Write a binary glTF (glb) with embedded diffuse texture")]
     pub glb: Option<PathBuf>,
+    #[arg(long, help = "Include skeletal animations from AnimSets in the glb")]
+    pub anim: bool,
+    #[arg(long, help = "Also pull animations from this package (shared body AnimSets)")]
+    pub anim_from: Option<PathBuf>,
+    #[arg(long, default_value_t = 40, help = "Max animation clips to embed")]
+    pub anim_limit: usize,
 }
 
 #[derive(Args)]
@@ -233,6 +239,30 @@ fn anim(args: &PropsArgs) -> Result<()> {
     use tera_package::properties::{read_export_properties, PropertyValue};
     let data = map(&args.file)?;
     let needle = args.object.to_ascii_lowercase();
+    if needle == "*" || needle == "all" {
+        for package in Bundle::new(&data) {
+            let package = package?;
+            let anims = tera_package::animations(&package);
+            if anims.is_empty() { continue; }
+            let mut total_keys = 0usize;
+            let mut bad = 0usize;
+            for a in &anims {
+                for tr in &a.tracks {
+                    for q in &tr.rotations {
+                        total_keys += 1;
+                        let n = q[0]*q[0]+q[1]*q[1]+q[2]*q[2]+q[3]*q[3];
+                        if (n-1.0).abs() > 0.02 { bad += 1; }
+                    }
+                }
+            }
+            println!("{} animations, {} rotation keys, {} non-unit ({:.4}%)",
+                anims.len(), total_keys, bad, 100.0 * bad as f64 / total_keys.max(1) as f64);
+            let mut names: Vec<_> = anims.iter().map(|a| format!("{}({}f/{:.2}s,{}tr)", a.name, a.frames, a.duration, a.tracks.len())).collect();
+            names.truncate(8);
+            println!("  sample: {}", names.join(", "));
+        }
+        return Ok(());
+    }
     for package in Bundle::new(&data) {
         let package = package?;
         for (export_index, export) in package.exports.iter().enumerate() {
@@ -266,6 +296,29 @@ fn anim(args: &PropsArgs) -> Result<()> {
             let native = &blob[consumed..];
             println!("  native region {} bytes; first 8 u32: {:?}", native.len(),
                 (0..8.min(native.len()/4)).map(|i| u32::from_le_bytes([native[i*4],native[i*4+1],native[i*4+2],native[i*4+3]])).collect::<Vec<_>>());
+            // find AnimSet (outer) -> TrackBoneNames + PreviewSkelMeshName
+            for (set_index, set_export) in package.exports.iter().enumerate() {
+                if package.export_class(set_export) != "AnimSet" { continue; }
+                let set_path = package.export_path(set_index);
+                if !path.starts_with(&set_path) { continue; }
+                let set_blob = package.export_data(set_export)?;
+                if let Ok((set_props, _)) = read_export_properties(&package, set_blob) {
+                    for pr in &set_props {
+                        match &pr.value {
+                            PropertyValue::Array { count, raw, .. } if pr.name == "TrackBoneNames" => {
+                                let names: Vec<String> = (0..*count as usize).map(|i| {
+                                    let idx = i32::from_le_bytes([raw[i*8],raw[i*8+1],raw[i*8+2],raw[i*8+3]]);
+                                    package.names.get(idx.max(0) as usize).cloned().unwrap_or_default()
+                                }).collect();
+                                println!("  TrackBoneNames: {:?}", names);
+                            }
+                            other if pr.name == "PreviewSkelMeshName" => println!("  PreviewSkelMesh = {}", other.describe()),
+                            _ => {}
+                        }
+                    }
+                }
+                break;
+            }
             return Ok(());
         }
     }
@@ -323,7 +376,41 @@ fn mesh(args: &MeshArgs) -> Result<()> {
                         let norm = materials.iter().filter(|m| m.normal.is_some()).count();
                         let alpha = materials.iter().filter(|m| m.alpha_mask).count();
                         println!("{} materials ({diff} diffuse, {norm} normal, {alpha} alpha-mask)", materials.len());
-                        let glb = tera_package::write_glb_multi(&mesh, name, &materials);
+                        let glb = if args.anim {
+                            let bones: std::collections::HashSet<String> = mesh.skin.as_ref()
+                                .map(|s| s.bones.iter().map(|b| b.name.clone()).collect())
+                                .unwrap_or_default();
+                            let mut anims = tera_package::animations(&package);
+                            let extra_map;
+                            if let Some(source) = &args.anim_from {
+                                extra_map = map(source)?;
+                                for pkg in Bundle::new(&extra_map) {
+                                    if let Ok(pkg) = pkg {
+                                        anims.extend(tera_package::animations(&pkg));
+                                    }
+                                }
+                            }
+                            let skeleton = bones.len().max(1);
+                            let mut scored: Vec<(usize, tera_package::Animation)> = anims.into_iter()
+                                .map(|a| {
+                                    let hit = a.tracks.iter().filter(|t| bones.contains(t.bone.as_str())).count();
+                                    (hit, a)
+                                })
+                                .filter(|(hit, _)| *hit * 100 >= skeleton * 40)
+                                .collect();
+                            scored.sort_by(|a, b| b.0.cmp(&a.0));
+                            let mut seen = std::collections::HashSet::new();
+                            let matched: Vec<_> = scored.into_iter()
+                                .filter(|(_, a)| seen.insert(a.name.to_ascii_lowercase()))
+                                .take(args.anim_limit)
+                                .map(|(_, a)| a)
+                                .collect();
+                            let max_ch = matched.iter().map(|a| a.tracks.iter().filter(|t| bones.contains(t.bone.as_str())).count()).max().unwrap_or(0);
+                            println!("{} full-body clips embedded (max {} bones/clip)", matched.len(), max_ch);
+                            tera_package::write_glb_animated(&mesh, name, &materials, &matched)
+                        } else {
+                            tera_package::write_glb_multi(&mesh, name, &materials)
+                        };
                         std::fs::write(target, glb)?;
                         println!("wrote {}", target.display());
                         return Ok(());
