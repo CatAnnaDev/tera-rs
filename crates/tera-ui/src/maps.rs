@@ -127,17 +127,23 @@ fn export_map(
     target: &Path,
     sender: &std::sync::mpsc::Sender<Message>,
 ) -> Result<String, String> {
-    let handle = std::fs::File::open(level_file).map_err(|error| error.to_string())?;
-    let map = unsafe { Mmap::map(&handle) }.map_err(|error| error.to_string())?;
+    let siblings = tera_package::zone_siblings(level_file);
+    let mut maps = Vec::new();
+    for sibling in &siblings {
+        if let Ok(handle) = std::fs::File::open(sibling) {
+            if let Ok(mapped) = unsafe { Mmap::map(&handle) } {
+                maps.push(mapped);
+            }
+        }
+    }
     let mut placements = Vec::new();
-    for package in tera_package::Bundle::new(&map).flatten() {
-        placements = parse_level(&package);
-        if !placements.is_empty() {
-            break;
+    for mapped in &maps {
+        for package in tera_package::Bundle::new(mapped).flatten() {
+            placements.extend(parse_level(&package));
         }
     }
     if placements.is_empty() {
-        return Err("aucun placement dans ce package".into());
+        return Err("aucun placement dans cette zone".into());
     }
     let mut unique: Vec<String> = placements.iter().map(|p| p.mesh.clone()).collect();
     unique.sort();

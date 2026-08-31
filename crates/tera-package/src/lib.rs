@@ -25,7 +25,7 @@ pub mod writer;
 
 pub use error::{PackageError, Result};
 pub use gfx::{movies, replace_movie, Movie};
-pub use level::{parse_level, rotator_to_quaternion, Placement};
+pub use level::{parse_level, rotator_to_quaternion, zone_base, zone_siblings, Placement};
 pub use material::{materials, set_parameters, Material};
 pub use mesh::{parse_skeletal_mesh, parse_static_mesh, Mesh};
 pub use meshtex::{mesh_diffuse_rgba, mesh_material_inputs, mesh_materials_or_diffuse, mesh_texture_index, texture_stem};

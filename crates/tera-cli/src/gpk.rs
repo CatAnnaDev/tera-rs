@@ -253,20 +253,23 @@ fn collect_packages(root: &PathBuf, out: &mut Vec<PathBuf>) -> Result<()> {
 fn map_dump(args: &MapArgs) -> Result<()> {
     use tera_index::Index;
     use tera_package::{mesh_materials_or_diffuse, parse_level, parse_static_mesh, rotator_to_quaternion, write_map_glb, MapInstance};
-    let data = map(&args.file)?;
+    let siblings = tera_package::zone_siblings(&args.file);
     let mut level = Vec::new();
-    for package in Bundle::new(&data) {
-        let package = package?;
-        let placements = parse_level(&package);
-        if placements.is_empty() {
-            continue;
+    let mut maps = Vec::new();
+    for sibling in &siblings {
+        if let Ok(data) = map(sibling) {
+            maps.push((sibling.clone(), data));
         }
-        level = placements;
-        break;
+    }
+    for (_, data) in &maps {
+        for package in Bundle::new(data).flatten() {
+            level.extend(parse_level(&package));
+        }
     }
     if level.is_empty() {
         bail!("no StaticMeshActor placements found");
     }
+    println!("zone: {} packages fusionnés", siblings.len());
     let mut unique: Vec<String> = level.iter().map(|p| p.mesh.clone()).collect();
     unique.sort();
     unique.dedup();

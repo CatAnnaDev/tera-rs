@@ -1,5 +1,56 @@
 use crate::package::Package;
 use crate::properties::{read_export_properties, PropertyValue};
+use std::path::{Path, PathBuf};
+
+const CHUNK_SUFFIXES: [&str; 12] = [
+    "_add", "_aero", "_split", "_obj", "_sl", "_terrain", "_water", "_sub", "_set", "_asset",
+    "_lightmap", "_part",
+];
+
+pub fn zone_base(stem: &str) -> String {
+    let mut base = stem.to_string();
+    loop {
+        let lower = base.to_ascii_lowercase();
+        if let Some(suffix) = CHUNK_SUFFIXES.iter().find(|suffix| lower.ends_with(**suffix)) {
+            base.truncate(base.len() - suffix.len());
+            continue;
+        }
+        if let Some((head, tail)) = base.rsplit_once('_') {
+            if !tail.is_empty() && tail.chars().all(|c| c.is_ascii_digit()) {
+                base = head.to_string();
+                continue;
+            }
+        }
+        break;
+    }
+    base
+}
+
+pub fn zone_siblings(path: &Path) -> Vec<PathBuf> {
+    let Some(directory) = path.parent() else {
+        return vec![path.to_path_buf()];
+    };
+    let stem = path.file_stem().and_then(|value| value.to_str()).unwrap_or("");
+    let base = zone_base(stem).to_ascii_lowercase();
+    let mut out = Vec::new();
+    if let Ok(entries) = std::fs::read_dir(directory) {
+        for entry in entries.flatten() {
+            let candidate = entry.path();
+            if candidate.extension().and_then(|value| value.to_str()) != Some("gpk") {
+                continue;
+            }
+            let candidate_stem = candidate.file_stem().and_then(|value| value.to_str()).unwrap_or("");
+            if !candidate_stem.is_empty() && zone_base(candidate_stem).to_ascii_lowercase() == base {
+                out.push(candidate);
+            }
+        }
+    }
+    out.sort();
+    if out.is_empty() {
+        out.push(path.to_path_buf());
+    }
+    out
+}
 
 #[derive(Clone, Debug)]
 pub struct Placement {
