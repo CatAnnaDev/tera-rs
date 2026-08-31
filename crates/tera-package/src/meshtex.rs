@@ -24,6 +24,23 @@ fn common_prefix_len(a: &str, b: &str) -> usize {
     a.bytes().zip(b.bytes()).take_while(|(x, y)| x == y).count()
 }
 
+fn shared_token_len(a: &str, b: &str) -> usize {
+    let split = |value: &str| -> Vec<String> {
+        value
+            .split(|c: char| !c.is_ascii_alphanumeric())
+            .filter(|token| token.len() >= 6 && token.chars().any(|c| c.is_ascii_alphabetic()))
+            .map(|token| token.to_ascii_lowercase())
+            .collect()
+    };
+    let tokens_b = split(b);
+    split(a)
+        .iter()
+        .filter(|token| tokens_b.contains(token))
+        .map(|token| token.len())
+        .max()
+        .unwrap_or(0)
+}
+
 pub fn mesh_texture_index(package: &Package, mesh_leaf: &str, keywords: &[&str]) -> Option<usize> {
     let target = mesh_leaf.to_ascii_lowercase();
     let stem = texture_stem(mesh_leaf);
@@ -38,7 +55,8 @@ pub fn mesh_texture_index(package: &Package, mesh_leaf: &str, keywords: &[&str])
         let path = package.export_path(index);
         let leaf = path.rsplit('.').next().unwrap_or("").to_ascii_lowercase();
         let prefix = common_prefix_len(&leaf, &target);
-        let related = prefix >= 5 || (stem.len() >= 3 && leaf.contains(&stem));
+        let token = shared_token_len(&leaf, &target);
+        let related = prefix >= 5 || (stem.len() >= 3 && leaf.contains(&stem)) || token >= 6;
         if !related {
             continue;
         }
@@ -55,7 +73,7 @@ pub fn mesh_texture_index(package: &Package, mesh_leaf: &str, keywords: &[&str])
             }
             keyword_score = 10;
         }
-        let mut score = keyword_score * 1000 + prefix as i32;
+        let mut score = keyword_score * 1000 + prefix.max(token) as i32;
         if leaf.contains("lod") {
             score -= 5000;
         }
