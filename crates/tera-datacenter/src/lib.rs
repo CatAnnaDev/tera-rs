@@ -20,6 +20,6 @@ pub use format::{
 };
 pub use node::{Attribute, AttributeIter, Node, NodeIter, Value};
 pub use query::{query, query_builder, QueryStep};
-pub use references::{Backlink, RefIndex, Reference, Target};
+pub use references::{asset_references, Backlink, RefIndex, Reference, Target};
 pub use template::{PathInfo, Template};
 pub use xml::Importer;

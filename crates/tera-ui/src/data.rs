@@ -38,6 +38,7 @@ pub struct DataTab {
     open_error: Option<String>,
     refs: Option<Arc<RefIndex>>,
     history: Vec<NavState>,
+    pending_asset: Option<String>,
 }
 
 #[derive(Clone)]
@@ -158,6 +159,10 @@ impl DataTab {
         }
     }
 
+    pub fn take_asset_request(&mut self) -> Option<String> {
+        self.pending_asset.take()
+    }
+
     pub fn request(&mut self, path: Option<PathBuf>, query: Option<String>) {
         self.pending_open = path;
         self.pending_query = query;
@@ -253,6 +258,7 @@ impl DataTab {
         let center = self.center.clone();
         let mut nav_target: Option<Address> = None;
         let mut go_back = false;
+        let mut asset_open: Option<String> = None;
         egui::CentralPanel::default().show(ui, |ui| {
             ui.horizontal(|ui| {
                 let response = ui.add(
@@ -383,6 +389,19 @@ impl DataTab {
                                     });
                             }
                         }
+                        let assets = tera_datacenter::asset_references(&node);
+                        if !assets.is_empty() {
+                            theme::rule(ui, palette);
+                            theme::eyebrow(ui, palette, "assets liés");
+                            for (name, value) in &assets {
+                                ui.horizontal_wrapped(|ui| {
+                                    ui.label(format!("{name} ="));
+                                    if ui.small_button(format!("→ {value}")).clicked() {
+                                        asset_open = Some(value.clone());
+                                    }
+                                });
+                            }
+                        }
                     }
                 }
                 theme::rule(ui, palette);
@@ -453,6 +472,9 @@ impl DataTab {
         }
         if let Some(address) = nav_target {
             self.navigate_to(address);
+        }
+        if let Some(name) = asset_open {
+            self.pending_asset = Some(name);
         }
     }
 

@@ -163,6 +163,10 @@ impl eframe::App for Studio {
                 .keys
                 .ui(ui, self.palette, &self.paths, &mut self.status),
         });
+        if let Some(name) = self.data.take_asset_request() {
+            self.assets.request(name);
+            self.tab = Tab::Assets;
+        }
     }
 }
 

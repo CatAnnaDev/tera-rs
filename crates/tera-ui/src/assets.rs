@@ -134,6 +134,13 @@ impl Assets {
         }
     }
 
+    pub fn request(&mut self, query: String) {
+        self.query = query;
+        self.class_filter = 0;
+        self.pending_pick = Some(0);
+        self.dirty_search = true;
+    }
+
     fn start_search(&mut self) {
         let Some(index) = self.index.clone() else {
             return;

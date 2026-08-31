@@ -109,11 +109,46 @@ impl RefIndex {
     }
 }
 
+pub fn asset_references(node: &Node) -> Vec<(String, String)> {
+    let mut out = Vec::new();
+    for attribute in node.attributes() {
+        let (Ok(name), Ok(value)) = (attribute.name(), attribute.value()) else {
+            continue;
+        };
+        if !is_asset_ref(name) {
+            continue;
+        }
+        if let Some(text) = value.as_str() {
+            if !text.is_empty() {
+                out.push((name.to_string(), text.to_string()));
+            }
+        }
+    }
+    out
+}
+
 fn is_reference_attr(name: &str) -> bool {
     if name.eq_ignore_ascii_case("id") {
         return false;
     }
     name.to_ascii_lowercase().ends_with("id")
+}
+
+fn is_asset_ref(name: &str) -> bool {
+    let lower = name.to_ascii_lowercase();
+    [
+        "icon",
+        "model",
+        "mesh",
+        "texture",
+        "sound",
+        "gfx",
+        "effect",
+        "movie",
+        "material",
+    ]
+    .iter()
+    .any(|keyword| lower.contains(keyword))
 }
 
 fn rank_targets(attribute: &str, targets: &mut [Target]) {
