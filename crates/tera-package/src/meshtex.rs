@@ -77,3 +77,66 @@ pub fn mesh_diffuse_rgba(
     let index = mesh_texture_index(package, mesh_leaf, &DIFFUSE_KEYWORDS)?;
     decode_texture_at(package, index, cooked)
 }
+
+use crate::gltf::MaterialInput;
+use crate::material::{export_parameters, Kind};
+use crate::mesh::Mesh;
+use crate::png;
+
+const DIFFUSE_PARAMS: [&str; 4] = ["DiffuseMap", "Diffuse", "BaseMap", "BaseColor"];
+const NORMAL_PARAMS: [&str; 3] = ["NormalMap", "Normal", "BumpMap"];
+
+pub fn mesh_material_inputs(package: &Package, mesh: &Mesh, cooked: &Path) -> Vec<MaterialInput> {
+    mesh.material_refs
+        .iter()
+        .map(|reference| resolve_material(package, *reference, cooked))
+        .collect()
+}
+
+fn resolve_material(package: &Package, reference: i32, cooked: &Path) -> MaterialInput {
+    let mut input = MaterialInput::default();
+    if reference <= 0 {
+        return input;
+    }
+    let Some(export) = package.exports.get((reference - 1) as usize) else {
+        return input;
+    };
+    let parameters = export_parameters(package, export);
+    if let Some(leaf) = parameter_texture(&parameters, &DIFFUSE_PARAMS) {
+        input.diffuse = decode_by_leaf(package, &leaf, cooked);
+    }
+    if let Some(leaf) = parameter_texture(&parameters, &NORMAL_PARAMS) {
+        input.normal = decode_by_leaf(package, &leaf, cooked);
+    }
+    input
+}
+
+fn parameter_texture(parameters: &[crate::material::Parameter], names: &[&str]) -> Option<String> {
+    for wanted in names {
+        if let Some(parameter) = parameters
+            .iter()
+            .find(|parameter| parameter.kind == Kind::Texture && parameter.name.eq_ignore_ascii_case(wanted))
+        {
+            let leaf = parameter.value.rsplit('.').next().unwrap_or("");
+            if !leaf.is_empty() && !leaf.starts_with('<') {
+                return Some(leaf.to_string());
+            }
+        }
+    }
+    None
+}
+
+fn decode_by_leaf(package: &Package, leaf: &str, cooked: &Path) -> Option<(u32, u32, Vec<u8>)> {
+    let target = leaf.to_ascii_lowercase();
+    let index = package.exports.iter().enumerate().find(|(position, export)| {
+        package.export_class(export) == "Texture2D"
+            && package
+                .export_path(*position)
+                .rsplit('.')
+                .next()
+                .map_or(false, |candidate| candidate.eq_ignore_ascii_case(&target))
+    })?;
+    let (width, height, rgba) = decode_texture_at(package, index.0, cooked)?;
+    let png = png::encode(&rgba, width, height).ok()?;
+    Some((width, height, png))
+}

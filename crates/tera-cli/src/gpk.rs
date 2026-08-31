@@ -256,8 +256,10 @@ fn mesh(args: &MeshArgs) -> Result<()> {
                         Some(skin) => format!("  skin: {} bones, {} weighted", skin.bones.len(), skin.joints.len()),
                         None => String::new(),
                     };
+                    let secs = format!("  sections: {} (mats {:?})", mesh.sections.len(),
+                        mesh.sections.iter().map(|x| x.material).collect::<Vec<_>>());
                     println!(
-                        "{path} [{class}] {} verts {} tris  bounds {:.0},{:.0},{:.0} .. {:.0},{:.0},{:.0}{skin}",
+                        "{path} [{class}] {} verts {} tris  bounds {:.0},{:.0},{:.0} .. {:.0},{:.0},{:.0}{skin}{secs}",
                         mesh.vertices.len(),
                         mesh.triangle_count(),
                         low[0], low[1], low[2], high[0], high[1], high[2]
@@ -271,19 +273,27 @@ fn mesh(args: &MeshArgs) -> Result<()> {
                     if let Some(target) = &args.glb {
                         let name = path.rsplit('.').next().unwrap_or("mesh");
                         let cooked = args.file.parent().unwrap_or_else(|| std::path::Path::new("."));
-                        let texture = tera_package::mesh_diffuse_rgba(&package, name, cooked)
-                            .and_then(|(w, h, rgba)| {
-                                tera_package::png::encode(&rgba, w, h).ok().map(|png| (w, h, png))
-                            });
-                        match &texture {
-                            Some((w, h, _)) => println!("diffuse texture {w}x{h} embedded"),
-                            None => println!("no diffuse texture found (geometry only)"),
-                        }
-                        let glb = tera_package::write_glb(
-                            &mesh,
-                            name,
-                            texture.as_ref().map(|(w, h, png)| (*w, *h, png.as_slice())),
-                        );
+                        let materials = tera_package::mesh_material_inputs(&package, &mesh, cooked);
+                        let glb = if materials.iter().any(|m| m.diffuse.is_some() || m.normal.is_some()) {
+                            let diff = materials.iter().filter(|m| m.diffuse.is_some()).count();
+                            let norm = materials.iter().filter(|m| m.normal.is_some()).count();
+                            println!("{} materials ({diff} diffuse, {norm} normal)", materials.len());
+                            tera_package::write_glb_multi(&mesh, name, &materials)
+                        } else {
+                            let texture = tera_package::mesh_diffuse_rgba(&package, name, cooked)
+                                .and_then(|(w, h, rgba)| {
+                                    tera_package::png::encode(&rgba, w, h).ok().map(|png| (w, h, png))
+                                });
+                            match &texture {
+                                Some((w, h, _)) => println!("diffuse texture {w}x{h} embedded (by name)"),
+                                None => println!("no texture found (geometry only)"),
+                            }
+                            tera_package::write_glb(
+                                &mesh,
+                                name,
+                                texture.as_ref().map(|(w, h, png)| (*w, *h, png.as_slice())),
+                            )
+                        };
                         std::fs::write(target, glb)?;
                         println!("wrote {}", target.display());
                         return Ok(());

@@ -950,7 +950,7 @@ fn export_obj(loaded: &Loaded, _paths: &Paths) -> Result<String, String> {
     Ok(format!("wrote {}", target.display()))
 }
 
-fn export_glb(loaded: &Loaded, _paths: &Paths) -> Result<String, String> {
+fn export_glb(loaded: &Loaded, paths: &Paths) -> Result<String, String> {
     let Preview::Mesh { mesh, texture, .. } = &loaded.preview else {
         return Err("not a mesh".into());
     };
@@ -958,18 +958,40 @@ fn export_glb(loaded: &Loaded, _paths: &Paths) -> Result<String, String> {
         return Ok("cancelled".into());
     };
     let leaf = loaded.path.rsplit('.').next().unwrap_or("mesh");
-    let png = texture.as_ref().and_then(|(width, height, rgba)| {
-        tera_package::png::encode(rgba, *width, *height)
-            .ok()
-            .map(|encoded| (*width, *height, encoded))
-    });
-    let texture_ref = png.as_ref().map(|(width, height, bytes)| (*width, *height, bytes.as_slice()));
-    let glb = tera_package::write_glb(mesh, leaf, texture_ref);
+    let materials = resolve_materials(loaded, mesh, &paths.cooked());
+    let (glb, note) = if materials.iter().any(|m| m.diffuse.is_some() || m.normal.is_some()) {
+        let diffuse = materials.iter().filter(|m| m.diffuse.is_some()).count();
+        let normal = materials.iter().filter(|m| m.normal.is_some()).count();
+        (
+            tera_package::write_glb_multi(mesh, leaf, &materials),
+            format!("{} matériaux ({diffuse} diffuse, {normal} normal)", materials.len()),
+        )
+    } else {
+        let png = texture.as_ref().and_then(|(width, height, rgba)| {
+            tera_package::png::encode(rgba, *width, *height)
+                .ok()
+                .map(|encoded| (*width, *height, encoded))
+        });
+        let texture_ref = png.as_ref().map(|(width, height, bytes)| (*width, *height, bytes.as_slice()));
+        let note = if png.is_some() { "texture liée" } else { "géométrie seule" }.to_string();
+        (tera_package::write_glb(mesh, leaf, texture_ref), note)
+    };
     std::fs::write(&target, glb).map_err(|error| error.to_string())?;
-    match png {
-        Some(_) => Ok(format!("wrote {} (texture liée)", target.display())),
-        None => Ok(format!("wrote {} (géométrie seule)", target.display())),
-    }
+    Ok(format!("wrote {} ({note})", target.display()))
+}
+
+fn resolve_materials(loaded: &Loaded, mesh: &Mesh, cooked: &Path) -> Vec<tera_package::MaterialInput> {
+    let Ok(handle) = std::fs::File::open(&loaded.file) else {
+        return Vec::new();
+    };
+    let Ok(map) = (unsafe { Mmap::map(&handle) }) else {
+        return Vec::new();
+    };
+    let Ok(mut package) = Package::parse(&map, loaded.package_offset as usize) else {
+        return Vec::new();
+    };
+    package.name_hint = Some(loaded.package.clone());
+    tera_package::mesh_material_inputs(&package, mesh, cooked)
 }
 
 

@@ -1,6 +1,6 @@
 use crate::error::{PackageError, Result};
 use crate::objects::Needle;
-use crate::package::{Bundle, Package};
+use crate::package::{Bundle, Export, Package};
 use crate::properties::{read_export_properties, read_properties, PropertyValue};
 use std::collections::BTreeMap;
 
@@ -40,6 +40,13 @@ pub struct Parameter {
 pub struct Material {
     pub path: String,
     pub parameters: Vec<Parameter>,
+}
+
+pub fn export_parameters(package: &Package<'_>, export: &Export) -> Vec<Parameter> {
+    match package.export_data(export) {
+        Ok(blob) => parameters_of(package, blob),
+        Err(_) => Vec::new(),
+    }
 }
 
 fn parameters_of(package: &Package<'_>, blob: &[u8]) -> Vec<Parameter> {

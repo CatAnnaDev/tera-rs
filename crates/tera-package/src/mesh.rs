@@ -19,6 +19,13 @@ pub struct Skin {
 }
 
 #[derive(Clone, Debug, Default)]
+pub struct Section {
+    pub material: u16,
+    pub index_start: u32,
+    pub index_count: u32,
+}
+
+#[derive(Clone, Debug, Default)]
 pub struct Mesh {
     pub vertices: Vec<[f32; 3]>,
     pub uvs: Vec<[f32; 2]>,
@@ -27,6 +34,7 @@ pub struct Mesh {
     pub properties_end: usize,
     pub material_refs: Vec<i32>,
     pub skin: Option<Skin>,
+    pub sections: Vec<Section>,
 }
 
 impl Mesh {
@@ -280,6 +288,7 @@ pub fn parse_static_mesh_blob(data: &[u8], start: usize) -> Option<Mesh> {
                                 properties_end: start,
                                 material_refs: Vec::new(),
                                 skin: None,
+                                sections: Vec::new(),
                             });
                         }
                     }
@@ -372,12 +381,19 @@ pub fn parse_skeletal_mesh_blob(data: &[u8], start: usize) -> Option<Mesh> {
     }
     let lod_start = lod_models?;
 
-    let (indices, index_end) = find_skeletal_indices(data, lod_start, end)?;
+    let (sections, index_scan) = parse_sections(data, lod_start, end);
+    let (indices, index_end) = find_skeletal_indices(data, index_scan, end)?;
     let vertex_count = *indices.iter().max()? as usize + 1;
     let buffer = find_skeletal_vertices(data, index_end, end, vertex_count, origin, extent)?;
 
     let bones = parse_reference_skeleton(data, reference_skeleton, bone_count as usize, bone_stride);
     let skin = build_skin(data, index_end, &buffer, bone_count as usize, bones);
+    let sections = sections
+        .into_iter()
+        .filter(|section| {
+            (section.index_start + section.index_count) as usize <= indices.len()
+        })
+        .collect();
 
     Some(Mesh {
         vertices: buffer.vertices,
@@ -387,7 +403,42 @@ pub fn parse_skeletal_mesh_blob(data: &[u8], start: usize) -> Option<Mesh> {
         properties_end: start,
         material_refs,
         skin,
+        sections,
     })
+}
+
+fn parse_sections(data: &[u8], lod_start: usize, end: usize) -> (Vec<Section>, usize) {
+    if lod_start + 4 > end {
+        return (Vec::new(), lod_start);
+    }
+    let count = read_u32(data, lod_start) as usize;
+    if count == 0 || count > 128 {
+        return (Vec::new(), lod_start);
+    }
+    let stride = 13;
+    let sections_end = lod_start + 4 + count * stride;
+    if sections_end + 5 > end {
+        return (Vec::new(), lod_start);
+    }
+    if !(read_u32(data, sections_end) == 1 && matches!(data[sections_end + 4], 2 | 4)) {
+        return (Vec::new(), lod_start);
+    }
+    let mut sections = Vec::with_capacity(count);
+    for index in 0..count {
+        let base = lod_start + 4 + index * stride;
+        let material = u16::from_le_bytes([data[base], data[base + 1]]);
+        let index_start = read_u32(data, base + 4);
+        let triangles = read_u32(data, base + 8);
+        if material > 128 || triangles == 0 || triangles > (1 << 24) {
+            return (Vec::new(), lod_start);
+        }
+        sections.push(Section {
+            material,
+            index_start,
+            index_count: triangles * 3,
+        });
+    }
+    (sections, sections_end)
 }
 
 struct VertexBuffer {
@@ -864,6 +915,7 @@ mod tests {
             properties_end: 0,
             material_refs: Vec::new(),
             skin: None,
+            sections: Vec::new(),
         };
         assert!(mesh.replace_vertices(&[0u8; 24], &[[1.0; 3]]).is_err());
     }
