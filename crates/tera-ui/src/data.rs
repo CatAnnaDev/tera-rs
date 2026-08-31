@@ -339,25 +339,38 @@ impl DataTab {
                         let outbound = refs.outbound(&node);
                         if !outbound.is_empty() {
                             theme::eyebrow(ui, palette, "references sortantes");
-                            for reference in &outbound {
-                                ui.horizontal_wrapped(|ui| {
-                                    ui.label(format!("{} = {}", reference.attribute, reference.value));
-                                    if reference.targets.is_empty() {
-                                        ui.weak("(pas de cible)");
-                                    }
-                                    for target in &reference.targets {
-                                        if ui
-                                            .small_button(format!(
-                                                "→ {}/{}",
-                                                target.sheet, target.node_name
-                                            ))
-                                            .clicked()
-                                        {
-                                            nav_target = Some(target.address);
-                                        }
+                            egui::ScrollArea::vertical()
+                                .id_salt("dc_outbound")
+                                .max_height(150.0)
+                                .auto_shrink([false, true])
+                                .show(ui, |ui| {
+                                    for reference in &outbound {
+                                        ui.horizontal_wrapped(|ui| {
+                                            ui.label(format!(
+                                                "{} = {}",
+                                                reference.attribute, reference.value
+                                            ));
+                                            if reference.targets.is_empty() {
+                                                ui.weak("(cible introuvable)");
+                                            }
+                                            for target in &reference.targets {
+                                                if ui
+                                                    .small_button(format!("→ {}", target.sheet))
+                                                    .clicked()
+                                                {
+                                                    nav_target = Some(target.address);
+                                                }
+                                            }
+                                            let shown = reference.targets.len();
+                                            if reference.total > shown {
+                                                ui.weak(format!("(+{})", reference.total - shown));
+                                            }
+                                            if reference.ambiguous && shown > 0 {
+                                                ui.weak("?");
+                                            }
+                                        });
                                     }
                                 });
-                            }
                         }
                         if let Some(id) = row.id {
                             let incoming = refs.incoming(id);
@@ -376,10 +389,9 @@ impl DataTab {
                                         for backlink in incoming.iter().take(1000) {
                                             if ui
                                                 .small_button(format!(
-                                                    "{}/{}  .{}",
-                                                    backlink.sheet,
-                                                    backlink.node_name,
-                                                    backlink.attribute
+                                                    "{} .{}",
+                                                    refs.sheet_name(backlink.sheet),
+                                                    refs.attr_name(backlink.attribute)
                                                 ))
                                                 .clicked()
                                             {
