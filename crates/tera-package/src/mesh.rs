@@ -9,6 +9,7 @@ pub struct Mesh {
     pub indices: Vec<u32>,
     pub position_offset: usize,
     pub properties_end: usize,
+    pub material_refs: Vec<i32>,
 }
 
 impl Mesh {
@@ -260,8 +261,201 @@ pub fn parse_static_mesh_blob(data: &[u8], start: usize) -> Option<Mesh> {
                                 indices: kept,
                                 position_offset: position_start,
                                 properties_end: start,
+                                material_refs: Vec::new(),
                             });
                         }
+                    }
+                }
+            }
+        }
+        offset += 1;
+    }
+    None
+}
+
+pub fn parse_skeletal_mesh(package: &Package<'_>, export: &Export) -> Option<Mesh> {
+    let data = package.export_data(export).ok()?;
+    let start = read_export_properties(package, data)
+        .map(|(_, consumed)| consumed)
+        .unwrap_or(0);
+    parse_skeletal_mesh_blob(data, start)
+}
+
+pub fn parse_skeletal_mesh_blob(data: &[u8], start: usize) -> Option<Mesh> {
+    let end = data.len();
+    let read_i32 = |offset: usize| -> i32 { read_u32(data, offset) as i32 };
+
+    if start + 28 > end {
+        return None;
+    }
+    let mut offset = start;
+    let origin = [
+        read_f32(data, offset),
+        read_f32(data, offset + 4),
+        read_f32(data, offset + 8),
+    ];
+    let extent = [
+        read_f32(data, offset + 12),
+        read_f32(data, offset + 16),
+        read_f32(data, offset + 20),
+    ];
+    if origin.iter().chain(&extent).any(|value| !value.is_finite()) {
+        return None;
+    }
+    offset += 28;
+
+    let material_count = read_i32(offset);
+    if !(0..=256).contains(&material_count) {
+        return None;
+    }
+    offset += 4;
+    let mut material_refs = Vec::with_capacity(material_count as usize);
+    for _ in 0..material_count {
+        if offset + 4 > end {
+            return None;
+        }
+        material_refs.push(read_i32(offset));
+        offset += 4;
+    }
+
+    offset += 24;
+    if offset + 4 > end {
+        return None;
+    }
+    let bone_count = read_i32(offset);
+    if !(1..=8192).contains(&bone_count) {
+        return None;
+    }
+    offset += 4;
+    let reference_skeleton = offset;
+
+    let mut lod_models = None;
+    for stride in [52usize, 48, 56, 44, 60] {
+        let after = reference_skeleton.checked_add(bone_count as usize * stride)?;
+        if after + 8 > end {
+            continue;
+        }
+        let depth = read_i32(after);
+        let count = read_i32(after + 4);
+        if (1..=64).contains(&depth) && (1..=16).contains(&count) {
+            lod_models = Some(after + 8);
+            break;
+        }
+    }
+    let lod_start = lod_models?;
+
+    let (indices, index_end) = find_skeletal_indices(data, lod_start, end)?;
+    let vertex_count = *indices.iter().max()? as usize + 1;
+    let (vertices, uvs, position_offset) =
+        find_skeletal_vertices(data, index_end, end, vertex_count, origin, extent)?;
+
+    Some(Mesh {
+        vertices,
+        uvs,
+        indices,
+        position_offset,
+        properties_end: start,
+        material_refs,
+    })
+}
+
+fn find_skeletal_indices(data: &[u8], from: usize, end: usize) -> Option<(Vec<u32>, usize)> {
+    let mut offset = from;
+    while offset + 13 <= end {
+        if read_u32(data, offset) == 1 {
+            let element_size = data[offset + 4] as u32;
+            if (element_size == 2 || element_size == 4) && read_u32(data, offset + 5) == element_size
+            {
+                let count = read_u32(data, offset + 9) as usize;
+                let stride = element_size as usize;
+                let bytes = offset + 13;
+                if count >= 3
+                    && count.is_multiple_of(3)
+                    && count < (1 << 24)
+                    && bytes + count * stride <= end
+                {
+                    let indices: Vec<u32> = (0..count)
+                        .map(|index| {
+                            let base = bytes + index * stride;
+                            if stride == 2 {
+                                u16::from_le_bytes([data[base], data[base + 1]]) as u32
+                            } else {
+                                read_u32(data, base)
+                            }
+                        })
+                        .collect();
+                    return Some((indices, bytes + count * stride));
+                }
+            }
+        }
+        offset += 1;
+    }
+    None
+}
+
+fn find_skeletal_vertices(
+    data: &[u8],
+    from: usize,
+    end: usize,
+    vertex_count: usize,
+    origin: [f32; 3],
+    extent: [f32; 3],
+) -> Option<(Vec<[f32; 3]>, Vec<[f32; 2]>, usize)> {
+    let within = |offset: usize, position_offset: usize, stride: usize| -> bool {
+        (0..vertex_count)
+            .step_by((vertex_count / 32).max(1))
+            .all(|index| {
+                let base = offset + index * stride + position_offset;
+                (0..3).all(|axis| {
+                    let value = read_f32(data, base + axis * 4);
+                    value.is_finite()
+                        && (value - origin[axis]).abs() <= extent[axis].abs() * 2.0 + 4.0
+                })
+            })
+    };
+    let mut offset = from;
+    while offset + 8 <= end {
+        let stride = read_u32(data, offset) as usize;
+        let count = read_u32(data, offset + 4) as usize;
+        if count >= vertex_count
+            && count <= vertex_count + 256
+            && (16..=128).contains(&stride)
+        {
+            let bytes = offset + 8;
+            if bytes + stride * count <= end {
+                for position_offset in [16usize, 24, 8, 0] {
+                    if position_offset + 12 > stride {
+                        continue;
+                    }
+                    if within(bytes, position_offset, stride) {
+                        let vertices: Vec<[f32; 3]> = (0..count)
+                            .map(|index| {
+                                let base = bytes + index * stride + position_offset;
+                                [
+                                    read_f32(data, base),
+                                    read_f32(data, base + 4),
+                                    read_f32(data, base + 8),
+                                ]
+                            })
+                            .collect();
+                        let uv_offset = position_offset + 12;
+                        let uvs: Vec<[f32; 2]> = if uv_offset + 4 <= stride {
+                            (0..count)
+                                .map(|index| {
+                                    let base = bytes + index * stride + uv_offset;
+                                    [
+                                        half_to_f32(u16::from_le_bytes([data[base], data[base + 1]])),
+                                        half_to_f32(u16::from_le_bytes([
+                                            data[base + 2],
+                                            data[base + 3],
+                                        ])),
+                                    ]
+                                })
+                                .collect()
+                        } else {
+                            Vec::new()
+                        };
+                        return Some((vertices, uvs, bytes + position_offset));
                     }
                 }
             }
@@ -445,6 +639,7 @@ mod tests {
             indices: Vec::new(),
             position_offset: 0,
             properties_end: 0,
+            material_refs: Vec::new(),
         };
         assert!(mesh.replace_vertices(&[0u8; 24], &[[1.0; 3]]).is_err());
     }

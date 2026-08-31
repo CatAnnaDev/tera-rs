@@ -23,7 +23,7 @@ pub mod writer;
 pub use error::{PackageError, Result};
 pub use gfx::{movies, replace_movie, Movie};
 pub use material::{materials, set_parameters, Material};
-pub use mesh::{parse_static_mesh, Mesh};
+pub use mesh::{parse_skeletal_mesh, parse_static_mesh, Mesh};
 pub use gltf::write_glb;
 pub use package::{Bundle, Export, Import, Name, Package, ParseMode};
 pub use objects::{find, set_properties, Edited, Found};

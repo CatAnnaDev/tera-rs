@@ -242,7 +242,12 @@ fn mesh(args: &MeshArgs) -> Result<()> {
                     continue;
                 }
             }
-            match tera_package::parse_static_mesh(&package, export) {
+            let parsed = if class == "SkeletalMesh" {
+                tera_package::parse_skeletal_mesh(&package, export)
+            } else {
+                tera_package::parse_static_mesh(&package, export)
+            };
+            match parsed {
                 Some(mesh) => {
                     let (low, high) = mesh.bounds();
                     println!(

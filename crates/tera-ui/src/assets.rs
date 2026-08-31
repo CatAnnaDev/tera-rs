@@ -822,7 +822,12 @@ fn load_object(
             Err(_) => Preview::Raw,
         },
         "StaticMesh" | "SkeletalMesh" => {
-            match tera_package::parse_static_mesh(&package, export) {
+            let parsed = if class == "SkeletalMesh" {
+                tera_package::parse_skeletal_mesh(&package, export)
+            } else {
+                tera_package::parse_static_mesh(&package, export)
+            };
+            match parsed {
                 Some(mesh) => Preview::Mesh {
                     mesh,
                     camera: Camera {
