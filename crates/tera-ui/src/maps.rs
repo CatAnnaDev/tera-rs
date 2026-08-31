@@ -18,47 +18,67 @@ pub struct MapsTab {
     filter: String,
     selected: Option<usize>,
     job: Option<Job>,
+    list_rx: Option<std::sync::mpsc::Receiver<Vec<(String, usize)>>>,
+}
+
+fn build_level_list(index_path: &Path) -> Vec<(String, usize)> {
+    let Ok(index) = Index::open(index_path) else {
+        return Vec::new();
+    };
+    let mut counts: HashMap<u32, usize> = HashMap::new();
+    for class in ["StaticMeshActor", "InterpActor", "DynamicSMActor"] {
+        for hit in index.search_objects("", 2_000_000, Some(class)) {
+            let object = index.object(hit as usize);
+            let entry = index.package(object.package as usize);
+            *counts.entry(entry.file).or_default() += 1;
+        }
+    }
+    let mut zones: HashMap<String, (String, usize)> = HashMap::new();
+    for (file, count) in counts {
+        let path = index.file_name(file as usize).to_string();
+        let stem = Path::new(&path)
+            .file_stem()
+            .and_then(|value| value.to_str())
+            .unwrap_or(&path);
+        let directory = path.rsplit_once(['/', '\\']).map(|(head, _)| head).unwrap_or("");
+        let key = format!("{directory}/{}", tera_package::zone_base(stem));
+        let entry = zones.entry(key).or_insert_with(|| (path.clone(), 0));
+        entry.1 += count;
+        if path.len() < entry.0.len() {
+            entry.0 = path.clone();
+        }
+    }
+    let mut levels: Vec<(String, usize)> = zones.into_values().collect();
+    levels.sort_by(|a, b| b.1.cmp(&a.1));
+    levels
 }
 
 impl MapsTab {
-    fn ensure_list(&mut self, paths: &Paths) {
+    fn ensure_list(&mut self, ui: &egui::Ui, paths: &Paths) {
         if self.loaded {
             return;
         }
-        self.loaded = true;
-        let Ok(index) = Index::open(&paths.index) else {
+        if let Some(receiver) = &self.list_rx {
+            if let Ok(levels) = receiver.try_recv() {
+                self.levels = levels;
+                self.loaded = true;
+                self.list_rx = None;
+            } else {
+                ui.ctx().request_repaint_after(std::time::Duration::from_millis(120));
+            }
             return;
-        };
-        let mut counts: HashMap<u32, usize> = HashMap::new();
-        for class in ["StaticMeshActor", "InterpActor", "DynamicSMActor"] {
-            for hit in index.search_objects("", 2_000_000, Some(class)) {
-                let object = index.object(hit as usize);
-                let entry = index.package(object.package as usize);
-                *counts.entry(entry.file).or_default() += 1;
-            }
         }
-        let mut zones: HashMap<String, (String, usize)> = HashMap::new();
-        for (file, count) in counts {
-            let path = index.file_name(file as usize).to_string();
-            let stem = Path::new(&path)
-                .file_stem()
-                .and_then(|value| value.to_str())
-                .unwrap_or(&path);
-            let directory = path.rsplit_once(['/', '\\']).map(|(head, _)| head).unwrap_or("");
-            let key = format!("{directory}/{}", tera_package::zone_base(stem));
-            let entry = zones.entry(key).or_insert_with(|| (path.clone(), 0));
-            entry.1 += count;
-            if path.len() < entry.0.len() {
-                entry.0 = path.clone();
-            }
-        }
-        let mut levels: Vec<(String, usize)> = zones.into_values().collect();
-        levels.sort_by(|a, b| b.1.cmp(&a.1));
-        self.levels = levels;
+        let (sender, receiver) = std::sync::mpsc::channel();
+        self.list_rx = Some(receiver);
+        let index_path = paths.index.clone();
+        std::thread::spawn(move || {
+            let _ = sender.send(build_level_list(&index_path));
+        });
+        ui.ctx().request_repaint_after(std::time::Duration::from_millis(120));
     }
 
     pub fn ui(&mut self, ui: &mut egui::Ui, palette: Palette, paths: &Paths, status: &mut String) {
-        self.ensure_list(paths);
+        self.ensure_list(ui, paths);
 
         if let Some(job) = &mut self.job {
             if let Some(outcome) = job.poll() {
@@ -171,8 +191,10 @@ fn export_map(
             done,
             total,
         }));
-        let hits = index.search_objects(name, 1, Some("StaticMesh"));
-        let Some(&hit) = hits.first() else {
+        let Some(hit) = index
+            .find_object_exact(name, Some("StaticMesh"))
+            .or_else(|| index.search_objects(name, 1, Some("StaticMesh")).first().copied())
+        else {
             continue;
         };
         let object = index.object(hit as usize);

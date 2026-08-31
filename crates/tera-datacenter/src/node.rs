@@ -25,6 +25,13 @@ pub enum Value<'a> {
 }
 
 impl<'a> Value<'a> {
+    pub fn as_reference(&self) -> Option<i32> {
+        match self {
+            Self::Int(value) => Some(*value),
+            _ => None,
+        }
+    }
+
     pub fn as_i32(&self) -> Option<i32> {
         match self {
             Self::Int(value) => Some(*value),

@@ -28,7 +28,8 @@ impl Job {
         let label = label.into();
         let thread_sender = sender.clone();
         std::thread::spawn(move || {
-            let outcome = work(&thread_sender);
+            let outcome = std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| work(&thread_sender)))
+                .unwrap_or_else(|_| Err("la tâche a planté".into()));
             let _ = thread_sender.send(Message::Done(outcome));
         });
         Self {

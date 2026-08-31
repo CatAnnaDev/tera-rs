@@ -82,7 +82,7 @@ impl RefIndex {
                         if !is_reference_attr(name) {
                             continue;
                         }
-                        let Some(target) = value.as_i32() else {
+                        let Some(target) = value.as_reference() else {
                             continue;
                         };
                         if target == 0 {
@@ -125,7 +125,7 @@ impl RefIndex {
             if !is_reference_attr(name) {
                 continue;
             }
-            let Some(target) = value.as_i32() else {
+            let Some(target) = value.as_reference() else {
                 continue;
             };
             if target == 0 {

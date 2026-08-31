@@ -293,8 +293,12 @@ fn map_dump(args: &MapArgs) -> Result<()> {
     let mut loaded = 0usize;
     for name in unique.iter() {
         if mesh_index.len() >= args.max_meshes { break; }
-        let hits = index.search_objects(name, 1, Some("StaticMesh"));
-        let Some(&hit) = hits.first() else { continue };
+        let Some(hit) = index
+            .find_object_exact(name, Some("StaticMesh"))
+            .or_else(|| index.search_objects(name, 1, Some("StaticMesh")).first().copied())
+        else {
+            continue;
+        };
         let object = index.object(hit as usize);
         let entry = index.package(object.package as usize);
         let file = cooked.join(index.file_name(entry.file as usize));
@@ -385,8 +389,8 @@ fn anim(args: &PropsArgs) -> Result<()> {
                     PropertyValue::Array { count, element_size, raw } => {
                         println!("  {} [{count} x {element_size}b] value_offset={}", pr.name, pr.value_offset);
                         if pr.name == "CompressedTrackOffsets" {
-                            for i in 0..*count as usize {
-                                offsets.push(i32::from_le_bytes([raw[i*4],raw[i*4+1],raw[i*4+2],raw[i*4+3]]));
+                            for chunk in raw.chunks_exact(4).take((*count).max(0) as usize) {
+                                offsets.push(i32::from_le_bytes(chunk.try_into().unwrap()));
                             }
                         }
                     }
@@ -408,9 +412,10 @@ fn anim(args: &PropsArgs) -> Result<()> {
                     for pr in &set_props {
                         match &pr.value {
                             PropertyValue::Array { count, raw, .. } if pr.name == "TrackBoneNames" => {
-                                let names: Vec<String> = (0..*count as usize).map(|i| {
-                                    let idx = i32::from_le_bytes([raw[i*8],raw[i*8+1],raw[i*8+2],raw[i*8+3]]);
-                                    package.names.get(idx.max(0) as usize).cloned().unwrap_or_default()
+                                let names: Vec<String> = (0..(*count).max(0) as usize).map_while(|i| {
+                                    let entry = raw.get(i*8..i*8+4)?;
+                                    let idx = i32::from_le_bytes(entry.try_into().unwrap());
+                                    Some(package.names.get(idx.max(0) as usize).cloned().unwrap_or_default())
                                 }).collect();
                                 println!("  TrackBoneNames: {:?}", names);
                             }

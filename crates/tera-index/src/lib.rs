@@ -326,7 +326,10 @@ impl Index {
     fn text(&self, span: Span) -> &str {
         let start = self.strings_offset + span.offset as usize;
         let end = start + span.length as usize;
-        std::str::from_utf8(&self.map[start..end]).unwrap_or("")
+        match self.map.get(start..end) {
+            Some(bytes) => std::str::from_utf8(bytes).unwrap_or(""),
+            None => "",
+        }
     }
 
     pub fn file_name(&self, index: usize) -> &str {
@@ -419,6 +422,24 @@ impl Index {
         self.search(self.package_count, limit, |index| {
             self.package_name(index)
         }, needle)
+    }
+
+    pub fn find_object_exact(&self, name: &str, class: Option<&str>) -> Option<u32> {
+        (0..self.object_count)
+            .into_par_iter()
+            .filter(|index| {
+                let entry = self.object(*index);
+                if let Some(class) = class {
+                    if !self.class_name(entry.class).eq_ignore_ascii_case(class) {
+                        return false;
+                    }
+                }
+                let stored = self.text(entry.name);
+                let leaf = stored.rsplit('.').next().unwrap_or(stored);
+                leaf.eq_ignore_ascii_case(name)
+            })
+            .map(|index| index as u32)
+            .min()
     }
 
     pub fn search_objects(&self, needle: &str, limit: usize, class: Option<&str>) -> Vec<u32> {

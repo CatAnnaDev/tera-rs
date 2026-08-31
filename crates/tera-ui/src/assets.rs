@@ -350,7 +350,10 @@ impl Assets {
                         font.clone(),
                         theme::class_color(class),
                     );
-                    let cut = name.len().saturating_sub(64);
+                    let target = name.len().saturating_sub(64);
+                    let cut = (target..=name.len())
+                        .find(|index| name.is_char_boundary(*index))
+                        .unwrap_or(name.len());
                     let short = if cut > 0 {
                         format!("…{}", &name[cut..])
                     } else {
