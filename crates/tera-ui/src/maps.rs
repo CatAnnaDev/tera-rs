@@ -37,10 +37,22 @@ impl MapsTab {
                 *counts.entry(entry.file).or_default() += 1;
             }
         }
-        let mut levels: Vec<(String, usize)> = counts
-            .into_iter()
-            .map(|(file, count)| (index.file_name(file as usize).to_string(), count))
-            .collect();
+        let mut zones: HashMap<String, (String, usize)> = HashMap::new();
+        for (file, count) in counts {
+            let path = index.file_name(file as usize).to_string();
+            let stem = Path::new(&path)
+                .file_stem()
+                .and_then(|value| value.to_str())
+                .unwrap_or(&path);
+            let directory = path.rsplit_once(['/', '\\']).map(|(head, _)| head).unwrap_or("");
+            let key = format!("{directory}/{}", tera_package::zone_base(stem));
+            let entry = zones.entry(key).or_insert_with(|| (path.clone(), 0));
+            entry.1 += count;
+            if path.len() < entry.0.len() {
+                entry.0 = path.clone();
+            }
+        }
+        let mut levels: Vec<(String, usize)> = zones.into_values().collect();
         levels.sort_by(|a, b| b.1.cmp(&a.1));
         self.levels = levels;
     }
