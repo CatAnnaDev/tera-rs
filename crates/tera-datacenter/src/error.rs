@@ -28,6 +28,8 @@ pub enum DataCenterError {
     BadNameIndex(u16),
     #[error("query error: {0}")]
     Query(String),
+    #[error("corrupt data center structure")]
+    Corrupt,
 }
 
 pub type Result<T> = std::result::Result<T, DataCenterError>;

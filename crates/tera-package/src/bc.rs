@@ -91,10 +91,14 @@ pub fn decode_blocks(
     let blocks_x = width.div_ceil(4);
     let blocks_y = height.div_ceil(4);
     let stride = format.block_bytes();
-    if data.len() < blocks_x * blocks_y * stride {
+    let required = blocks_x
+        .checked_mul(blocks_y)
+        .and_then(|value| value.checked_mul(stride))?;
+    let out_len = width.checked_mul(height).and_then(|value| value.checked_mul(4))?;
+    if data.len() < required {
         return None;
     }
-    let mut out = vec![0u8; width * height * 4];
+    let mut out = vec![0u8; out_len];
     for block_y in 0..blocks_y {
         for block_x in 0..blocks_x {
             let block = &data[(block_y * blocks_x + block_x) * stride..][..stride];

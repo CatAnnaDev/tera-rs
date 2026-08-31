@@ -136,7 +136,7 @@ impl<'a> Package<'a> {
         } else {
             exports
                 .iter()
-                .map(|export| (export.serial_offset + export.serial_size).max(0) as usize)
+                .map(|export| (export.serial_offset.max(0) as usize).saturating_add(export.serial_size.max(0) as usize))
                 .chain(std::iter::once(summary.total_header_size.max(0) as usize))
                 .chain(std::iter::once(tables_end))
                 .max()
@@ -214,7 +214,7 @@ impl<'a> Package<'a> {
         if name.number == 0 {
             base.to_string()
         } else {
-            format!("{base}_{}", name.number - 1)
+            format!("{base}_{}", i64::from(name.number) - 1)
         }
     }
 
@@ -253,7 +253,7 @@ impl<'a> Package<'a> {
             0 => "Class".to_string(),
             index if index < 0 => self
                 .imports
-                .get((-index - 1) as usize)
+                .get((!index) as usize)
                 .map(|import| self.name_text(import.object_name))
                 .unwrap_or_else(|| "<invalid>".to_string()),
             index => self
@@ -269,7 +269,7 @@ impl<'a> Package<'a> {
             0 => None,
             index if index < 0 => self
                 .imports
-                .get((-index - 1) as usize)
+                .get((!index) as usize)
                 .map(|import| self.name_text(import.object_name)),
             index => self
                 .exports
@@ -283,7 +283,7 @@ impl<'a> Package<'a> {
             0 => 0,
             index if index < 0 => self
                 .imports
-                .get((-index - 1) as usize)
+                .get((!index) as usize)
                 .map(|import| import.outer_index)
                 .unwrap_or(0),
             index => self
@@ -390,8 +390,15 @@ fn build_image(tail: &[u8], summary: &Summary, mode: ParseMode) -> Result<Vec<u8
     image[..prefix].copy_from_slice(&tail[..prefix]);
     let (wanted_start, wanted_end) = table_span(summary);
     for chunk in &summary.compressed_chunks {
+        if chunk.uncompressed_offset < 0 || chunk.uncompressed_size < 0 {
+            return Err(PackageError::Truncated {
+                offset: 0,
+                needed: 0,
+                available: image.len(),
+            });
+        }
         let start = chunk.uncompressed_offset as usize;
-        let end = start + chunk.uncompressed_size as usize;
+        let end = start.saturating_add(chunk.uncompressed_size as usize);
         if mode == ParseMode::TablesOnly && (end <= wanted_start || start >= wanted_end) {
             continue;
         }

@@ -18,19 +18,29 @@ pub fn decompress_chunk(
     }
     let block_size = reader.u32()? as usize;
     let _total_compressed = reader.i32()?;
-    let total_uncompressed = reader.i32()? as usize;
-    let block_count = total_uncompressed.div_ceil(block_size.max(1));
-    let mut blocks = Vec::with_capacity(block_count);
+    let total_uncompressed = reader.i32()?;
+    if total_uncompressed < 0 || total_uncompressed as usize > out.len() {
+        return Err(PackageError::Truncated {
+            offset: base,
+            needed: total_uncompressed.max(0) as usize,
+            available: out.len(),
+        });
+    }
+    let block_count = (total_uncompressed as usize).div_ceil(block_size.max(1));
+    let mut blocks = Vec::with_capacity(block_count.min(out.len() + 1));
     for _ in 0..block_count {
-        let compressed = reader.i32()? as usize;
-        let uncompressed = reader.i32()? as usize;
-        blocks.push((compressed, uncompressed));
+        let compressed = reader.i32()?;
+        let uncompressed = reader.i32()?;
+        if compressed < 0 || uncompressed < 0 {
+            return Err(PackageError::BadChunkMagic(base));
+        }
+        blocks.push((compressed as usize, uncompressed as usize));
     }
     let mut written = 0usize;
     for (compressed, uncompressed) in blocks {
         let offset = reader.offset();
         let source = reader.take(compressed)?;
-        let end = written + uncompressed;
+        let end = written.saturating_add(uncompressed);
         if end > out.len() {
             return Err(PackageError::Truncated {
                 offset,

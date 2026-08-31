@@ -25,7 +25,7 @@ impl Dds {
             None
         };
         let bits_per_pixel = if four_cc.is_some() { 0 } else { read(88) };
-        let mut mips = Vec::with_capacity(mip_count as usize);
+        let mut mips = Vec::with_capacity((mip_count as usize).min(32));
         let mut offset = 128usize;
         let mut level_width = width;
         let mut level_height = height;
@@ -62,14 +62,19 @@ pub fn level_size(
     four_cc: Option<&[u8; 4]>,
     bits_per_pixel: u32,
 ) -> Result<usize> {
-    match four_cc {
-        Some(b"DXT1") => Ok((width.div_ceil(4) * height.div_ceil(4) * 8) as usize),
-        Some(b"DXT3") | Some(b"DXT5") => Ok((width.div_ceil(4) * height.div_ceil(4) * 16) as usize),
-        Some(other) => Err(PackageError::UnsupportedPixelFormat(
-            String::from_utf8_lossy(other).to_string(),
-        )),
-        None => Ok((width * height * bits_per_pixel).div_ceil(8) as usize),
-    }
+    let width = width as u128;
+    let height = height as u128;
+    let size = match four_cc {
+        Some(b"DXT1") => width.div_ceil(4) * height.div_ceil(4) * 8,
+        Some(b"DXT3") | Some(b"DXT5") => width.div_ceil(4) * height.div_ceil(4) * 16,
+        Some(other) => {
+            return Err(PackageError::UnsupportedPixelFormat(
+                String::from_utf8_lossy(other).to_string(),
+            ))
+        }
+        None => (width * height * bits_per_pixel as u128).div_ceil(8),
+    };
+    usize::try_from(size).map_err(|_| PackageError::UnsupportedPixelFormat("oversized".into()))
 }
 
 pub fn unreal_format_for(four_cc: Option<&[u8; 4]>, bits_per_pixel: u32) -> Result<&'static str> {

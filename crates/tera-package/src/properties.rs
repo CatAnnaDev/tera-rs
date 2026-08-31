@@ -45,6 +45,15 @@ pub fn read_export_properties(package: &Package, data: &[u8]) -> Result<(Vec<Pro
 }
 
 pub fn read_properties(package: &Package, data: &[u8]) -> Result<(Vec<Property>, usize)> {
+    read_properties_depth(package, data, 0)
+}
+
+const MAX_PROPERTY_DEPTH: u32 = 96;
+
+fn read_properties_depth(package: &Package, data: &[u8], depth: u32) -> Result<(Vec<Property>, usize)> {
+    if depth > MAX_PROPERTY_DEPTH {
+        return Ok((Vec::new(), 0));
+    }
     let mut reader = Reader::new(data);
     let mut properties = Vec::new();
     loop {
@@ -105,6 +114,7 @@ pub fn read_properties(package: &Package, data: &[u8]) -> Result<(Vec<Property>,
             &enum_name,
             bool_value,
             payload,
+            depth,
         )?;
         properties.push(Property {
             name,
@@ -129,6 +139,7 @@ fn decode_value(
     enum_name: &str,
     bool_value: bool,
     payload: Vec<u8>,
+    depth: u32,
 ) -> Result<PropertyValue> {
     let mut reader = Reader::new(&payload);
     Ok(match type_name {
@@ -158,7 +169,7 @@ fn decode_value(
             }
         }
         "StructProperty" => {
-            let fields = match read_properties(package, &payload) {
+            let fields = match read_properties_depth(package, &payload, depth + 1) {
                 Ok((fields, consumed)) if !fields.is_empty() && consumed <= payload.len() => fields,
                 _ => Vec::new(),
             };

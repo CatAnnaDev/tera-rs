@@ -235,9 +235,13 @@ impl<'a> Iterator for NodeIter<'a> {
         while self.index < self.count {
             let index = self.index;
             self.index += 1;
+            let element = u32::from(self.address.element) + u32::from(index);
+            if element > u32::from(u16::MAX) {
+                return None;
+            }
             let address = Address {
                 segment: self.address.segment,
-                element: self.address.element.wrapping_add(index),
+                element: element as u16,
             };
             match Node::new(self.dc, address) {
                 Ok(node) if !node.is_placeholder() => return Some(node),

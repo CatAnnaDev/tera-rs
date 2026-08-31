@@ -70,7 +70,7 @@ impl DataCenter {
         };
 
         let key_count = reader.u32()? as usize;
-        let mut keys = Vec::with_capacity(key_count);
+        let mut keys = Vec::with_capacity(key_count.min(reader.remaining() / KEY_SIZE + 1));
         for _ in 0..key_count {
             let bytes = reader.take(KEY_SIZE)?;
             keys.push(KeyDefinition {
@@ -342,7 +342,7 @@ pub fn inflate(decrypted: &[u8]) -> Result<Vec<u8>> {
         });
     }
     let declared = u32::from_le_bytes([decrypted[0], decrypted[1], decrypted[2], decrypted[3]]);
-    let mut out = Vec::with_capacity(declared as usize);
+    let mut out = Vec::with_capacity((declared as usize).min(1 << 30));
     let mut inflater = Decompress::new(true);
     let mut input = &decrypted[4..];
     let mut buffer = vec![0u8; 1 << 20];
@@ -353,6 +353,12 @@ pub fn inflate(decrypted: &[u8]) -> Result<Vec<u8>> {
             .map_err(|error| DataCenterError::Inflate(error.to_string()))?;
         let consumed = (inflater.total_in() - before_in) as usize;
         let produced = inflater.total_out() as usize - out.len();
+        if out.len() + produced > declared as usize {
+            return Err(DataCenterError::SizeMismatch {
+                declared,
+                actual: out.len() + produced,
+            });
+        }
         out.extend_from_slice(&buffer[..produced]);
         input = &input[consumed..];
         match status {

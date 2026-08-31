@@ -314,6 +314,7 @@ fn pixel_format(format: &str) -> Result<PixelSpec> {
             (true, 0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000),
         ),
         "PF_G8" => (None, 8, (false, 0xff, 0, 0, 0)),
+        "PF_BC5" | "PF_V8U8" => (Some(b"DXT5"), 8, (false, 0, 0, 0, 0)),
         other => return Err(PackageError::UnsupportedPixelFormat(other.to_string())),
     })
 }

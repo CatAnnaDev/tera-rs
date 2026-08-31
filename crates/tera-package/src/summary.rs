@@ -256,7 +256,7 @@ impl Summary {
     pub fn compressed_end(&self) -> usize {
         self.compressed_chunks
             .iter()
-            .map(|chunk| (chunk.compressed_offset + chunk.compressed_size) as usize)
+            .map(|chunk| (chunk.compressed_offset.max(0) as usize).saturating_add(chunk.compressed_size.max(0) as usize))
             .max()
             .unwrap_or(0)
     }
@@ -264,7 +264,7 @@ impl Summary {
     pub fn uncompressed_size(&self) -> usize {
         self.compressed_chunks
             .iter()
-            .map(|chunk| (chunk.uncompressed_offset + chunk.uncompressed_size) as usize)
+            .map(|chunk| (chunk.uncompressed_offset.max(0) as usize).saturating_add(chunk.uncompressed_size.max(0) as usize))
             .max()
             .unwrap_or(0)
     }

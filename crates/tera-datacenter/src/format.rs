@@ -258,12 +258,15 @@ impl<'a> Reader<'a> {
 
     pub fn segmented_region(&mut self, element_size: usize) -> Result<Vec<SegmentSpan>> {
         let count = self.u32()? as usize;
-        let mut segments = Vec::with_capacity(count);
+        let mut segments = Vec::with_capacity(count.min(self.remaining() / 8 + 1));
         for _ in 0..count {
             let full = self.u32()?;
             let used = self.u32()?;
+            if used > full {
+                return Err(DataCenterError::Corrupt);
+            }
             let offset = self.offset;
-            self.take(full as usize * element_size)?;
+            self.take((full as usize).saturating_mul(element_size))?;
             segments.push(SegmentSpan { offset, full, used });
         }
         Ok(segments)
@@ -273,7 +276,7 @@ impl<'a> Reader<'a> {
         let mut entries = Vec::new();
         for _ in 0..segment_count {
             let count = self.u32()? as usize;
-            entries.reserve(count);
+            entries.reserve(count.min(self.remaining() / STRING_ENTRY_SIZE + 1));
             for _ in 0..count {
                 let bytes = self.take(STRING_ENTRY_SIZE)?;
                 entries.push(StringEntry {
@@ -292,7 +295,7 @@ impl<'a> Reader<'a> {
     pub fn address_region(&mut self) -> Result<Vec<Address>> {
         let count = self.u32()? as usize;
         let count = count.saturating_sub(1);
-        let mut addresses = Vec::with_capacity(count);
+        let mut addresses = Vec::with_capacity(count.min(self.remaining() / 4 + 1));
         for _ in 0..count {
             addresses.push(self.address()?);
         }
