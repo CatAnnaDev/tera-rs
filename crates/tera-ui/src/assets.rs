@@ -622,6 +622,10 @@ fn preview_ui(
                 label: "export OBJ",
                 run: export_obj,
             });
+            actions.push(Action {
+                label: "export glTF (Blender)",
+                run: export_glb,
+            });
         }
         Preview::Sound {
             ogg,
@@ -912,6 +916,19 @@ fn export_obj(loaded: &Loaded, _paths: &Paths) -> Result<String, String> {
     };
     let leaf = loaded.path.rsplit('.').next().unwrap_or("mesh");
     std::fs::write(&target, mesh.to_obj(leaf)).map_err(|error| error.to_string())?;
+    Ok(format!("wrote {}", target.display()))
+}
+
+fn export_glb(loaded: &Loaded, _paths: &Paths) -> Result<String, String> {
+    let Preview::Mesh { mesh, .. } = &loaded.preview else {
+        return Err("not a mesh".into());
+    };
+    let Some(target) = save_dialog(loaded, "glb") else {
+        return Ok("cancelled".into());
+    };
+    let leaf = loaded.path.rsplit('.').next().unwrap_or("mesh");
+    let glb = tera_package::write_glb(mesh, leaf, None);
+    std::fs::write(&target, glb).map_err(|error| error.to_string())?;
     Ok(format!("wrote {}", target.display()))
 }
 
