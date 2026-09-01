@@ -1,8 +1,9 @@
 use crate::jobs::{Job, Message, Progress};
 use crate::theme::{self, Palette};
-use crate::view3d::{Camera, Raster, Scene, Triangle};
+use crate::view3d::{Camera, Raster, Scene, Texture as RasterTexture, Triangle};
 use crate::Paths;
 use eframe::egui;
+use std::sync::Arc;
 use memmap2::Mmap;
 use std::collections::HashMap;
 use std::path::Path;
@@ -14,14 +15,17 @@ use tera_package::{
 
 struct MapPreviewData {
     scene: Scene,
+    data: Arc<MapData>,
     label: String,
 }
 
 struct MapPreview {
     scene: Scene,
+    data: Arc<MapData>,
     camera: Camera,
     handle: Option<egui::TextureHandle>,
     dirty: bool,
+    textured: bool,
     label: String,
 }
 
@@ -115,9 +119,11 @@ impl MapsTab {
                     *status = data.label.clone();
                     self.preview = Some(MapPreview {
                         scene: data.scene,
+                        data: data.data,
                         camera: Camera::default(),
                         handle: None,
                         dirty: true,
+                        textured: false,
                         label: data.label,
                     });
                     self.preview_rx = None;
@@ -176,7 +182,7 @@ impl MapsTab {
                                 let result = collect_map_data(&level_file, &index_path, &cooked, &progress)
                                     .map(|data| {
                                         let (scene, shown, total) =
-                                            build_map_scene(&data.meshes, &data.instances);
+                                            build_map_scene(&data.meshes, &data.instances, false);
                                         let label = if shown < total {
                                             format!(
                                                 "{label} — {} placements, {shown}/{total} triangles",
@@ -188,7 +194,11 @@ impl MapsTab {
                                                 data.instances.len()
                                             )
                                         };
-                                        MapPreviewData { scene, label }
+                                        MapPreviewData {
+                                            scene,
+                                            data: Arc::new(data),
+                                            label,
+                                        }
                                     });
                                 let _ = sender.send(result);
                             });
@@ -222,6 +232,15 @@ impl MapsTab {
                 ui.horizontal(|ui| {
                     if ui.button("← fermer la preview").clicked() {
                         close_preview = true;
+                    }
+                    if ui.checkbox(&mut preview.textured, "textures").changed() {
+                        let (scene, _, _) = build_map_scene(
+                            &preview.data.meshes,
+                            &preview.data.instances,
+                            preview.textured,
+                        );
+                        preview.scene = scene;
+                        preview.dirty = true;
                     }
                     theme::eyebrow(ui, palette, &preview.label);
                 });
@@ -325,13 +344,58 @@ fn instance_vertex(instance: &MapInstance, vertex: [f32; 3]) -> [f32; 3] {
     ]
 }
 
+fn downsample_texture(image: &tera_package::png::Image, max: u32) -> RasterTexture {
+    let (width, height) = (image.width.max(1), image.height.max(1));
+    if width <= max && height <= max {
+        return RasterTexture {
+            width: width as usize,
+            height: height as usize,
+            rgba: image.rgba.clone(),
+        };
+    }
+    let step = (width.max(height) as f32 / max as f32).ceil() as u32;
+    let new_width = (width / step).max(1);
+    let new_height = (height / step).max(1);
+    let mut rgba = vec![0u8; (new_width * new_height * 4) as usize];
+    for y in 0..new_height {
+        let source_y = (y * step).min(height - 1);
+        for x in 0..new_width {
+            let source_x = (x * step).min(width - 1);
+            let source = ((source_y * width + source_x) * 4) as usize;
+            let target = ((y * new_width + x) * 4) as usize;
+            rgba[target..target + 4].copy_from_slice(&image.rgba[source..source + 4]);
+        }
+    }
+    RasterTexture {
+        width: new_width as usize,
+        height: new_height as usize,
+        rgba,
+    }
+}
+
 fn build_map_scene(
     meshes: &[(Mesh, Vec<MaterialInput>)],
     instances: &[MapInstance],
+    textured: bool,
 ) -> (Scene, usize, usize) {
     let mut scene = Scene::default();
+    let mut mesh_texture: Vec<i32> = Vec::with_capacity(meshes.len());
     let mut mesh_bounds: Vec<([f32; 3], [f32; 3])> = Vec::with_capacity(meshes.len());
-    for (mesh, _) in meshes {
+    for (mesh, materials) in meshes {
+        let index = if textured {
+            materials
+                .iter()
+                .find_map(|material| material.diffuse.as_ref())
+                .and_then(|(_, _, png)| tera_package::png::decode(png).ok())
+                .map(|image| {
+                    scene.textures.push(downsample_texture(&image, 128));
+                    (scene.textures.len() - 1) as i32
+                })
+                .unwrap_or(-1)
+        } else {
+            -1
+        };
+        mesh_texture.push(index);
         let mut low = [f32::MAX; 3];
         let mut high = [f32::MIN; 3];
         for vertex in mesh.vertices.iter().filter(|vertex| sane_vertex(**vertex)) {
@@ -420,6 +484,8 @@ fn build_map_scene(
         if shown + triangles > MAP_PREVIEW_TRI_BUDGET {
             continue;
         }
+        let texture = mesh_texture.get(instance.mesh).copied().unwrap_or(-1);
+        let has_uv = texture >= 0 && mesh.uvs.len() == mesh.vertices.len();
         for face in mesh.indices.as_chunks::<3>().0 {
             let corners = [
                 mesh.vertices[face[0] as usize],
@@ -434,10 +500,19 @@ fn build_map_scene(
                 convert(instance_vertex(instance, corners[1])),
                 convert(instance_vertex(instance, corners[2])),
             ];
+            let uv = if has_uv {
+                [
+                    mesh.uvs[face[0] as usize],
+                    mesh.uvs[face[1] as usize],
+                    mesh.uvs[face[2] as usize],
+                ]
+            } else {
+                [[0.0, 0.0]; 3]
+            };
             scene.triangles.push(Triangle {
                 points,
-                uv: [[0.0, 0.0]; 3],
-                texture: -1,
+                uv,
+                texture,
                 color: [190, 178, 198],
                 light: [1.0; 3],
             });
@@ -561,4 +636,5 @@ fn collect_map_data(
         name,
     })
 }
+
 
