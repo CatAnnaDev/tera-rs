@@ -115,6 +115,9 @@ impl World {
                 self.player.game_id = uint(object, "gameId");
                 self.player.location = location(object, "loc");
             }
+            "C_PLAYER_LOCATION" => {
+                self.player.location = location(object, "loc");
+            }
             "S_LOAD_TOPO" => {
                 self.player.zone = int(object, "zone") as i32;
                 self.player.location = location(object, "loc");

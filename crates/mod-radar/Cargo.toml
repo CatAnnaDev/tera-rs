@@ -10,3 +10,4 @@ crate-type = ["cdylib"]
 [dependencies]
 tera-hook = { workspace = true }
 tera-world = { workspace = true }
+tera-protocol = { workspace = true }
