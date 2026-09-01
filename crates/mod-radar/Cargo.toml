@@ -1,0 +1,12 @@
+[package]
+name = "mod-radar"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+tera-hook = { workspace = true }
+tera-world = { workspace = true }

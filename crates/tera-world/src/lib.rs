@@ -1,3 +1,5 @@
+pub mod sysmsg;
+
 use std::collections::HashMap;
 use tera_protocol::{Object, Value};
 

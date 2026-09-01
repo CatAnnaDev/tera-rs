@@ -159,3 +159,49 @@ fn main() -> Result<()> {
     }
     Ok(())
 }
+
+#[cfg(test)]
+mod gate {
+    use super::*;
+
+    #[test]
+    fn every_captured_packet_round_trips() {
+        let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../..");
+        let capture = root.join("captures/capture.jsonl");
+        if !capture.exists() {
+            return;
+        }
+        let opcodes = OpcodeMap::read(root.join("data/opcodes/protocol.376012.map")).unwrap();
+        let _ = opcodes;
+        let registry = Registry::load(&[root.join("data/definitions")], Some(100)).unwrap();
+        let text = std::fs::read_to_string(&capture).unwrap();
+
+        let mut checked = 0u64;
+        let mut broken = Vec::new();
+        for line in text.lines() {
+            let line = line.trim();
+            if line.is_empty() {
+                continue;
+            }
+            let record: serde_json::Value = serde_json::from_str(line).unwrap();
+            let name = record["name"].as_str().unwrap_or("");
+            let opcode = record["opcode"].as_u64().unwrap_or(0) as u16;
+            let Some(body) = record["hex"].as_str().and_then(hex_decode) else {
+                continue;
+            };
+            let Some(definition) = registry.get(name) else {
+                continue;
+            };
+            let frame = Packet::new(opcode, body).encode();
+            let object = value::read(definition, &frame)
+                .unwrap_or_else(|error| panic!("{name}: décodage échoué: {error}"));
+            let reencoded = value::write(definition, opcode, &object).unwrap();
+            checked += 1;
+            if reencoded != frame {
+                broken.push(name.to_string());
+            }
+        }
+        assert!(checked > 100, "capture trop courte ({checked} paquets)");
+        assert!(broken.is_empty(), "round-trip non byte-exact: {broken:?}");
+    }
+}

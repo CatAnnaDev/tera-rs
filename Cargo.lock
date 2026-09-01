@@ -2630,6 +2630,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "mod-radar"
+version = "0.1.0"
+dependencies = [
+ "tera-hook",
+ "tera-world",
+]
+
+[[package]]
 name = "moxcms"
 version = "0.8.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -4263,6 +4271,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "tera-replay"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "clap",
+ "serde_json",
+ "tera-protocol",
+ "tera-world",
+]
+
+[[package]]
 name = "tera-server"
 version = "0.1.0"
 dependencies = [
@@ -4291,6 +4310,13 @@ dependencies = [
  "tera-mapper",
  "tera-mod",
  "tera-package",
+]
+
+[[package]]
+name = "tera-world"
+version = "0.1.0"
+dependencies = [
+ "tera-protocol",
 ]
 
 [[package]]

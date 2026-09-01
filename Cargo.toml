@@ -19,6 +19,7 @@ members = [
     "crates/tera-replay",
     "crates/mod-example",
     "crates/mod-antiafk",
+    "crates/mod-radar",
 ]
 
 [workspace.package]
