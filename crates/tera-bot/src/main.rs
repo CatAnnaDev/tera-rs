@@ -31,6 +31,8 @@ struct Cli {
     ticket_file: Option<PathBuf>,
     #[arg(long, help = "connexion navigateur (OAuth) pour obtenir/sauver un refresh_token")]
     login: bool,
+    #[arg(long, help = "refresh + affiche 'AUTH <compte> <ticket>' et sort (sans se connecter)")]
+    print_ticket: bool,
     #[arg(long, help = "fichier d'auth (refresh_token + ticket) ; refresh auto avant connexion")]
     auth_file: Option<PathBuf>,
     #[arg(long, default_value = "data/opcodes/protocol.376012.map")]
@@ -374,6 +376,23 @@ fn main() -> Result<()> {
         .auth_file
         .clone()
         .unwrap_or_else(|| PathBuf::from("tera-bot-auth.json"));
+
+    if cli.print_ticket {
+        let saved = if cli.login {
+            let fresh = auth::login()?;
+            auth::save(&auth_path, &fresh)?;
+            fresh
+        } else {
+            let saved = auth::load(&auth_path).with_context(|| {
+                format!("aucune auth dans {} (relance avec --login)", auth_path.display())
+            })?;
+            let fresh = auth::refresh(&auth_path, &saved)?;
+            auth::save(&auth_path, &fresh)?;
+            fresh
+        };
+        println!("AUTH\t{}\t{}", saved.account(), saved.auth_key);
+        return Ok(());
+    }
 
     if cli.login {
         let saved = auth::login()?;
