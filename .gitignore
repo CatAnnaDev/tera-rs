@@ -20,3 +20,4 @@ captures/reel.jsonl
 mods/*.dylib
 mods/*.so
 mods/*.dll
+tera-arborea-auth.json

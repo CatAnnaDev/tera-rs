@@ -24,6 +24,54 @@ const EVENT_TICKET_REPLY: usize = 4;
 const EVENT_SERVER_LIST_REQUEST: usize = 5;
 const EVENT_SERVER_LIST_REPLY: usize = 6;
 
+fn event_name(id: usize) -> &'static str {
+    match id {
+        1 => "AccountNameRequest",
+        2 => "AccountNameResponse",
+        3 => "SessionTicketRequest",
+        4 => "SessionTicketResponse",
+        5 => "ServerListRequest",
+        6 => "ServerListResponse",
+        7 => "EnterLobbyOrWorld",
+        8 => "CreateRoomRequest",
+        9 => "CreateRoomResponse",
+        10 => "JoinRoomRequest",
+        11 => "JoinRoomResponse",
+        12 => "LeaveRoomRequest",
+        13 => "LeaveRoomResponse",
+        19 => "SetVolumeCommand",
+        20 => "SetMicrophoneCommand",
+        21 => "SilenceUserCommand",
+        25 => "OpenWebsiteCommand",
+        26 => "WebUrlRequest",
+        27 => "WebUrlResponse",
+        1000 => "GameStart",
+        1001 => "EnteredIntoCinematic",
+        1002 => "EnteredServerList",
+        1003 => "EnteringLobby",
+        1004 => "EnteredLobby",
+        1005 => "EnteringCharacterCreation",
+        1006 => "LeftLobby",
+        1007 => "DeletedCharacter",
+        1008 => "CanceledCharacterCreation",
+        1009 => "EnteredCharacterCreation",
+        1010 => "CreatedCharacter",
+        1011 => "EnteredWorld",
+        1012 => "FinishedLoadingScreen",
+        1013 => "LeftWorld",
+        1014 => "MountedPegasus",
+        1015 => "DismountedPegasus",
+        1016 => "ChangedChannel",
+        1020 => "GameExit",
+        1021 => "GameCrash",
+        1022 => "AntiCheatStarting",
+        1023 => "AntiCheatStarted",
+        1024 => "AntiCheatError",
+        1025 => "OpenSupportWebsiteCommand",
+        _ => "Unknown",
+    }
+}
+
 pub struct Config {
     pub account: String,
     pub ticket: String,
@@ -160,7 +208,7 @@ unsafe fn reply(target: HWND, source: HWND, event: usize, payload: &[u8]) {
         source as WPARAM,
         &data as *const _ as LPARAM,
     );
-    println!("-> event {event}, {} bytes, result {result}", payload.len());
+    println!("-> event {event} ({}), {} bytes, result {result}", event_name(event), payload.len());
 }
 
 unsafe extern "system" fn window_procedure(
@@ -178,7 +226,11 @@ unsafe extern "system" fn window_procedure(
             } else {
                 std::slice::from_raw_parts(data.lpData as *const u8, data.cbData as usize).to_vec()
             };
-            println!("<- event {}, {} bytes", data.dwData, payload.len());
+            println!("<- event {} ({}), {} bytes", data.dwData, event_name(data.dwData), payload.len());
+            if data.dwData == EVENT_SERVER_LIST_REQUEST && payload.len() == 4 {
+                let id = i32::from_le_bytes([payload[0], payload[1], payload[2], payload[3]]);
+                println!("   dernier serveur joue demande = {id}");
+            }
             if !payload.is_empty() {
                 let hex: Vec<String> = payload
                     .iter()

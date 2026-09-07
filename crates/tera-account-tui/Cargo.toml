@@ -1,22 +1,17 @@
 [package]
-name = "tera-bot"
+name = "tera-account-tui"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
 
 [[bin]]
-name = "tera-bot"
+name = "tera-account-tui"
 path = "src/main.rs"
 
 [dependencies]
-tera-protocol = { workspace = true }
-tera-world = { workspace = true }
 anyhow = { workspace = true }
-clap = { workspace = true }
 serde = { workspace = true }
 serde_json = { workspace = true }
+ratatui = "0.29"
+crossterm = "0.28"
 ureq = { version = "3", features = ["json"] }
-sha2 = "0.10"
-base64 = "0.22"
-url = "2"
-getrandom = "0.3"

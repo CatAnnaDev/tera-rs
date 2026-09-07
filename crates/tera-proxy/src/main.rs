@@ -21,8 +21,8 @@ use tera_protocol::{value, Object, OpcodeMap, PacketBuffer, Registry};
 #[derive(Parser, Clone)]
 #[command(name = "tera-proxy", about = "MITM between the client and a server: decrypts, inspects, hooks")]
 struct Cli {
-    #[arg(long, default_value = "127.0.0.1:9250", help = "where the client connects")]
-    listen: String,
+    #[arg(long, default_values = ["0.0.0.0:9250", "0.0.0.0:9251"], help = "where the client connects (repeatable; 0.0.0.0 = toutes les IP locales)")]
+    listen: Vec<String>,
     #[arg(long, help = "the real server, host:port")]
     upstream: String,
     #[arg(long, default_value = "data/opcodes/protocol.376012.map")]
@@ -57,6 +57,28 @@ struct Cli {
     no_mods: bool,
     #[arg(long, help = "disable a mod by name (repeatable)")]
     disable_mod: Vec<String>,
+    #[arg(long, help = "sortie de l'upstream via un proxy SOCKS5 (ex: 127.0.0.1:1081) pour passer par la Free")]
+    socks5: Option<String>,
+    #[arg(long, help = "orchestre tout: recupere le ticket et lance le jeu (tera-launcher.exe) dans le bottle")]
+    launch: bool,
+    #[arg(long, default_value = "target/release/tera-bot", help = "binaire tera-bot utilise pour recuperer le ticket")]
+    tera_bot: PathBuf,
+    #[arg(long, help = "fichier d'auth passe a tera-bot --print-ticket (refresh_token + ticket)")]
+    auth_file: Option<PathBuf>,
+    #[arg(long, default_value = "target/x86_64-pc-windows-gnu/release/tera-launcher.exe", help = "tera-launcher.exe (cote windows) lance via wine")]
+    launcher_exe: PathBuf,
+    #[arg(long, default_value = "/Applications/CrossOver.app/Contents/SharedSupport/CrossOver/bin/wine", help = "binaire wine de CrossOver")]
+    wine: PathBuf,
+    #[arg(long, default_value = "/Users/anna/Library/Application Support/CrossOver/Bottles/tera", help = "WINEPREFIX du bottle CrossOver")]
+    bottle: PathBuf,
+    #[arg(long, default_value = "C:\\Games\\TERA Europe Classic\\Binaries\\TERA.exe", help = "chemin Windows de TERA.exe passe au launcher")]
+    game_win: String,
+    #[arg(long, default_value = "127.0.0.20:9250", help = "adresse loopback (partagee avec le bottle) que le jeu doit joindre = un listener du proxy")]
+    client_endpoint: String,
+    #[arg(long, default_value = "https://launcher.tera-europe.net/classicplus/serverlist.json", help = "serverlist officielle reprise puis re-encodee (facon enterance) avec l'adresse pointee vers le proxy")]
+    serverlist_url: String,
+    #[arg(long, default_value = "dxmt", help = "backend graphique force au lancement: dxmt (D3D11->Metal, recommande), dxvk, ou off")]
+    d3d: String,
 }
 
 const MAX_EVENTS: usize = 20_000;
@@ -503,29 +525,55 @@ fn drain(
 fn serve(
     client: TcpStream,
     upstream: &str,
+    socks5: Option<&str>,
     constants: Constants,
     capture: Arc<Capture>,
     mods: Arc<loader::LoadedMods>,
 ) -> Result<()> {
     let mut client = client;
+    let t0 = Instant::now();
+    let peer = client.peer_addr().map(|a| a.to_string()).unwrap_or_else(|_| "?".into());
+    let log = |m: &str| println!("[{:7.3}s] [client {peer}] {m}", t0.elapsed().as_secs_f64());
     client.set_nodelay(true)?;
     client.set_read_timeout(Some(Duration::from_secs(30)))?;
     client.set_write_timeout(Some(Duration::from_secs(30)))?;
-    let address = upstream
-        .to_socket_addrs()
-        .with_context(|| format!("resolving {upstream}"))?
-        .next()
-        .with_context(|| format!("no address for {upstream}"))?;
-    let mut server = TcpStream::connect_timeout(&address, Duration::from_secs(10))
-        .with_context(|| format!("connecting to {upstream}"))?;
+    log("connecte au proxy");
+    let mut server = match socks5 {
+        Some(proxy) => {
+            log(&format!("-> upstream {upstream} via SOCKS5 {proxy} (sortie Free)..."));
+            socks5_connect(proxy, upstream, Duration::from_secs(12))
+                .with_context(|| format!("SOCKS5 {proxy} -> {upstream}"))?
+        }
+        None => {
+            let address = upstream
+                .to_socket_addrs()
+                .with_context(|| format!("resolving {upstream}"))?
+                .next()
+                .with_context(|| format!("no address for {upstream}"))?;
+            log(&format!("-> upstream {upstream} ({address}) : ouverture TCP..."));
+            TcpStream::connect_timeout(&address, Duration::from_secs(10))
+                .with_context(|| format!("connecting to {upstream}"))?
+        }
+    };
     server.set_nodelay(true)?;
     server.set_read_timeout(Some(Duration::from_secs(30)))?;
     server.set_write_timeout(Some(Duration::from_secs(30)))?;
+    log("-> upstream : TCP etabli, attente du greeting serveur (le serveur parle en premier)...");
 
-    let greeting = read_exactly(&mut server, MAGIC.len())?;
+    let greeting = match read_exactly(&mut server, MAGIC.len()) {
+        Ok(g) => g,
+        Err(e) => {
+            log(&format!(
+                "<- upstream : AUCUN GREETING ({e}) -- TCP accepte mais le serveur ne repond pas (bloque / no-greeting cote ByteFilter ?)"
+            ));
+            return Err(e).context("greeting upstream");
+        }
+    };
     if greeting != MAGIC {
+        log(&format!("<- upstream : greeting INATTENDU {greeting:02x?} (attendu {MAGIC:02x?})"));
         bail!("upstream greeting {greeting:?}, expected {MAGIC:?}");
     }
+    log("<- upstream : greeting recu OK, echange des cles crypto...");
     let upward = ClientHandshake::new(random_key(), random_key()).with_constants(constants);
     server.write_all(upward.first())?;
     let server_first: [u8; KEY_LEN] = read_exactly(&mut server, KEY_LEN)?
@@ -536,6 +584,7 @@ fn serve(
         .try_into()
         .map_err(|_| anyhow::anyhow!("short server key"))?;
     let upstream_session = upward.finish(&server_first, &server_second);
+    log("<- upstream : handshake crypto complet (session chiffree serveur OK)");
 
     let mut downward = ServerHandshake::new(random_key(), random_key()).with_constants(constants);
     client.write_all(&downward.greeting())?;
@@ -555,7 +604,8 @@ fn serve(
         }
     };
     let client_leftover = downward.leftover();
-    println!("both handshakes complete, relaying");
+    log("-> client : handshake crypto complet");
+    log("=== RELAIS ACTIF : client <-> serveur en clair, dump JSONL en cours ===");
 
     let mut plugins = plugins::builtin();
     plugins.extend(mods.instantiate());
@@ -707,16 +757,17 @@ fn spawn_mod_watcher(cli: &Cli, mods: &Arc<Mutex<Arc<loader::LoadedMods>>>) {
 }
 
 fn accept_loop(
+    listen: &str,
     cli: &Cli,
     capture: Arc<Capture>,
     mods: Arc<Mutex<Arc<loader::LoadedMods>>>,
     constants: Constants,
 ) -> Result<()> {
-    let listener = TcpListener::bind(&cli.listen)
-        .with_context(|| format!("binding {}", cli.listen))?;
+    let listener = TcpListener::bind(listen)
+        .with_context(|| format!("binding {listen}"))?;
     println!(
         "listening on {}, relaying to {}, dump {}",
-        cli.listen,
+        listen,
         cli.upstream,
         cli.dump.display()
     );
@@ -727,14 +778,15 @@ fn accept_loop(
             .unwrap_or_else(|_| "?".into());
         println!("client connected from {peer}");
         let upstream = cli.upstream.clone();
+        let socks5 = cli.socks5.clone();
         let capture = Arc::clone(&capture);
         let mods = {
             let guard = mods.lock().unwrap_or_else(|poison| poison.into_inner());
             Arc::clone(&guard)
         };
         let handle = std::thread::spawn(move || {
-            match serve(client, &upstream, constants, capture, mods) {
-                Err(error) => println!("session ended: {error}"),
+            match serve(client, &upstream, socks5.as_deref(), constants, capture, mods) {
+                Err(error) => println!("session ended: {error:#}"),
                 Ok(()) => println!("session closed"),
             }
         });
@@ -743,6 +795,341 @@ fn accept_loop(
             break;
         }
     }
+    Ok(())
+}
+
+fn socks5_connect(proxy: &str, target: &str, timeout: Duration) -> Result<TcpStream> {
+    let paddr = proxy
+        .to_socket_addrs()
+        .with_context(|| format!("resolving socks5 {proxy}"))?
+        .next()
+        .with_context(|| format!("no address for {proxy}"))?;
+    let mut s = TcpStream::connect_timeout(&paddr, timeout)?;
+    s.set_read_timeout(Some(timeout)).ok();
+    s.set_write_timeout(Some(timeout)).ok();
+    s.write_all(&[0x05, 0x01, 0x00])?;
+    let mut hello = [0u8; 2];
+    s.read_exact(&mut hello)?;
+    if hello[0] != 0x05 || hello[1] != 0x00 {
+        bail!("SOCKS5 no-auth refuse: {:02x} {:02x}", hello[0], hello[1]);
+    }
+    let (host, port) = target.rsplit_once(':').with_context(|| format!("cible sans port: {target}"))?;
+    let port: u16 = port.parse().with_context(|| format!("port invalide: {port}"))?;
+    let mut req = vec![0x05, 0x01, 0x00];
+    match host.parse::<std::net::Ipv4Addr>() {
+        Ok(v4) => {
+            req.push(0x01);
+            req.extend_from_slice(&v4.octets());
+        }
+        Err(_) => {
+            let hb = host.as_bytes();
+            if hb.len() > 255 {
+                bail!("hostname trop long");
+            }
+            req.push(0x03);
+            req.push(hb.len() as u8);
+            req.extend_from_slice(hb);
+        }
+    }
+    req.extend_from_slice(&port.to_be_bytes());
+    s.write_all(&req)?;
+    let mut head = [0u8; 4];
+    s.read_exact(&mut head)?;
+    if head[1] != 0x00 {
+        bail!("SOCKS5 CONNECT echoue, code {:#04x}", head[1]);
+    }
+    let skip = match head[3] {
+        0x01 => 4,
+        0x04 => 16,
+        0x03 => {
+            let mut l = [0u8; 1];
+            s.read_exact(&mut l)?;
+            l[0] as usize
+        }
+        other => bail!("ATYP inconnu {other:#04x}"),
+    };
+    let mut rest = vec![0u8; skip + 2];
+    s.read_exact(&mut rest)?;
+    s.set_read_timeout(None).ok();
+    s.set_write_timeout(None).ok();
+    Ok(s)
+}
+
+#[derive(serde::Deserialize)]
+struct SlJson {
+    #[serde(default)]
+    sort_criterion: Option<u32>,
+    servers: Vec<SlSrv>,
+}
+
+#[derive(serde::Deserialize)]
+struct SlSrv {
+    id: u32,
+    name: String,
+    #[serde(default)]
+    category: String,
+    #[serde(default)]
+    title: String,
+    #[serde(default)]
+    queue: String,
+    #[serde(default)]
+    population: Option<String>,
+    #[serde(default)]
+    address: Option<String>,
+    #[serde(default)]
+    port: u32,
+    #[serde(default)]
+    available: u32,
+    #[serde(default)]
+    unavailable_message: String,
+}
+
+fn pb_varint(out: &mut Vec<u8>, mut v: u64) {
+    while v >= 0x80 {
+        out.push((v as u8) | 0x80);
+        v >>= 7;
+    }
+    out.push(v as u8);
+}
+
+fn pb_tag(out: &mut Vec<u8>, field: u32, wire: u8) {
+    pb_varint(out, ((field as u64) << 3) | wire as u64);
+}
+
+fn pb_fixed32(out: &mut Vec<u8>, field: u32, value: u32) {
+    pb_tag(out, field, 5);
+    out.extend_from_slice(&value.to_le_bytes());
+}
+
+fn pb_bytes(out: &mut Vec<u8>, field: u32, bytes: &[u8]) {
+    pb_tag(out, field, 2);
+    pb_varint(out, bytes.len() as u64);
+    out.extend_from_slice(bytes);
+}
+
+fn utf16le(text: &str) -> Vec<u8> {
+    text.encode_utf16().flat_map(|u| u.to_le_bytes()).collect()
+}
+
+const PROXY_ID_OFFSET: u32 = 900000;
+
+#[allow(clippy::too_many_arguments)]
+fn encode_server_info(
+    out: &mut Vec<u8>,
+    id: u32,
+    name: &str,
+    category: &str,
+    title: &str,
+    queue: &str,
+    population: &str,
+    addr: u32,
+    port: u16,
+    available: u32,
+    unavailable_message: &str,
+) {
+    let mut m = Vec::new();
+    pb_fixed32(&mut m, 1, id);
+    pb_bytes(&mut m, 2, &utf16le(&format!("{name}(0)")));
+    pb_bytes(&mut m, 3, &utf16le(category));
+    pb_bytes(&mut m, 4, &utf16le(&format!("{title}(0)")));
+    pb_bytes(&mut m, 5, &utf16le(queue));
+    pb_bytes(&mut m, 6, &utf16le(population));
+    pb_fixed32(&mut m, 7, addr);
+    pb_fixed32(&mut m, 8, port as u32);
+    pb_fixed32(&mut m, 9, available);
+    pb_bytes(&mut m, 10, &utf16le(unavailable_message));
+    pb_bytes(out, 1, &m);
+}
+
+fn build_enterance_serverlist(url: &str, host: std::net::Ipv4Addr, port: u16) -> Result<Vec<u8>> {
+    let mut resp = ureq::get(url)
+        .header("User-Agent", "tera-proxy")
+        .call()
+        .context("recuperation de la serverlist")?;
+    let doc: SlJson = resp.body_mut().read_json().context("parsing serverlist")?;
+    let proxy_addr = u32::from_be_bytes(host.octets());
+    let mut out = Vec::new();
+    for s in &doc.servers {
+        let population = s
+            .population
+            .clone()
+            .unwrap_or_else(|| "<b><font color=\"#FF0000\">Offline</font></b>".to_string());
+        let real_addr = s
+            .address
+            .as_deref()
+            .and_then(|a| a.parse::<std::net::Ipv4Addr>().ok())
+            .map(|ip| u32::from_be_bytes(ip.octets()))
+            .unwrap_or(0);
+
+        encode_server_info(
+            &mut out,
+            s.id + PROXY_ID_OFFSET,
+            &format!("{}(Meow)", s.name),
+            &s.category,
+            &format!("{}(Meow)", s.title),
+            &s.queue,
+            &population,
+            proxy_addr,
+            port,
+            s.available,
+            &s.unavailable_message,
+        );
+        encode_server_info(
+            &mut out,
+            s.id,
+            &s.name,
+            &s.category,
+            &s.title,
+            &s.queue,
+            &population,
+            real_addr,
+            s.port as u16,
+            s.available,
+            &s.unavailable_message,
+        );
+        println!(
+            "[launch] serverlist: {}(Meow) (id {}) -> {}:{} [proxy]  +  {} (id {}) -> {}:{} [direct]",
+            s.name,
+            s.id + PROXY_ID_OFFSET,
+            host,
+            port,
+            s.name,
+            s.id,
+            s.address.as_deref().unwrap_or("?"),
+            s.port
+        );
+    }
+    pb_fixed32(&mut out, 2, 0);
+    pb_fixed32(&mut out, 3, doc.sort_criterion.unwrap_or(3));
+    Ok(out)
+}
+
+fn win_to_mac(win: &str, bottle: &std::path::Path) -> PathBuf {
+    let rest = win
+        .trim_start_matches(|c: char| c.is_ascii_alphabetic())
+        .trim_start_matches(':')
+        .trim_start_matches('\\');
+    bottle.join("drive_c").join(rest.replace('\\', "/"))
+}
+
+fn setup_d3d(cli: &Cli, game_dir: &std::path::Path) -> Result<Option<String>> {
+    let backend = cli.d3d.to_lowercase();
+    if backend == "off" || backend == "none" {
+        return Ok(None);
+    }
+    let cx = cli
+        .wine
+        .parent()
+        .and_then(|p| p.parent())
+        .context("chemin wine inattendu (attendu .../bin/wine)")?;
+    let dlls: &[&str] = match backend.as_str() {
+        "dxmt" => &["d3d11.dll", "dxgi.dll", "d3d10core.dll", "winemetal.dll"],
+        "dxvk" => &["d3d11.dll", "d3d10core.dll", "dxgi.dll", "d3d9.dll"],
+        other => bail!("--d3d inconnu: {other} (dxmt | dxvk | off)"),
+    };
+    let src = cx.join("lib").join(&backend).join("x86_64-windows");
+    let mut names = Vec::new();
+    for dll in dlls {
+        let from = src.join(dll);
+        if from.exists() {
+            std::fs::copy(&from, game_dir.join(dll))
+                .with_context(|| format!("copie {dll} -> {}", game_dir.display()))?;
+            names.push(dll.trim_end_matches(".dll").to_string());
+        }
+    }
+    if names.is_empty() {
+        bail!("aucune DLL {backend} trouvee dans {}", src.display());
+    }
+    println!("[launch] backend {backend} installe: {} (copie dans {})", names.join(", "), game_dir.display());
+    Ok(Some(format!("{}=n,b", names.join(","))))
+}
+
+fn launch(cli: &Cli) -> Result<()> {
+    let auth_file = cli
+        .auth_file
+        .as_ref()
+        .context("--launch requiert --auth-file (pour recuperer le ticket via tera-bot)")?;
+    println!("[launch] recuperation du ticket via {} ...", cli.tera_bot.display());
+    let out = std::process::Command::new(&cli.tera_bot)
+        .arg("--auth-file")
+        .arg(auth_file)
+        .arg("--print-ticket")
+        .output()
+        .with_context(|| format!("execution de {}", cli.tera_bot.display()))?;
+    if !out.status.success() {
+        bail!("tera-bot --print-ticket a echoue: {}", String::from_utf8_lossy(&out.stderr));
+    }
+    let stdout = String::from_utf8_lossy(&out.stdout);
+    let line = stdout
+        .lines()
+        .find(|l| l.starts_with("AUTH\t"))
+        .context("ligne 'AUTH\\t<compte>\\t<ticket>' introuvable dans la sortie tera-bot")?;
+    let mut parts = line.split('\t');
+    parts.next();
+    let account = parts.next().context("compte manquant")?.to_string();
+    let ticket = parts.next().context("ticket manquant")?.to_string();
+    println!("[launch] ticket recupere pour le compte {account} ({} o)", ticket.len());
+
+    let (host, port) = cli
+        .client_endpoint
+        .rsplit_once(':')
+        .context("--client-endpoint invalide (attendu host:port)")?;
+    let host_ip: std::net::Ipv4Addr = host.parse().context("client-endpoint: IP invalide")?;
+    let port_num: u16 = port.parse().context("client-endpoint: port invalide")?;
+
+    let serverlist = build_enterance_serverlist(&cli.serverlist_url, host_ip, port_num)
+        .context("construction de la serverlist facon enterance")?;
+    let sl_path = cli.bottle.join("drive_c").join("tera_proxy_serverlist.bin");
+    std::fs::write(&sl_path, &serverlist)
+        .with_context(|| format!("ecriture serverlist {}", sl_path.display()))?;
+    let sl_win = "C:\\tera_proxy_serverlist.bin";
+    println!(
+        "[launch] serverlist facon enterance ecrite ({} o) -> {} ({})",
+        serverlist.len(),
+        sl_path.display(),
+        sl_win
+    );
+
+    println!(
+        "[launch] lancement de {} dans le bottle (jeu -> {}:{})",
+        cli.launcher_exe.display(),
+        host,
+        port
+    );
+    let bottle_name = cli
+        .bottle
+        .file_name()
+        .map(|n| n.to_string_lossy().into_owned())
+        .unwrap_or_else(|| "tera".into());
+
+    let game_mac = win_to_mac(&cli.game_win, &cli.bottle);
+    let game_dir = game_mac.parent().map(|p| p.to_path_buf()).unwrap_or_else(|| cli.bottle.clone());
+    let dll_overrides = setup_d3d(cli, &game_dir).unwrap_or_else(|e| {
+        eprintln!("[launch] backend graphique ignore: {e:#}");
+        None
+    });
+
+    let mut command = std::process::Command::new(&cli.wine);
+    command
+        .env("CX_BOTTLE", &bottle_name)
+        .env("WINEPREFIX", &cli.bottle);
+    if let Some(ov) = &dll_overrides {
+        command.env("WINEDLLOVERRIDES", ov);
+        println!("[launch] WINEDLLOVERRIDES={ov}");
+    }
+    command
+        .arg(&cli.launcher_exe)
+        .args(["--account", &account])
+        .args(["--ticket", &ticket])
+        .args(["--host", host])
+        .args(["--port", port])
+        .args(["--server-name", "Elinu"])
+        .args(["--game", &cli.game_win])
+        .args(["--language", "EUR"])
+        .args(["--serverlist", sl_win])
+        .spawn()
+        .with_context(|| format!("lancement de wine {}", cli.wine.display()))?;
+    println!("[launch] launcher lance ; il va servir le ticket a TERA.exe et lancer le jeu");
     Ok(())
 }
 
@@ -769,7 +1156,37 @@ fn main() -> Result<()> {
     }
 
     let capture = build_capture(&cli, codec, None)?;
-    accept_loop(&cli, capture, mods, constants)
+    let mut listens = cli.listen.clone();
+    if cli.launch {
+        let ep_port = cli.client_endpoint.rsplit_once(':').map(|(_, p)| p);
+        let covered = ep_port
+            .map(|p| listens.iter().any(|l| l.rsplit_once(':').map(|(_, lp)| lp) == Some(p)))
+            .unwrap_or(false);
+        if !covered {
+            listens.push(cli.client_endpoint.clone());
+        }
+    }
+    let mut handles = Vec::new();
+    for listen in listens {
+        let cli = cli.clone();
+        let capture = Arc::clone(&capture);
+        let mods = Arc::clone(&mods);
+        handles.push(std::thread::spawn(move || {
+            if let Err(error) = accept_loop(&listen, &cli, capture, mods, constants) {
+                eprintln!("listener {listen}: {error}");
+            }
+        }));
+    }
+    if cli.launch {
+        std::thread::sleep(Duration::from_millis(500));
+        if let Err(error) = launch(&cli) {
+            eprintln!("[launch] echec: {error:#}");
+        }
+    }
+    for handle in handles {
+        let _ = handle.join();
+    }
+    Ok(())
 }
 
 #[cfg(feature = "gui")]
@@ -792,7 +1209,8 @@ mod gui {
         {
             let cli = cli.clone();
             std::thread::spawn(move || {
-                if let Err(error) = accept_loop(&cli, capture, mods, constants) {
+                let listen = cli.listen.first().cloned().unwrap_or_else(|| "0.0.0.0:9250".into());
+                if let Err(error) = accept_loop(&listen, &cli, capture, mods, constants) {
                     eprintln!("proxy: {error}");
                 }
             });

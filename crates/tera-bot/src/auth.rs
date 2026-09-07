@@ -133,7 +133,13 @@ pub fn refresh(path: &Path, saved: &SavedAuth) -> Result<SavedAuth> {
     rotated.refresh_token = token.refresh_token.clone();
     save(path, &rotated)?;
 
-    Ok(from_parts(mint_ticket(&token.access_token)?, token.refresh_token))
+    let ticket = mint_ticket(&token.access_token)?;
+    Ok(SavedAuth {
+        user_name: saved.user_name.clone(),
+        user_no: saved.user_no,
+        auth_key: ticket.auth_key,
+        refresh_token: token.refresh_token,
+    })
 }
 
 fn wait_for_callback(listener: TcpListener, state: &str) -> Result<String> {
