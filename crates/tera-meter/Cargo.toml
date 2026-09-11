@@ -1,0 +1,20 @@
+[package]
+name = "tera-meter"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "tera-meter"
+path = "src/main.rs"
+
+[dependencies]
+tera-protocol = { workspace = true }
+anyhow = { workspace = true }
+clap = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+ureq = { version = "3", features = ["json"] }
+eframe = { version = "0.29", default-features = false, features = ["glow", "wgpu", "default_fonts"] }
+egui = "0.29"
+image = { version = "0.25", default-features = false, features = ["png"] }

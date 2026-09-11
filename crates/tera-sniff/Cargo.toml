@@ -1,17 +1,14 @@
 [package]
-name = "tera-relay"
+name = "tera-sniff"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
 
 [[bin]]
-name = "tera-relay"
+name = "tera-sniff"
 path = "src/main.rs"
 
 [dependencies]
 anyhow = { workspace = true }
 clap = { workspace = true }
-socket2 = { workspace = true }
-
-[target.'cfg(unix)'.dependencies]
-libc = "0.2"
+tera-protocol = { workspace = true }

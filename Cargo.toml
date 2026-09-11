@@ -21,9 +21,11 @@ members = [
     "crates/tera-relay",
     "crates/tera-stats-tui",
     "crates/tera-account-tui",
+    "crates/tera-sniff",
     "crates/mod-example",
     "crates/mod-antiafk",
     "crates/mod-radar",
+    "crates/tera-meter",
 ]
 
 [workspace.package]

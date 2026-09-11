@@ -256,7 +256,7 @@ fn probe(server: &str) -> Result<()> {
         Err(e) => { println!("[{:6.2}s] CONNEXION IMPOSSIBLE : {e}", t0.elapsed().as_secs_f64()); return Ok(()) }
     };
     stream.set_nodelay(true)?;
-    stream.set_read_timeout(Some(Duration::from_secs(30)))?;
+    stream.set_read_timeout(Some(Duration::from_secs(25)))?;
     println!("[{:6.2}s] TCP connecte", t0.elapsed().as_secs_f64());
     let mut greeting = [0u8; 4];
     match stream.read_exact(&mut greeting) {

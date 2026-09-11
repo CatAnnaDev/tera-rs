@@ -15,8 +15,19 @@ struct Cli {
     target: String,
     #[arg(long)]
     socks5: Option<String>,
+    #[arg(long, help = "utilisateur SOCKS5 (proxy avec auth, ex: residentiel)")]
+    socks5_user: Option<String>,
+    #[arg(long, help = "mot de passe SOCKS5")]
+    socks5_pass: Option<String>,
     #[arg(long, default_value_t = 15)]
     connect_timeout: u64,
+    #[arg(
+        long,
+        default_value_t = true,
+        action = clap::ArgAction::Set,
+        help = "pose TCP_NOOPT sur l'egress (macOS): SYN sans option TCP, donc sans timestamp (passe la couche 1)"
+    )]
+    noopt: bool,
 }
 
 static CONN_SEQ: AtomicU64 = AtomicU64::new(0);
@@ -26,9 +37,10 @@ fn main() -> Result<()> {
     let listener = TcpListener::bind(&cli.listen)
         .with_context(|| format!("bind {}", cli.listen))?;
     let via = cli.socks5.as_deref().unwrap_or("direct");
+    let noopt = if cli.noopt && cli.socks5.is_none() { "TCP_NOOPT on" } else { "TCP_NOOPT off" };
     println!(
-        "[relay] listen {} -> target {} (egress: {})",
-        cli.listen, cli.target, via
+        "[relay] listen {} -> target {} (egress: {}, {})",
+        cli.listen, cli.target, via, noopt
     );
 
     for stream in listener.incoming() {
@@ -58,9 +70,15 @@ fn handle(id: u64, client: TcpStream, cli: &Cli) -> Result<()> {
 
     let timeout = Duration::from_secs(cli.connect_timeout);
     let upstream = match &cli.socks5 {
-        Some(proxy) => socks5_connect(proxy, &cli.target, timeout)
-            .with_context(|| format!("SOCKS5 via {proxy}"))?,
-        None => connect_timeout(&cli.target, timeout)
+        Some(proxy) => socks5_connect(
+            proxy,
+            &cli.target,
+            timeout,
+            cli.socks5_user.as_deref(),
+            cli.socks5_pass.as_deref(),
+        )
+        .with_context(|| format!("SOCKS5 via {proxy}"))?,
+        None => connect_direct(&cli.target, timeout, cli.noopt)
             .with_context(|| format!("connexion directe {}", cli.target))?,
     };
     println!(
@@ -126,16 +144,90 @@ fn connect_timeout(addr: &str, timeout: Duration) -> Result<TcpStream> {
     Ok(stream)
 }
 
-fn socks5_connect(proxy: &str, target: &str, timeout: Duration) -> Result<TcpStream> {
+fn connect_direct(addr: &str, timeout: Duration, noopt: bool) -> Result<TcpStream> {
+    let sa = resolve(addr)?;
+    let socket = socket2::Socket::new(
+        socket2::Domain::for_address(sa),
+        socket2::Type::STREAM,
+        Some(socket2::Protocol::TCP),
+    )?;
+    if noopt {
+        set_tcp_noopt(&socket)?;
+    }
+    socket.connect_timeout(&socket2::SockAddr::from(sa), timeout)?;
+    Ok(TcpStream::from(socket))
+}
+
+#[cfg(target_os = "macos")]
+fn set_tcp_noopt(socket: &socket2::Socket) -> Result<()> {
+    use std::os::unix::io::AsRawFd;
+    const TCP_NOOPT: libc::c_int = 0x08;
+    let enable: libc::c_int = 1;
+    let ret = unsafe {
+        libc::setsockopt(
+            socket.as_raw_fd(),
+            libc::IPPROTO_TCP,
+            TCP_NOOPT,
+            &enable as *const libc::c_int as *const libc::c_void,
+            std::mem::size_of::<libc::c_int>() as libc::socklen_t,
+        )
+    };
+    if ret != 0 {
+        bail!("setsockopt TCP_NOOPT: {}", std::io::Error::last_os_error());
+    }
+    Ok(())
+}
+
+#[cfg(not(target_os = "macos"))]
+fn set_tcp_noopt(_socket: &socket2::Socket) -> Result<()> {
+    Ok(())
+}
+
+fn socks5_connect(
+    proxy: &str,
+    target: &str,
+    timeout: Duration,
+    user: Option<&str>,
+    pass: Option<&str>,
+) -> Result<TcpStream> {
     let mut s = connect_timeout(proxy, timeout)?;
     s.set_read_timeout(Some(timeout)).ok();
     s.set_write_timeout(Some(timeout)).ok();
 
-    s.write_all(&[0x05, 0x01, 0x00])?;
+    let auth = user.is_some() || pass.is_some();
+    if auth {
+        s.write_all(&[0x05, 0x02, 0x00, 0x02])?;
+    } else {
+        s.write_all(&[0x05, 0x01, 0x00])?;
+    }
     let mut hello = [0u8; 2];
     s.read_exact(&mut hello)?;
-    if hello[0] != 0x05 || hello[1] != 0x00 {
-        bail!("SOCKS5 refuse (no-auth): {:02x} {:02x}", hello[0], hello[1]);
+    if hello[0] != 0x05 {
+        bail!("reponse SOCKS5 invalide: {:02x} {:02x}", hello[0], hello[1]);
+    }
+    match hello[1] {
+        0x00 => {}
+        0x02 => {
+            let u = user.unwrap_or("").as_bytes();
+            let p = pass.unwrap_or("").as_bytes();
+            if u.len() > 255 || p.len() > 255 {
+                bail!("identifiants SOCKS5 trop longs");
+            }
+            let mut req = Vec::with_capacity(3 + u.len() + p.len());
+            req.push(0x01);
+            req.push(u.len() as u8);
+            req.extend_from_slice(u);
+            req.push(p.len() as u8);
+            req.extend_from_slice(p);
+            s.write_all(&req)?;
+            let mut reply = [0u8; 2];
+            s.read_exact(&mut reply)?;
+            if reply[1] != 0x00 {
+                bail!("auth SOCKS5 refusee (status {:#04x})", reply[1]);
+            }
+        }
+        0xff => bail!("SOCKS5: aucune methode d'auth acceptee (identifiants requis ?)"),
+        other => bail!("SOCKS5: methode d'auth inattendue {other:#04x}"),
     }
 
     let (host, port) = split_hostport(target)?;

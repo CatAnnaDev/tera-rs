@@ -21,3 +21,11 @@ mods/*.dylib
 mods/*.so
 mods/*.dll
 tera-arborea-auth.json
+tera-bot-pholecia.json
+*-auth.json
+*-auth.json.tmp
+text.txt
+files.json
+loot-stats.json
+*.log
+*.dxvk-cache

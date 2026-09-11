@@ -1337,12 +1337,14 @@ dependencies = [
  "objc2-foundation 0.2.2",
  "parking_lot",
  "percent-encoding",
+ "pollster 0.3.0",
  "raw-window-handle",
  "static_assertions",
  "wasm-bindgen",
  "wasm-bindgen-futures",
  "web-sys",
  "web-time",
+ "wgpu 22.1.0",
  "winapi",
  "windows-sys 0.52.0",
  "winit",
@@ -3481,6 +3483,12 @@ dependencies = [
 
 [[package]]
 name = "pollster"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "22686f4785f02a4fcc856d3b3bb19bf6c8160d103f7a99cc258bddd0251dc7f2"
+
+[[package]]
+name = "pollster"
 version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2f3a9f18d041e6d0e102a0a46750538147e5e8992d3b4873aaafee2520b00ce3"
@@ -3790,7 +3798,7 @@ dependencies = [
  "objc2-core-foundation",
  "objc2-foundation 0.3.2",
  "percent-encoding",
- "pollster",
+ "pollster 0.4.0",
  "raw-window-handle",
  "wasm-bindgen",
  "wasm-bindgen-futures",
@@ -4466,6 +4474,21 @@ dependencies = [
 ]
 
 [[package]]
+name = "tera-meter"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "clap",
+ "eframe 0.29.1",
+ "egui 0.29.1",
+ "image",
+ "serde",
+ "serde_json",
+ "tera-protocol",
+ "ureq",
+]
+
+[[package]]
 name = "tera-mod"
 version = "0.1.0"
 dependencies = [
@@ -4528,6 +4551,8 @@ version = "0.1.0"
 dependencies = [
  "anyhow",
  "clap",
+ "libc",
+ "socket2",
 ]
 
 [[package]]
@@ -4550,6 +4575,15 @@ dependencies = [
  "rusqlite",
  "serde",
  "serde_json",
+ "tera-protocol",
+]
+
+[[package]]
+name = "tera-sniff"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "clap",
  "tera-protocol",
 ]
 
@@ -5295,6 +5329,7 @@ dependencies = [
  "document-features",
  "js-sys",
  "log",
+ "naga 22.1.0",
  "parking_lot",
  "profiling",
  "raw-window-handle",
@@ -5412,6 +5447,7 @@ dependencies = [
  "arrayvec",
  "ash",
  "bitflags 2.13.1",
+ "block",
  "cfg_aliases 0.1.1",
  "core-graphics-types",
  "glow 0.13.1",

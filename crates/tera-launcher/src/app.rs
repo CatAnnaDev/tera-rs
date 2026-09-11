@@ -1,7 +1,12 @@
 use crate::serverlist::{Encoding, Server, ServerList, TextEncoding};
 use std::ffi::OsStr;
+use std::fs::{File, OpenOptions};
+use std::io::Write as _;
 use std::net::Ipv4Addr;
 use std::os::windows::ffi::OsStrExt;
+use std::sync::Mutex;
+use windows_sys::Win32::Foundation::SYSTEMTIME;
+use windows_sys::Win32::System::SystemInformation::GetLocalTime;
 use windows_sys::Win32::Foundation::{HWND, LPARAM, LRESULT, WPARAM};
 use windows_sys::Win32::System::DataExchange::COPYDATASTRUCT;
 use windows_sys::Win32::System::LibraryLoader::GetModuleHandleW;
@@ -16,6 +21,41 @@ use windows_sys::Win32::UI::WindowsAndMessaging::{
 
 const CLASS_NAME: &str = "LAUNCHER_CLASS";
 const WINDOW_NAME: &str = "LAUNCHER_WINDOW";
+const EVENT_LOG_PATH: &str = "launcher-events.log";
+
+static EVENT_LOG: Mutex<Option<File>> = Mutex::new(None);
+
+fn timestamp() -> String {
+    let mut now: SYSTEMTIME = unsafe { std::mem::zeroed() };
+    unsafe { GetLocalTime(&mut now) };
+    format!(
+        "{:04}-{:02}-{:02} {:02}:{:02}:{:02}.{:03}",
+        now.wYear, now.wMonth, now.wDay, now.wHour, now.wMinute, now.wSecond, now.wMilliseconds
+    )
+}
+
+fn logln(line: &str) {
+    let stamped = format!("[{}] {line}", timestamp());
+    println!("{stamped}");
+    if let Ok(mut guard) = EVENT_LOG.lock() {
+        if let Some(file) = guard.as_mut() {
+            let _ = writeln!(file, "{stamped}");
+            let _ = file.flush();
+        }
+    }
+}
+
+fn open_event_log() {
+    match OpenOptions::new().create(true).append(true).open(EVENT_LOG_PATH) {
+        Ok(file) => {
+            if let Ok(mut guard) = EVENT_LOG.lock() {
+                *guard = Some(file);
+            }
+            logln("=== nouvelle session launcher ===");
+        }
+        Err(error) => println!("cannot open {EVENT_LOG_PATH}: {error}"),
+    }
+}
 
 const EVENT_ACCOUNT_NAME_REQUEST: usize = 1;
 const EVENT_ACCOUNT_NAME_REPLY: usize = 2;
@@ -32,43 +72,19 @@ fn event_name(id: usize) -> &'static str {
         4 => "SessionTicketResponse",
         5 => "ServerListRequest",
         6 => "ServerListResponse",
-        7 => "EnterLobbyOrWorld",
-        8 => "CreateRoomRequest",
-        9 => "CreateRoomResponse",
-        10 => "JoinRoomRequest",
-        11 => "JoinRoomResponse",
-        12 => "LeaveRoomRequest",
-        13 => "LeaveRoomResponse",
-        19 => "SetVolumeCommand",
-        20 => "SetMicrophoneCommand",
-        21 => "SilenceUserCommand",
-        25 => "OpenWebsiteCommand",
-        26 => "WebUrlRequest",
-        27 => "WebUrlResponse",
         1000 => "GameStart",
-        1001 => "EnteredIntoCinematic",
+        1001 => "EnteredCinematic",
         1002 => "EnteredServerList",
         1003 => "EnteringLobby",
-        1004 => "EnteredLobby",
-        1005 => "EnteringCharacterCreation",
-        1006 => "LeftLobby",
-        1007 => "DeletedCharacter",
-        1008 => "CanceledCharacterCreation",
-        1009 => "EnteredCharacterCreation",
-        1010 => "CreatedCharacter",
-        1011 => "EnteredWorld",
-        1012 => "FinishedLoadingScreen",
-        1013 => "LeftWorld",
-        1014 => "MountedPegasus",
-        1015 => "DismountedPegasus",
-        1016 => "ChangedChannel",
-        1020 => "GameExit",
-        1021 => "GameCrash",
-        1022 => "AntiCheatStarting",
-        1023 => "AntiCheatStarted",
-        1024 => "AntiCheatError",
-        1025 => "OpenSupportWebsiteCommand",
         _ => "Unknown",
+    }
+}
+
+fn describe_game_state(id: usize, payload: &[u8]) {
+    let _ = id;
+    if payload.len() == 4 {
+        let value = i32::from_le_bytes([payload[0], payload[1], payload[2], payload[3]]);
+        logln(&format!("   argument = {value} (0x{value:08x})"));
     }
 }
 
@@ -208,7 +224,11 @@ unsafe fn reply(target: HWND, source: HWND, event: usize, payload: &[u8]) {
         source as WPARAM,
         &data as *const _ as LPARAM,
     );
-    println!("-> event {event} ({}), {} bytes, result {result}", event_name(event), payload.len());
+    logln(&format!(
+        "-> event {event} (0x{event:04x}, {}), {} bytes, result {result}",
+        event_name(event),
+        payload.len()
+    ));
 }
 
 unsafe extern "system" fn window_procedure(
@@ -226,10 +246,19 @@ unsafe extern "system" fn window_procedure(
             } else {
                 std::slice::from_raw_parts(data.lpData as *const u8, data.cbData as usize).to_vec()
             };
-            println!("<- event {} ({}), {} bytes", data.dwData, event_name(data.dwData), payload.len());
+            logln(&format!(
+                "<- event {} (0x{:04x}, {}), {} bytes",
+                data.dwData,
+                data.dwData,
+                event_name(data.dwData),
+                payload.len()
+            ));
             if data.dwData == EVENT_SERVER_LIST_REQUEST && payload.len() == 4 {
                 let id = i32::from_le_bytes([payload[0], payload[1], payload[2], payload[3]]);
-                println!("   dernier serveur joue demande = {id}");
+                logln(&format!("   dernier serveur joue demande = {id}"));
+            }
+            if data.dwData >= 1000 {
+                describe_game_state(data.dwData, &payload);
             }
             if !payload.is_empty() {
                 let hex: Vec<String> = payload
@@ -237,7 +266,7 @@ unsafe extern "system" fn window_procedure(
                     .take(64)
                     .map(|byte| format!("{byte:02x}"))
                     .collect();
-                println!("   hex  {}", hex.join(" "));
+                logln(&format!("   hex  {}", hex.join(" ")));
                 let text: String = payload
                     .iter()
                     .take(160)
@@ -249,7 +278,7 @@ unsafe extern "system" fn window_procedure(
                         }
                     })
                     .collect();
-                println!("   text {text}");
+                logln(&format!("   text {text}"));
                 if payload.len() >= 2 && payload.len() % 2 == 0 {
                     let units: Vec<u16> = payload
                         .as_chunks::<2>()
@@ -260,7 +289,7 @@ unsafe extern "system" fn window_procedure(
                         .collect();
                     let wide = String::from_utf16_lossy(&units);
                     if wide.chars().filter(|c| c.is_ascii_graphic()).count() > units.len() / 2 {
-                        println!("   utf16 {wide}");
+                        logln(&format!("   utf16 {wide}"));
                     }
                 }
             }
@@ -355,10 +384,11 @@ unsafe fn spawn_game(config: &Config) -> Result<(), String> {
 
 pub fn run() -> Result<(), String> {
     let config = Config::from_arguments();
-    println!(
+    open_event_log();
+    logln(&format!(
         "serving {}:{} as \"{}\" for account {}",
         config.host, config.port, config.server_name, config.account
-    );
+    ));
     unsafe {
         let _ = CONFIG.set(config);
         let instance = GetModuleHandleW(std::ptr::null());
