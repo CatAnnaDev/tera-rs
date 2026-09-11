@@ -1,6 +1,7 @@
 mod config;
 mod data;
 mod dump;
+mod live;
 mod model;
 mod net;
 mod notify;
@@ -35,6 +36,17 @@ struct Cli {
     demo: bool,
     #[arg(
         long,
+        help = "capture le reseau nativement (comme ShinraMeter, sans mod ni Noctenium) ; lancer avec sudo pour l'acces BPF"
+    )]
+    live: bool,
+    #[arg(
+        long,
+        value_name = "IFACE",
+        help = "interface(s) a capturer en --live (repetable) ; defaut = interface principale + lo0"
+    )]
+    iface: Vec<String>,
+    #[arg(
+        long,
         help = "lit un flux pcap sur stdin (sudo tcpdump -i lo0 -U -s0 -w - 'tcp and host 127.0.0.20' | tera-meter --sniff) au lieu de l'external-interface"
     )]
     sniff: bool,
@@ -64,7 +76,10 @@ fn seed_demo(meter: &mut Meter) {
     }
     meter.apply(Event::Npc { game_id: 100, template_id: 3013, hunting_zone: 152, max_hp: 5_000_000 }, now);
     meter.apply(Event::BossGage { id: 100, cur_hp: 3_640_000, max_hp: 5_000_000 }, now);
-    meter.apply(Event::NpcStatus { game_id: 100, enraged: true, remaining_enrage_ms: 36_000 }, now);
+    meter.apply(
+        Event::NpcStatus { game_id: 100, enraged: true, remaining_enrage_ms: 36_000, target: 2 },
+        now,
+    );
     let shares = [(1u64, 42u64, 31u64), (2, 28, 18), (3, 18, 61), (4, 8, 22), (5, 4, 15)];
     for (gid, share, crit) in shares {
         let total_hits = 40u64;
@@ -213,12 +228,17 @@ struct App {
     show_buffs: bool,
     show_party: bool,
     show_settings: bool,
+    show_graph: bool,
     opacity: u8,
     view: u8,
     last_rows: usize,
     fitted_once: bool,
     request_fit: bool,
     debuff_text: String,
+    dps_history: std::collections::VecDeque<f32>,
+    last_sample: Instant,
+    last_total: i64,
+    graph_key: (usize, Option<u64>, u8),
     config: config::Config,
     notifier: notify::Notifier,
 }
@@ -301,13 +321,108 @@ impl App {
         }
     }
 
+    fn sample_dps(&mut self, now: Instant) {
+        let (metric, key) = {
+            let enc = self.meter.current();
+            let m = match self.view {
+                1 => enc.total_heal,
+                2 => enc.total_taken,
+                _ => enc.total_damage,
+            };
+            (m, (self.meter.selected, enc.boss, self.view))
+        };
+        if key != self.graph_key {
+            self.graph_key = key;
+            self.dps_history.clear();
+            self.last_total = metric;
+            self.last_sample = now;
+            return;
+        }
+        let dt = now.saturating_duration_since(self.last_sample).as_secs_f32();
+        if dt >= 1.0 {
+            let per_s = (metric - self.last_total).max(0) as f32 / dt;
+            self.dps_history.push_back(per_s);
+            while self.dps_history.len() > 90 {
+                self.dps_history.pop_front();
+            }
+            self.last_total = metric;
+            self.last_sample = now;
+        }
+    }
+
+    fn graph_window(&mut self, ctx: &egui::Context) {
+        if !self.show_graph {
+            return;
+        }
+        let mut open = true;
+        egui::Window::new("Graphe").open(&mut open).default_width(360.0).show(ctx, |ui| {
+            let label = match self.view {
+                1 => "HPS",
+                2 => "Subis/s",
+                _ => "DPS",
+            };
+            let color = match self.view {
+                1 => HEAL_COLOR,
+                2 => DAMAGE_COLOR,
+                _ => SELF_COLOR,
+            };
+            if self.dps_history.len() < 2 {
+                ui.label("En attente de combat…");
+                return;
+            }
+            let peak = self.dps_history.iter().copied().fold(0.0_f32, f32::max);
+            let scale = peak.max(1.0);
+            let cur = *self.dps_history.back().unwrap();
+            ui.horizontal(|ui| {
+                ui.label(
+                    egui::RichText::new(format!("{label} {}/s", format_value(cur as f64)))
+                        .color(color)
+                        .strong(),
+                );
+                ui.label(
+                    egui::RichText::new(format!("pic {}/s", format_value(peak as f64)))
+                        .color(egui::Color32::from_gray(0xaa)),
+                );
+            });
+            let (rect, _) = ui.allocate_exact_size(
+                egui::vec2(ui.available_width().max(220.0), 120.0),
+                egui::Sense::hover(),
+            );
+            let painter = ui.painter();
+            painter.rect_filled(rect, 4.0, egui::Color32::from_black_alpha(0x50));
+            let n = self.dps_history.len();
+            let dx = rect.width() / (n - 1) as f32;
+            let line: Vec<egui::Pos2> = self
+                .dps_history
+                .iter()
+                .enumerate()
+                .map(|(i, v)| {
+                    egui::pos2(rect.left() + dx * i as f32, rect.bottom() - (v / scale) * rect.height())
+                })
+                .collect();
+            let mut mesh = egui::Mesh::default();
+            for w in line.windows(2) {
+                let base = mesh.vertices.len() as u32;
+                mesh.colored_vertex(w[0], color.gamma_multiply(0.28));
+                mesh.colored_vertex(w[1], color.gamma_multiply(0.28));
+                mesh.colored_vertex(egui::pos2(w[1].x, rect.bottom()), egui::Color32::TRANSPARENT);
+                mesh.colored_vertex(egui::pos2(w[0].x, rect.bottom()), egui::Color32::TRANSPARENT);
+                mesh.add_triangle(base, base + 1, base + 2);
+                mesh.add_triangle(base, base + 2, base + 3);
+            }
+            painter.add(egui::Shape::mesh(mesh));
+            painter.add(egui::Shape::line(line, egui::Stroke::new(1.6_f32, color)));
+        });
+        self.show_graph = open;
+    }
+
     fn boss_panel(&self, ui: &mut egui::Ui) {
         let bosses = self.meter.active_bosses();
         if bosses.is_empty() {
             return;
         }
         let width = ui.available_width();
-        for (_gid, name, cur, max, enraged, enrage_ms) in bosses {
+        for (gid, name, cur, max, enraged, enrage_ms) in bosses {
             let pct = if max > 0 { cur as f64 / max as f64 } else { 0.0 };
             let (rect, _) = ui.allocate_exact_size(egui::vec2(width, 22.0), egui::Sense::hover());
             let painter = ui.painter();
@@ -354,6 +469,17 @@ impl App {
                 egui::FontId::proportional(10.0),
                 egui::Color32::WHITE,
             );
+            if let Some(holder) = self.meter.aggro_target(gid).filter(|t| self.meter.is_player(*t)) {
+                let (arect, _) =
+                    ui.allocate_exact_size(egui::vec2(width, 14.0), egui::Sense::hover());
+                ui.painter().text(
+                    egui::pos2(arect.left() + 6.0, arect.center().y),
+                    egui::Align2::LEFT_CENTER,
+                    format!("aggro ▶ {}", self.meter.player_name(holder)),
+                    egui::FontId::proportional(11.0),
+                    egui::Color32::from_rgb(0xff, 0x8a, 0x3a),
+                );
+            }
             ui.add_space(2.0);
         }
         ui.add_space(2.0);
@@ -392,6 +518,7 @@ impl App {
         let interval = enc.interval_secs();
         let width = ui.available_width();
         let party_only = self.meter.party_only;
+        let aggro = self.meter.current_boss().and_then(|b| self.meter.aggro_target(b));
         let rows: Vec<(u64, i64, f64, String, bool)> = ranked
             .iter()
             .filter(|e| self.meter.is_player(e.source))
@@ -440,6 +567,13 @@ impl App {
             );
             if resp.hovered() {
                 painter.rect_filled(rect, 0.0, egui::Color32::from_white_alpha(14));
+            }
+            if Some(source) == aggro {
+                painter.rect_filled(
+                    egui::Rect::from_min_size(rect.left_top(), egui::vec2(3.0, rect.height())),
+                    0.0,
+                    egui::Color32::from_rgb(0xff, 0x3a, 0x3a),
+                );
             }
 
             let y = rect.center().y;
@@ -712,6 +846,26 @@ impl App {
                 }
             });
             ui.separator();
+            if ui
+                .checkbox(&mut self.config.auto_reset, "Auto-reset au pull")
+                .on_hover_text("Repart sur un combat neuf quand tu frappes après une pause")
+                .changed()
+            {
+                self.meter.auto_reset = self.config.auto_reset;
+            }
+            if self.config.auto_reset {
+                ui.horizontal(|ui| {
+                    ui.label("Inactivité avant reset (s)");
+                    if ui
+                        .add(egui::Slider::new(&mut self.config.reset_idle_secs, 3.0..=30.0))
+                        .changed()
+                    {
+                        self.meter.reset_idle =
+                            Duration::from_secs_f64(self.config.reset_idle_secs.max(1.0));
+                    }
+                });
+            }
+            ui.separator();
             ui.checkbox(&mut self.config.auto_height, "Hauteur auto (colle au contenu)");
             ui.horizontal(|ui| {
                 ui.label("Opacité");
@@ -776,6 +930,7 @@ impl eframe::App for App {
 
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
         self.drain();
+        self.sample_dps(Instant::now());
         ctx.request_repaint_after(Duration::from_millis(150));
 
         if ctx.input(|i| i.key_pressed(egui::Key::F9)) {
@@ -827,6 +982,7 @@ impl eframe::App for App {
                     }
                     ui.toggle_value(&mut self.show_settings, "⚙");
                     ui.toggle_value(&mut self.show_party, "Groupe");
+                    ui.toggle_value(&mut self.show_graph, "Graphe");
                     ui.toggle_value(&mut self.show_buffs, "Buffs");
                     ui.checkbox(&mut self.meter.party_only, "Party");
                     if ui.button("⟳").on_hover_text("Reset tout").clicked() {
@@ -871,6 +1027,7 @@ impl eframe::App for App {
 
         self.resize_grip(ctx);
         self.detail_window(ctx);
+        self.graph_window(ctx);
         self.buffs_window(ctx);
         self.party_window(ctx);
         self.settings_window(ctx);
@@ -920,7 +1077,21 @@ fn main() -> eframe::Result<()> {
         .expect("chargement skills.json / npcs.json");
 
     let (tx, rx) = channel();
-    if cli.sniff {
+    if cli.live {
+        let lcfg = live::Config {
+            opcodes: cli.opcodes,
+            definitions: cli.definitions,
+            patch: cli.patch,
+            dump,
+            ifaces: cli.iface,
+        };
+        std::thread::spawn(move || {
+            if let Err(e) = live::run(lcfg, tx.clone()) {
+                eprintln!("[meter] live: {e:#}");
+            }
+            let _ = tx.send(Event::Disconnected);
+        });
+    } else if cli.sniff {
         let scfg = sniff::Config {
             opcodes: cli.opcodes,
             definitions: cli.definitions,
@@ -976,6 +1147,8 @@ fn main() -> eframe::Result<()> {
             let icons = load_icons(&cc.egui_ctx);
             let mut meter = Meter::new(data, Instant::now());
             meter.party_only = cfg.party_only;
+            meter.auto_reset = cfg.auto_reset;
+            meter.reset_idle = Duration::from_secs_f64(cfg.reset_idle_secs.max(1.0));
             if demo {
                 seed_demo(&mut meter);
             }
@@ -997,6 +1170,11 @@ fn main() -> eframe::Result<()> {
                 show_buffs: false,
                 show_party: false,
                 show_settings: false,
+                show_graph: false,
+                dps_history: std::collections::VecDeque::with_capacity(90),
+                last_sample: Instant::now(),
+                last_total: 0,
+                graph_key: (usize::MAX, None, 0),
                 config: cfg,
                 notifier: notify::Notifier::new(),
             }))

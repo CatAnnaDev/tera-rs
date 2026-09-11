@@ -18,3 +18,4 @@ ureq = { version = "3", features = ["json"] }
 eframe = { version = "0.29", default-features = false, features = ["glow", "wgpu", "default_fonts"] }
 egui = "0.29"
 image = { version = "0.25", default-features = false, features = ["png"] }
+pcap = "2"

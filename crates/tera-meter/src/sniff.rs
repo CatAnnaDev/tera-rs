@@ -1,11 +1,13 @@
 use std::collections::HashMap;
 use std::io::{BufReader, Read};
-use std::path::PathBuf;
+use std::path::{Path, PathBuf};
 use std::sync::mpsc::Sender;
+use std::sync::Arc;
 
 use anyhow::{bail, Context, Result};
 use tera_protocol::{value, OpcodeMap, PacketBuffer, Registry, Session, MODERN};
 
+use crate::dump::Dumper;
 use crate::net::{object_to_event, Event};
 
 const GREETING_LEN: usize = 4;
@@ -20,6 +22,16 @@ pub struct Config {
     pub dump: Option<String>,
 }
 
+pub type Tables = (Arc<OpcodeMap>, Arc<Registry>);
+
+pub fn load_tables(opcodes: &Path, definitions: &Path, patch: u32) -> Result<Tables> {
+    let map = OpcodeMap::read(opcodes)
+        .with_context(|| format!("lecture des opcodes {}", opcodes.display()))?;
+    let registry =
+        Registry::load(&[definitions.to_path_buf()], Some(patch)).context("definitions")?;
+    Ok((Arc::new(map), Arc::new(registry)))
+}
+
 fn be16(b: &[u8], at: usize) -> u16 {
     u16::from_be_bytes([b[at], b[at + 1]])
 }
@@ -27,7 +39,7 @@ fn be32(b: &[u8], at: usize) -> u32 {
     u32::from_be_bytes([b[at], b[at + 1], b[at + 2], b[at + 3]])
 }
 
-fn ip_payload(linktype: u32, frame: &[u8]) -> Option<&[u8]> {
+pub fn ip_payload(linktype: u32, frame: &[u8]) -> Option<&[u8]> {
     let ip = match linktype {
         1 => {
             if frame.len() < 14 {
@@ -125,6 +137,8 @@ impl Direction {
     }
 }
 
+type ConnKey = (([u8; 4], u16), ([u8; 4], u16));
+
 struct Conn {
     server_key: Option<(([u8; 4], u16), ([u8; 4], u16))>,
     server: Direction,
@@ -151,7 +165,7 @@ impl Conn {
     }
 }
 
-fn conn_key(a: &([u8; 4], u16), b: &([u8; 4], u16)) -> (([u8; 4], u16), ([u8; 4], u16)) {
+fn conn_key(a: &([u8; 4], u16), b: &([u8; 4], u16)) -> ConnKey {
     if a <= b {
         (*a, *b)
     } else {
@@ -159,52 +173,45 @@ fn conn_key(a: &([u8; 4], u16), b: &([u8; 4], u16)) -> (([u8; 4], u16), ([u8; 4]
     }
 }
 
-pub fn run(cfg: Config, tx: Sender<Event>) -> Result<()> {
-    let opcodes = OpcodeMap::read(&cfg.opcodes)
-        .with_context(|| format!("lecture des opcodes {}", cfg.opcodes.display()))?;
-    let registry =
-        Registry::load(&[cfg.definitions.clone()], Some(cfg.patch)).context("definitions")?;
-    let mut dumper = cfg.dump.as_deref().map(crate::dump::Dumper::new);
+pub struct Tracker {
+    opcodes: Arc<OpcodeMap>,
+    registry: Arc<Registry>,
+    dumper: Option<Dumper>,
+    conns: HashMap<ConnKey, Conn>,
+    tx: Sender<Event>,
+    label: &'static str,
+}
 
-    let mut input = BufReader::new(std::io::stdin());
-    let mut global = [0u8; 24];
-    input.read_exact(&mut global).context("en-tete pcap (stdin vide ? lance via tcpdump -w -)")?;
-    let big_endian = match &global[0..4] {
-        [0xa1, 0xb2, 0xc3, 0xd4] => true,
-        [0xd4, 0xc3, 0xb2, 0xa1] => false,
-        _ => bail!("flux non-pcap sur stdin"),
-    };
-    let read_u32 = |b: &[u8], at: usize| {
-        let v = [b[at], b[at + 1], b[at + 2], b[at + 3]];
-        if big_endian { u32::from_be_bytes(v) } else { u32::from_le_bytes(v) }
-    };
-    let linktype = read_u32(&global, 20);
+impl Tracker {
+    pub fn new(tables: Tables, dumper: Option<Dumper>, tx: Sender<Event>) -> Self {
+        Self::labelled(tables, dumper, tx, "sniff")
+    }
 
-    let mut conns: HashMap<(([u8; 4], u16), ([u8; 4], u16)), Conn> = HashMap::new();
-    let mut header = [0u8; 16];
-
-    loop {
-        if input.read_exact(&mut header).is_err() {
-            return Ok(());
+    pub fn labelled(
+        tables: Tables,
+        dumper: Option<Dumper>,
+        tx: Sender<Event>,
+        label: &'static str,
+    ) -> Self {
+        Self {
+            opcodes: tables.0,
+            registry: tables.1,
+            dumper,
+            conns: HashMap::new(),
+            tx,
+            label,
         }
-        let incl_len = read_u32(&header, 8) as usize;
-        if incl_len == 0 || incl_len > 262_144 {
-            bail!("longueur de trame pcap invalide: {incl_len}");
-        }
-        let mut frame = vec![0u8; incl_len];
-        if input.read_exact(&mut frame).is_err() {
-            return Ok(());
-        }
+    }
 
-        let Some(ip) = ip_payload(linktype, &frame) else { continue };
-        let Some(ep) = parse_tcp(ip) else { continue };
+    pub fn feed(&mut self, linktype: u32, frame: &[u8]) -> bool {
+        let Some(ip) = ip_payload(linktype, frame) else { return true };
+        let Some(ep) = parse_tcp(ip) else { return true };
         let key = conn_key(&ep.src, &ep.dst);
-        let conn = conns.entry(key).or_insert_with(Conn::new);
+        let conn = self.conns.entry(key).or_insert_with(Conn::new);
         if conn.dead {
-            continue;
+            return true;
         }
 
-        // First data direction is the server (TERA is server-first).
         if conn.server_key.is_none() && !ep.payload.is_empty() {
             conn.server_key = Some((ep.src, ep.dst));
         }
@@ -231,42 +238,86 @@ pub fn run(cfg: Config, tx: Sender<Event>) -> Result<()> {
                     .swapped();
             conn.session = Some(session);
             conn.decrypted = SERVER_HANDSHAKE;
-            eprintln!("[sniff] handshake TERA detecte, dechiffrement demarre");
+            eprintln!("[{}] handshake TERA detecte, dechiffrement demarre", self.label);
         }
 
-        if let Some(session) = conn.session.as_mut() {
-            if conn.server.stream.len() > conn.decrypted {
-                let mut chunk = conn.server.stream[conn.decrypted..].to_vec();
-                conn.decrypted = conn.server.stream.len();
-                session.decrypt(&mut chunk);
-                conn.buffer.push(&chunk);
-                let mut valid = false;
-                while let Some(packet) = conn.buffer.take_packet() {
-                    if let Some(d) = dumper.as_mut() {
-                        d.record(packet.opcode, opcodes.name(packet.opcode), &packet.body, &registry);
-                    }
-                    if let Some(name) = opcodes.name(packet.opcode) {
-                        if let Some(def) = registry.get(name) {
-                            if let Ok(obj) = value::read(def, &packet.encode()) {
-                                valid = true;
-                                if !conn.reported {
-                                    conn.reported = true;
-                                    eprintln!("[sniff] flux TERA en clair OK — le meter recoit les paquets");
-                                }
-                                if let Some(event) = object_to_event(name, &obj) {
-                                    if tx.send(event).is_err() {
-                                        return Ok(());
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                // A connection that never yields a valid TERA packet is not the game stream.
-                if !valid && conn.decrypted > SERVER_HANDSHAKE + 4096 {
-                    conn.dead = true;
+        let Some(session) = conn.session.as_mut() else { return true };
+        if conn.server.stream.len() <= conn.decrypted {
+            return true;
+        }
+        let mut chunk = conn.server.stream[conn.decrypted..].to_vec();
+        conn.decrypted = conn.server.stream.len();
+        session.decrypt(&mut chunk);
+        conn.buffer.push(&chunk);
+        let mut valid = false;
+        while let Some(packet) = conn.buffer.take_packet() {
+            let name = self.opcodes.name(packet.opcode);
+            if let Some(d) = self.dumper.as_mut() {
+                d.record(packet.opcode, name, &packet.body, &self.registry);
+            }
+            let Some(name) = name else { continue };
+            let Some(def) = self.registry.get(name) else { continue };
+            let Ok(obj) = value::read(def, &packet.encode()) else { continue };
+            valid = true;
+            if !conn.reported {
+                conn.reported = true;
+                eprintln!("[{}] flux TERA en clair OK — le meter recoit les paquets", self.label);
+            }
+            if let Some(event) = object_to_event(name, &obj) {
+                if self.tx.send(event).is_err() {
+                    return false;
                 }
             }
         }
+        if !valid && conn.decrypted > SERVER_HANDSHAKE + 4096 {
+            conn.dead = true;
+        }
+        true
     }
+
+    pub fn finish(&mut self) {
+        if let Some(d) = self.dumper.as_mut() {
+            d.summary(&self.opcodes);
+        }
+    }
+}
+
+pub fn run(cfg: Config, tx: Sender<Event>) -> Result<()> {
+    let tables = load_tables(&cfg.opcodes, &cfg.definitions, cfg.patch)?;
+    let dumper = cfg.dump.as_deref().map(Dumper::new);
+    let mut tracker = Tracker::new(tables, dumper, tx);
+
+    let mut input = BufReader::new(std::io::stdin());
+    let mut global = [0u8; 24];
+    input.read_exact(&mut global).context("en-tete pcap (stdin vide ? lance via tcpdump -w -)")?;
+    let big_endian = match &global[0..4] {
+        [0xa1, 0xb2, 0xc3, 0xd4] => true,
+        [0xd4, 0xc3, 0xb2, 0xa1] => false,
+        _ => bail!("flux non-pcap sur stdin"),
+    };
+    let read_u32 = |b: &[u8], at: usize| {
+        let v = [b[at], b[at + 1], b[at + 2], b[at + 3]];
+        if big_endian { u32::from_be_bytes(v) } else { u32::from_le_bytes(v) }
+    };
+    let linktype = read_u32(&global, 20);
+
+    let mut header = [0u8; 16];
+    loop {
+        if input.read_exact(&mut header).is_err() {
+            break;
+        }
+        let incl_len = read_u32(&header, 8) as usize;
+        if incl_len == 0 || incl_len > 262_144 {
+            bail!("longueur de trame pcap invalide: {incl_len}");
+        }
+        let mut frame = vec![0u8; incl_len];
+        if input.read_exact(&mut frame).is_err() {
+            break;
+        }
+        if !tracker.feed(linktype, &frame) {
+            break;
+        }
+    }
+    tracker.finish();
+    Ok(())
 }

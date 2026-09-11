@@ -276,11 +276,15 @@ pub struct Meter {
     pub npcs: HashMap<u64, NpcInfo>,
     pub boss_hp: HashMap<u64, (i64, i64)>,
     pub boss_enraged: HashMap<u64, (bool, i64)>,
+    pub boss_target: HashMap<u64, u64>,
     pub deaths: HashMap<u64, u32>,
     pub abnormals: AbnormalityTracker,
     pub party: HashSet<(u64, u64)>,
     pub party_members: HashMap<(u64, u64), MemberState>,
     pub party_only: bool,
+    pub auto_reset: bool,
+    pub reset_idle: Duration,
+    last_combat: Option<Instant>,
     pub me: u64,
     pub data: GameData,
 }
@@ -295,11 +299,15 @@ impl Meter {
             npcs: HashMap::new(),
             boss_hp: HashMap::new(),
             boss_enraged: HashMap::new(),
+            boss_target: HashMap::new(),
             deaths: HashMap::new(),
             abnormals: AbnormalityTracker::default(),
             party: HashSet::new(),
             party_members: HashMap::new(),
             party_only: false,
+            auto_reset: false,
+            reset_idle: Duration::from_secs(8),
+            last_combat: None,
             me: 0,
             data,
         }
@@ -309,6 +317,7 @@ impl Meter {
         self.total = Encounter::new(None, "TOTAL".into(), now);
         self.bosses.clear();
         self.selected = 0;
+        self.last_combat = None;
     }
 
     pub fn active_bosses(&self) -> Vec<(u64, String, i64, i64, bool, i64)> {
@@ -363,6 +372,10 @@ impl Meter {
         self.current().boss
     }
 
+    pub fn aggro_target(&self, boss: u64) -> Option<u64> {
+        self.boss_target.get(&boss).copied().filter(|t| *t != 0)
+    }
+
     pub fn abnormality_name(&self, id: u32) -> String {
         self.data.abnormality_name(id)
     }
@@ -412,6 +425,7 @@ impl Meter {
                     }
                     self.boss_hp.remove(&game_id);
                     self.boss_enraged.remove(&game_id);
+                    self.boss_target.remove(&game_id);
                 } else {
                     self.npcs.remove(&game_id);
                 }
@@ -419,6 +433,18 @@ impl Meter {
             Event::Hit { source, target, value, kind, crit, skill } => {
                 if value <= 0 && kind == KIND_DAMAGE {
                     return;
+                }
+                let activity = (kind == KIND_DAMAGE || kind == KIND_HEAL)
+                    && (self.is_player(source) || self.is_player(target));
+                if activity {
+                    if self.auto_reset {
+                        if let Some(last) = self.last_combat {
+                            if now.saturating_duration_since(last) > self.reset_idle {
+                                self.reset(now);
+                            }
+                        }
+                    }
+                    self.last_combat = Some(now);
                 }
                 if self.is_player(source) {
                     self.total.record(source, value, kind, crit, skill, now);
@@ -456,11 +482,16 @@ impl Meter {
                     self.boss_hp.insert(target, (cur_hp, max_hp));
                 }
             }
-            Event::NpcStatus { game_id, enraged, remaining_enrage_ms } => {
+            Event::NpcStatus { game_id, enraged, remaining_enrage_ms, target } => {
                 let is_boss = self.npcs.get(&game_id).map(|n| n.boss).unwrap_or(false)
                     || self.boss_hp.contains_key(&game_id);
                 if is_boss {
                     self.boss_enraged.insert(game_id, (enraged, remaining_enrage_ms));
+                    if target != 0 {
+                        self.boss_target.insert(game_id, target);
+                    } else {
+                        self.boss_target.remove(&game_id);
+                    }
                 }
             }
             Event::Cast { source, skill } => {

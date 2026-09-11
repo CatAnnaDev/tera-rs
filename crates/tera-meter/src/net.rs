@@ -37,7 +37,7 @@ pub enum Event {
     AbnBegin { target: u64, id: u32 },
     AbnEnd { target: u64, id: u32 },
     Party { members: Vec<(u64, u64, u32)> },
-    NpcStatus { game_id: u64, enraged: bool, remaining_enrage_ms: i64 },
+    NpcStatus { game_id: u64, enraged: bool, remaining_enrage_ms: i64, target: u64 },
     Cast { source: u64, skill: u32 },
     Life { game_id: u64, alive: bool },
     PartyHp { server_id: u64, player_id: u64, cur_hp: i64, max_hp: i64 },
@@ -240,6 +240,7 @@ pub fn object_to_event(name: &str, obj: &value::Object) -> Option<Event> {
             game_id,
             enraged: u(obj, "enraged") == Some(1),
             remaining_enrage_ms: i(obj, "remainingEnrageTime").unwrap_or(0),
+            target: u(obj, "target").unwrap_or(0),
         }),
         "S_ACTION_STAGE" => {
             if i(obj, "stage") == Some(0) {

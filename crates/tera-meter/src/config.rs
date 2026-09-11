@@ -13,6 +13,8 @@ pub struct Config {
     pub notify_missing_debuff: bool,
     pub sound: bool,
     pub auto_height: bool,
+    pub auto_reset: bool,
+    pub reset_idle_secs: f64,
     pub required_debuffs: Vec<u32>,
     pub window: Option<[f32; 4]>,
 }
@@ -28,6 +30,8 @@ impl Default for Config {
             notify_missing_debuff: false,
             sound: true,
             auto_height: false,
+            auto_reset: false,
+            reset_idle_secs: 8.0,
             required_debuffs: Vec::new(),
             window: None,
         }
