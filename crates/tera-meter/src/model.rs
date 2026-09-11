@@ -318,6 +318,11 @@ impl Meter {
         self.bosses.clear();
         self.selected = 0;
         self.last_combat = None;
+        self.boss_hp.clear();
+        self.boss_enraged.clear();
+        self.boss_target.clear();
+        self.deaths.clear();
+        self.abnormals = AbnormalityTracker::default();
     }
 
     pub fn active_bosses(&self) -> Vec<(u64, String, i64, i64, bool, i64)> {
