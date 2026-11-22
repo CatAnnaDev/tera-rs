@@ -7,6 +7,7 @@ work/
 data/characters.json
 data/world.db*
 *.md
+!README.md
 docs/
 
 .DS_Store

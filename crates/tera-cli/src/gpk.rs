@@ -26,6 +26,17 @@ pub enum GpkCommand {
     NewTexture(NewTextureArgs),
     Repack(RepackArgs),
     ReplaceTexture(ReplaceTextureArgs),
+    #[command(about = "Rewrite a package folder_name, e.g. to tag it as an OmiMapper composite mod")]
+    SetFolder(SetFolderArgs),
+}
+
+#[derive(Args)]
+pub struct SetFolderArgs {
+    pub file: PathBuf,
+    #[arg(long, help = "New folder_name, e.g. \"OmiMapper: <composite>.<object>_dup\"")]
+    pub folder: String,
+    #[arg(long, short = 'o')]
+    pub out: PathBuf,
 }
 
 #[derive(Args)]
@@ -165,7 +176,25 @@ pub fn run(command: GpkCommand) -> Result<()> {
         GpkCommand::NewTexture(args) => new_texture(&args),
         GpkCommand::Repack(args) => repack(&args),
         GpkCommand::ReplaceTexture(args) => replace_texture(&args),
+        GpkCommand::SetFolder(args) => set_folder(&args),
     }
+}
+
+fn set_folder(args: &SetFolderArgs) -> Result<()> {
+    let bytes = std::fs::read(&args.file)
+        .with_context(|| format!("reading {}", args.file.display()))?;
+    let mut package = Package::parse(&bytes, 0)?;
+    package.summary.folder_name = tera_package::summary::Text::from(args.folder.as_str());
+    let out = tera_package::writer::rebuild(&package, &BTreeMap::new())?;
+    std::fs::write(&args.out, &out)
+        .with_context(|| format!("writing {}", args.out.display()))?;
+    println!(
+        "wrote {} ({} bytes) folder={}",
+        args.out.display(),
+        out.len(),
+        args.folder
+    );
+    Ok(())
 }
 
 fn index(args: &IndexArgs) -> Result<()> {

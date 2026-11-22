@@ -1,6 +1,12 @@
 use std::collections::HashMap;
 use std::path::Path;
 
+pub mod composite;
+pub use composite::{
+    composite_decrypt, composite_encrypt, CompositeEntry, CompositeGroup, CompositeMapper,
+    COMPOSITE_KEY1, COMPOSITE_KEY2, COMPOSITE_MOD_PREFIX,
+};
+
 pub const PKG_MAPPER_MAGIC: u32 = 0x6a87_ac80;
 pub const OBJECT_REDIRECTOR_MAGIC: u32 = 0x6a62_4e14;
 
