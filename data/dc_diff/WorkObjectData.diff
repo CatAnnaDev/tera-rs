@@ -1,0 +1,28 @@
+# WorkObjectData  +23 -0
+
+=== ADDED (23) ===
+</WorkObject>
+</WorkObject>
+</WorkObject>
+</WorkObject>
+</WorkObject>
+</WorkObject>
+</WorkObject>
+<ActionScript start="0" end="0" />
+<ActionScript start="0" end="0" />
+<NamePlate nameplateHeight="150" />
+<NamePlate nameplateHeight="150" />
+<NamePlate nameplateHeight="150" />
+<NamePlate nameplateHeight="150" />
+<NamePlate nameplateHeight="150" />
+<NamePlate nameplateHeight="20" />
+<NamePlate nameplateHeight="20" />
+<WorkObject templateId="102001" scale="0.7" socialMotionId="11" shapeId="10201" firstTaskId="9" isForQuestId="102" lastTaskId="9" despawnAfterWork="false" prepareDuration="3000">
+<WorkObject templateId="102002" socialMotionId="11" shapeId="531034" firstTaskId="9" isForQuestId="104" lastTaskId="9" despawnAfterWork="true" prepareDuration="3000">
+<WorkObject templateId="304801" scale="2" socialMotionId="11" shapeId="720240" isWideBroadcaster="true" firstTaskId="0" isForQuestId="0" lastTaskId="0" despawnAfterWork="true" prepareDuration="1500">
+<WorkObject templateId="304802" scale="2" socialMotionId="11" shapeId="720240" isWideBroadcaster="true" firstTaskId="0" isForQuestId="0" lastTaskId="0" despawnAfterWork="true" prepareDuration="1500">
+<WorkObject templateId="304803" scale="2" socialMotionId="11" shapeId="720240" isWideBroadcaster="true" firstTaskId="0" isForQuestId="0" lastTaskId="0" despawnAfterWork="true" prepareDuration="1500">
+<WorkObject templateId="304804" scale="2" socialMotionId="11" shapeId="720240" isWideBroadcaster="true" firstTaskId="0" isForQuestId="0" lastTaskId="0" despawnAfterWork="true" prepareDuration="1500">
+<WorkObject templateId="304805" scale="2" socialMotionId="11" shapeId="720240" isWideBroadcaster="true" firstTaskId="0" isForQuestId="0" lastTaskId="0" despawnAfterWork="true" prepareDuration="1500">
+
+=== REMOVED (0) ===

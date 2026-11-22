@@ -1,0 +1,35 @@
+# ContinentData  +30 -0
+
+=== ADDED (30) ===
+</Continent>
+</Continent>
+</Continent>
+</Continent>
+</Continent>
+</Continent>
+</Continent>
+</Continent>
+</Continent>
+</Continent>
+<Continent id="3044" channelMax="10" channelType="dungeon">
+<Continent id="3048" channelMax="10" channelType="dungeon" isSpecificSpace="true">
+<Continent id="3050" channelMax="10" channelType="dungeon">
+<Continent id="3105" channelMax="10" channelType="dungeon">
+<Continent id="3133" channelMax="10" channelType="dungeon">
+<Continent id="3134" channelMax="10" channelType="dungeon">
+<Continent id="3137" channelMax="10" channelType="dungeon">
+<Continent id="3205" channelMax="10" channelType="dungeon">
+<Continent id="3400" channelMax="10" channelType="dungeon">
+<Continent id="3401" channelMax="10" channelType="dungeon">
+<HuntingZone id="3044" />
+<HuntingZone id="3048" />
+<HuntingZone id="3050" />
+<HuntingZone id="3105" />
+<HuntingZone id="3133" />
+<HuntingZone id="3134" />
+<HuntingZone id="3137" />
+<HuntingZone id="3205" />
+<HuntingZone id="3400" />
+<HuntingZone id="3401" />
+
+=== REMOVED (0) ===

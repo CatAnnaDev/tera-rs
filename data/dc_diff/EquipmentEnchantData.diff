@@ -1,0 +1,493 @@
+# EquipmentEnchantData  +214 -274
+
+=== ADDED (214) ===
+</Enchant>
+</Enchant>
+</Enchant>
+</Enchant>
+</Enchant>
+</Enchant>
+</Enchant>
+</Enchant>
+</Enchant>
+</Enchant>
+<BasicStat kind="balance" rate="1.07" />
+<BasicStat kind="balance" rate="1.07" />
+<BasicStat kind="balance" rate="1.07" />
+<BasicStat kind="balance" rate="1.07" />
+<BasicStat kind="defence" rate="1" />
+<BasicStat kind="defence" rate="1" />
+<BasicStat kind="defence" rate="1" />
+<BasicStat kind="defence" rate="1" />
+<BasicStat kind="defence" rate="1.045" />
+<BasicStat kind="defence" rate="1.045" />
+<BasicStat kind="defence" rate="1.045" />
+<BasicStat kind="defence" rate="1.045" />
+<BasicStat kind="defence" rate="1.06" enchantStep="13" />
+<BasicStat kind="defence" rate="1.09" enchantStep="14" />
+<BasicStat kind="defence" rate="1.12" enchantStep="15" />
+<BasicStat kind="magicalAttack" rate="1" />
+<BasicStat kind="magicalAttack" rate="1" />
+<BasicStat kind="magicalAttack" rate="1" />
+<BasicStat kind="magicalAttack" rate="1" />
+<BasicStat kind="magicalAttack" rate="1" />
+<BasicStat kind="magicalAttack" rate="1" />
+<BasicStat kind="magicalAttack" rate="1.06" />
+<BasicStat kind="magicalAttack" rate="1.06" />
+<BasicStat kind="magicalAttack" rate="1.06" />
+<BasicStat kind="magicalAttack" rate="1.06" />
+<BasicStat kind="magicalAttack" rate="1.065" />
+<BasicStat kind="magicalAttack" rate="1.065" enchantStep="7" />
+<BasicStat kind="magicalAttack" rate="1.065" enchantStep="7" />
+<BasicStat kind="magicalAttack" rate="1.065" enchantStep="8" />
+<BasicStat kind="magicalAttack" rate="1.065" enchantStep="8" />
+<BasicStat kind="magicalAttack" rate="1.065" enchantStep="9" />
+<BasicStat kind="magicalAttack" rate="1.065" enchantStep="9" />
+<BasicStat kind="magicalAttack" rate="1.07" enchantStep="10" />
+<BasicStat kind="magicalAttack" rate="1.07" enchantStep="10" />
+<BasicStat kind="magicalAttack" rate="1.07" enchantStep="11" />
+<BasicStat kind="magicalAttack" rate="1.07" enchantStep="11" />
+<BasicStat kind="magicalAttack" rate="1.07" enchantStep="12" />
+<BasicStat kind="magicalAttack" rate="1.07" enchantStep="12" />
+<BasicStat kind="magicalAttack" rate="1.07" enchantStep="7" />
+<BasicStat kind="magicalAttack" rate="1.07" enchantStep="7" />
+<BasicStat kind="magicalAttack" rate="1.07" enchantStep="8" />
+<BasicStat kind="magicalAttack" rate="1.07" enchantStep="8" />
+<BasicStat kind="magicalAttack" rate="1.07" enchantStep="9" />
+<BasicStat kind="magicalAttack" rate="1.07" enchantStep="9" />
+<BasicStat kind="magicalAttack" rate="1.075" enchantStep="10" />
+<BasicStat kind="magicalAttack" rate="1.075" enchantStep="11" />
+<BasicStat kind="magicalAttack" rate="1.075" enchantStep="12" />
+<BasicStat kind="magicalDefence" rate="1" />
+<BasicStat kind="magicalDefence" rate="1" />
+<BasicStat kind="magicalDefence" rate="1" />
+<BasicStat kind="magicalDefence" rate="1" />
+<BasicStat kind="magicalDefence" rate="1.065" />
+<BasicStat kind="magicalDefence" rate="1.065" />
+<BasicStat kind="magicalDefence" rate="1.07" enchantStep="7" />
+<BasicStat kind="magicalDefence" rate="1.07" enchantStep="7" />
+<BasicStat kind="magicalDefence" rate="1.07" enchantStep="8" />
+<BasicStat kind="magicalDefence" rate="1.07" enchantStep="8" />
+<BasicStat kind="magicalDefence" rate="1.07" enchantStep="9" />
+<BasicStat kind="magicalDefence" rate="1.07" enchantStep="9" />
+<BasicStat kind="magicalDefence" rate="1.075" enchantStep="10" />
+<BasicStat kind="magicalDefence" rate="1.075" enchantStep="10" />
+<BasicStat kind="magicalDefence" rate="1.075" enchantStep="11" />
+<BasicStat kind="magicalDefence" rate="1.075" enchantStep="11" />
+<BasicStat kind="magicalDefence" rate="1.075" enchantStep="12" />
+<BasicStat kind="magicalDefence" rate="1.075" enchantStep="12" />
+<BasicStat kind="magicalDefence" rate="1.08" />
+<BasicStat kind="magicalDefence" rate="1.08" />
+<BasicStat kind="magicalDefence" rate="1.09" enchantStep="10" />
+<BasicStat kind="magicalDefence" rate="1.09" enchantStep="10" />
+<BasicStat kind="magicalDefence" rate="1.09" enchantStep="11" />
+<BasicStat kind="magicalDefence" rate="1.09" enchantStep="11" />
+<BasicStat kind="magicalDefence" rate="1.09" enchantStep="12" />
+<BasicStat kind="magicalDefence" rate="1.09" enchantStep="12" />
+<BasicStat kind="magicalDefence" rate="1.09" enchantStep="7" />
+<BasicStat kind="magicalDefence" rate="1.09" enchantStep="7" />
+<BasicStat kind="magicalDefence" rate="1.09" enchantStep="8" />
+<BasicStat kind="magicalDefence" rate="1.09" enchantStep="8" />
+<BasicStat kind="magicalDefence" rate="1.09" enchantStep="9" />
+<BasicStat kind="magicalDefence" rate="1.09" enchantStep="9" />
+<BasicStat kind="physicalAttack" rate="1" />
+<BasicStat kind="physicalAttack" rate="1" />
+<BasicStat kind="physicalAttack" rate="1" />
+<BasicStat kind="physicalAttack" rate="1" />
+<BasicStat kind="physicalAttack" rate="1" />
+<BasicStat kind="physicalAttack" rate="1" />
+<BasicStat kind="physicalAttack" rate="1.065" />
+<BasicStat kind="physicalAttack" rate="1.065" enchantStep="7" />
+<BasicStat kind="physicalAttack" rate="1.065" enchantStep="7" />
+<BasicStat kind="physicalAttack" rate="1.065" enchantStep="8" />
+<BasicStat kind="physicalAttack" rate="1.065" enchantStep="8" />
+<BasicStat kind="physicalAttack" rate="1.065" enchantStep="9" />
+<BasicStat kind="physicalAttack" rate="1.065" enchantStep="9" />
+<BasicStat kind="physicalAttack" rate="1.07" enchantStep="10" />
+<BasicStat kind="physicalAttack" rate="1.07" enchantStep="10" />
+<BasicStat kind="physicalAttack" rate="1.07" enchantStep="11" />
+<BasicStat kind="physicalAttack" rate="1.07" enchantStep="11" />
+<BasicStat kind="physicalAttack" rate="1.07" enchantStep="12" />
+<BasicStat kind="physicalAttack" rate="1.07" enchantStep="12" />
+<BasicStat kind="physicalAttack" rate="1.07" enchantStep="7" />
+<BasicStat kind="physicalAttack" rate="1.07" enchantStep="7" />
+<BasicStat kind="physicalAttack" rate="1.07" enchantStep="8" />
+<BasicStat kind="physicalAttack" rate="1.07" enchantStep="8" />
+<BasicStat kind="physicalAttack" rate="1.07" enchantStep="9" />
+<BasicStat kind="physicalAttack" rate="1.07" enchantStep="9" />
+<BasicStat kind="physicalAttack" rate="1.075" enchantStep="10" />
+<BasicStat kind="physicalAttack" rate="1.075" enchantStep="11" />
+<BasicStat kind="physicalAttack" rate="1.075" enchantStep="12" />
+<BasicStat kind="physicalDefence" rate="1" />
+<BasicStat kind="physicalDefence" rate="1" />
+<BasicStat kind="physicalDefence" rate="1" />
+<BasicStat kind="physicalDefence" rate="1" />
+<BasicStat kind="physicalDefence" rate="1.065" />
+<BasicStat kind="physicalDefence" rate="1.065" />
+<BasicStat kind="physicalDefence" rate="1.07" enchantStep="7" />
+<BasicStat kind="physicalDefence" rate="1.07" enchantStep="7" />
+<BasicStat kind="physicalDefence" rate="1.07" enchantStep="8" />
+<BasicStat kind="physicalDefence" rate="1.07" enchantStep="8" />
+<BasicStat kind="physicalDefence" rate="1.07" enchantStep="9" />
+<BasicStat kind="physicalDefence" rate="1.07" enchantStep="9" />
+<BasicStat kind="physicalDefence" rate="1.075" enchantStep="10" />
+<BasicStat kind="physicalDefence" rate="1.075" enchantStep="10" />
+<BasicStat kind="physicalDefence" rate="1.075" enchantStep="11" />
+<BasicStat kind="physicalDefence" rate="1.075" enchantStep="11" />
+<BasicStat kind="physicalDefence" rate="1.075" enchantStep="12" />
+<BasicStat kind="physicalDefence" rate="1.075" enchantStep="12" />
+<BasicStat kind="physicalDefence" rate="1.08" />
+<BasicStat kind="physicalDefence" rate="1.08" />
+<BasicStat kind="physicalDefence" rate="1.09" enchantStep="10" />
+<BasicStat kind="physicalDefence" rate="1.09" enchantStep="10" />
+<BasicStat kind="physicalDefence" rate="1.09" enchantStep="11" />
+<BasicStat kind="physicalDefence" rate="1.09" enchantStep="11" />
+<BasicStat kind="physicalDefence" rate="1.09" enchantStep="12" />
+<BasicStat kind="physicalDefence" rate="1.09" enchantStep="12" />
+<BasicStat kind="physicalDefence" rate="1.09" enchantStep="7" />
+<BasicStat kind="physicalDefence" rate="1.09" enchantStep="7" />
+<BasicStat kind="physicalDefence" rate="1.09" enchantStep="8" />
+<BasicStat kind="physicalDefence" rate="1.09" enchantStep="8" />
+<BasicStat kind="physicalDefence" rate="1.09" enchantStep="9" />
+<BasicStat kind="physicalDefence" rate="1.09" enchantStep="9" />
+<Category id="110311" passivityLink="1423030,1423060" />
+<Category id="120305" passivityLink="1423021,1423030,1423040,1423051,1423060,1423070" />
+<Category id="120306" passivityLink="1423021,1423030,1423040,1423051,1423060,1423072" />
+<Category id="120317" passivityLink="1423060,1423030" />
+<Category id="120318" passivityLink="1423060,1423030,1423072,1423021" />
+<Category id="123023" passivityLink="1423030,1423040,1423051,1423060,1423070" />
+<Category id="23023" passivityLink="423030,423040,423051,423060,423070" />
+<Category id="6012" passivityLink="481004,481004,481005,481007,482002,482002,482002,483002,483002,483003,483004,484004,484004,484005,484007,485002,485002,485003,485004" unchangeable="true" />
+<Category id="6013" passivityLink="481104,481104,481105,481107,482102,482102,482102,483102,483102,483103,483104,484104,484104,484105,484107,485102,485102,485103,485104" unchangeable="true" />
+<Category id="6014" passivityLink="481204,481204,481205,481207,482202,482202,482202,483202,483202,483203,483204,484204,484204,484205,484207,485202,485202,485203,485204" unchangeable="true" />
+<Category id="6015" passivityLink="481304,481304,481305,481307,482302,482302,482302,483302,483302,483303,483304,484304,484304,484305,484307,485302,485302,485303,485304" unchangeable="true" />
+<Category id="6016" passivityLink="481404,481404,481405,481407,482402,482402,482402,483402,483402,483403,483404,484404,484404,484405,484407,485402,485402,485403,485404" unchangeable="true" />
+<Category id="6017" passivityLink="481504,481504,481505,481507,482502,482502,482502,483502,483502,483503,483504,484504,484504,484505,484507,485502,485502,485503,485504" unchangeable="true" />
+<Category id="6018" passivityLink="481007,483004,483004,483004,484007,484007" unchangeable="true" />
+<Category id="6019" passivityLink="481107,481107,483104,483104,484107,484107,484107" unchangeable="true" />
+<Category id="6020" passivityLink="481207,483204,483204,483204,484207,484207" unchangeable="true" />
+<Category id="6021" passivityLink="481307,481307,483304,483304,484307,484307,484307" unchangeable="true" />
+<Category id="921284" passivityLink=" 590000, 590001, 590002, 590003, 590004, 590005, 590006, 590007, 590008, 590009, 590020, 590021, 590022, 590023, 590024, 590025, 590026, 590027, 590028, 590029, 590040, 590041, 590042, 590043, 590044, 590045, 590046, 590047, 590048, 590049, 590060, 590061, 590062, 590063, 590064, 590065, 590066, 590067, 590068, 590069, 590080, 590081, 590082, 590083, 590084, 590085, 590086, 590087, 590088, 590089, 590100, 590101, 590102, 590103, 590104, 590105, 590106, 590107, 590108, 590109" unchangeable="true" />
+<Category id="921285" passivityLink=" 590110, 590111, 590112, 590113, 590114, 590115, 590116, 590117, 590118, 590119, 590130, 590131, 590132, 590133, 590134, 590135, 590136, 590137, 590138, 590139, 590150, 590151, 590152, 590153, 590154, 590155, 590156, 590157, 590158, 590159, 590170, 590171, 590172, 590173, 590174, 590175, 590176, 590177, 590178, 590179, 590190, 590191, 590192, 590193, 590194, 590195, 590196, 590197, 590198, 590199, 590210, 590211, 590212, 590213, 590214, 590215, 590216, 590217, 590218, 590219" unchangeable="true" />
+<Category id="921286" passivityLink=" 590220, 590221, 590222, 590223, 590224, 590225, 590226, 590227, 590228, 590229, 590240, 590241, 590242, 590243, 590244, 590245, 590246, 590247, 590248, 590249, 590260, 590261, 590262, 590263, 590264, 590265, 590266, 590267, 590268, 590269, 590280, 590281, 590282, 590283, 590284, 590285, 590286, 590287, 590288, 590289, 590300, 590301, 590302, 590303, 590304, 590305, 590306, 590307, 590308, 590309, 590320, 590321, 590322, 590323, 590324, 590325, 590326, 590327, 590328, 590329" unchangeable="true" />
+<Category id="921287" passivityLink=" 590010, 590011, 590012, 590013, 590014, 590015, 590016, 590017, 590018, 590019, 590030, 590031, 590032, 590033, 590034, 590035, 590036, 590037, 590038, 590039, 590050, 590051, 590052, 590053, 590054, 590055, 590056, 590057, 590058, 590059, 590070, 590071, 590072, 590073, 590074, 590075, 590076, 590077, 590078, 590079, 590090, 590091, 590092, 590093, 590094, 590095, 590096, 590097, 590098, 590099, 590100, 590101, 590102, 590103, 590104, 590105, 590106, 590107, 590108, 590109" unchangeable="true" />
+<Category id="921288" passivityLink=" 590120, 590121, 590122, 590123, 590124, 590125, 590126, 590127, 590128, 590129, 590140, 590141, 590142, 590143, 590144, 590145, 590146, 590147, 590148, 590149, 590160, 590161, 590162, 590163, 590164, 590165, 590166, 590167, 590168, 590169, 590180, 590181, 590182, 590183, 590184, 590185, 590186, 590187, 590188, 590189, 590200, 590201, 590202, 590203, 590204, 590205, 590206, 590207, 590208, 590209, 590210, 590211, 590212, 590213, 590214, 590215, 590216, 590217, 590218, 590219" unchangeable="true" />
+<Category id="921289" passivityLink=" 590230, 590231, 590232, 590233, 590234, 590235, 590236, 590237, 590238, 590239, 590250, 590251, 590252, 590253, 590254, 590255, 590256, 590257, 590258, 590259, 590270, 590271, 590272, 590273, 590274, 590275, 590276, 590277, 590278, 590279, 590290, 590291, 590292, 590293, 590294, 590295, 590296, 590297, 590298, 590299, 590310, 590311, 590312, 590313, 590314, 590315, 590316, 590317, 590318, 590319, 590320, 590321, 590322, 590323, 590324, 590325, 590326, 590327, 590328, 590329" unchangeable="true" />
+<Category id="940000" passivityLink="423030,423040,423050,423060,423070" />
+<Category id="940001" passivityLink="1423030,1423040,1423050,1423060,1423070" />
+<Category id="981000" passivityLink="9990600,9301702,9301703,9301709" />
+<Category id="981001" passivityLink="9990601,9301702,9301705,9301706,9301707,9301708,9301709" />
+<Category id="981002" passivityLink="9990602,9301709,9301710,9301711" />
+<Category id="981003" passivityLink="9990603,9301709,9301710,9301711" />
+<Category id="981004" passivityLink="9990604,9301709,9301712" />
+<Category id="981005" passivityLink="9990605,9301709,9301712" />
+<Category id="982100" passivityLink="         5101001,5101002,5101003,5101004,5101005,   5101011,5101012,5101013,5101014,5101015,   5101021,5101022,5101023,5101024,5101025,   5101031,5101032,5101033,5101034,5101035,   5101041,5101042,5101043,5101044,5101045,   5101046,5101047,5101048,5101049,5101050,   5101056,5101057,5101058,5101059,5101060,   5101061,5101062,5101063,5101064,5101065" unchangeable="true" />
+<Category id="982101" passivityLink="         5102001,5102002,5102003,5102004,5102005,   5102011,5102012,5102013,5102014,5102015,   5102021,5102022,5102023,5102024,5102025,   5102031,5102032,5102033,5102034,5102035,         5102041,5102042,5102043,5102044,5102045,   5102046,5102047,5102048,5102049,5102050,   5102056,5102057,5102058,5102059,5102060,   5102061,5102062,5102063,5102064,5102065" unchangeable="true" />
+<Category id="982102" passivityLink="         5103001,5103002,5103003,5103004,5103005,   5103011,5103012,5103013,5103014,5103015,   5103021,5103022,5103023,5103024,5103025,   5103031,5103032,5103033,5103034,5103035,         5103041,5103042,5103043,5103044,5103045,   5103046,5103047,5103048,5103049,5103050,   5103056,5103057,5103058,5103059,5103060,   5103061,5103062,5103063,5103064,5103065" unchangeable="true" />
+<Category id="982110" passivityLink="         5101006,5101007,5101008,5101009,5101010,   5101016,5101017,5101018,5101019,5101020,   5101026,5101027,5101028,5101029,5101030,   5101036,5101037,5101038,5101039,5101040,   5101051,5101052,5101053,5101054,5101055,   5101041,5101042,5101043,5101044,5101045,   5101056,5101057,5101058,5101059,5101060,   5101061,5101062,5101063,5101064,5101065" unchangeable="true" />
+<Category id="982111" passivityLink="         5102006,5102007,5102008,5102009,5102010,   5102016,5102017,5102018,5102019,5102020,   5102026,5102027,5102028,5102029,5102030,   5102036,5102037,5102038,5102039,5102040,   5102051,5102052,5102053,5102054,5102055,   5102041,5102042,5102043,5102044,5102045,   5102056,5102057,5102058,5102059,5102060,   5102061,5102062,5102063,5102064,5102065" unchangeable="true" />
+<Category id="982112" passivityLink="         5103006,5103007,5103008,5103009,5103010,   5103016,5103017,5103018,5103019,5103020,   5103026,5103027,5103028,5103029,5103030,   5103036,5103037,5103038,5103039,5103040,   5103051,5103052,5103053,5103054,5103055,   5103041,5103042,5103043,5103044,5103045,   5103056,5103057,5103058,5103059,5103060,   5103061,5103062,5103063,5103064,5103065" unchangeable="true" />
+<Effect step="3" passivityCategoryId="940000" />
+<Effect step="3" passivityCategoryId="940000" />
+<Effect step="3" passivityCategoryId="940001" />
+<Effect step="3" passivityCategoryId="940001" />
+<Effect step="6" passivityCategoryId="940000" />
+<Effect step="6" passivityCategoryId="940000" />
+<Effect step="6" passivityCategoryId="940001" />
+<Effect step="6" passivityCategoryId="940001" />
+<Effect step="9" passivityCategoryId="940000" />
+<Effect step="9" passivityCategoryId="940000" />
+<Effect step="9" passivityCategoryId="940001" />
+<Effect step="9" passivityCategoryId="940001" />
+<Enchant id="921241">
+<Enchant id="921242">
+<Enchant id="921243">
+<Enchant id="921244">
+<Enchant id="921245">
+<Enchant id="921246">
+<Enchant id="921247">
+<Enchant id="921248">
+<Enchant id="921249">
+<Enchant id="921250">
+<Enchant id="921251">
+<Enchant id="921252">
+<Enchant id="940000">
+<Enchant id="940001">
+<Enchant id="940002">
+<Enchant id="940003">
+
+=== REMOVED (274) ===
+<BasicStat kind="defence" rate="1.034" />
+<BasicStat kind="defence" rate="1.034" />
+<BasicStat kind="defence" rate="1.034" />
+<BasicStat kind="defence" rate="1.034" />
+<BasicStat kind="defence" rate="1.05" enchantStep="7" />
+<BasicStat kind="defence" rate="1.05" enchantStep="7" />
+<BasicStat kind="defence" rate="1.05" enchantStep="7" />
+<BasicStat kind="defence" rate="1.05" enchantStep="7" />
+<BasicStat kind="defence" rate="1.05" enchantStep="8" />
+<BasicStat kind="defence" rate="1.05" enchantStep="8" />
+<BasicStat kind="defence" rate="1.05" enchantStep="8" />
+<BasicStat kind="defence" rate="1.05" enchantStep="8" />
+<BasicStat kind="defence" rate="1.05" enchantStep="9" />
+<BasicStat kind="defence" rate="1.05" enchantStep="9" />
+<BasicStat kind="defence" rate="1.05" enchantStep="9" />
+<BasicStat kind="defence" rate="1.05" enchantStep="9" />
+<BasicStat kind="defence" rate="1.075" enchantStep="10" />
+<BasicStat kind="defence" rate="1.075" enchantStep="10" />
+<BasicStat kind="defence" rate="1.075" enchantStep="10" />
+<BasicStat kind="defence" rate="1.075" enchantStep="10" />
+<BasicStat kind="defence" rate="1.075" enchantStep="11" />
+<BasicStat kind="defence" rate="1.075" enchantStep="11" />
+<BasicStat kind="defence" rate="1.075" enchantStep="11" />
+<BasicStat kind="defence" rate="1.075" enchantStep="11" />
+<BasicStat kind="defence" rate="1.075" enchantStep="12" />
+<BasicStat kind="defence" rate="1.075" enchantStep="12" />
+<BasicStat kind="defence" rate="1.075" enchantStep="12" />
+<BasicStat kind="defence" rate="1.075" enchantStep="12" />
+<BasicStat kind="defence" rate="1.11" enchantStep="13" />
+<BasicStat kind="defence" rate="1.11" enchantStep="13" />
+<BasicStat kind="defence" rate="1.11" enchantStep="13" />
+<BasicStat kind="defence" rate="1.11" enchantStep="13" />
+<BasicStat kind="defence" rate="1.11" enchantStep="14" />
+<BasicStat kind="defence" rate="1.11" enchantStep="14" />
+<BasicStat kind="defence" rate="1.11" enchantStep="14" />
+<BasicStat kind="defence" rate="1.11" enchantStep="14" />
+<BasicStat kind="defence" rate="1.11" enchantStep="15" />
+<BasicStat kind="defence" rate="1.11" enchantStep="15" />
+<BasicStat kind="defence" rate="1.11" enchantStep="15" />
+<BasicStat kind="defence" rate="1.11" enchantStep="15" />
+<BasicStat kind="magicalAttack" rate="1.025" />
+<BasicStat kind="magicalAttack" rate="1.025" />
+<BasicStat kind="magicalAttack" rate="1.025" />
+<BasicStat kind="magicalAttack" rate="1.045" />
+<BasicStat kind="magicalAttack" rate="1.045" />
+<BasicStat kind="magicalAttack" rate="1.05" />
+<BasicStat kind="magicalAttack" rate="1.055" enchantStep="10" />
+<BasicStat kind="magicalAttack" rate="1.055" enchantStep="10" />
+<BasicStat kind="magicalAttack" rate="1.055" enchantStep="11" />
+<BasicStat kind="magicalAttack" rate="1.055" enchantStep="11" />
+<BasicStat kind="magicalAttack" rate="1.055" enchantStep="6" />
+<BasicStat kind="magicalAttack" rate="1.055" enchantStep="6" />
+<BasicStat kind="magicalAttack" rate="1.055" enchantStep="7" />
+<BasicStat kind="magicalAttack" rate="1.055" enchantStep="7" />
+<BasicStat kind="magicalAttack" rate="1.055" enchantStep="8" />
+<BasicStat kind="magicalAttack" rate="1.055" enchantStep="8" />
+<BasicStat kind="magicalAttack" rate="1.055" enchantStep="9" />
+<BasicStat kind="magicalAttack" rate="1.055" enchantStep="9" />
+<BasicStat kind="magicalAttack" rate="1.06" enchantStep="6" />
+<BasicStat kind="magicalAttack" rate="1.06" enchantStep="7" />
+<BasicStat kind="magicalAttack" rate="1.06" enchantStep="8" />
+<BasicStat kind="magicalAttack" rate="1.06" enchantStep="9" />
+<BasicStat kind="magicalAttack" rate="1.065" enchantStep="12" />
+<BasicStat kind="magicalAttack" rate="1.065" enchantStep="12" />
+<BasicStat kind="magicalAttack" rate="1.065" enchantStep="13" />
+<BasicStat kind="magicalAttack" rate="1.065" enchantStep="13" />
+<BasicStat kind="magicalAttack" rate="1.065" enchantStep="14" />
+<BasicStat kind="magicalAttack" rate="1.065" enchantStep="14" />
+<BasicStat kind="magicalAttack" rate="1.065" enchantStep="15" />
+<BasicStat kind="magicalAttack" rate="1.065" enchantStep="15" />
+<BasicStat kind="magicalAttack" rate="1.08" enchantStep="13" />
+<BasicStat kind="magicalAttack" rate="1.08" enchantStep="14" />
+<BasicStat kind="magicalAttack" rate="1.08" enchantStep="15" />
+<BasicStat kind="magicalDefence" rate="1.045" />
+<BasicStat kind="magicalDefence" rate="1.055" />
+<BasicStat kind="magicalDefence" rate="1.055" />
+<BasicStat kind="magicalDefence" rate="1.055" />
+<BasicStat kind="magicalDefence" rate="1.06" />
+<BasicStat kind="magicalDefence" rate="1.06" />
+<BasicStat kind="magicalDefence" rate="1.065" enchantStep="9" />
+<BasicStat kind="magicalDefence" rate="1.065" enchantStep="9" />
+<BasicStat kind="magicalDefence" rate="1.085" enchantStep="10" />
+<BasicStat kind="magicalDefence" rate="1.085" enchantStep="10" />
+<BasicStat kind="magicalDefence" rate="1.085" enchantStep="11" />
+<BasicStat kind="magicalDefence" rate="1.085" enchantStep="11" />
+<BasicStat kind="magicalDefence" rate="1.085" enchantStep="12" />
+<BasicStat kind="magicalDefence" rate="1.085" enchantStep="12" />
+<BasicStat kind="magicalDefence" rate="1.15" enchantStep="13" />
+<BasicStat kind="magicalDefence" rate="1.15" enchantStep="13" />
+<BasicStat kind="magicalDefence" rate="1.15" enchantStep="14" />
+<BasicStat kind="magicalDefence" rate="1.15" enchantStep="14" />
+<BasicStat kind="magicalDefence" rate="1.15" enchantStep="15" />
+<BasicStat kind="magicalDefence" rate="1.15" enchantStep="15" />
+<BasicStat kind="physicalAttack" rate="1.025" />
+<BasicStat kind="physicalAttack" rate="1.025" />
+<BasicStat kind="physicalAttack" rate="1.025" />
+<BasicStat kind="physicalAttack" rate="1.045" />
+<BasicStat kind="physicalAttack" rate="1.045" />
+<BasicStat kind="physicalAttack" rate="1.05" />
+<BasicStat kind="physicalAttack" rate="1.055" enchantStep="10" />
+<BasicStat kind="physicalAttack" rate="1.055" enchantStep="10" />
+<BasicStat kind="physicalAttack" rate="1.055" enchantStep="11" />
+<BasicStat kind="physicalAttack" rate="1.055" enchantStep="11" />
+<BasicStat kind="physicalAttack" rate="1.055" enchantStep="6" />
+<BasicStat kind="physicalAttack" rate="1.055" enchantStep="6" />
+<BasicStat kind="physicalAttack" rate="1.055" enchantStep="7" />
+<BasicStat kind="physicalAttack" rate="1.055" enchantStep="7" />
+<BasicStat kind="physicalAttack" rate="1.055" enchantStep="8" />
+<BasicStat kind="physicalAttack" rate="1.055" enchantStep="8" />
+<BasicStat kind="physicalAttack" rate="1.055" enchantStep="9" />
+<BasicStat kind="physicalAttack" rate="1.055" enchantStep="9" />
+<BasicStat kind="physicalAttack" rate="1.06" enchantStep="6" />
+<BasicStat kind="physicalAttack" rate="1.06" enchantStep="7" />
+<BasicStat kind="physicalAttack" rate="1.06" enchantStep="8" />
+<BasicStat kind="physicalAttack" rate="1.06" enchantStep="9" />
+<BasicStat kind="physicalAttack" rate="1.065" enchantStep="12" />
+<BasicStat kind="physicalAttack" rate="1.065" enchantStep="12" />
+<BasicStat kind="physicalAttack" rate="1.065" enchantStep="13" />
+<BasicStat kind="physicalAttack" rate="1.065" enchantStep="13" />
+<BasicStat kind="physicalAttack" rate="1.065" enchantStep="14" />
+<BasicStat kind="physicalAttack" rate="1.065" enchantStep="14" />
+<BasicStat kind="physicalAttack" rate="1.065" enchantStep="15" />
+<BasicStat kind="physicalAttack" rate="1.065" enchantStep="15" />
+<BasicStat kind="physicalAttack" rate="1.08" enchantStep="13" />
+<BasicStat kind="physicalAttack" rate="1.08" enchantStep="14" />
+<BasicStat kind="physicalAttack" rate="1.08" enchantStep="15" />
+<BasicStat kind="physicalDefence" rate="1.045" />
+<BasicStat kind="physicalDefence" rate="1.045" />
+<BasicStat kind="physicalDefence" rate="1.045" />
+<BasicStat kind="physicalDefence" rate="1.055" />
+<BasicStat kind="physicalDefence" rate="1.06" />
+<BasicStat kind="physicalDefence" rate="1.06" />
+<BasicStat kind="physicalDefence" rate="1.065" enchantStep="9" />
+<BasicStat kind="physicalDefence" rate="1.065" enchantStep="9" />
+<BasicStat kind="physicalDefence" rate="1.085" enchantStep="10" />
+<BasicStat kind="physicalDefence" rate="1.085" enchantStep="10" />
+<BasicStat kind="physicalDefence" rate="1.085" enchantStep="11" />
+<BasicStat kind="physicalDefence" rate="1.085" enchantStep="11" />
+<BasicStat kind="physicalDefence" rate="1.085" enchantStep="12" />
+<BasicStat kind="physicalDefence" rate="1.085" enchantStep="12" />
+<BasicStat kind="physicalDefence" rate="1.15" enchantStep="13" />
+<BasicStat kind="physicalDefence" rate="1.15" enchantStep="13" />
+<BasicStat kind="physicalDefence" rate="1.15" enchantStep="14" />
+<BasicStat kind="physicalDefence" rate="1.15" enchantStep="14" />
+<BasicStat kind="physicalDefence" rate="1.15" enchantStep="15" />
+<BasicStat kind="physicalDefence" rate="1.15" enchantStep="15" />
+<Category id="110311" passivityLink="1423000,1423030,1423060" />
+<Category id="120305" passivityLink="1423000,1423021,1423030,1423040,1423051,1423060,1423070" />
+<Category id="120306" passivityLink="1423000,1423021,1423030,1423040,1423051,1423060,1423072" />
+<Category id="120317" passivityLink="1423060,1423030,1423000" />
+<Category id="120318" passivityLink="1423060,1423030,1423000,1423072,1423021" />
+<Category id="123023" passivityLink="1423000,1423030,1423040,1423051,1423060,1423070" />
+<Category id="23023" passivityLink="423000,423030,423040,423051,423060,423070" />
+<Category id="6012" passivityLink="480002,480002,480003,480004,481004,481004,481005,481007,482002,482002,482002,483002,483002,483003,483004,484004,484004,484005,484007,485002,485002,485003,485004" unchangeable="true" />
+<Category id="6013" passivityLink="480102,480102,480103,480104,481104,481104,481105,481107,482102,482102,482102,483102,483102,483103,483104,484104,484104,484105,484107,485102,485102,485103,485104" unchangeable="true" />
+<Category id="6014" passivityLink="480202,480202,480203,480204,481204,481204,481205,481207,482202,482202,482202,483202,483202,483203,483204,484204,484204,484205,484207,485202,485202,485203,485204" unchangeable="true" />
+<Category id="6015" passivityLink="480302,480302,480303,480304,481304,481304,481305,481307,482302,482302,482302,483302,483302,483303,483304,484304,484304,484305,484307,485302,485302,485303,485304" unchangeable="true" />
+<Category id="6016" passivityLink="480402,480402,480403,480404,481404,481404,481405,481407,482402,482402,482402,483402,483402,483403,483404,484404,484404,484405,484407,485402,485402,485403,485404" unchangeable="true" />
+<Category id="6017" passivityLink="480502,480502,480503,480504,481504,481504,481505,481507,482502,482502,482502,483502,483502,483503,483504,484504,484504,484505,484507,485502,485502,485503,485504" unchangeable="true" />
+<Category id="6018" passivityLink="480004,480004,481007,483004,483004,483004,484007,484007" unchangeable="true" />
+<Category id="6019" passivityLink="480104,481107,481107,483104,483104,484107,484107,484107" unchangeable="true" />
+<Category id="6020" passivityLink="480204,480204,481207,483204,483204,483204,484207,484207" unchangeable="true" />
+<Category id="6021" passivityLink="480304,481307,481307,483304,483304,484307,484307,484307" unchangeable="true" />
+<Category id="921284" passivityLink=" 590000, 590001, 590002, 590003, 590004, 590005, 590006, 590007, 590008, 590009, 590010, 590011, 590012, 590013, 590014, 590015, 590016, 590017, 590018, 590019, 590020, 590021, 590022, 590023, 590024, 590025, 590026, 590027, 590028, 590029, 590030, 590031, 590032, 590033, 590034, 590035, 590036, 590037, 590038, 590039, 590040, 590041, 590042, 590043, 590044, 590045, 590046, 590047, 590048, 590049, 590050, 590051, 590052, 590053, 590054, 590055, 590056, 590057, 590058, 590059, 590060, 590061, 590062, 590063, 590064, 590065, 590066, 590067, 590068, 590069, 590070, 590071, 590072, 590073, 590074, 590075, 590076, 590077, 590078, 590079, 590080, 590081, 590082, 590083, 590084, 590085, 590086, 590087, 590088, 590089, 590090, 590091, 590092, 590093, 590094, 590095, 590096, 590097, 590098, 590099, 590100, 590101, 590102, 590103, 590104, 590105, 590106, 590107, 590108, 590109" unchangeable="true" />
+<Category id="921285" passivityLink=" 590110, 590111, 590112, 590113, 590114, 590115, 590116, 590117, 590118, 590119, 590120, 590121, 590122, 590123, 590124, 590125, 590126, 590127, 590128, 590129, 590130, 590131, 590132, 590133, 590134, 590135, 590136, 590137, 590138, 590139, 590140, 590141, 590142, 590143, 590144, 590145, 590146, 590147, 590148, 590149, 590150, 590151, 590152, 590153, 590154, 590155, 590156, 590157, 590158, 590159, 590160, 590161, 590162, 590163, 590164, 590165, 590166, 590167, 590168, 590169, 590170, 590171, 590172, 590173, 590174, 590175, 590176, 590177, 590178, 590179, 590180, 590181, 590182, 590183, 590184, 590185, 590186, 590187, 590188, 590189, 590190, 590191, 590192, 590193, 590194, 590195, 590196, 590197, 590198, 590199, 590200, 590201, 590202, 590203, 590204, 590205, 590206, 590207, 590208, 590209, 590210, 590211, 590212, 590213, 590214, 590215, 590216, 590217, 590218, 590219" unchangeable="true" />
+<Category id="921286" passivityLink=" 590220, 590221, 590222, 590223, 590224, 590225, 590226, 590227, 590228, 590229, 590230, 590231, 590232, 590233, 590234, 590235, 590236, 590237, 590238, 590239, 590240, 590241, 590242, 590243, 590244, 590245, 590246, 590247, 590248, 590249, 590250, 590251, 590252, 590253, 590254, 590255, 590256, 590257, 590258, 590259, 590260, 590261, 590262, 590263, 590264, 590265, 590266, 590267, 590268, 590269, 590270, 590271, 590272, 590273, 590274, 590275, 590276, 590277, 590278, 590279, 590280, 590281, 590282, 590283, 590284, 590285, 590286, 590287, 590288, 590289, 590290, 590291, 590292, 590293, 590294, 590295, 590296, 590297, 590298, 590299, 590300, 590301, 590302, 590303, 590304, 590305, 590306, 590307, 590308, 590309, 590310, 590311, 590312, 590313, 590314, 590315, 590316, 590317, 590318, 590319, 590320, 590321, 590322, 590323, 590324, 590325, 590326, 590327, 590328, 590329" unchangeable="true" />
+<Category id="981000" passivityLink="9301701,9301702,9301703,9301671" />
+<Category id="981001" passivityLink="5010478,5010477,5010475,5010476,4010303" />
+<Category id="981002" passivityLink="317333,9301671,200024,200025" />
+<Category id="981003" passivityLink="9301704,9301671,200024,200025" />
+<Category id="981004" passivityLink="317333,9301671,220021" />
+<Category id="981005" passivityLink="9301704,9301671,220021" />
+<Category id="982000" passivityLink="         9991000, 9991001, 9991002, 9991003, 9991004,   9991005, 9991006, 9991007, 9991008, 9991009,   9991010, 9991011, 9991012, 9991013, 9991014,   9991015, 9991016, 9991017, 9991018, 9991019,   9991020, 9991021, 9991022, 9991023, 9991024,   9991025, 9991026, 9991027, 9991028, 9991029,   9991030, 9991031, 9991032, 9991033, 9991034,   9991035, 9991036, 9991037, 9991038, 9991039,   9991040, 9991041, 9991042, 9991043, 9991044,   9991045, 9991046, 9991047, 9991048, 9991049,   9991050, 9991051, 9991052, 9991053, 9991054,   9991055, 9991056, 9991057, 9991058, 9991059,   9991060, 9991061, 9991062, 9991063, 9991064   " unchangeable="true" />
+<Category id="982001" passivityLink="         9991065, 9991066, 9991067, 9991068, 9991069,   9991070, 9991071, 9991072, 9991073, 9991074,   9991075, 9991076, 9991077, 9991078, 9991079,   9991080, 9991081, 9991082, 9991083, 9991084,   9991085, 9991086, 9991087, 9991088, 9991089,   9991090, 9991091, 9991092, 9991093, 9991094,   9991095, 9991096, 9991097, 9991098, 9991099,   9991100, 9991101, 9991102, 9991103, 9991104,   9991105, 9991106, 9991107, 9991108, 9991109,   9991110, 9991111, 9991112, 9991113, 9991114,   9991115, 9991116, 9991117, 9991118, 9991119,   9991120, 9991121, 9991122, 9991123, 9991124,   9991125, 9991126, 9991127, 9991128, 9991129   " unchangeable="true" />
+<Category id="982002" passivityLink="         9991130, 9991131, 9991132, 9991133, 9991134,   9991135, 9991136, 9991137, 9991138, 9991139,   9991140, 9991141, 9991142, 9991143, 9991144,   9991145, 9991146, 9991147, 9991148, 9991149,   9991150, 9991151, 9991152, 9991153, 9991154,   9991155, 9991156, 9991157, 9991158, 9991159,   9991160, 9991161, 9991162, 9991163, 9991164,   9991165, 9991166, 9991167, 9991168, 9991169,   9991170, 9991171, 9991172, 9991173, 9991174,   9991175, 9991176, 9991177, 9991178, 9991179,   9991180, 9991181, 9991182, 9991183, 9991184,   9991185, 9991186, 9991187, 9991188, 9991189,   9991190, 9991191, 9991192, 9991193, 9991194   " unchangeable="true" />
+<Category id="982003" passivityLink="         9991195, 9991196, 9991197, 9991198, 9991199,   9991200, 9991201, 9991202, 9991203, 9991204,   9991205, 9991206, 9991207, 9991208, 9991209,   9991210, 9991211, 9991212, 9991213, 9991214,   9991215, 9991216, 9991217, 9991218, 9991219,   9991220, 9991221, 9991222, 9991223, 9991224,   9991225, 9991226, 9991227, 9991228, 9991229,   9991230, 9991231, 9991232, 9991233, 9991234,   9991235, 9991236, 9991237, 9991238, 9991239,   9991240, 9991241, 9991242, 9991243, 9991244,   9991245, 9991246, 9991247, 9991248, 9991249,   9991250, 9991251, 9991252, 9991253, 9991254,   9991255, 9991256, 9991257, 9991258, 9991259         " unchangeable="true" />
+<Category id="982004" passivityLink="         9991260, 9991261, 9991262, 9991263, 9991264,   9991265, 9991266, 9991267, 9991268, 9991269,   9991270, 9991271, 9991272, 9991273, 9991274,   9991275, 9991276, 9991277, 9991278, 9991279,   9991280, 9991281, 9991282, 9991283, 9991284,   9991285, 9991286, 9991287, 9991288, 9991289,   9991290, 9991291, 9991292, 9991293, 9991294,   9991295, 9991296, 9991297, 9991298, 9991299,   9991300, 9991301, 9991302, 9991303, 9991304,   9991305, 9991306, 9991307, 9991308, 9991309,   9991310, 9991311, 9991312, 9991313, 9991314,   9991315, 9991316, 9991317, 9991318, 9991319,   9991320, 9991321, 9991322, 9991323, 9991324         " unchangeable="true" />
+<Category id="982005" passivityLink="         9991000, 9991001, 9991002, 9991003, 9991004,   9991005, 9991006, 9991007, 9991008, 9991009,   9991010, 9991011, 9991012, 9991013, 9991014,   9991015, 9991016, 9991017, 9991018, 9991019,   9991020, 9991021, 9991022, 9991023, 9991024,   9991025, 9991026, 9991027, 9991028, 9991029,   9991030, 9991031, 9991032, 9991033, 9991034,   9991035, 9991036, 9991037, 9991038, 9991039,   9991040, 9991041, 9991042, 9991043, 9991044,   9991045, 9991046, 9991047, 9991048, 9991049,   9991050, 9991051, 9991052, 9991053, 9991054,   9991055, 9991056, 9991057, 9991058, 9991059,   9991060, 9991061, 9991062, 9991063, 9991064   " unchangeable="true" />
+<Category id="982006" passivityLink="         9991065, 9991066, 9991067, 9991068, 9991069,   9991070, 9991071, 9991072, 9991073, 9991074,   9991075, 9991076, 9991077, 9991078, 9991079,   9991080, 9991081, 9991082, 9991083, 9991084,   9991085, 9991086, 9991087, 9991088, 9991089,   9991090, 9991091, 9991092, 9991093, 9991094,   9991095, 9991096, 9991097, 9991098, 9991099,   9991100, 9991101, 9991102, 9991103, 9991104,   9991105, 9991106, 9991107, 9991108, 9991109,   9991110, 9991111, 9991112, 9991113, 9991114,   9991115, 9991116, 9991117, 9991118, 9991119,   9991120, 9991121, 9991122, 9991123, 9991124,   9991125, 9991126, 9991127, 9991128, 9991129   " unchangeable="true" />
+<Category id="982007" passivityLink="         9991130, 9991131, 9991132, 9991133, 9991134,   9991135, 9991136, 9991137, 9991138, 9991139,   9991140, 9991141, 9991142, 9991143, 9991144,   9991145, 9991146, 9991147, 9991148, 9991149,   9991150, 9991151, 9991152, 9991153, 9991154,   9991155, 9991156, 9991157, 9991158, 9991159,   9991160, 9991161, 9991162, 9991163, 9991164,   9991165, 9991166, 9991167, 9991168, 9991169,   9991170, 9991171, 9991172, 9991173, 9991174,   9991175, 9991176, 9991177, 9991178, 9991179,   9991180, 9991181, 9991182, 9991183, 9991184,   9991185, 9991186, 9991187, 9991188, 9991189,   9991190, 9991191, 9991192, 9991193, 9991194   " unchangeable="true" />
+<Category id="982008" passivityLink="         9991195, 9991196, 9991197, 9991198, 9991199,   9991200, 9991201, 9991202, 9991203, 9991204,   9991205, 9991206, 9991207, 9991208, 9991209,   9991210, 9991211, 9991212, 9991213, 9991214,   9991215, 9991216, 9991217, 9991218, 9991219,   9991220, 9991221, 9991222, 9991223, 9991224,   9991225, 9991226, 9991227, 9991228, 9991229,   9991230, 9991231, 9991232, 9991233, 9991234,   9991235, 9991236, 9991237, 9991238, 9991239,   9991240, 9991241, 9991242, 9991243, 9991244,   9991245, 9991246, 9991247, 9991248, 9991249,   9991250, 9991251, 9991252, 9991253, 9991254,   9991255, 9991256, 9991257, 9991258, 9991259         " unchangeable="true" />
+<Category id="982009" passivityLink="         9991260, 9991261, 9991262, 9991263, 9991264,   9991265, 9991266, 9991267, 9991268, 9991269,   9991270, 9991271, 9991272, 9991273, 9991274,   9991275, 9991276, 9991277, 9991278, 9991279,   9991280, 9991281, 9991282, 9991283, 9991284,   9991285, 9991286, 9991287, 9991288, 9991289,   9991290, 9991291, 9991292, 9991293, 9991294,   9991295, 9991296, 9991297, 9991298, 9991299,   9991300, 9991301, 9991302, 9991303, 9991304,   9991305, 9991306, 9991307, 9991308, 9991309,   9991310, 9991311, 9991312, 9991313, 9991314,   9991315, 9991316, 9991317, 9991318, 9991319,   9991320, 9991321, 9991322, 9991323, 9991324         " unchangeable="true" />
+<Category id="982010" passivityLink="         9991000, 9991001, 9991002, 9991003, 9991004,   9991005, 9991006, 9991007, 9991008, 9991009,   9991010, 9991011, 9991012, 9991013, 9991014,   9991015, 9991016, 9991017, 9991018, 9991019,   9991020, 9991021, 9991022, 9991023, 9991024,   9991025, 9991026, 9991027, 9991028, 9991029,   9991030, 9991031, 9991032, 9991033, 9991034,   9991035, 9991036, 9991037, 9991038, 9991039,   9991040, 9991041, 9991042, 9991043, 9991044,   9991045, 9991046, 9991047, 9991048, 9991049,   9991050, 9991051, 9991052, 9991053, 9991054,   9991055, 9991056, 9991057, 9991058, 9991059,   9991060, 9991061, 9991062, 9991063, 9991064   " unchangeable="true" />
+<Category id="982011" passivityLink="         9991065, 9991066, 9991067, 9991068, 9991069,   9991070, 9991071, 9991072, 9991073, 9991074,   9991075, 9991076, 9991077, 9991078, 9991079,   9991080, 9991081, 9991082, 9991083, 9991084,   9991085, 9991086, 9991087, 9991088, 9991089,   9991090, 9991091, 9991092, 9991093, 9991094,   9991095, 9991096, 9991097, 9991098, 9991099,   9991100, 9991101, 9991102, 9991103, 9991104,   9991105, 9991106, 9991107, 9991108, 9991109,   9991110, 9991111, 9991112, 9991113, 9991114,   9991115, 9991116, 9991117, 9991118, 9991119,   9991120, 9991121, 9991122, 9991123, 9991124,   9991125, 9991126, 9991127, 9991128, 9991129   " unchangeable="true" />
+<Category id="982012" passivityLink="         9991130, 9991131, 9991132, 9991133, 9991134,   9991135, 9991136, 9991137, 9991138, 9991139,   9991140, 9991141, 9991142, 9991143, 9991144,   9991145, 9991146, 9991147, 9991148, 9991149,   9991150, 9991151, 9991152, 9991153, 9991154,   9991155, 9991156, 9991157, 9991158, 9991159,   9991160, 9991161, 9991162, 9991163, 9991164,   9991165, 9991166, 9991167, 9991168, 9991169,   9991170, 9991171, 9991172, 9991173, 9991174,   9991175, 9991176, 9991177, 9991178, 9991179,   9991180, 9991181, 9991182, 9991183, 9991184,   9991185, 9991186, 9991187, 9991188, 9991189,   9991190, 9991191, 9991192, 9991193, 9991194   " unchangeable="true" />
+<Category id="982013" passivityLink="         9991195, 9991196, 9991197, 9991198, 9991199,   9991200, 9991201, 9991202, 9991203, 9991204,   9991205, 9991206, 9991207, 9991208, 9991209,   9991210, 9991211, 9991212, 9991213, 9991214,   9991215, 9991216, 9991217, 9991218, 9991219,   9991220, 9991221, 9991222, 9991223, 9991224,   9991225, 9991226, 9991227, 9991228, 9991229,   9991230, 9991231, 9991232, 9991233, 9991234,   9991235, 9991236, 9991237, 9991238, 9991239,   9991240, 9991241, 9991242, 9991243, 9991244,   9991245, 9991246, 9991247, 9991248, 9991249,   9991250, 9991251, 9991252, 9991253, 9991254,   9991255, 9991256, 9991257, 9991258, 9991259         " unchangeable="true" />
+<Category id="982014" passivityLink="         9991260, 9991261, 9991262, 9991263, 9991264,   9991265, 9991266, 9991267, 9991268, 9991269,   9991270, 9991271, 9991272, 9991273, 9991274,   9991275, 9991276, 9991277, 9991278, 9991279,   9991280, 9991281, 9991282, 9991283, 9991284,   9991285, 9991286, 9991287, 9991288, 9991289,   9991290, 9991291, 9991292, 9991293, 9991294,   9991295, 9991296, 9991297, 9991298, 9991299,   9991300, 9991301, 9991302, 9991303, 9991304,   9991305, 9991306, 9991307, 9991308, 9991309,   9991310, 9991311, 9991312, 9991313, 9991314,   9991315, 9991316, 9991317, 9991318, 9991319,   9991320, 9991321, 9991322, 9991323, 9991324         " unchangeable="true" />
+<Category id="982015" passivityLink="         9991000, 9991001, 9991002, 9991003, 9991004,   9991005, 9991006, 9991007, 9991008, 9991009,   9991010, 9991011, 9991012, 9991013, 9991014,   9991015, 9991016, 9991017, 9991018, 9991019,   9991020, 9991021, 9991022, 9991023, 9991024,   9991025, 9991026, 9991027, 9991028, 9991029,   9991030, 9991031, 9991032, 9991033, 9991034,   9991035, 9991036, 9991037, 9991038, 9991039,   9991040, 9991041, 9991042, 9991043, 9991044,   9991045, 9991046, 9991047, 9991048, 9991049,   9991050, 9991051, 9991052, 9991053, 9991054,   9991055, 9991056, 9991057, 9991058, 9991059,   9991060, 9991061, 9991062, 9991063, 9991064   " unchangeable="true" />
+<Category id="982016" passivityLink="         9991065, 9991066, 9991067, 9991068, 9991069,   9991070, 9991071, 9991072, 9991073, 9991074,   9991075, 9991076, 9991077, 9991078, 9991079,   9991080, 9991081, 9991082, 9991083, 9991084,   9991085, 9991086, 9991087, 9991088, 9991089,   9991090, 9991091, 9991092, 9991093, 9991094,   9991095, 9991096, 9991097, 9991098, 9991099,   9991100, 9991101, 9991102, 9991103, 9991104,   9991105, 9991106, 9991107, 9991108, 9991109,   9991110, 9991111, 9991112, 9991113, 9991114,   9991115, 9991116, 9991117, 9991118, 9991119,   9991120, 9991121, 9991122, 9991123, 9991124,   9991125, 9991126, 9991127, 9991128, 9991129   " unchangeable="true" />
+<Category id="982017" passivityLink="         9991130, 9991131, 9991132, 9991133, 9991134,   9991135, 9991136, 9991137, 9991138, 9991139,   9991140, 9991141, 9991142, 9991143, 9991144,   9991145, 9991146, 9991147, 9991148, 9991149,   9991150, 9991151, 9991152, 9991153, 9991154,   9991155, 9991156, 9991157, 9991158, 9991159,   9991160, 9991161, 9991162, 9991163, 9991164,   9991165, 9991166, 9991167, 9991168, 9991169,   9991170, 9991171, 9991172, 9991173, 9991174,   9991175, 9991176, 9991177, 9991178, 9991179,   9991180, 9991181, 9991182, 9991183, 9991184,   9991185, 9991186, 9991187, 9991188, 9991189,   9991190, 9991191, 9991192, 9991193, 9991194   " unchangeable="true" />
+<Category id="982018" passivityLink="         9991195, 9991196, 9991197, 9991198, 9991199,   9991200, 9991201, 9991202, 9991203, 9991204,   9991205, 9991206, 9991207, 9991208, 9991209,   9991210, 9991211, 9991212, 9991213, 9991214,   9991215, 9991216, 9991217, 9991218, 9991219,   9991220, 9991221, 9991222, 9991223, 9991224,   9991225, 9991226, 9991227, 9991228, 9991229,   9991230, 9991231, 9991232, 9991233, 9991234,   9991235, 9991236, 9991237, 9991238, 9991239,   9991240, 9991241, 9991242, 9991243, 9991244,   9991245, 9991246, 9991247, 9991248, 9991249,   9991250, 9991251, 9991252, 9991253, 9991254,   9991255, 9991256, 9991257, 9991258, 9991259         " unchangeable="true" />
+<Category id="982019" passivityLink="         9991260, 9991261, 9991262, 9991263, 9991264,   9991265, 9991266, 9991267, 9991268, 9991269,   9991270, 9991271, 9991272, 9991273, 9991274,   9991275, 9991276, 9991277, 9991278, 9991279,   9991280, 9991281, 9991282, 9991283, 9991284,   9991285, 9991286, 9991287, 9991288, 9991289,   9991290, 9991291, 9991292, 9991293, 9991294,   9991295, 9991296, 9991297, 9991298, 9991299,   9991300, 9991301, 9991302, 9991303, 9991304,   9991305, 9991306, 9991307, 9991308, 9991309,   9991310, 9991311, 9991312, 9991313, 9991314,   9991315, 9991316, 9991317, 9991318, 9991319,   9991320, 9991321, 9991322, 9991323, 9991324         " unchangeable="true" />
+<Category id="982050" passivityLink="         5100003,5100004,5100005   5100008,5100009,5100010   5100013,5100014,5100015   5100018,5100019,5100020   5100023,5100024,5100025   5100028,5100029,5100030   5100033,5100034,5100035   5100038,5100039,5100040   5100043,5100044,5100045   5100048,5100049,5100050   5100053,5100054,5100055   5100058,5100059,5100060   5100063,5100064,5100065" unchangeable="true" />
+<Category id="982051" passivityLink="         5100103,5100104,5100105   5100108,5100109,5100110   5100113,5100114,5100115   5100118,5100119,5100120   5100123,5100124,5100125   5100128,5100129,5100130   5100133,5100134,5100135   5100138,5100139,5100140   5100143,5100144,5100145   5100148,5100149,5100150   5100153,5100154,5100155   5100158,5100159,5100160   5100163,5100164,5100165" unchangeable="true" />
+<Category id="982100" passivityLink="         5101003,5101004,5101005,         5101008,5101009,5101010,         5101013,5101014,5101015,         5101018,5101019,5101020,         5101023,5101024,5101025,         5101028,5101029,5101030,         5101033,5101034,5101035,         5101038,5101039,5101040,         5101043,5101044,5101045,         5101048,5101049,5101050,         5101053,5101054,5101055,         5101058,5101059,5101060,         5101063,5101064,5101065" unchangeable="true" />
+<Category id="982101" passivityLink="         5102003,5102004,5102005,         5102008,5102009,5102010,         5102013,5102014,5102015,         5102018,5102019,5102020,         5102023,5102024,5102025,         5102028,5102029,5102030,         5102033,5102034,5102035,         5102038,5102039,5102040,         5102043,5102044,5102045,         5102048,5102049,5102050,         5102053,5102054,5102055,         5102058,5102059,5102060,         5102063,5102064,5102065" unchangeable="true" />
+<Category id="982102" passivityLink="         5103003,5103004,5103005,         5103008,5103009,5103010,         5103013,5103014,5103015,         5103018,5103019,5103020,         5103023,5103024,5103025,         5103028,5103029,5103030,         5103033,5103034,5103035,         5103038,5103039,5103040,         5103043,5103044,5103045,         5103048,5103049,5103050,         5103053,5103054,5103055,         5103058,5103059,5103060,         5103063,5103064,5103065" unchangeable="true" />
+<Effect step="10" passivityCategoryId="223020" />
+<Effect step="10" passivityCategoryId="223020" />
+<Effect step="10" passivityCategoryId="223020" />
+<Effect step="10" passivityCategoryId="223020" />
+<Effect step="10" passivityCategoryId="223020" />
+<Effect step="10" passivityCategoryId="223020" />
+<Effect step="10" passivityCategoryId="223020" />
+<Effect step="10" passivityCategoryId="223020" />
+<Effect step="10" passivityCategoryId="223020" />
+<Effect step="10" passivityCategoryId="223020" />
+<Effect step="10" passivityCategoryId="223020" />
+<Effect step="11" passivityCategoryId="223021" />
+<Effect step="11" passivityCategoryId="223021" />
+<Effect step="11" passivityCategoryId="223021" />
+<Effect step="11" passivityCategoryId="223021" />
+<Effect step="11" passivityCategoryId="223021" />
+<Effect step="11" passivityCategoryId="223021" />
+<Effect step="11" passivityCategoryId="223021" />
+<Effect step="11" passivityCategoryId="223021" />
+<Effect step="11" passivityCategoryId="223021" />
+<Effect step="11" passivityCategoryId="223021" />
+<Effect step="11" passivityCategoryId="223021" />
+<Effect step="12" passivityCategoryId="223022" />
+<Effect step="12" passivityCategoryId="223022" />
+<Effect step="12" passivityCategoryId="223022" />
+<Effect step="12" passivityCategoryId="223022" />
+<Effect step="12" passivityCategoryId="223022" />
+<Effect step="12" passivityCategoryId="223022" />
+<Effect step="12" passivityCategoryId="223022" />
+<Effect step="12" passivityCategoryId="223022" />
+<Effect step="12" passivityCategoryId="223022" />
+<Effect step="12" passivityCategoryId="223022" />
+<Effect step="12" passivityCategoryId="223022" />
+<Effect step="12" passivityCategoryId="400006" />
+<Effect step="12" passivityCategoryId="400006" />
+<Effect step="12" passivityCategoryId="400006" />
+<Effect step="12" passivityCategoryId="400006" />
+<Effect step="12" passivityCategoryId="400006" />
+<Effect step="12" passivityCategoryId="400006" />
+<Effect step="12" passivityCategoryId="400104" />
+<Effect step="12" passivityCategoryId="400104" />
+<Effect step="12" passivityCategoryId="400105" />
+<Effect step="12" passivityCategoryId="400105" />
+<Effect step="12" passivityCategoryId="400106" />
+<Effect step="12" passivityCategoryId="400106" />
+<Effect step="15" passivityCategoryId="400100" />
+<Effect step="15" passivityCategoryId="400100" />
+<Effect step="15" passivityCategoryId="400101" />
+<Effect step="15" passivityCategoryId="400101" />
+<Effect step="15" passivityCategoryId="400102" />
+<Effect step="15" passivityCategoryId="400102" />
+<Effect step="6" passivityCategoryId="400007" />
+<Effect step="6" passivityCategoryId="400007" />
+<Effect step="6" passivityCategoryId="400008" />
+<Effect step="6" passivityCategoryId="400008" />
+<Effect step="6" passivityCategoryId="400009" />
+<Effect step="6" passivityCategoryId="400009" />
+<Effect step="7" passivityCategoryId="120334" />
+<Effect step="7" passivityCategoryId="120334" />
+<Effect step="9" passivityCategoryId="400011" />
+<Effect step="9" passivityCategoryId="400012" />
+<Effect step="9" passivityCategoryId="400013" />
+<Effect step="9" passivityCategoryId="400014" />
+<Effect step="9" passivityCategoryId="400015" />
+<Effect step="9" passivityCategoryId="400016" />
+<Effect step="9" passivityCategoryId="400108" />
+<Effect step="9" passivityCategoryId="400108" />
+<Effect step="9" passivityCategoryId="400109" />
+<Effect step="9" passivityCategoryId="400109" />
+<Effect step="9" passivityCategoryId="400110" />
+<Effect step="9" passivityCategoryId="400110" />
+<Enchant id="987000">
+<Enchant id="987001">
+<Enchant id="987002">
+<Enchant id="987003">
+<Enchant id="987004">
+<Enchant id="987005">

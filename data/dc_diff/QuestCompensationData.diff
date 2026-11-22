@@ -1,0 +1,214 @@
+# QuestCompensationData  +148 -61
+
+=== ADDED (148) ===
+</Compensation>
+</Compensation>
+</Compensation>
+</Compensation>
+</Compensation>
+</Compensation>
+</Compensation>
+</Compensation>
+</CompensationType>
+</CompensationType>
+</CompensationType>
+</CompensationType>
+</CompensationType>
+</CompensationType>
+</CompensationType>
+</Quest>
+</Quest>
+</Quest>
+</Quest>
+</Quest>
+</Quest>
+</Quest>
+</Quest>
+</QuestCompensationData>
+</QuestCompensationData>
+<Compensation>
+<Compensation>
+<Compensation>
+<Compensation>
+<Compensation>
+<Compensation>
+<Compensation>
+<Compensation>
+<CompensationType type="normal" gold="0" exp="0" memo="" itemBag="allpay" policyPoint="0" />
+<CompensationType type="normal" gold="0" exp="0" memo="" itemBag="allpay" policyPoint="0">
+<CompensationType type="normal" gold="0" exp="0" memo="" itemBag="allpay" policyPoint="0">
+<CompensationType type="normal" gold="0" exp="0" memo="" itemBag="allpay" policyPoint="0">
+<CompensationType type="normal" gold="0" exp="0" memo="" itemBag="allpay" policyPoint="0">
+<CompensationType type="normal" gold="5000000" exp="0" memo="" itemBag="allpay" policyPoint="0">
+<CompensationType type="normal" itemBag="class">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="100" gold="1500000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1000">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="100" gold="1500000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1000">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="100" gold="1500000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1000">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="100" gold="1500000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1000">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="1000" gold="5000000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="2500">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="1000" gold="5000000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="2500">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="1000" gold="5000000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="2500">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="1000" gold="5000000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="2500">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="150" gold="2000000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1300">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="150" gold="2000000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1300">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="150" gold="2000000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1300">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="150" gold="2000000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1300">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="150" gold="2000000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1300">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="150" gold="2000000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1300">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="150" gold="2000000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1300">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="250" gold="2500000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1600">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="250" gold="2500000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1600">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="50" gold="1000000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="700">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="50" gold="1000000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="700">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="50" gold="1000000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="700">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="50" gold="1000000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="700">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="500" gold="2750000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1800">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="500" gold="2750000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1800">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="500" gold="2750000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1800">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="500" gold="2750000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1800">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="500" gold="2750000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1800">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="500" gold="2750000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1800">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="500" gold="2750000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1800">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="500" gold="2750000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1800">
+<Item templateId="200999" quantity="5" />
+<Item templateId="200999" quantity="5" />
+<Item templateId="200999" quantity="5" />
+<Item templateId="200999" quantity="7" />
+<Item templateId="368" quantity="1" />
+<Item templateId="368" quantity="1" />
+<Item templateId="369" quantity="3" />
+<Item templateId="369" quantity="3" />
+<Item templateId="369" quantity="3" />
+<Item templateId="369" quantity="3" />
+<Item templateId="80095" quantity="5" />
+<Item templateId="985900" class="archer" quantity="1" />
+<Item templateId="985900" class="assassin" quantity="1" />
+<Item templateId="985900" class="berserker" quantity="1" />
+<Item templateId="985900" class="elementalist" quantity="1" />
+<Item templateId="985900" class="engineer" quantity="1" />
+<Item templateId="985900" class="fighter" quantity="1" />
+<Item templateId="985900" class="glaiver" quantity="1" />
+<Item templateId="985900" class="lancer" quantity="1" />
+<Item templateId="985900" class="priest" quantity="1" />
+<Item templateId="985900" class="slayer" quantity="1" />
+<Item templateId="985900" class="sorcerer" quantity="1" />
+<Item templateId="985900" class="soulless" quantity="1" />
+<Item templateId="985900" class="warrior" quantity="1" />
+<Item templateId="985901" class="archer" quantity="1" />
+<Item templateId="985901" class="archer" quantity="1" />
+<Item templateId="985901" class="assassin" quantity="1" />
+<Item templateId="985901" class="assassin" quantity="1" />
+<Item templateId="985901" class="berserker" quantity="1" />
+<Item templateId="985901" class="berserker" quantity="1" />
+<Item templateId="985901" class="elementalist" quantity="1" />
+<Item templateId="985901" class="elementalist" quantity="1" />
+<Item templateId="985901" class="engineer" quantity="1" />
+<Item templateId="985901" class="engineer" quantity="1" />
+<Item templateId="985901" class="fighter" quantity="1" />
+<Item templateId="985901" class="fighter" quantity="1" />
+<Item templateId="985901" class="glaiver" quantity="1" />
+<Item templateId="985901" class="glaiver" quantity="1" />
+<Item templateId="985901" class="lancer" quantity="1" />
+<Item templateId="985901" class="lancer" quantity="1" />
+<Item templateId="985901" class="priest" quantity="1" />
+<Item templateId="985901" class="priest" quantity="1" />
+<Item templateId="985901" class="slayer" quantity="1" />
+<Item templateId="985901" class="slayer" quantity="1" />
+<Item templateId="985901" class="sorcerer" quantity="1" />
+<Item templateId="985901" class="sorcerer" quantity="1" />
+<Item templateId="985901" class="soulless" quantity="1" />
+<Item templateId="985901" class="soulless" quantity="1" />
+<Item templateId="985901" class="warrior" quantity="1" />
+<Item templateId="985901" class="warrior" quantity="1" />
+<Item templateId="990329" class="warrior" quantity="1" />
+<Item templateId="990330" class="lancer" quantity="1" />
+<Item templateId="990331" class="slayer" quantity="1" />
+<Item templateId="990332" class="berserker" quantity="1" />
+<Item templateId="990333" class="sorcerer" quantity="1" />
+<Item templateId="990334" class="archer" quantity="1" />
+<Item templateId="990335" class="priest" quantity="1" />
+<Item templateId="990336" class="elementalist" quantity="1" />
+<Item templateId="990337" class="soulless" quantity="1" />
+<Item templateId="990338" class="engineer" quantity="1" />
+<Item templateId="990339" class="fighter" quantity="1" />
+<Item templateId="990340" class="assassin" quantity="1" />
+<Item templateId="990341" class="glaiver" quantity="1" />
+<Item templateId="990342" quantity="1" />
+<Quest questId="101">
+<Quest questId="102">
+<Quest questId="103">
+<Quest questId="104">
+<Quest questId="105">
+<Quest questId="118307">
+<Quest questId="310701">
+<Quest questId="350030">
+<Quest questId="704801" />
+<Quest questId="704802" />
+<Quest questId="704803" />
+<Quest questId="704804" />
+<Quest questId="704805" />
+<QuestCompensationData>
+<QuestCompensationData>
+
+=== REMOVED (61) ===
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="100" gold="15000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1000">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="100" gold="15000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1000">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="100" gold="15000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1000">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="100" gold="15000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1000">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="150" gold="20000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1300">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="150" gold="20000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1300">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="150" gold="20000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1300">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="150" gold="20000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1300">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="150" gold="20000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1300">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="250" gold="25000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1600">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="250" gold="25000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1600">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="250" gold="25000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1600">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="250" gold="25000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1600">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="250" gold="25000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1600">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="250" gold="25000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1600">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="50" gold="10000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="700">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="50" gold="10000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="700">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="50" gold="10000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="700">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="50" gold="10000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="700">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="500" gold="27500" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1800">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="500" gold="27500" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1800">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="500" gold="27500" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1800">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="500" gold="27500" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1800">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="500" gold="27500" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1800">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="500" gold="27500" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="1800">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="750" gold="30000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="2000">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="750" gold="30000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="2000">
+<CompensationType type="normal" npcGuildId="3500" reputationPoint="750" gold="30000" exp="0" memo="" itemBag="allpay" policyPoint="0" reputationExp="2000">
+<Item templateId="207636" quantity="1" />
+<Item templateId="366" quantity="1" />
+<Item templateId="366" quantity="1" />
+<Item templateId="368" quantity="5" />
+<Item templateId="368" quantity="5" />
+<Item templateId="368" quantity="5" />
+<Item templateId="89774" class="warrior" quantity="1" />
+<Item templateId="89775" class="lancer" quantity="1" />
+<Item templateId="89776" class="slayer" quantity="1" />
+<Item templateId="89777" class="berserker" quantity="1" />
+<Item templateId="89778" class="sorcerer" quantity="1" />
+<Item templateId="89779" class="archer" quantity="1" />
+<Item templateId="89780" class="priest" quantity="1" />
+<Item templateId="89781" class="elementalist" quantity="1" />
+<Item templateId="89782" class="soulless" quantity="1" />
+<Item templateId="89783" class="engineer" quantity="1" />
+<Item templateId="89784" class="fighter" quantity="1" />
+<Item templateId="89785" class="assassin" quantity="1" />
+<Item templateId="89786" class="glaiver" quantity="1" />
+<Item templateId="89787" class="archer" quantity="1" />
+<Item templateId="89787" class="assassin" quantity="1" />
+<Item templateId="89787" class="berserker" quantity="1" />
+<Item templateId="89787" class="elementalist" quantity="1" />
+<Item templateId="89787" class="engineer" quantity="1" />
+<Item templateId="89787" class="fighter" quantity="1" />
+<Item templateId="89787" class="glaiver" quantity="1" />
+<Item templateId="89787" class="lancer" quantity="1" />
+<Item templateId="89787" class="priest" quantity="1" />
+<Item templateId="89787" class="slayer" quantity="1" />
+<Item templateId="89787" class="sorcerer" quantity="1" />
+<Item templateId="89787" class="soulless" quantity="1" />
+<Item templateId="89787" class="warrior" quantity="1" />
+<QuestCompensationData />

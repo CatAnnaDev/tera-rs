@@ -1,0 +1,7 @@
+# CrestData  +1 -1
+
+=== ADDED (1) ===
+<CrestItem id="29036" level="58" grade="0" class="soulless" parentId="0" passivityLink="29036,29040" recommendationPriority="300" takePoint="2" />
+
+=== REMOVED (1) ===
+<CrestItem id="29036" level="58" grade="0" class="soulless" parentId="0" passivityLink="29036" recommendationPriority="300" takePoint="2" />

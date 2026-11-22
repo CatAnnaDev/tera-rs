@@ -1,0 +1,49 @@
+# DailyPlayGuideQuest  +22 -22
+
+=== ADDED (22) ===
+<Quest id="27" type="daily" name="@DailyPlayGuideQuest:700027001" minLevel="68" groupId="7000" autoStartType="1" realHuntingZoneId="780" suitableLevel="68" suitableMemberCount="5">
+<Quest id="27" type="daily" name="@DailyPlayGuideQuest:700127001" minLevel="68" groupId="7001" autoStartType="1" realHuntingZoneId="780" suitableLevel="68" suitableMemberCount="5">
+<Quest id="29" type="daily" name="@DailyPlayGuideQuest:700029001" minLevel="68" groupId="7000" autoStartType="1" realHuntingZoneId="781" suitableLevel="68" suitableMemberCount="5">
+<Quest id="29" type="daily" name="@DailyPlayGuideQuest:700129001" minLevel="68" groupId="7001" autoStartType="1" realHuntingZoneId="781" suitableLevel="68" suitableMemberCount="5">
+<Quest id="45" type="daily" name="@DailyPlayGuideQuest:700045001" maxLevel="70" minLevel="70" groupId="7000" autoStartType="1" realHuntingZoneId="920" suitableLevel="70" suitableMemberCount="5">
+<Quest id="45" type="daily" name="@DailyPlayGuideQuest:700145001" maxLevel="70" minLevel="70" groupId="7001" autoStartType="1" realHuntingZoneId="920" suitableLevel="70" suitableMemberCount="5">
+<Quest id="49" type="daily" name="@DailyPlayGuideQuest:700049001" maxLevel="70" minLevel="70" groupId="7000" autoStartType="1" realHuntingZoneId="982" suitableLevel="70" suitableMemberCount="5">
+<Quest id="49" type="daily" name="@DailyPlayGuideQuest:700149001" minLevel="70" groupId="7001" autoStartType="1" realHuntingZoneId="982" suitableLevel="70" suitableMemberCount="5">
+<Quest id="50" type="daily" name="@DailyPlayGuideQuest:700050001" maxLevel="70" minLevel="70" groupId="7000" autoStartType="1" realHuntingZoneId="444" suitableLevel="70" suitableMemberCount="5">
+<Quest id="50" type="daily" name="@DailyPlayGuideQuest:700150001" minLevel="70" groupId="7001" autoStartType="1" realHuntingZoneId="444" suitableLevel="70" suitableMemberCount="5">
+<Quest id="55" type="daily" name="@DailyPlayGuideQuest:700055001" maxLevel="70" minLevel="69" groupId="7000" autoStartType="1" realHuntingZoneId="3101" suitableLevel="69" suitableMemberCount="5">
+<Quest id="55" type="daily" name="@DailyPlayGuideQuest:700155001" maxLevel="70" minLevel="66" groupId="7001" autoStartType="1" realHuntingZoneId="3101" suitableLevel="66" suitableMemberCount="5">
+<Quest id="56" type="daily" name="@DailyPlayGuideQuest:700056001" maxLevel="70" minLevel="70" groupId="7000" autoStartType="1" realHuntingZoneId="3201" suitableLevel="70" suitableMemberCount="5">
+<Quest id="56" type="daily" name="@DailyPlayGuideQuest:700156001" maxLevel="70" minLevel="70" groupId="7001" autoStartType="1" realHuntingZoneId="3201" suitableLevel="70" suitableMemberCount="5">
+<Quest id="58" type="daily" name="@DailyPlayGuideQuest:700058001" maxLevel="70" minLevel="70" groupId="7000" autoStartType="1" realHuntingZoneId="3026" suitableLevel="70" suitableMemberCount="5">
+<Quest id="59" type="daily" name="@DailyPlayGuideQuest:700059001" maxLevel="70" minLevel="70" groupId="7000" autoStartType="1" realHuntingZoneId="3126" suitableLevel="70" suitableMemberCount="5">
+<Quest id="6" type="daily" name="@DailyPlayGuideQuest:70016001" minLevel="65" groupId="7001" autoStartType="1" realHuntingZoneId="511" suitableLevel="65" suitableMemberCount="3">
+<Quest id="61" type="daily" name="@DailyPlayGuideQuest:700061001" maxLevel="70" minLevel="70" groupId="7000" autoStartType="1" realHuntingZoneId="3102" suitableLevel="70" suitableMemberCount="5">
+<Quest id="61" type="daily" name="@DailyPlayGuideQuest:700161001" maxLevel="70" minLevel="70" groupId="7001" autoStartType="1" realHuntingZoneId="3102" suitableLevel="70" suitableMemberCount="5">
+<TaskPart id="0" type="hunting" count="1" taskId="1" failOnUserDead="false" journal="@DailyPlayGuideQuest:700061100" monsterHuntingZoneId="3102" monsterTemplateId="1000" partyConstraint="solo" unitedParty="모두적용" />
+<TaskPart id="0" type="hunting" count="1" taskId="1" failOnUserDead="false" journal="@DailyPlayGuideQuest:700145100" monsterHuntingZoneId="920" monsterTemplateId="3000" partyConstraint="solo" unitedParty="모두적용" />
+<TaskPart id="1" type="visit" taskId="2" journal="@DailyPlayGuideQuest:700145101" targetHuntingZoneId="9999" targetNpcTemplateId="9999" />
+
+=== REMOVED (22) ===
+<Quest id="27" type="daily" name="@DailyPlayGuideQuest:700027001" minLevel="65" groupId="7000" autoStartType="1" realHuntingZoneId="780" suitableLevel="65" suitableMemberCount="7">
+<Quest id="27" type="daily" name="@DailyPlayGuideQuest:700127001" minLevel="65" groupId="7001" autoStartType="1" realHuntingZoneId="780" suitableLevel="65" suitableMemberCount="7">
+<Quest id="29" type="daily" name="@DailyPlayGuideQuest:700029001" minLevel="68" groupId="7000" autoStartType="1" realHuntingZoneId="781" suitableLevel="65" suitableMemberCount="5">
+<Quest id="29" type="daily" name="@DailyPlayGuideQuest:700129001" minLevel="68" groupId="7001" autoStartType="1" realHuntingZoneId="781" suitableLevel="65" suitableMemberCount="5">
+<Quest id="45" type="daily" name="@DailyPlayGuideQuest:700045001" maxLevel="65" minLevel="65" groupId="7000" autoStartType="1" realHuntingZoneId="920" suitableLevel="65" suitableMemberCount="5">
+<Quest id="45" type="daily" name="@DailyPlayGuideQuest:700145001" maxLevel="65" minLevel="65" groupId="7001" autoStartType="1" realHuntingZoneId="920" suitableLevel="65" suitableMemberCount="5">
+<Quest id="49" type="daily" name="@DailyPlayGuideQuest:700049001" maxLevel="65" minLevel="65" groupId="7000" autoStartType="1" realHuntingZoneId="982" suitableLevel="65" suitableMemberCount="5">
+<Quest id="49" type="daily" name="@DailyPlayGuideQuest:700149001" minLevel="65" groupId="7001" autoStartType="1" realHuntingZoneId="982" suitableLevel="65" suitableMemberCount="5">
+<Quest id="50" type="daily" name="@DailyPlayGuideQuest:700050001" maxLevel="65" minLevel="65" groupId="7000" autoStartType="1" realHuntingZoneId="444" suitableLevel="65" suitableMemberCount="5">
+<Quest id="50" type="daily" name="@DailyPlayGuideQuest:700150001" minLevel="65" groupId="7001" autoStartType="1" realHuntingZoneId="444" suitableLevel="65" suitableMemberCount="5">
+<Quest id="55" type="daily" name="@DailyPlayGuideQuest:700055001" maxLevel="68" minLevel="66" groupId="7000" autoStartType="1" realHuntingZoneId="3101" suitableLevel="66" suitableMemberCount="5">
+<Quest id="55" type="daily" name="@DailyPlayGuideQuest:700155001" maxLevel="68" minLevel="66" groupId="7001" autoStartType="1" realHuntingZoneId="3101" suitableLevel="66" suitableMemberCount="5">
+<Quest id="56" type="daily" name="@DailyPlayGuideQuest:700056001" maxLevel="70" minLevel="68" groupId="7000" autoStartType="1" realHuntingZoneId="3201" suitableLevel="68" suitableMemberCount="5">
+<Quest id="56" type="daily" name="@DailyPlayGuideQuest:700156001" maxLevel="70" minLevel="68" groupId="7001" autoStartType="1" realHuntingZoneId="3201" suitableLevel="68" suitableMemberCount="5">
+<Quest id="58" type="daily" name="@DailyPlayGuideQuest:700058001" maxLevel="70" minLevel="69" groupId="7000" autoStartType="1" realHuntingZoneId="3026" suitableLevel="69" suitableMemberCount="5">
+<Quest id="59" type="daily" name="@DailyPlayGuideQuest:700059001" maxLevel="70" minLevel="69" groupId="7000" autoStartType="1" realHuntingZoneId="3126" suitableLevel="70" suitableMemberCount="5">
+<Quest id="6" type="daily" name="@DailyPlayGuideQuest:70016001" minLevel="65" groupId="7001" autoStartType="1" realHuntingZoneId="511" suitableLevel="65" suitableMemberCount="7">
+<Quest id="61" type="daily" name="@DailyPlayGuideQuest:700061001" maxLevel="70" minLevel="69" groupId="7000" autoStartType="1" realHuntingZoneId="3102" suitableLevel="70" suitableMemberCount="5">
+<Quest id="61" type="daily" name="@DailyPlayGuideQuest:700161001" maxLevel="68" minLevel="66" groupId="7001" autoStartType="1" realHuntingZoneId="3201" suitableLevel="66" suitableMemberCount="5">
+<TaskPart id="0" type="hunting" count="1" taskId="1" failOnUserDead="false" journal="@DailyPlayGuideQuest:700061100" monsterHuntingZoneId="3201" monsterTemplateId="1000" partyConstraint="solo" unitedParty="모두적용" />
+<TaskPart id="0" type="hunting" count="1" taskId="1" failOnUserDead="false" monsterHuntingZoneId="920" monsterTemplateId="3000" partyConstraint="solo" unitedParty="모두적용" />
+<TaskPart id="1" type="visit" taskId="2" targetHuntingZoneId="9999" targetNpcTemplateId="9999" />

@@ -1,0 +1,624 @@
+# StrSheet_MonsterBehavior  +619 -0
+
+=== ADDED (619) ===
+<String id="2017001000" msg="Oh, how dangerous." onlyBalloon="true" />
+<String id="2017001001" msg="Dodge this!" onlyBalloon="true" />
+<String id="2017001002" msg="I gotta rest." onlyBalloon="true" />
+<String id="2017001003" msg="I'm gonna beat a retreat." onlyBalloon="true" />
+<String id="2017001004" msg="You need some rest!" onlyBalloon="true" />
+<String id="2017001010" msg="It's not enough..." onlyBalloon="true" />
+<String id="2017001011" msg="Do you need energy?" onlyBalloon="true" />
+<String id="2017001012" msg="Restore HP or you'll lose." onlyBalloon="true" />
+<String id="2017001013" msg="Time to heal!" onlyBalloon="true" />
+<String id="2017001020" msg="Watch your HP!" onlyBalloon="true" />
+<String id="2017001021" msg="Death is near." onlyBalloon="true" />
+<String id="2017001022" msg="Can you still fight?" onlyBalloon="true" />
+<String id="2017001023" msg="You are weak." onlyBalloon="true" />
+<String id="2017002000" msg="Want some of my mana?" onlyBalloon="true" />
+<String id="2017002001" msg="You can't go on with that much mana." onlyBalloon="true" />
+<String id="2017002002" msg="You don't have enough mana." onlyBalloon="true" />
+<String id="2017002010" msg="You're just wasting mana." onlyBalloon="true" />
+<String id="2017002011" msg="Watch your mana." onlyBalloon="true" />
+<String id="2017002012" msg="Seems you don't have a mana stream." onlyBalloon="true" />
+<String id="2017003000" msg="Your energy is being disrupted." onlyBalloon="true" />
+<String id="2017003001" msg="You're just wasting your energy." onlyBalloon="true" />
+<String id="2017003010" msg="You have no energy flow." onlyBalloon="true" />
+<String id="2017003011" msg="You don't have enough energy." onlyBalloon="true" />
+<String id="2017003012" msg="Shall I give you my energy?" onlyBalloon="true" />
+<String id="2017005000" msg="Now!" onlyBalloon="true" />
+<String id="2017005001" msg="A weak point!" onlyBalloon="true" />
+<String id="2017005002" msg="It's now or never." onlyBalloon="true" />
+<String id="2017005003" msg="I sense anger." onlyBalloon="true" />
+<String id="2017005004" msg="{MonsterName} is enraged." onlyBalloon="true" />
+<String id="2017005005" msg="{MonsterName} is pathetic." onlyBalloon="true" />
+<String id="2017005006" msg="{MonsterName} cannot defeat me." onlyBalloon="true" />
+<String id="2017006000" msg="Is this the end?" onlyBalloon="true" />
+<String id="2017006001" msg="How weak..." onlyBalloon="true" />
+<String id="2017006002" msg="Are you finally free?" onlyBalloon="true" />
+<String id="2017006003" msg="Pathetic." onlyBalloon="true" />
+<String id="2017006004" msg="This is the end." onlyBalloon="true" />
+<String id="2017006005" msg="He isn't moving." onlyBalloon="true" />
+<String id="2017007000" msg="It begins again!" onlyBalloon="true" />
+<String id="2017007001" msg="Astounding..." onlyBalloon="true" />
+<String id="2017007002" msg="Don't make that mistake again." onlyBalloon="true" />
+<String id="2017007003" msg="There will be no second chance." onlyBalloon="true" />
+<String id="2017007004" msg="Fight for your life." onlyBalloon="true" />
+<String id="2017008000" msg="You've grown stronger." onlyBalloon="true" />
+<String id="2017008001" msg="I feel your strength." onlyBalloon="true" />
+<String id="2017008002" msg="We're not done yet." onlyBalloon="true" />
+<String id="2017008003" msg="Want me to train you?" onlyBalloon="true" />
+<String id="2017009000" msg="You are sluggish." onlyBalloon="true" />
+<String id="2017009001" msg="You're too greedy." onlyBalloon="true" />
+<String id="2017009002" msg="Throw away anything you don't need." onlyBalloon="true" />
+<String id="2017009003" msg="Get organized." onlyBalloon="true" />
+<String id="2017010000" msg="You have recovered." onlyBalloon="true" />
+<String id="2017010001" msg="Nice recovery." onlyBalloon="true" />
+<String id="2017010002" msg="Incredible recover." onlyBalloon="true" />
+<String id="2017010003" msg="Recovery?" onlyBalloon="true" />
+<String id="2017010010" msg="You have enough mana." onlyBalloon="true" />
+<String id="2017010011" msg="I feel your mana stream." onlyBalloon="true" />
+<String id="2017010012" msg="Your mana is sufficient." onlyBalloon="true" />
+<String id="2017010013" msg="You have regenerated mana." onlyBalloon="true" />
+<String id="2017010020" msg="You've grown stronger." onlyBalloon="true" />
+<String id="2017010021" msg="I feel your power." onlyBalloon="true" />
+<String id="2017010022" msg="Is that your power?" onlyBalloon="true" />
+<String id="2017010023" msg="You're ready to fight." onlyBalloon="true" />
+<String id="2017010030" msg="Do you feel pity?" onlyBalloon="true" />
+<String id="2017010031" msg="Thanks." onlyBalloon="true" />
+<String id="2017010032" msg="That's not enough to defeat me." onlyBalloon="true" />
+<String id="2017010033" msg="I embrace your heart." onlyBalloon="true" />
+<String id="2017010034" msg="Argh..." onlyBalloon="true" />
+<String id="2017011000" msg="You received something good." onlyBalloon="true" />
+<String id="2017011001" msg="Very effective." onlyBalloon="true" />
+<String id="2017011002" msg="Your bag has become heavier." onlyBalloon="true" />
+<String id="2017011003" msg="You got lucky." onlyBalloon="true" />
+<String id="2017011004" msg="That's pure luck." onlyBalloon="true" />
+<String id="2017012000" msg="You got lucky." onlyBalloon="true" />
+<String id="2017012001" msg="That was lucky." onlyBalloon="true" />
+<String id="2017012002" msg="Congratulations...?" onlyBalloon="true" />
+<String id="2017012003" msg="We're not done yet." onlyBalloon="true" />
+<String id="2017012004" msg="You aren't satisfied, are you?" onlyBalloon="true" />
+<String id="2017013000" msg="I knew that would happen." onlyBalloon="true" />
+<String id="2017013001" msg="That only happened because you got greedy." onlyBalloon="true" />
+<String id="2017013002" msg="You are very greedy." onlyBalloon="true" />
+<String id="2017013003" msg="You always make the same mistake." onlyBalloon="true" />
+<String id="2017014000" msg="I knew that would happen." onlyBalloon="true" />
+<String id="2017014001" msg="That only happened because you got greedy." onlyBalloon="true" />
+<String id="2017014002" msg="You always make the same mistake." onlyBalloon="true" />
+<String id="2017015000" msg="I knew that would happen." onlyBalloon="true" />
+<String id="2017015001" msg="That only happened because you got greedy." onlyBalloon="true" />
+<String id="2017015002" msg="You always make the same mistake." onlyBalloon="true" />
+<String id="2017017000" msg="I'm a draakon commander." onlyBalloon="true" />
+<String id="2017017001" msg="Where am I...?" onlyBalloon="true" />
+<String id="2017017002" msg="For the honor of the draakons!" onlyBalloon="true" />
+<String id="2017017003" msg="{ServantName}... An honorable name." onlyBalloon="true" />
+<String id="2017017004" msg="{ServantName}? I don't accept that." onlyBalloon="true" />
+<String id="2017017005" msg="{ServantName} is an honorable draakon." onlyBalloon="true" />
+<String id="2017017006" msg="{ServantName} only follows the commander's orders." onlyBalloon="true" />
+<String id="2017019000" msg="I'm a bit tired." onlyBalloon="true" />
+<String id="2017019001" msg="I'm taking a rest." onlyBalloon="true" />
+<String id="2017019002" msg="I need a break." onlyBalloon="true" />
+<String id="2017019003" msg="I'm hungry." onlyBalloon="true" />
+<String id="2017019004" msg="I need more energy." onlyBalloon="true" />
+<String id="2017019005" msg="I need more energy." onlyBalloon="true" />
+<String id="2017020000" msg="...." onlyBalloon="true" />
+<String id="2017020001" msg="Now!" onlyBalloon="true" />
+<String id="2017020002" msg="The power is mine." onlyBalloon="true" />
+<String id="2017020003" msg="Do you feel the power?" onlyBalloon="true" />
+<String id="2017020010" msg="That is the power of a draakon." onlyBalloon="true" />
+<String id="2017020011" msg="I'll lend it to you." onlyBalloon="true" />
+<String id="2017020012" msg="Do you like it?" onlyBalloon="true" />
+<String id="2017020020" msg="It's moving." onlyBalloon="true" />
+<String id="2017020021" msg="A great success." onlyBalloon="true" />
+<String id="2017020022" msg="Hehe." onlyBalloon="true" />
+<String id="2017020030" msg="An aquatic lifeform." onlyBalloon="true" />
+<String id="2017020031" msg="It reeks of fish." onlyBalloon="true" />
+<String id="2017020032" msg="I feel it." onlyBalloon="true" />
+<String id="2017020040" msg="A weak creature." onlyBalloon="true" />
+<String id="2017020041" msg="It's useless." onlyBalloon="true" />
+<String id="2017020042" msg="..." onlyBalloon="true" />
+<String id="2017021000" msg="Fishing...?" onlyBalloon="true" />
+<String id="2017021001" msg="It stinks." onlyBalloon="true" />
+<String id="2017021002" msg="Are we there?" onlyBalloon="true" />
+<String id="2017021003" msg="How annoying..." onlyBalloon="true" />
+<String id="2017022000" msg="There you are." onlyBalloon="true" />
+<String id="2017022001" msg="Now!" onlyBalloon="true" />
+<String id="2017022002" msg="Reel it in!" onlyBalloon="true" />
+<String id="2017023000" msg="It's huge." onlyBalloon="true" />
+<String id="2017023001" msg="Put your back into it." onlyBalloon="true" />
+<String id="2017023002" msg="Need a hand?" onlyBalloon="true" />
+<String id="2017024000" msg="Something has arrived." onlyBalloon="true" />
+<String id="2017024001" msg="Take a look." onlyBalloon="true" />
+<String id="2017024002" msg="Okay." onlyBalloon="true" />
+<String id="2017024003" msg="There you are." onlyBalloon="true" />
+<String id="2017024004" msg="Is that mine?" onlyBalloon="true" />
+<String id="2017025000" msg="Is the fight starting?" onlyBalloon="true" />
+<String id="2017025001" msg="Is it an enemy?" onlyBalloon="true" />
+<String id="2017025002" msg="Where would you like to go?" onlyBalloon="true" />
+<String id="2017026000" msg="I'm ready." onlyBalloon="true" />
+<String id="2017026001" msg="Time to focus." onlyBalloon="true" />
+<String id="2017026002" msg="I'm waiting you." onlyBalloon="true" />
+<String id="2017026003" msg="Give it all you've got." onlyBalloon="true" />
+<String id="2017027000" msg="Okay." onlyBalloon="true" />
+<String id="2017027001" msg="Did you meet with success?" onlyBalloon="true" />
+<String id="2017027002" msg="Do you need a tonfa?" onlyBalloon="true" />
+<String id="2017028000" msg="It's shiny." onlyBalloon="true" />
+<String id="2017028001" msg="Hmph, not bad." onlyBalloon="true" />
+<String id="2017028002" msg="You're not bad." onlyBalloon="true" />
+<String id="2017029000" msg="You got lucky." onlyBalloon="true" />
+<String id="2017029001" msg="I helped." onlyBalloon="true" />
+<String id="2017029002" msg="You received something valuable." onlyBalloon="true" />
+<String id="2017031000" msg="You combat ability has improved" onlyBalloon="true" />
+<String id="2017031001" msg="I feel your power." onlyBalloon="true" />
+<String id="2017031002" msg="You can get even stronger yet." onlyBalloon="true" />
+<String id="2017032000" msg="You combat ability has improved" onlyBalloon="true" />
+<String id="2017032001" msg="I feel your power." onlyBalloon="true" />
+<String id="2017032002" msg="You can get even stronger yet." onlyBalloon="true" />
+<String id="2017033000" msg="Something was sold." onlyBalloon="true" />
+<String id="2017033001" msg="Everything was sold." onlyBalloon="true" />
+<String id="2017033002" msg="You received Gold." onlyBalloon="true" />
+<String id="2017034000" msg="Yes, as expected." onlyBalloon="true" />
+<String id="2017034001" msg="An honorable thing." onlyBalloon="true" />
+<String id="2017034002" msg="How honorable." onlyBalloon="true" />
+<String id="2017034003" msg="A great honor!" onlyBalloon="true" />
+<String id="2017100000" msg="Not enough HP potions." onlyBalloon="true" />
+<String id="2017100001" msg="Check your HP potions." onlyBalloon="true" />
+<String id="2017100002" msg="You're out of HP potions." onlyBalloon="true" />
+<String id="2017100003" msg="Got any HP potions?" onlyBalloon="true" />
+<String id="2017100010" msg="Not enough MP potions." onlyBalloon="true" />
+<String id="2017100011" msg="Check your MP potions." onlyBalloon="true" />
+<String id="2017100012" msg="You're out of MP potions!" onlyBalloon="true" />
+<String id="2017100013" msg="Not enough MP potions." onlyBalloon="true" />
+<String id="2017100020" msg="I need more energy." onlyBalloon="true" />
+<String id="2017100021" msg="You don't have enough potions." onlyBalloon="true" />
+<String id="2017100022" msg="Check your potions." onlyBalloon="true" />
+<String id="2017100023" msg="You need potions!" onlyBalloon="true" />
+<String id="2018001000" msg="You fall as if struck by lightning." onlyBalloon="true" />
+<String id="2018001001" msg="You face says it all. I like it." onlyBalloon="true" />
+<String id="2018001002" msg="I'll finish you, {UserName}!" onlyBalloon="true" />
+<String id="2018001003" msg="How pathetic." onlyBalloon="true" />
+<String id="2018001004" msg="Just a blade of grass in a storm, nothing more!" onlyBalloon="true" />
+<String id="2018001010" msg="Just give up already!" onlyBalloon="true" />
+<String id="2018001011" msg="Not breathing quite like you'd want to!" onlyBalloon="true" />
+<String id="2018001012" msg="Your ship seems to have sailed." onlyBalloon="true" />
+<String id="2018001013" msg="Have you got a solution then?" onlyBalloon="true" />
+<String id="2018001020" msg="Aren't you at the end of your rope?" onlyBalloon="true" />
+<String id="2018001021" msg="Bravery is the stubbornness of fools." onlyBalloon="true" />
+<String id="2018001022" msg="You had it coming..." onlyBalloon="true" />
+<String id="2018001023" msg="Don't you feel the cold grip of death?" onlyBalloon="true" />
+<String id="2018002000" msg="You are no longer in control of yourself." onlyBalloon="true" />
+<String id="2018002001" msg="Prepare yourself for the vengeance of your enemy." onlyBalloon="true" />
+<String id="2018002002" msg="You're out of MP." onlyBalloon="true" />
+<String id="2018002010" msg="What are you waiting for? Replenish your MP!" onlyBalloon="true" />
+<String id="2018002011" msg="You call that MP replenishment?!" onlyBalloon="true" />
+<String id="2018002012" msg="Listen up, MP is valuable!" onlyBalloon="true" />
+<String id="2018003000" msg="Having trouble breathing?" onlyBalloon="true" />
+<String id="2018003001" msg="You have heard of the word 'retreat', haven't you?" onlyBalloon="true" />
+<String id="2018003010" msg="You're running out of energy." onlyBalloon="true" />
+<String id="2018003011" msg="Please replenish some energy before it's too late." onlyBalloon="true" />
+<String id="2018003012" msg="Energy doesn't grow on trees!" onlyBalloon="true" />
+<String id="2018005000" msg="Stay focused." onlyBalloon="true" />
+<String id="2018005001" msg="Do you feel the wrath? That's {MonsterName}." onlyBalloon="true" />
+<String id="2018005002" msg="It's better to face enemies in this state with a cool head... or not at all." onlyBalloon="true" />
+<String id="2018005003" msg="See everything as an opportunity..." onlyBalloon="true" />
+<String id="2018005004" msg="You're pathetic, {MonsterName}." onlyBalloon="true" />
+<String id="2018005005" msg="It's almost touching how angry {MonsterName} is with me." onlyBalloon="true" />
+<String id="2018005006" msg="The wrath of {MonsterName} is equal to that of a sleep-deprived naga!" onlyBalloon="true" />
+<String id="2018006000" msg="I can't believe you succumb to this little worm." onlyBalloon="true" />
+<String id="2018006001" msg="I'm almost disgusted, {UserName}." onlyBalloon="true" />
+<String id="2018006002" msg="It was inevitable." onlyBalloon="true" />
+<String id="2018006003" msg="Shame on you!" onlyBalloon="true" />
+<String id="2018006004" msg="Yes, that's right, stay down!" onlyBalloon="true" />
+<String id="2018006005" msg="That was to be expected..." onlyBalloon="true" />
+<String id="2018007000" msg="You're tougher than I'd expected." onlyBalloon="true" />
+<String id="2018007001" msg="Don't cause me any grief...!" onlyBalloon="true" />
+<String id="2018007002" msg="Pull yourself together, {UserName}!" onlyBalloon="true" />
+<String id="2018007003" msg="Your tenacity is impressive." onlyBalloon="true" />
+<String id="2018007004" msg="Isn't it comfortable down there?" onlyBalloon="true" />
+<String id="2018008000" msg="Put a bit of elbow grease into it!" onlyBalloon="true" />
+<String id="2018008001" msg="What is it? Waiting for a birthday cake?" onlyBalloon="true" />
+<String id="2018008002" msg="Seems you were worth the wait." onlyBalloon="true" />
+<String id="2018008003" msg="Any cuter and you'll die." onlyBalloon="true" />
+<String id="2018009000" msg="Oh, so greedy?" onlyBalloon="true" />
+<String id="2018009001" msg="Open your eyes! It's in your inventory." onlyBalloon="true" />
+<String id="2018009002" msg="Looking for a trash can, or why are you hauling that around?" onlyBalloon="true" />
+<String id="2018009003" msg="You pick up everything you lay your eyes on." onlyBalloon="true" />
+<String id="2018010000" msg="Seems your civilization hasn't heard of healers, huh?" onlyBalloon="true" />
+<String id="2018010001" msg="An effective cure." onlyBalloon="true" />
+<String id="2018010002" msg="That gets the vital juices flowing." onlyBalloon="true" />
+<String id="2018010003" msg="On your feet and back into battle!" onlyBalloon="true" />
+<String id="2018010010" msg="Ah, the mana's flowing." onlyBalloon="true" />
+<String id="2018010011" msg="Excellent." onlyBalloon="true" />
+<String id="2018010012" msg="Your mana has been replenished." onlyBalloon="true" />
+<String id="2018010013" msg="But now please show some more impressive skills." onlyBalloon="true" />
+<String id="2018010020" msg="You cannot be serious, right...?" onlyBalloon="true" />
+<String id="2018010021" msg="With utmost respect, your efforts do not impress me." onlyBalloon="true" />
+<String id="2018010022" msg="That was effective." onlyBalloon="true" />
+<String id="2018010023" msg="Well? Feeling invigorated?" onlyBalloon="true" />
+<String id="2018010030" msg="Um, what was that supposed to be?" onlyBalloon="true" />
+<String id="2018010031" msg="Are you trying to bribe me?" onlyBalloon="true" />
+<String id="2018010032" msg="Hey, I'm not for sale!" onlyBalloon="true" />
+<String id="2018010033" msg="That won't weaken me." onlyBalloon="true" />
+<String id="2018010034" msg="Leave that and listen." onlyBalloon="true" />
+<String id="2018011000" msg="You've just been collecting crap." onlyBalloon="true" />
+<String id="2018011001" msg="Do you want to keep that?" onlyBalloon="true" />
+<String id="2018011002" msg="That, on the other hand, proving quite popular." onlyBalloon="true" />
+<String id="2018011003" msg="Don't you ever keep track of your inventory?" onlyBalloon="true" />
+<String id="2018011004" msg="Don't you feel... burdened?" onlyBalloon="true" />
+<String id="2018012000" msg="Fate is smiling on you." onlyBalloon="true" />
+<String id="2018012001" msg="You want to give up halfway through?" onlyBalloon="true" />
+<String id="2018012002" msg="You have grown." onlyBalloon="true" />
+<String id="2018012003" msg="That's not going to cut it." onlyBalloon="true" />
+<String id="2018012004" msg="Are you satisfied with that?" onlyBalloon="true" />
+<String id="2018013000" msg="You never seem satisfied." onlyBalloon="true" />
+<String id="2018013001" msg="Tsk, tsk, tsk..." onlyBalloon="true" />
+<String id="2018013002" msg="That was predictable." onlyBalloon="true" />
+<String id="2018013003" msg="Haven't you had enough?" onlyBalloon="true" />
+<String id="2018014000" msg="You're going to need some repairs." onlyBalloon="true" />
+<String id="2018014001" msg="You certainly don't lack ambition." onlyBalloon="true" />
+<String id="2018014002" msg="Haven't you had enough?" onlyBalloon="true" />
+<String id="2018015000" msg="You're such a joker." onlyBalloon="true" />
+<String id="2018015001" msg="Your expression makes a lasting impression." onlyBalloon="true" />
+<String id="2018015002" msg="Haven't you had enough?" onlyBalloon="true" />
+<String id="2018017000" msg="They call me Draakon Commander Lumikan." onlyBalloon="true" />
+<String id="2018017001" msg="Just don't think you can go ordering me around!" onlyBalloon="true" />
+<String id="2018017002" msg="I wasn't ready for that..." onlyBalloon="true" />
+<String id="2018017003" msg="Well, {UserName}, in search of Vergos' Legacy?" onlyBalloon="true" />
+<String id="2018017004" msg="{UserName}, what's next?" onlyBalloon="true" />
+<String id="2018017005" msg="{UserName}, what tidings do you bring?" onlyBalloon="true" />
+<String id="2018017006" msg="{UserName}, show your gratitude." onlyBalloon="true" />
+<String id="2018019000" msg="Elsewhere, they call it exploitation." onlyBalloon="true" />
+<String id="2018019001" msg="What gives you the right to show such cheek?" onlyBalloon="true" />
+<String id="2018019002" msg="If you crave great power, express yourself respectfully." onlyBalloon="true" />
+<String id="2018019003" msg="A break is always welcome." onlyBalloon="true" />
+<String id="2018019004" msg="I feel weak." onlyBalloon="true" />
+<String id="2018019005" msg="Aren't you hungry?" onlyBalloon="true" />
+<String id="2018020000" msg="Ohh!" onlyBalloon="true" />
+<String id="2018020001" msg="You want to try your hand at that?" onlyBalloon="true" />
+<String id="2018020002" msg="I want to lend it to you." onlyBalloon="true" />
+<String id="2018020003" msg="Well, do you feel anything yet?" onlyBalloon="true" />
+<String id="2018020010" msg="Are you up to it?" onlyBalloon="true" />
+<String id="2018020011" msg="This is only the beginning." onlyBalloon="true" />
+<String id="2018020012" msg="Yes, that's right! This is Draakon Force." onlyBalloon="true" />
+<String id="2018020020" msg="Unmistakable, isn't it?" onlyBalloon="true" />
+<String id="2018020021" msg="Oops." onlyBalloon="true" />
+<String id="2018020022" msg="Bah." onlyBalloon="true" />
+<String id="2018020030" msg="Ha, what a sight." onlyBalloon="true" />
+<String id="2018020031" msg="Now give it here!" onlyBalloon="true" />
+<String id="2018020032" msg="I'm waiting." onlyBalloon="true" />
+<String id="2018020040" msg="Nothing would get done without my intervention!" onlyBalloon="true" />
+<String id="2018020041" msg="So weak..." onlyBalloon="true" />
+<String id="2018020042" msg="You are gushing with gratitude!" onlyBalloon="true" />
+<String id="2018021000" msg="A dubious delight." onlyBalloon="true" />
+<String id="2018021001" msg="Are you having fun?" onlyBalloon="true" />
+<String id="2018021002" msg="You should strengthen yourself if you have the time." onlyBalloon="true" />
+<String id="2018021003" msg="What a waste..." onlyBalloon="true" />
+<String id="2018022000" msg="Are you waiting for the seven fairies or something?" onlyBalloon="true" />
+<String id="2018022001" msg="Something is stirring over there..." onlyBalloon="true" />
+<String id="2018022002" msg="Didn't you have breakfast?" onlyBalloon="true" />
+<String id="2018023000" msg="Don't let yourself go like that!" onlyBalloon="true" />
+<String id="2018023001" msg="Why all the concentration...?" onlyBalloon="true" />
+<String id="2018023002" msg="Hmm, lowly creatures wrestling with each other?" onlyBalloon="true" />
+<String id="2018024000" msg="There are the good-for-nothing lowlifes." onlyBalloon="true" />
+<String id="2018024001" msg="Is that for me?" onlyBalloon="true" />
+<String id="2018024002" msg="Give it all to me!" onlyBalloon="true" />
+<String id="2018024003" msg="I want it." onlyBalloon="true" />
+<String id="2018024004" msg="Give it here!" onlyBalloon="true" />
+<String id="2018025000" msg="Are you struggling all alone?" onlyBalloon="true" />
+<String id="2018025001" msg="Looking for allies?" onlyBalloon="true" />
+<String id="2018025002" msg="Are you on the right path?" onlyBalloon="true" />
+<String id="2018026000" msg="Are you going or not?" onlyBalloon="true" />
+<String id="2018026001" msg="All roads lead to success." onlyBalloon="true" />
+<String id="2018026002" msg="I'm keeping an eye on you." onlyBalloon="true" />
+<String id="2018026003" msg="Hehe, it'll be a rare treat to watch you." onlyBalloon="true" />
+<String id="2018027000" msg="I am not your flunky." onlyBalloon="true" />
+<String id="2018027001" msg="That was silly!" onlyBalloon="true" />
+<String id="2018027002" msg="There are useful and useless things in this land." onlyBalloon="true" />
+<String id="2018028000" msg="What are you messing with there?" onlyBalloon="true" />
+<String id="2018028001" msg="Those colors, very attractive." onlyBalloon="true" />
+<String id="2018028002" msg="For me?" onlyBalloon="true" />
+<String id="2018029000" msg="You look mighty satisfied." onlyBalloon="true" />
+<String id="2018029001" msg="Yes, a really splendid achievement." onlyBalloon="true" />
+<String id="2018029002" msg="Give it to me." onlyBalloon="true" />
+<String id="2018031000" msg="Such incredible power." onlyBalloon="true" />
+<String id="2018031001" msg="Finally, something useful." onlyBalloon="true" />
+<String id="2018031002" msg="There's hardly any progress to talk of here." onlyBalloon="true" />
+<String id="2018032000" msg="Another level stronger..." onlyBalloon="true" />
+<String id="2018032001" msg="We're not done yet." onlyBalloon="true" />
+<String id="2018032002" msg="You are still no match for a draakon." onlyBalloon="true" />
+<String id="2018033000" msg="Want to trade?" onlyBalloon="true" />
+<String id="2018033001" msg="Seems you've tasted Gold." onlyBalloon="true" />
+<String id="2018033002" msg="What do you want to spend your Gold on?" onlyBalloon="true" />
+<String id="2018034000" msg="That's what I call getting close to the draakon." onlyBalloon="true" />
+<String id="2018034001" msg="That's what I call perfectly shaped." onlyBalloon="true" />
+<String id="2018034002" msg="That's nothing to sneeze at." onlyBalloon="true" />
+<String id="2018034003" msg="You defended the honor of the draakons." onlyBalloon="true" />
+<String id="2018100000" msg="No HP potions... you must be out of your mind!" onlyBalloon="true" />
+<String id="2018100001" msg="You're out of HP potions. Are you tired of living?" onlyBalloon="true" />
+<String id="2018100002" msg="You're out of HP potions. Have you got an eye on your HP?" onlyBalloon="true" />
+<String id="2018100003" msg="You don't have any HP potions!" onlyBalloon="true" />
+<String id="2018100010" msg="Did you bring enough MP potions?" onlyBalloon="true" />
+<String id="2018100011" msg="I told you to pack MP potions!" onlyBalloon="true" />
+<String id="2018100012" msg="Did you leave your MP potions at home?" onlyBalloon="true" />
+<String id="2018100013" msg="What are you going to do without any MP potions?" onlyBalloon="true" />
+<String id="2018100020" msg="Are you forgetful or something?" onlyBalloon="true" />
+<String id="2018100021" msg="How do you picture doing this without MP potions?" onlyBalloon="true" />
+<String id="2018100022" msg="Is there anything you did remember?" onlyBalloon="true" />
+<String id="2018100023" msg="Prudence is the best insurance!" onlyBalloon="true" />
+<String id="2115000000" msg="Safe travels." onlyBalloon="true" />
+<String id="2115000001" msg="It's hard to say goodbye, but..." onlyBalloon="true" />
+<String id="2115000002" msg="See you again!" onlyBalloon="true" />
+<String id="2115000003" msg="Well, that's goodbye." onlyBalloon="true" />
+<String id="2117000011" msg="Elleon... I heard he died." onlyBalloon="true" />
+<String id="2117000012" msg="Elleon was powerful. But he also had help." onlyBalloon="true" />
+<String id="2117000013" msg="I have relied solely on my own powers so far." onlyBalloon="true" />
+<String id="2117000014" msg="Do you think you can defeat me without him?" onlyBalloon="true" />
+<String id="2117000015" msg="You're not bad, but that's enough." onlyBalloon="true" />
+<String id="2117000016" msg="Look at me." onlyBalloon="true" />
+<String id="2117000017" msg="I'm a draakon." onlyBalloon="true" />
+<String id="2117000018" msg="No one is a match for me." onlyBalloon="true" />
+<String id="2117000021" msg="This time I will have my revenge." onlyBalloon="true" />
+<String id="2117000022" msg="I choose an honorable death." onlyBalloon="true" />
+<String id="2117000023" msg="I'll show you the true power of a dragon." onlyBalloon="true" />
+<String id="2117000024" msg="Rogash is interrupting my honorable death." onlyBalloon="true" />
+<String id="2117000025" msg="Lumikan will avenge me." onlyBalloon="true" />
+<String id="2117000026" msg="Arborea will soon belong to the draakons." onlyBalloon="true" />
+<String id="2117000027" msg="Retreat? Never!" onlyBalloon="true" />
+<String id="2117000028" msg="That's a word known only to cowards!" onlyBalloon="true" />
+<String id="2117000031" msg="Our fight goes on. I will return." onlyBalloon="true" />
+<String id="2117000032" msg="Rogash will suffer." onlyBalloon="true" />
+<String id="2117000033" msg="Argons are mysterious creatures." onlyBalloon="true" />
+<String id="2117000034" msg="No one will find out what they're planning." onlyBalloon="true" />
+<String id="2117000035" msg="You will lose." onlyBalloon="true" />
+<String id="2117000036" msg="Arborea will fall." onlyBalloon="true" />
+<String id="2117000037" msg="The big invasion is coming." onlyBalloon="true" />
+<String id="2117000038" msg="Obey me." onlyBalloon="true" />
+<String id="2117000041" msg="You are weak." onlyBalloon="true" />
+<String id="2117000042" msg="You don't stand a chance against me." onlyBalloon="true" />
+<String id="2117000043" msg="You're like Elleon, but I am stronger than you." onlyBalloon="true" />
+<String id="2117000044" msg="Focus!" onlyBalloon="true" />
+<String id="2117000045" msg="You don't have time to think about other things." onlyBalloon="true" />
+<String id="2117000046" msg="How sluggish...!" onlyBalloon="true" />
+<String id="2117000047" msg="The Cyclone of Flame will devour you!" onlyBalloon="true" />
+<String id="2117000048" msg="Burn them all!" onlyBalloon="true" />
+<String id="2117000051" msg="It's the end for you!" onlyBalloon="true" />
+<String id="2117000052" msg="Enough of these games!" onlyBalloon="true" />
+<String id="2117000053" msg="Have you ever fought with a tonfa?" onlyBalloon="true" />
+<String id="2117000054" msg="I am a commander." onlyBalloon="true" />
+<String id="2117000055" msg="We will face each other one day." onlyBalloon="true" />
+<String id="2117000056" msg="A guardian...?" onlyBalloon="true" />
+<String id="2117000057" msg="I fight for my principles." onlyBalloon="true" />
+<String id="2117000058" msg="Manahan made us a promise." onlyBalloon="true" />
+<String id="2117010011" msg="One day, Arborea will belong to us." onlyBalloon="true" />
+<String id="2117010012" msg="For the honor of the draakons!" onlyBalloon="true" />
+<String id="2117010013" msg="May the draakons live forever!" onlyBalloon="true" />
+<String id="2117010014" msg="You will kneel before me." onlyBalloon="true" />
+<String id="2117010015" msg="Rogash? How do you know him?" onlyBalloon="true" />
+<String id="2117010016" msg="Rogash is the sneakiest person I know." onlyBalloon="true" />
+<String id="2117010017" msg="Rogash is not to be trifled with." onlyBalloon="true" />
+<String id="2117010018" msg="Lumikan? Do you mean the commander?" onlyBalloon="true" />
+<String id="2117010021" msg="I have sworn my loyalty to the commander." onlyBalloon="true" />
+<String id="2117010022" msg="Do you want to test me?" onlyBalloon="true" />
+<String id="2117010023" msg="You won't get anything out of me." onlyBalloon="true" />
+<String id="2117010024" msg="The core... couldn't be protected." onlyBalloon="true" />
+<String id="2117010025" msg="The Darkcore..." onlyBalloon="true" />
+<String id="2117010026" msg="Do you want to fight me?" onlyBalloon="true" />
+<String id="2117010027" msg="My tonfa is bloody." onlyBalloon="true" />
+<String id="2117010028" msg="Training is paramount." onlyBalloon="true" />
+<String id="2117010031" msg="Toughen up and train." onlyBalloon="true" />
+<String id="2117010032" msg="The path of a warrior isn't easy." onlyBalloon="true" />
+<String id="2117010033" msg="Train hard." onlyBalloon="true" />
+<String id="2117010034" msg="I'm ready to face you any time." onlyBalloon="true" />
+<String id="2117010035" msg="Everyone needs to be able to protect themselves." onlyBalloon="true" />
+<String id="2117010036" msg="Pain makes you stronger." onlyBalloon="true" />
+<String id="2117010037" msg="How sneaky." onlyBalloon="true" />
+<String id="2117010038" msg="Why did you do that?" onlyBalloon="true" />
+<String id="2117010039" msg="I don't understand." onlyBalloon="true" />
+<String id="2117010040" msg="Where are we?" onlyBalloon="true" />
+<String id="2117010041" msg="What did you do to me?" onlyBalloon="true" />
+<String id="2117010042" msg="Do you think my brothers will let you get away with this?" onlyBalloon="true" />
+<String id="2117010043" msg="Draakons don't leave their comrades behind." onlyBalloon="true" />
+<String id="2117010044" msg="Haha. Interesting." onlyBalloon="true" />
+<String id="2117010045" msg="That's not enough to bring me to my knees." onlyBalloon="true" />
+<String id="2117010046" msg="Bring me more." onlyBalloon="true" />
+<String id="2117010047" msg="I need to move." onlyBalloon="true" />
+<String id="2117010048" msg="?" onlyBalloon="true" />
+<String id="2117010049" msg="!" onlyBalloon="true" />
+<String id="2117010050" msg="?" onlyBalloon="true" />
+<String id="2117010051" msg="Don't order me around." onlyBalloon="true" />
+<String id="2117010052" msg="I'm not your servant." onlyBalloon="true" />
+<String id="2117010053" msg="Do I have to answer?" onlyBalloon="true" />
+<String id="2117010054" msg="My comrades will come and rescue me." onlyBalloon="true" />
+<String id="2117010055" msg="What do you want from me?" onlyBalloon="true" />
+<String id="2117010056" msg="You want my support?" onlyBalloon="true" />
+<String id="2117010057" msg="...." onlyBalloon="true" />
+<String id="2117010058" msg="No..." onlyBalloon="true" />
+<String id="2117010059" msg="Such a rookie." onlyBalloon="true" />
+<String id="2117010060" msg="This is unpleasant." onlyBalloon="true" />
+<String id="2117010061" msg="Pitiful skills." onlyBalloon="true" />
+<String id="2117010062" msg="Ha!" onlyBalloon="true" />
+<String id="2117010063" msg="Now it really begins." onlyBalloon="true" />
+<String id="2117010064" msg="This isn't over yet." onlyBalloon="true" />
+<String id="2117010065" msg="Draakons do not lose." onlyBalloon="true" />
+<String id="2117010066" msg="Am I reborn?" onlyBalloon="true" />
+<String id="2117010067" msg="Where am I?" onlyBalloon="true" />
+<String id="2117010068" msg="The argons will be revived." onlyBalloon="true" />
+<String id="2117010069" msg="Hehe." onlyBalloon="true" />
+<String id="2117010070" msg="Understood." onlyBalloon="true" />
+<String id="2117010071" msg="I'm on my way." onlyBalloon="true" />
+<String id="2117010072" msg="Wait." onlyBalloon="true" />
+<String id="2117010073" msg="I feel your strength." onlyBalloon="true" />
+<String id="2117010074" msg="Are you a competent person?" onlyBalloon="true" />
+<String id="2117010075" msg="What's your name, {ContactServantName}?" onlyBalloon="true" />
+<String id="2117010076" msg="Guardian... {ContactServantName}." onlyBalloon="true" />
+<String id="2117010077" msg="{ContactUserName}, you are nicely equipped with {EquipmentItemLevel}." onlyBalloon="true" />
+<String id="2117010078" msg="{ContactServantName}, you are like me." onlyBalloon="true" />
+<String id="2117010079" msg="{UserName}! Let me go." onlyBalloon="true" />
+<String id="2117010080" msg="I will have my revenge on you, {UserName}." onlyBalloon="true" />
+<String id="2117010081" msg="{ContactServantName}? What do you say?" onlyBalloon="true" />
+<String id="2117010082" msg="Poor {ContactServantName}..." onlyBalloon="true" />
+<String id="2117010083" msg="Is {ContactUserName} a competent person?" onlyBalloon="true" />
+<String id="2117010084" msg="{ContactUserLevel} is enough." onlyBalloon="true" />
+<String id="2117010085" msg="I feel a {UserLevel} power." onlyBalloon="true" />
+<String id="2117010086" msg="{UserLevel} isn't bad." onlyBalloon="true" />
+<String id="2117010087" msg="{ContactUserName}, you belong to {ContactGuildName}." onlyBalloon="true" />
+<String id="2117010088" msg="{ContactBuffGrade} needs to be improved." onlyBalloon="true" />
+<String id="2117010089" msg="My combat power is tireless {BuffGrade}." onlyBalloon="true" />
+<String id="2118000011" msg="Unworthy creature, kneel before me!" onlyBalloon="true" />
+<String id="2118000012" msg="You dare to raise your head before me?!" onlyBalloon="true" />
+<String id="2118000013" msg="Show your commander some respect!" onlyBalloon="true" />
+<String id="2118000014" msg="Where is your leader?" onlyBalloon="true" />
+<String id="2118000015" msg="Are you challenging me, pipsqueak?" onlyBalloon="true" />
+<String id="2118000016" msg="A rebellious little pipsqueak!" onlyBalloon="true" />
+<String id="2118000017" msg="How dare you, worm!" onlyBalloon="true" />
+<String id="2118000018" msg="Very well, submit!" onlyBalloon="true" />
+<String id="2118000021" msg="Unworthy creatures do nothing but struggle." onlyBalloon="true" />
+<String id="2118000022" msg="Wouldn't you rather serve me?" onlyBalloon="true" />
+<String id="2118000023" msg="You don't think you have beaten me?" onlyBalloon="true" />
+<String id="2118000024" msg="No weapon is a match for my spear!" onlyBalloon="true" />
+<String id="2118000025" msg="Such bad luck!" onlyBalloon="true" />
+<String id="2118000026" msg="You sully my shadow." onlyBalloon="true" />
+<String id="2118000027" msg="You will feel that!" onlyBalloon="true" />
+<String id="2118000028" msg="Your nightmare takes its course." onlyBalloon="true" />
+<String id="2118000031" msg="Watch your step!" onlyBalloon="true" />
+<String id="2118000032" msg="This is getting tight!" onlyBalloon="true" />
+<String id="2118000033" msg="Try dodging." onlyBalloon="true" />
+<String id="2118000034" msg="You are pitiful." onlyBalloon="true" />
+<String id="2118000035" msg="You'll go up in flames!" onlyBalloon="true" />
+<String id="2118000036" msg="Today is the day of the spear." onlyBalloon="true" />
+<String id="2118000037" msg="This is terrible to watch." onlyBalloon="true" />
+<String id="2118000038" msg="Is that all?" onlyBalloon="true" />
+<String id="2118000041" msg="Could you at least make an effort?" onlyBalloon="true" />
+<String id="2118000042" msg="Show some grit!" onlyBalloon="true" />
+<String id="2118000043" msg="How can that not move you?" onlyBalloon="true" />
+<String id="2118000044" msg="Come to your senses and lay down your weapons!" onlyBalloon="true" />
+<String id="2118000045" msg="I can see directly into your heart." onlyBalloon="true" />
+<String id="2118000046" msg="I'll see you tonight in your dreams." onlyBalloon="true" />
+<String id="2118000047" msg="I am profoundly unimpressed." onlyBalloon="true" />
+<String id="2118000048" msg="What's that? You want to be my slave?" onlyBalloon="true" />
+<String id="2118000051" msg="You won't escape me!" onlyBalloon="true" />
+<String id="2118000052" msg="How invigorating." onlyBalloon="true" />
+<String id="2118000053" msg="Like a newborn naga..." onlyBalloon="true" />
+<String id="2118000054" msg="Draakon? Don't make me laugh!" onlyBalloon="true" />
+<String id="2118000055" msg="You are unworthy." onlyBalloon="true" />
+<String id="2118000056" msg="Go on, call your leader!" onlyBalloon="true" />
+<String id="2118000057" msg="Do you enjoy this kind of thing?" onlyBalloon="true" />
+<String id="2118000058" msg="You laugh?" onlyBalloon="true" />
+<String id="2118010011" msg="Bah, pathetic." onlyBalloon="true" />
+<String id="2118010012" msg="You are a lowly creature." onlyBalloon="true" />
+<String id="2118010013" msg="Is that all you can muster?" onlyBalloon="true" />
+<String id="2118010014" msg="Don't be ashamed." onlyBalloon="true" />
+<String id="2118010015" msg="I don't have all day!" onlyBalloon="true" />
+<String id="2118010016" msg="Get out of my way!" onlyBalloon="true" />
+<String id="2118010017" msg="You are still no match for a draakon." onlyBalloon="true" />
+<String id="2118010018" msg="The best you can do is compete with naga." onlyBalloon="true" />
+<String id="2118010021" msg="Mournwing would be delighted with some extra food, though." onlyBalloon="true" />
+<String id="2118010022" msg="I guess you're no more than a stooge." onlyBalloon="true" />
+<String id="2118010023" msg="You're nothing but mournwing fodder!" onlyBalloon="true" />
+<String id="2118010024" msg="Even the simplest of tasks overwhelm you." onlyBalloon="true" />
+<String id="2118010025" msg="Get lost!" onlyBalloon="true" />
+<String id="2118010026" msg="What do you want from me?" onlyBalloon="true" />
+<String id="2118010027" msg="I could use you. Don't you want to serve me?" onlyBalloon="true" />
+<String id="2118010028" msg="So, how about it? Do you want to be a commander?" onlyBalloon="true" />
+<String id="2118010031" msg="Splendid! Stay by my side." onlyBalloon="true" />
+<String id="2118010032" msg="Serve me and I will spare your life." onlyBalloon="true" />
+<String id="2118010033" msg="How pathetic." onlyBalloon="true" />
+<String id="2118010034" msg="You don't want to be petted, do you?" onlyBalloon="true" />
+<String id="2118010035" msg="Serve me faithfully, and it'll be worth your while." onlyBalloon="true" />
+<String id="2118010036" msg="Become my humble servant." onlyBalloon="true" />
+<String id="2118010037" msg="You are truly pathetic." onlyBalloon="true" />
+<String id="2118010038" msg="So stay and amuse me!" onlyBalloon="true" />
+<String id="2118010039" msg="You are good for nothing." onlyBalloon="true" />
+<String id="2118010040" msg="Pitiful." onlyBalloon="true" />
+<String id="2118010041" msg="You are a servant of the naga?" onlyBalloon="true" />
+<String id="2118010042" msg="Hm..." onlyBalloon="true" />
+<String id="2118010043" msg="Arborea's creatures are so adorable." onlyBalloon="true" />
+<String id="2118010044" msg="Become Azart's servant!" onlyBalloon="true" />
+<String id="2118010045" msg="You are very similar to the naga." onlyBalloon="true" />
+<String id="2118010046" msg="Too tasty." onlyBalloon="true" />
+<String id="2118010047" msg="You perform almost as well as a mournwing." onlyBalloon="true" />
+<String id="2118010048" msg="Such a low standard..." onlyBalloon="true" />
+<String id="2118010049" msg="You want to be a draakon?" onlyBalloon="true" />
+<String id="2118010050" msg="Azart, don't make me laugh." onlyBalloon="true" />
+<String id="2118010051" msg="Any famous last words?" onlyBalloon="true" />
+<String id="2118010052" msg="Join the draakons!" onlyBalloon="true" />
+<String id="2118010053" msg="You might have a chance." onlyBalloon="true" />
+<String id="2118010054" msg="I like you." onlyBalloon="true" />
+<String id="2118010055" msg="You could come in useful." onlyBalloon="true" />
+<String id="2118010056" msg="You'll be well looked after in my petting zoo." onlyBalloon="true" />
+<String id="2118010057" msg="You are trembling. Do you want your mommy?" onlyBalloon="true" />
+<String id="2118010058" msg="I will spare you." onlyBalloon="true" />
+<String id="2118010059" msg="Vergos' power! But where is it coming from...?" onlyBalloon="true" />
+<String id="2118010060" msg="You dare...?" onlyBalloon="true" />
+<String id="2118010061" msg="Use all your strength!" onlyBalloon="true" />
+<String id="2118010062" msg="Lay down your weapons!" onlyBalloon="true" />
+<String id="2118010063" msg="Surrender, and I will spare your life." onlyBalloon="true" />
+<String id="2118010064" msg="Your existence is slowly becoming torture." onlyBalloon="true" />
+<String id="2118010065" msg="Do not even speak Vergos' name!" onlyBalloon="true" />
+<String id="2118010066" msg="You are not worthy to speak his name!" onlyBalloon="true" />
+<String id="2118010067" msg="Your insolence stinks to high heaven." onlyBalloon="true" />
+<String id="2118010068" msg="You are giving me orders?" onlyBalloon="true" />
+<String id="2118010069" msg="How dare you attack me?" onlyBalloon="true" />
+<String id="2118010070" msg="Grilled Pigling?" onlyBalloon="true" />
+<String id="2118010071" msg="Running away?" onlyBalloon="true" />
+<String id="2118010072" msg="An encounter with me has only one outcome: your death." onlyBalloon="true" />
+<String id="2118010073" msg="Silence!" onlyBalloon="true" />
+<String id="2118010074" msg="You are a disgrace." onlyBalloon="true" />
+<String id="2118010075" msg="{ContactServantName}?" onlyBalloon="true" />
+<String id="2118010076" msg="{ContactServantName}!" onlyBalloon="true" />
+<String id="2118010077" msg="{ContactUserName}, aren't you ashamed of {EquipmentItemLevel}?" onlyBalloon="true" />
+<String id="2118010078" msg="{ContactServantName}, you're an embarrassment." onlyBalloon="true" />
+<String id="2118010079" msg="{UserName}, such a puny name." onlyBalloon="true" />
+<String id="2118010080" msg="They call you {UserName}?" onlyBalloon="true" />
+<String id="2118010081" msg="{ContactServantName}, you're as small as you are weak." onlyBalloon="true" />
+<String id="2118010082" msg="{ContactServantName}! Won't you submit to me?" onlyBalloon="true" />
+<String id="2118010083" msg="{ContactUserName}, you are hilarious." onlyBalloon="true" />
+<String id="2118010084" msg="Please make an effort, {ContactUserLevel}." onlyBalloon="true" />
+<String id="2118010085" msg="{UserLevel}, you are a disgrace." onlyBalloon="true" />
+<String id="2118010086" msg="{UserLevel}, I pity you." onlyBalloon="true" />
+<String id="2118010087" msg="{ContactUserName}, you belong to {ContactGuildName}? Your path is still a long and rocky one." onlyBalloon="true" />
+<String id="2118010088" msg="{ContactBuffGrade}, a most pitiful choice." onlyBalloon="true" />
+<String id="2118010089" msg="{BuffGrade}, a good choice." onlyBalloon="true" />
+<String id="3041001" msg="You want to be one of my minions too?!" styleId="71" msgOnScreen="true" />
+<String id="3041002" msg="What's it like being one of my minions?!" styleId="71" msgOnScreen="true" />
+<String id="3041003" msg="You are nothing more than food to me..." styleId="71" msgOnScreen="true" />
+<String id="3041004" msg="I will put you through a &lt;font color='#ffe761'&gt;test&lt;/font&gt;." styleId="66" msgOnScreen="true" />
+<String id="3041100" msg="I like you, {targetName}..." styleId="66" msgOnScreen="true" />
+<String id="3041101" msg="Corrupted souls... come to me..." styleId="67" msgOnScreen="true" />
+<String id="3041102" msg="Here is your light..." styleId="67" msgOnScreen="true" />
+<String id="3041201" msg="Welcome to my world!" styleId="66" msgOnScreen="true" />
+<String id="3041202" msg="This hell has finally come to an end..." styleId="66" msgOnScreen="true" />
+<String id="3041203" msg="It won't be easy to escape it." styleId="66" msgOnScreen="true" />
+<String id="3041204" msg="Be part of my power, you &lt;font color='#ffe761'&gt;corrupted souls&lt;/font&gt;." styleId="66" msgOnScreen="true" />
+<String id="3041205" msg="You cowards!" styleId="66" msgOnScreen="true" />
+<String id="3041206" msg="I'm not like I used to be!" styleId="66" msgOnScreen="true" />
+<String id="3041207" msg="To hell with you!" styleId="66" msgOnScreen="true" />
+<String id="3041208" msg="You will regret this for eternity!" styleId="66" msgOnScreen="true" />
+<String id="3041400" msg="Awaken, &lt;font color='#ffe761'&gt;demon minions&lt;/font&gt;. Fight for me!" styleId="66" msgOnScreen="true" />
+<String id="3041401" msg="This is as far as you go!" styleId="66" msgOnScreen="true" />
+<String id="3041402" msg="Destroy the demon's shield in the combat area." styleId="67" msgOnScreen="true" />
+<String id="3044001" msg="You want to be one of my minions too?!" styleId="71" msgOnScreen="true" />
+<String id="3044002" msg="What's it like being one of my minions?!" styleId="71" msgOnScreen="true" />
+<String id="3044003" msg="You are nothing more than food to me..." styleId="71" msgOnScreen="true" />
+<String id="3044004" msg="I will put you through a &lt;font color='#ffe761'&gt;test&lt;/font&gt;." styleId="66" msgOnScreen="true" />
+<String id="3044100" msg="I like you, {targetName}..." styleId="66" msgOnScreen="true" />
+<String id="3044101" msg="Corrupted souls... come to me..." styleId="67" msgOnScreen="true" />
+<String id="3044102" msg="Here is your light..." styleId="67" msgOnScreen="true" />
+<String id="3044103" msg="Not around here!" onlyBalloon="true" />
+<String id="3044104" msg="It is time." onlyBalloon="true" />
+<String id="3044105" msg="Argh... Incredible!" onlyBalloon="true" />
+<String id="3044201" msg="Welcome to my world!" styleId="66" msgOnScreen="true" />
+<String id="3044202" msg="This hell has finally come to an end..." styleId="66" msgOnScreen="true" />
+<String id="3044203" msg="It won't be easy to escape it." styleId="66" msgOnScreen="true" />
+<String id="3044204" msg="Be part of my power, you &lt;font color='#ffe761'&gt;corrupted souls&lt;/font&gt;." styleId="66" msgOnScreen="true" />
+<String id="3044205" msg="You cowards!" styleId="66" msgOnScreen="true" />
+<String id="3044206" msg="I'm not like I used to be!" styleId="66" msgOnScreen="true" />
+<String id="3044207" msg="To hell with you!" styleId="66" msgOnScreen="true" />
+<String id="3044208" msg="You will regret this for eternity!" styleId="66" msgOnScreen="true" />
+<String id="3044209" msg="Keeping your distance won't keep you safe." styleId="66" msgOnScreen="true" />
+<String id="3044300" msg="Pull yourself together!" styleId="66" msgOnScreen="true" />
+<String id="3044301" msg="And now faster...!" styleId="66" msgOnScreen="true" />
+<String id="3044400" msg="Awaken, demon minions! Shield me!" styleId="66" msgOnScreen="true" />
+<String id="3044401" msg="This is as far as you go!" styleId="66" msgOnScreen="true" />
+
+=== REMOVED (0) ===

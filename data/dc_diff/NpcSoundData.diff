@@ -1,0 +1,69 @@
+# NpcSoundData  +64 -0
+
+=== ADDED (64) ===
+</NpcSoundData>
+<NpcSound id="1000" radius="1.5" volume="1.5" hitRadius="0.5" hitVolume="1" monArmorType="stone" monHitDamageVoice="Monster_Voice22.AbomiOrigin_CUE.AbomiOrigin_damege_Cue" />
+<NpcSound id="1001" radius="0.7" volume="0.7" hitRadius="0.5" hitVolume="1" monArmorType="stone" monHitDamageVoice="Monster_Voice22.AbomiOrigin_CUE.AbomiOrigin_damege_Cue" />
+<NpcSound id="1501" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="stone" />
+<NpcSound id="1502" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="stone" />
+<NpcSound id="1503" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="stone" />
+<NpcSound id="2000" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="normal" monHitDamageVoice="Monster_Voice23.Arcdeva_Master_CUE.Master_damage_Cue" />
+<NpcSound id="2001" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="normal" />
+<NpcSound id="2002" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="metal" monHitDamageVoice="Monster_Voice16.GuardCube_Cue.GuardCube_Damage" />
+<NpcSound id="2003" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="stone" />
+<NpcSound id="2004" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="normal" />
+<NpcSound id="2005" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="normal" />
+<NpcSound id="2006" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="normal" />
+<NpcSound id="2007" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="normal" />
+<NpcSound id="2008" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="normal" />
+<NpcSound id="2009" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="normal" />
+<NpcSound id="2010" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="normal" />
+<NpcSound id="2011" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="normal" />
+<NpcSound id="2012" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="stone" />
+<NpcSound id="2013" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="normal" />
+<NpcSound id="2014" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="normal" />
+<NpcSound id="2015" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="normal" />
+<NpcSound id="2016" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="normal" monHitDamageVoice="Monster_Voice15.Dark_Queen_Cue.Dark_Queen_Damage" />
+<NpcSound id="2017" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="normal" monHitDamageVoice="Monster_Voice14.Slayer_Darker_Cue.Slayer_Darker_Damage" />
+<NpcSound id="2018" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="normal" monHitDamageVoice="Monster_Voice14.Slayer_Darker_Cue.Slayer_Darker_Damage" />
+<NpcSound id="2019" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="metal" monHitDamageVoice="Monster_Voice14.Lance_Darker_Cue.Lance_Darker_Damage" />
+<NpcSound id="2020" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="metal" monHitDamageVoice="Monster_Voice14.Lance_Darker_Cue.Lance_Darker_Damage" />
+<NpcSound id="2021" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="normal" monHitDamageVoice="Monster_Voice22.Poisoner_CUE.Poisoner_Damege_Cue" />
+<NpcSound id="2022" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="metal" monHitDamageVoice="Monster_Voice14.Warrior_Darker_Cue.Warrior_Darker_Damage" />
+<NpcSound id="2023" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="metal" monHitDamageVoice="Monster_Voice14.Warrior_Darker_Cue.Warrior_Darker_Damage" />
+<NpcSound id="2024" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="stone" />
+<NpcSound id="2025" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="stone" />
+<NpcSound id="2026" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="normal" />
+<NpcSound id="2027" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="normal" monHitDamageVoice="Monster_Voice15.Dark_Queen_Cue.Dark_Queen_Damage" />
+<NpcSound id="2028" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="normal" monHitDamageVoice="Monster_Voice14.Slayer_Darker_Cue.Slayer_Darker_Damage" />
+<NpcSound id="2030" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="metal" monHitDamageVoice="Monster_Voice14.Lance_Darker_Cue.Lance_Darker_Damage" />
+<NpcSound id="2031" radius="1.5" volume="1.5" hitRadius="0.5" hitVolume="1" monArmorType="normal" monHitDamageVoice="Monster_Voice22.Poisoner_CUE.Poisoner_Damege_Cue" />
+<NpcSound id="2032" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="metal" monHitDamageVoice="Monster_Voice14.Warrior_Darker_Cue.Warrior_Darker_Damage" />
+<NpcSound id="2100" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="normal" />
+<NpcSound id="2200" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="normal" />
+<NpcSound id="2300" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="normal" />
+<NpcSound id="2400" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="normal" />
+<NpcSound id="2500" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="normal" />
+<NpcSound id="2600" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="normal" />
+<NpcSound id="2700" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="normal" />
+<NpcSound id="2800" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="normal" />
+<NpcSound id="2999" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="metal" />
+<NpcSound id="3000" radius="1.5" volume="1.5" hitRadius="0.5" hitVolume="1" monArmorType="metal" monHitDamageVoice="Monster_Voice23.Durion_Master_CUE.Master_damage_Cue" />
+<NpcSound id="3001" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="normal" />
+<NpcSound id="3002" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="normal" />
+<NpcSound id="3003" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="normal" />
+<NpcSound id="3004" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="normal" />
+<NpcSound id="3005" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="mud_insect" monHitDamageVoice="Monster_Voice06.UnseelieNoble_Cue.UnseelieNoble_Damage" />
+<NpcSound id="3006" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="normal" />
+<NpcSound id="3007" radius="0.7" volume="0.7" hitRadius="0.5" hitVolume="1" monArmorType="mud_insect" monHitDamageVoice="Monster_Voice15.Dark_Knight_Cue.Dark_Knight_Damage" />
+<NpcSound id="9000" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="stone" />
+<NpcSound id="9001" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="stone" />
+<NpcSound id="9002" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="stone" />
+<NpcSound id="9003" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="stone" />
+<NpcSound id="9004" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="normal" />
+<NpcSound id="9005" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="stone" />
+<NpcSound id="9006" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="stone" />
+<NpcSound id="9007" radius="1" volume="1" hitRadius="0.5" hitVolume="1" monArmorType="normal" />
+<NpcSoundData huntingZoneId="3401">
+
+=== REMOVED (0) ===

@@ -1,0 +1,17 @@
+# auto-genere par tera-bot (scaffold, 17 echantillon(s)) : verifier/retyper les champs fixes
+ref array1
+ref str1
+int32 unk1
+int32 unk2
+array array1
+- int32 field1
+- int32 field2
+- int32 field3
+- int32 field4
+- int32 field5
+- int32 field6
+- int32 field7
+- int32 field8
+- int32 field9
+- int32 field10
+string str1

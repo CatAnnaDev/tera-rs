@@ -1,0 +1,12 @@
+# LoadUI  +6 -1
+
+=== ADDED (6) ===
+<UIWidget group="1" name="BuffManageWindow" x="0" y="0" fileName="S1UI_BuffManageWindow/BuffManageWindow.swf" sound="1022,1023" alwaysloaded="false" arguments="PA:1,SA:1,battleModeClose:1,scaleCustom:100" isAdmin="true" logoutclose="true" />
+<UIWidget group="1" name="CardComposeWindow" x="0" y="0" fileName="S1UI_CardComposeWindow/CardComposeWindow.swf" sound="1022,1023" alwaysloaded="false" arguments="PA:1,SA:1,battleModeClose:1,scaleCustom:100" isAdmin="true" logoutclose="true" />
+<UIWidget group="1" name="EquipmentUpgrade" x="0" y="0" fileName="S1UI_EquipmentUpgrade/EquipmentUpgrade.swf" sound="1047,1048" alwaysloaded="false" arguments="PA:1,SA:1,battleModeClose:1,scaleCustom:125" isAdmin="true" logoutclose="true" />
+<UIWidget group="2" name="AbnormalityFocus" x="76.8" y="68" fileName="S1UI_AbnormalityFocus/AbnormalityFocus.swf" sound="" alwaysloaded="true" arguments="PA:1,SA:1,battleModeClose:0,scaleCustom:125" logoutclose="true" />
+<UIWidget group="2" name="BattlePassWidget" x="99.5" y="20" fileName="S1UI_BattlePassWidget/BattlePassWidget.swf" sound="1022,1023" alwaysloaded="false" arguments="PA:3,SA:3,battleModeClose:0,scaleCustom:100" logoutclose="true" />
+<UIWidget group="3" name="BattlePassWindow" x="50" y="50" fileName="S1UI_BattlePassWindow/BattlePassWindow.swf" sound="1022,1023" alwaysloaded="false" arguments="PA:5,SA:5,battleModeClose:1,scaleCustom:100" logoutclose="true" />
+
+=== REMOVED (1) ===
+<UIWidget group="1" name="EquipmentUpgrade" x="0" y="0" fileName="S1UI_EquipmentUpgrade/EquipmentUpgrade.swf" sound="1047,1048" alwaysloaded="false" arguments="PA:1,SA:1,battleModeClose:1" isAdmin="true" logoutclose="true" />

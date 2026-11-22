@@ -2,7 +2,7 @@ use std::collections::HashMap;
 use std::io::{BufReader, Read};
 use std::path::{Path, PathBuf};
 use std::sync::mpsc::Sender;
-use std::sync::Arc;
+use std::sync::{Arc, Mutex};
 
 use anyhow::{bail, Context, Result};
 use tera_protocol::{value, OpcodeMap, PacketBuffer, Registry, Session, MODERN};
@@ -147,7 +147,7 @@ struct Conn {
     decrypted: usize,
     buffer: PacketBuffer,
     dead: bool,
-    reported: bool,
+    confirmed: bool,
 }
 
 impl Conn {
@@ -160,7 +160,7 @@ impl Conn {
             decrypted: 0,
             buffer: PacketBuffer::new(),
             dead: false,
-            reported: false,
+            confirmed: false,
         }
     }
 }
@@ -173,23 +173,25 @@ fn conn_key(a: &([u8; 4], u16), b: &([u8; 4], u16)) -> ConnKey {
     }
 }
 
+pub type SharedDumper = Option<Arc<Mutex<Dumper>>>;
+
 pub struct Tracker {
     opcodes: Arc<OpcodeMap>,
     registry: Arc<Registry>,
-    dumper: Option<Dumper>,
+    dumper: SharedDumper,
     conns: HashMap<ConnKey, Conn>,
     tx: Sender<Event>,
     label: &'static str,
 }
 
 impl Tracker {
-    pub fn new(tables: Tables, dumper: Option<Dumper>, tx: Sender<Event>) -> Self {
+    pub fn new(tables: Tables, dumper: SharedDumper, tx: Sender<Event>) -> Self {
         Self::labelled(tables, dumper, tx, "sniff")
     }
 
     pub fn labelled(
         tables: Tables,
-        dumper: Option<Dumper>,
+        dumper: SharedDumper,
         tx: Sender<Event>,
         label: &'static str,
     ) -> Self {
@@ -238,7 +240,6 @@ impl Tracker {
                     .swapped();
             conn.session = Some(session);
             conn.decrypted = SERVER_HANDSHAKE;
-            eprintln!("[{}] handshake TERA detecte, dechiffrement demarre", self.label);
         }
 
         let Some(session) = conn.session.as_mut() else { return true };
@@ -249,43 +250,41 @@ impl Tracker {
         conn.decrypted = conn.server.stream.len();
         session.decrypt(&mut chunk);
         conn.buffer.push(&chunk);
-        let mut valid = false;
         while let Some(packet) = conn.buffer.take_packet() {
             let name = self.opcodes.name(packet.opcode);
-            if let Some(d) = self.dumper.as_mut() {
-                d.record(packet.opcode, name, &packet.body, &self.registry);
-            }
-            let Some(name) = name else { continue };
-            let Some(def) = self.registry.get(name) else { continue };
-            let Ok(obj) = value::read(def, &packet.encode()) else { continue };
-            valid = true;
-            if !conn.reported {
-                conn.reported = true;
+            let decoded = name
+                .and_then(|n| self.registry.get(n))
+                .and_then(|def| value::read(def, &packet.encode()).ok());
+            if !conn.confirmed {
+                if decoded.is_none() {
+                    continue;
+                }
+                conn.confirmed = true;
                 eprintln!("[{}] flux TERA en clair OK — le meter recoit les paquets", self.label);
             }
-            if let Some(event) = object_to_event(name, &obj) {
-                if self.tx.send(event).is_err() {
-                    return false;
+            if let Some(d) = &self.dumper {
+                d.lock().unwrap().record(packet.opcode, name, &packet.body, &self.registry);
+            }
+            if let (Some(name), Some(obj)) = (name, decoded) {
+                if let Some(event) = object_to_event(name, &obj) {
+                    if self.tx.send(event).is_err() {
+                        return false;
+                    }
                 }
             }
         }
-        if !valid && conn.decrypted > SERVER_HANDSHAKE + 4096 {
+        if !conn.confirmed && conn.decrypted > SERVER_HANDSHAKE + 8192 {
             conn.dead = true;
         }
         true
-    }
-
-    pub fn finish(&mut self) {
-        if let Some(d) = self.dumper.as_mut() {
-            d.summary(&self.opcodes);
-        }
     }
 }
 
 pub fn run(cfg: Config, tx: Sender<Event>) -> Result<()> {
     let tables = load_tables(&cfg.opcodes, &cfg.definitions, cfg.patch)?;
-    let dumper = cfg.dump.as_deref().map(Dumper::new);
-    let mut tracker = Tracker::new(tables, dumper, tx);
+    let opcodes = tables.0.clone();
+    let dumper: SharedDumper = cfg.dump.as_deref().map(|p| Arc::new(Mutex::new(Dumper::new(p))));
+    let mut tracker = Tracker::new(tables, dumper.clone(), tx);
 
     let mut input = BufReader::new(std::io::stdin());
     let mut global = [0u8; 24];
@@ -318,6 +317,8 @@ pub fn run(cfg: Config, tx: Sender<Event>) -> Result<()> {
             break;
         }
     }
-    tracker.finish();
+    if let Some(d) = &dumper {
+        d.lock().unwrap().summary(&opcodes);
+    }
     Ok(())
 }

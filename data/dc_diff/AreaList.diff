@@ -1,0 +1,86 @@
+# AreaList  +81 -0
+
+=== ADDED (81) ===
+</Area>
+</Area>
+</Area>
+</Area>
+</Area>
+</Area>
+</Area>
+</Area>
+</Area>
+</Area>
+</Area>
+</Continent>
+</Continent>
+</Continent>
+</Continent>
+</Continent>
+</Continent>
+</Continent>
+</Continent>
+</Continent>
+</Continent>
+</Continent>
+</Zones>
+</Zones>
+</Zones>
+</Zones>
+</Zones>
+</Zones>
+</Zones>
+</Zones>
+</Zones>
+</Zones>
+</Zones>
+<Area name="BF_SummerBattle_P">
+<Area name="Durion_Hideout_P">
+<Area name="Durion_storage_P">
+<Area name="EX_AL_SD2_T41_P">
+<Area name="EX_UnionTC_SD_CE_P">
+<Area name="Guild_DPS_P">
+<Area name="Kubel_Fortress_RM_P">
+<Area name="Logashi_P">
+<Area name="Logashi_P">
+<Area name="Robot_Factory_P">
+<Area name="Rucmia_P">
+<Continent id="3044" desc="Stormed Citadel" originZoneX="1000" originZoneY="1000">
+<Continent id="3045" desc="Durion Storage / Baldera story" originZoneX="1000" originZoneY="1000">
+<Continent id="3048" desc="페트레 양성소 - 심화 훈련" originZoneX="1000" originZoneY="1000">
+<Continent id="3050" desc="인던_길드협동던전" originZoneX="1000" originZoneY="1000">
+<Continent id="3105" desc="인던_로가쉬(하급)" originZoneX="1000" originZoneY="1000">
+<Continent id="3133" desc="Shark Guy Arena" originZoneX="1110" originZoneY="1110">
+<Continent id="3134" desc="T4.1소규모인던_터렛디펜스" originZoneX="1000" originZoneY="1000">
+<Continent id="3137" desc="폭주하는 RK-9 격납고 (하드)" originZoneX="1000" originZoneY="1000">
+<Continent id="3205" desc="인던_로가쉬(상급)" originZoneX="1000" originZoneY="1000">
+<Continent id="3400" desc="인던_루크미아(하급)" originZoneX="1000" originZoneY="1000">
+<Continent id="3401" desc="Imperator's Sanctum" originZoneX="1000" originZoneY="1000">
+<Zone x="1000" y="989" />
+<Zone x="1108" y="1118" />
+<Zone x="991" y="1011" />
+<Zone x="991" y="992" />
+<Zone x="994" y="1007" />
+<Zone x="994" y="1008" />
+<Zone x="994" y="1008" />
+<Zone x="995" y="1002" />
+<Zone x="995" y="1003" />
+<Zone x="995" y="1007" />
+<Zone x="995" y="997" />
+<Zone x="997" y="1002" />
+<Zone x="997" y="1003" />
+<Zone x="999" y="1002" />
+<Zone x="999" y="989" />
+<Zones>
+<Zones>
+<Zones>
+<Zones>
+<Zones>
+<Zones>
+<Zones>
+<Zones>
+<Zones>
+<Zones>
+<Zones>
+
+=== REMOVED (0) ===

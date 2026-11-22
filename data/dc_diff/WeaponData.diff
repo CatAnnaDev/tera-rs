@@ -1,0 +1,9 @@
+# WeaponData  +2 -2
+
+=== ADDED (2) ===
+<Weapon id="2111916" name="로가쉬 보상 무기 수리검_포포리여" templateId="11012" boneL="L_Sword" boneR="R_Sword" meshR="PC_Weapons_41.sm.Shuriken41_SM" scaleL="100" scaleR="100" enchantFxId="12179" materialParamId="2" unarmedMeshR="PC_Weapons_41.sm.Shuriken41_SM" unarmedSocketR="Socket_Shuriken" />
+<Weapon id="2111916" name="로가쉬 보상 무기 수리검_포포리여" templateId="11012" boneL="L_Sword" boneR="R_Sword" meshR="PC_Weapons_41.sm.Shuriken41_SM" scaleL="100" scaleR="100" enchantFxId="12179" materialParamId="2" unarmedMeshR="PC_Weapons_41.sm.Shuriken41_SM" unarmedSocketR="Socket_Shuriken" />
+
+=== REMOVED (2) ===
+<Weapon id="2111916" name="로가쉬 보상 무기 수리검_포포리여" templateId="11012" boneL="L_Sword" boneR="R_Sword" meshR="PC_Weapons_41.sm.Shuriken41_SM" scaleL="100" scaleR="100" enchantFxId="12179" materialParamId="2" unarmedSocketR="Socket_Shuriken" />
+<Weapon id="2111916" name="로가쉬 보상 무기 수리검_포포리여" templateId="11012" boneL="L_Sword" boneR="R_Sword" meshR="PC_Weapons_41.sm.Shuriken41_SM" scaleL="100" scaleR="100" enchantFxId="12179" materialParamId="2" unarmedSocketR="Socket_Shuriken" />

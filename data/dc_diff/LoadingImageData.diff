@@ -1,0 +1,37 @@
+# LoadingImageData  +32 -0
+
+=== ADDED (32) ===
+</LoadingImage>
+</LoadingImage>
+</LoadingImage>
+</LoadingImage>
+</LoadingImage>
+</LoadingImage>
+</LoadingImage>
+</LoadingImage>
+<Image name="LoadingImages.Loading.LoadingImage_New31_Tex" />
+<Image name="LoadingImages.Loading.LoadingImage_New31_Tex" />
+<Image name="LoadingImages.Loading.LoadingImage_New31_Tex" />
+<Image name="LoadingImages.Loading.LoadingImage_New31_Tex" />
+<Image name="LoadingImages.Loading.LoadingImage_New32_Tex" />
+<Image name="LoadingImages.Loading.LoadingImage_New32_Tex" />
+<Image name="LoadingImages.Loading.LoadingImage_New32_Tex" />
+<Image name="LoadingImages.Loading.LoadingImage_New32_Tex" />
+<LoadingImage priority="10" rate="1" enterContinent="3105">
+<LoadingImage priority="10" rate="1" enterContinent="3105">
+<LoadingImage priority="10" rate="1" enterContinent="3205">
+<LoadingImage priority="10" rate="1" enterContinent="3205">
+<LoadingImage priority="10" rate="1" exitContinent="3105">
+<LoadingImage priority="10" rate="1" exitContinent="3105">
+<LoadingImage priority="10" rate="1" exitContinent="3205">
+<LoadingImage priority="10" rate="1" exitContinent="3205">
+<Text id="600022" />
+<Text id="600022" />
+<Text id="600022" />
+<Text id="600022" />
+<Text id="600023" />
+<Text id="600023" />
+<Text id="600023" />
+<Text id="600023" />
+
+=== REMOVED (0) ===

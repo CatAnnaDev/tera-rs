@@ -1,0 +1,24 @@
+# NpcIKControl  +19 -0
+
+=== ADDED (19) ===
+</DamageMotion>
+</DamageMotionSet>
+</FootIK>
+</Shape>
+<AttackBone boneName="FxHand00" />
+<DamageMotion>
+<DamageMotionBounceControl duration="0.1" boneName="Bip01-Pelvis" down="4" />
+<DamageMotionRotateControl duration="0.05" blendOutTime="0.2" boneName="Bip01-Neck" pitchMax="-4" pitchMin="4" pitchSpeed="500" yawImpulse="110" yawMax="-7" yawMin="7" />
+<DamageMotionRotateControl duration="0.05" blendOutTime="0.2" boneName="Bip01-Spine2" pitchMax="4" pitchMin="-4" pitchSpeed="500" yawImpulse="110" yawMax="5" yawMin="-5" />
+<DamageMotionRotateControl duration="0.05" blendOutTime="0.2" boneName="Bone01" pitchMax="-2" pitchMin="0" pitchSpeed="500" yawImpulse="110" yawMax="-2" yawMin="2" />
+<DamageMotionRotateControl duration="0.05" blendOutTime="0.2" boneName="Bone02" pitchMax="-2" pitchMin="0" pitchSpeed="500" yawImpulse="110" yawMax="-2" yawMin="2" />
+<DamageMotionRotateControl duration="0.05" blendOutTime="0.25" boneName="Bip01-Head" pitchMax="-12" pitchMin="12" pitchSpeed="500" yawImpulse="110" yawMax="-12" yawMin="12" />
+<DamageMotionSet>
+<FootControl blendOutTime="1" bendAxis="Y" blendInTime="1" boneNames="Bip01-L-Foot|Bip01-R-Foot" enableFootUpDir="true" invertBendAxis="true" limitHeight="20" animBend="true" />
+<FootControl blendOutTime="1" bendAxis="Y" blendInTime="1" boneNames="Bip01-L-Hand|Bip01-R-Hand" enableFootUpDir="true" invertBendAxis="true" limitHeight="20" animBend="true" />
+<FootIK forDamageMotionBounceOnly="false">
+<LookAtcontrol blendOutTime="0.5" blendInTime="0.5" boneNames="Bip01-Head" allowRotationX="true" allowRotationY="true" allowRotationZ="true" defineUpAxis="true" enableLimit="true" invertLookAtAxis="false" invertUpAxis="false" limitBasedOnRefPose="false" lookAtAxis="X" maxAngle="40" targetLocationInterpSpeed="100" upAxis="Y" />
+<Shape id="300874">
+<SlopeControl />
+
+=== REMOVED (0) ===

@@ -1,0 +1,10 @@
+# TooltipFormat  +4 -1
+
+=== ADDED (4) ===
+<CoolTime titleId="101004" textStyle="style12" titleStyle="style12" crestTextStyle="EquipedCrestState" crestTextStyleEx="EquipedCrestStateEx" />
+<OptionCategory textStyle="style34" />
+<PerformanceResonanceSeal textStyle="style35" strengthStyle="style9" />
+<RandomEquipmentNondbOption textStyle="style36" />
+
+=== REMOVED (1) ===
+<CoolTime titleId="101004" textStyle="style12" titleStyle="style12" crestTextStyle="EquipedCrestState" />

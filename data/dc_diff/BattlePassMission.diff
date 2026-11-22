@@ -1,0 +1,29 @@
+# BattlePassMission  +17 -7
+
+=== ADDED (17) ===
+<BattlePassMission dailyResetHour="6" serverSchemaVersion="115" weeklyResetDay="Monday">
+<Mission id="1" kind="1" type="1" count="3" iconResourcePath="Icon_Items.Battlepass_mission1_Tex" isActive="true" kindStrId="1" repeatable="true" rewardBp="100" />
+<Mission id="10" kind="10" type="2" count="9087" iconResourcePath="Icon_Items.Battlepass_mission1_Tex" isActive="false" kindStrId="10" repeatable="false" rewardBp="100" />
+<Mission id="11" kind="11" type="2" count="1" iconResourcePath="Icon_Items.Battlepass_mission10_Tex" isActive="false" kindStrId="11" repeatable="false" rewardBp="100" />
+<Mission id="12" kind="12" type="1" count="10" iconResourcePath="Icon_Items.Battlepass_mission10_Tex" isActive="false" kindStrId="12" repeatable="false" rewardBp="100" />
+<Mission id="13" kind="13" type="1" count="3" iconResourcePath="Icon_Items.Battlepass_mission11_Tex" isActive="false" kindStrId="13" repeatable="false" rewardBp="100" />
+<Mission id="14" kind="14" type="2" count="7" iconResourcePath="Icon_Items.Battlepass_mission6_Tex" isActive="false" kindStrId="14" repeatable="false" rewardBp="100" />
+<Mission id="15" kind="15" type="1" count="1" iconResourcePath="Icon_Items.Battlepass_mission9_Tex" isActive="true" kindStrId="15" repeatable="false" rewardBp="100" />
+<Mission id="16" kind="16" type="2" count="5" iconResourcePath="Icon_Items.Battlepass_mission7_Tex" isActive="false" kindStrId="16" repeatable="false" rewardBp="100" />
+<Mission id="2" kind="2" type="1" count="3" iconResourcePath="Icon_Items.Battlepass_mission2_Tex" isActive="true" kindStrId="2" repeatable="true" rewardBp="100" />
+<Mission id="3" kind="3" type="2" count="1" iconResourcePath="Icon_Items.Battlepass_mission3_Tex" isActive="true" kindStrId="3" repeatable="false" rewardBp="100" />
+<Mission id="4" kind="4" type="1" count="10" iconResourcePath="Icon_Items.Battlepass_mission4_Tex" isActive="true" kindStrId="4" repeatable="true" rewardBp="100" />
+<Mission id="5" kind="5" type="1" count="60" iconResourcePath="Icon_Items.Battlepass_mission5_Tex" isActive="true" kindStrId="5" repeatable="false" rewardBp="100" />
+<Mission id="6" kind="6" type="1" count="1" iconResourcePath="Icon_Items.Battlepass_mission6_Tex" isActive="true" kindStrId="6" repeatable="false" rewardBp="100" />
+<Mission id="7" kind="7" type="2" count="70" iconResourcePath="Icon_Items.Battlepass_mission7_Tex" isActive="false" kindStrId="7" repeatable="false" rewardBp="100" />
+<Mission id="8" kind="8" type="1" count="1" iconResourcePath="Icon_Items.Battlepass_mission8_Tex" isActive="false" kindStrId="8" repeatable="false" rewardBp="100" />
+<Mission id="9" kind="9" type="2" count="1" iconResourcePath="Icon_Items.Battlepass_mission8_Tex" isActive="false" kindStrId="9" repeatable="false" rewardBp="100" />
+
+=== REMOVED (7) ===
+<BattlePassMission>
+<Mission id="1" kind="0" type="1" count="10" />
+<Mission id="2" kind="1" type="1" count="3" />
+<Mission id="3" kind="2" type="1" count="5" />
+<Mission id="4" kind="3" type="1" count="3" />
+<Mission id="5" kind="4" type="1" count="10000" />
+<Mission id="6" kind="5" type="1" count="25000" />

@@ -1,0 +1,1484 @@
+{
+  "set": "Rogash (internal)",
+  "source": "RandomEquipmentPassivity",
+  "slots": {
+    "Weapon": {
+      "Blood Oath": {
+        "1": {
+          "id": "5140051",
+          "type": "110",
+          "stat": "HP Recovery",
+          "method": "3",
+          "value": "0.9",
+          "prob": "1"
+        },
+        "2": {
+          "id": "5140054",
+          "type": "110",
+          "stat": "HP Recovery",
+          "method": "3",
+          "value": "0.8",
+          "prob": "1"
+        },
+        "3": {
+          "id": "5140057",
+          "type": "110",
+          "stat": "HP Recovery",
+          "method": "3",
+          "value": "0.7",
+          "prob": "1"
+        },
+        "4": {
+          "id": "5140060",
+          "type": "110",
+          "stat": "HP Recovery",
+          "method": "3",
+          "value": "0.6",
+          "prob": "1"
+        },
+        "5": {
+          "id": "5140063",
+          "type": "110",
+          "stat": "HP Recovery",
+          "method": "3",
+          "value": "0.5",
+          "prob": "1"
+        }
+      },
+      "Bloodreaver": {
+        "1": {
+          "id": "5140036",
+          "type": "214",
+          "stat": "t214",
+          "method": "3",
+          "value": "1.0001",
+          "prob": "1"
+        },
+        "2": {
+          "id": "5140037",
+          "type": "214",
+          "stat": "t214",
+          "method": "3",
+          "value": "1.00015",
+          "prob": "1"
+        },
+        "3": {
+          "id": "5140038",
+          "type": "214",
+          "stat": "t214",
+          "method": "3",
+          "value": "1.0002",
+          "prob": "1"
+        },
+        "4": {
+          "id": "5140039",
+          "type": "214",
+          "stat": "t214",
+          "method": "3",
+          "value": "1.00025",
+          "prob": "1"
+        },
+        "5": {
+          "id": "5140040",
+          "type": "214",
+          "stat": "t214",
+          "method": "3",
+          "value": "1.0003",
+          "prob": "1"
+        }
+      },
+      "Cruel Curse": {
+        "1": {
+          "id": "5140016",
+          "type": "156",
+          "stat": "t156",
+          "method": "1",
+          "value": "18824",
+          "prob": "0.1"
+        },
+        "2": {
+          "id": "5140017",
+          "type": "156",
+          "stat": "t156",
+          "method": "1",
+          "value": "18824",
+          "prob": "0.2"
+        },
+        "3": {
+          "id": "5140018",
+          "type": "156",
+          "stat": "t156",
+          "method": "1",
+          "value": "18824",
+          "prob": "0.3"
+        },
+        "4": {
+          "id": "5140019",
+          "type": "156",
+          "stat": "t156",
+          "method": "1",
+          "value": "18824",
+          "prob": "0.4"
+        },
+        "5": {
+          "id": "5140020",
+          "type": "156",
+          "stat": "t156",
+          "method": "1",
+          "value": "18824",
+          "prob": "0.5"
+        }
+      },
+      "Heavy Blow": {
+        "1": {
+          "id": "5140021",
+          "type": "165",
+          "stat": "t165",
+          "method": "3",
+          "value": "1.08",
+          "prob": "1"
+        },
+        "2": {
+          "id": "5140024",
+          "type": "165",
+          "stat": "t165",
+          "method": "3",
+          "value": "1.1",
+          "prob": "1"
+        },
+        "3": {
+          "id": "5140027",
+          "type": "165",
+          "stat": "t165",
+          "method": "3",
+          "value": "1.12",
+          "prob": "1"
+        },
+        "4": {
+          "id": "5140030",
+          "type": "165",
+          "stat": "t165",
+          "method": "3",
+          "value": "1.14",
+          "prob": "1"
+        },
+        "5": {
+          "id": "5140033",
+          "type": "165",
+          "stat": "t165",
+          "method": "3",
+          "value": "1.16",
+          "prob": "1"
+        }
+      },
+      "Hymn of Courage": {
+        "1": {
+          "id": "5140066",
+          "type": "53",
+          "stat": "t53",
+          "method": "0",
+          "value": "18868",
+          "prob": "1"
+        },
+        "2": {
+          "id": "5140067",
+          "type": "53",
+          "stat": "t53",
+          "method": "0",
+          "value": "18870",
+          "prob": "1"
+        },
+        "3": {
+          "id": "5140068",
+          "type": "53",
+          "stat": "t53",
+          "method": "0",
+          "value": "18872",
+          "prob": "1"
+        },
+        "4": {
+          "id": "5140069",
+          "type": "53",
+          "stat": "t53",
+          "method": "0",
+          "value": "18874",
+          "prob": "1"
+        },
+        "5": {
+          "id": "5140070",
+          "type": "53",
+          "stat": "t53",
+          "method": "0",
+          "value": "18876",
+          "prob": "1"
+        }
+      },
+      "Magic Storm": {
+        "1": {
+          "id": "5140001",
+          "type": "165",
+          "stat": "t165",
+          "method": "3",
+          "value": "1.04",
+          "prob": "1"
+        },
+        "2": {
+          "id": "5140004",
+          "type": "165",
+          "stat": "t165",
+          "method": "3",
+          "value": "1.05",
+          "prob": "1"
+        },
+        "3": {
+          "id": "5140007",
+          "type": "165",
+          "stat": "t165",
+          "method": "3",
+          "value": "1.06",
+          "prob": "1"
+        },
+        "4": {
+          "id": "5140010",
+          "type": "165",
+          "stat": "t165",
+          "method": "3",
+          "value": "1.07",
+          "prob": "1"
+        },
+        "5": {
+          "id": "5140013",
+          "type": "165",
+          "stat": "t165",
+          "method": "3",
+          "value": "1.08",
+          "prob": "1"
+        }
+      },
+      "Mark of Annihilation": {
+        "1": {
+          "id": "5140046",
+          "type": "156",
+          "stat": "t156",
+          "method": "1",
+          "value": "18825",
+          "prob": "0.2"
+        },
+        "2": {
+          "id": "5140047",
+          "type": "156",
+          "stat": "t156",
+          "method": "1",
+          "value": "18825",
+          "prob": "0.4"
+        },
+        "3": {
+          "id": "5140048",
+          "type": "156",
+          "stat": "t156",
+          "method": "1",
+          "value": "18825",
+          "prob": "0.6"
+        },
+        "4": {
+          "id": "5140049",
+          "type": "156",
+          "stat": "t156",
+          "method": "1",
+          "value": "18825",
+          "prob": "0.8"
+        },
+        "5": {
+          "id": "5140050",
+          "type": "156",
+          "stat": "t156",
+          "method": "1",
+          "value": "18825",
+          "prob": "1"
+        }
+      },
+      "Might of the Fabled Creature": {
+        "1": {
+          "id": "5140071",
+          "type": "263",
+          "stat": "t263",
+          "method": "2",
+          "value": "-7000",
+          "prob": "1"
+        },
+        "2": {
+          "id": "5140072",
+          "type": "263",
+          "stat": "t263",
+          "method": "2",
+          "value": "-9000",
+          "prob": "1"
+        },
+        "3": {
+          "id": "5140073",
+          "type": "263",
+          "stat": "t263",
+          "method": "2",
+          "value": "-11000",
+          "prob": "1"
+        },
+        "4": {
+          "id": "5140074",
+          "type": "263",
+          "stat": "t263",
+          "method": "2",
+          "value": "-13000",
+          "prob": "1"
+        },
+        "5": {
+          "id": "5140075",
+          "type": "263",
+          "stat": "t263",
+          "method": "2",
+          "value": "-15000",
+          "prob": "1"
+        }
+      },
+      "Rage Suppressor": {
+        "1": {
+          "id": "5140041",
+          "type": "152",
+          "stat": "Damage",
+          "method": "3",
+          "value": "1.08",
+          "prob": "1"
+        },
+        "2": {
+          "id": "5140042",
+          "type": "152",
+          "stat": "Damage",
+          "method": "3",
+          "value": "1.10",
+          "prob": "1"
+        },
+        "3": {
+          "id": "5140043",
+          "type": "152",
+          "stat": "Damage",
+          "method": "3",
+          "value": "1.12",
+          "prob": "1"
+        },
+        "4": {
+          "id": "5140044",
+          "type": "152",
+          "stat": "Damage",
+          "method": "3",
+          "value": "1.14",
+          "prob": "1"
+        },
+        "5": {
+          "id": "5140045",
+          "type": "152",
+          "stat": "Damage",
+          "method": "3",
+          "value": "1.16",
+          "prob": "1"
+        }
+      }
+    },
+    "Gloves": {
+      "Combat Essence": {
+        "1": {
+          "id": "5140106",
+          "type": "152",
+          "stat": "Damage",
+          "method": "3",
+          "value": "1.02",
+          "prob": "1"
+        },
+        "2": {
+          "id": "5140108",
+          "type": "152",
+          "stat": "Damage",
+          "method": "3",
+          "value": "1.03",
+          "prob": "1"
+        },
+        "3": {
+          "id": "5140110",
+          "type": "152",
+          "stat": "Damage",
+          "method": "3",
+          "value": "1.04",
+          "prob": "1"
+        },
+        "4": {
+          "id": "5140112",
+          "type": "152",
+          "stat": "Damage",
+          "method": "3",
+          "value": "1.05",
+          "prob": "1"
+        },
+        "5": {
+          "id": "5140114",
+          "type": "152",
+          "stat": "Damage",
+          "method": "3",
+          "value": "1.06",
+          "prob": "1"
+        }
+      },
+      "Death Sentence": {
+        "1": {
+          "id": "5140096",
+          "type": "156",
+          "stat": "t156",
+          "method": "4",
+          "value": "18852",
+          "prob": "1"
+        },
+        "2": {
+          "id": "5140097",
+          "type": "156",
+          "stat": "t156",
+          "method": "4",
+          "value": "18852",
+          "prob": "1"
+        },
+        "3": {
+          "id": "5140098",
+          "type": "156",
+          "stat": "t156",
+          "method": "4",
+          "value": "18852",
+          "prob": "1"
+        },
+        "4": {
+          "id": "5140099",
+          "type": "156",
+          "stat": "t156",
+          "method": "4",
+          "value": "18852",
+          "prob": "1"
+        },
+        "5": {
+          "id": "5140100",
+          "type": "156",
+          "stat": "t156",
+          "method": "4",
+          "value": "18852",
+          "prob": "1"
+        }
+      },
+      "Focused Magic": {
+        "1": {
+          "id": "5140076",
+          "type": "165",
+          "stat": "t165",
+          "method": "3",
+          "value": "1.06",
+          "prob": "1"
+        },
+        "2": {
+          "id": "5140078",
+          "type": "165",
+          "stat": "t165",
+          "method": "3",
+          "value": "1.075",
+          "prob": "1"
+        },
+        "3": {
+          "id": "5140080",
+          "type": "165",
+          "stat": "t165",
+          "method": "3",
+          "value": "1.09",
+          "prob": "1"
+        },
+        "4": {
+          "id": "5140082",
+          "type": "165",
+          "stat": "t165",
+          "method": "3",
+          "value": "1.105",
+          "prob": "1"
+        },
+        "5": {
+          "id": "5140084",
+          "type": "165",
+          "stat": "t165",
+          "method": "3",
+          "value": "1.12",
+          "prob": "1"
+        }
+      },
+      "Mahtnan's Power": {
+        "1": {
+          "id": "5140086",
+          "type": "207",
+          "stat": "When entering combat",
+          "method": "4",
+          "value": "18837",
+          "prob": "1"
+        },
+        "2": {
+          "id": "5140087",
+          "type": "207",
+          "stat": "When entering combat",
+          "method": "4",
+          "value": "18840",
+          "prob": "1"
+        },
+        "3": {
+          "id": "5140088",
+          "type": "207",
+          "stat": "When entering combat",
+          "method": "4",
+          "value": "18843",
+          "prob": "1"
+        },
+        "4": {
+          "id": "5140089",
+          "type": "207",
+          "stat": "When entering combat",
+          "method": "4",
+          "value": "18846",
+          "prob": "1"
+        },
+        "5": {
+          "id": "5140090",
+          "type": "207",
+          "stat": "When entering combat",
+          "method": "4",
+          "value": "18849",
+          "prob": "1"
+        }
+      },
+      "Opportunist": {
+        "1": {
+          "id": "5140116",
+          "type": "207",
+          "stat": "When entering combat",
+          "method": "4",
+          "value": "18853",
+          "prob": "1"
+        },
+        "2": {
+          "id": "5140117",
+          "type": "207",
+          "stat": "When entering combat",
+          "method": "4",
+          "value": "18856",
+          "prob": "1"
+        },
+        "3": {
+          "id": "5140118",
+          "type": "207",
+          "stat": "When entering combat",
+          "method": "4",
+          "value": "18859",
+          "prob": "1"
+        },
+        "4": {
+          "id": "5140119",
+          "type": "207",
+          "stat": "When entering combat",
+          "method": "4",
+          "value": "18862",
+          "prob": "1"
+        },
+        "5": {
+          "id": "5140120",
+          "type": "207",
+          "stat": "When entering combat",
+          "method": "4",
+          "value": "18865",
+          "prob": "1"
+        }
+      },
+      "Reckless Grit": {
+        "1": {
+          "id": "5140121",
+          "type": "152",
+          "stat": "Damage",
+          "method": "3",
+          "value": "1.07",
+          "prob": "1"
+        },
+        "2": {
+          "id": "5140123",
+          "type": "152",
+          "stat": "Damage",
+          "method": "3",
+          "value": "1.09",
+          "prob": "1"
+        },
+        "3": {
+          "id": "5140125",
+          "type": "152",
+          "stat": "Damage",
+          "method": "3",
+          "value": "1.11",
+          "prob": "1"
+        },
+        "4": {
+          "id": "5140127",
+          "type": "152",
+          "stat": "Damage",
+          "method": "3",
+          "value": "1.13",
+          "prob": "1"
+        },
+        "5": {
+          "id": "5140129",
+          "type": "152",
+          "stat": "Damage",
+          "method": "3",
+          "value": "1.15",
+          "prob": "1"
+        }
+      },
+      "Roar of the Fabled Creature": {
+        "1": {
+          "id": "5140091",
+          "type": "240",
+          "stat": "t240",
+          "method": "2",
+          "value": "1000",
+          "prob": "1"
+        },
+        "2": {
+          "id": "5140092",
+          "type": "240",
+          "stat": "t240",
+          "method": "2",
+          "value": "1250",
+          "prob": "1"
+        },
+        "3": {
+          "id": "5140093",
+          "type": "240",
+          "stat": "t240",
+          "method": "2",
+          "value": "1500",
+          "prob": "1"
+        },
+        "4": {
+          "id": "5140094",
+          "type": "240",
+          "stat": "t240",
+          "method": "2",
+          "value": "1750",
+          "prob": "1"
+        },
+        "5": {
+          "id": "5140095",
+          "type": "240",
+          "stat": "t240",
+          "method": "2",
+          "value": "2000",
+          "prob": "1"
+        }
+      },
+      "Veteran's Tribute": {
+        "1": {
+          "id": "5140101",
+          "type": "214",
+          "stat": "t214",
+          "method": "3",
+          "value": "1.0001",
+          "prob": "1"
+        },
+        "2": {
+          "id": "5140102",
+          "type": "214",
+          "stat": "t214",
+          "method": "3",
+          "value": "1.00015",
+          "prob": "1"
+        },
+        "3": {
+          "id": "5140103",
+          "type": "214",
+          "stat": "t214",
+          "method": "3",
+          "value": "1.0002",
+          "prob": "1"
+        },
+        "4": {
+          "id": "5140104",
+          "type": "214",
+          "stat": "t214",
+          "method": "3",
+          "value": "1.00025",
+          "prob": "1"
+        },
+        "5": {
+          "id": "5140105",
+          "type": "214",
+          "stat": "t214",
+          "method": "3",
+          "value": "1.0003",
+          "prob": "1"
+        }
+      },
+      "War Drums": {
+        "1": {
+          "id": "5140131",
+          "type": "53",
+          "stat": "t53",
+          "method": "0",
+          "value": "18827",
+          "prob": "1"
+        },
+        "2": {
+          "id": "5140132",
+          "type": "53",
+          "stat": "t53",
+          "method": "0",
+          "value": "18829",
+          "prob": "1"
+        },
+        "3": {
+          "id": "5140133",
+          "type": "53",
+          "stat": "t53",
+          "method": "0",
+          "value": "18831",
+          "prob": "1"
+        },
+        "4": {
+          "id": "5140134",
+          "type": "53",
+          "stat": "t53",
+          "method": "0",
+          "value": "18833",
+          "prob": "1"
+        },
+        "5": {
+          "id": "5140135",
+          "type": "53",
+          "stat": "t53",
+          "method": "0",
+          "value": "18835",
+          "prob": "1"
+        }
+      }
+    },
+    "Armor": {
+      "Counteroffensive": {
+        "1": {
+          "id": "5150006",
+          "type": "209",
+          "stat": "t209",
+          "method": "4",
+          "value": "19107",
+          "prob": "1"
+        },
+        "2": {
+          "id": "5150007",
+          "type": "209",
+          "stat": "t209",
+          "method": "4",
+          "value": "19108",
+          "prob": "1"
+        },
+        "3": {
+          "id": "5150008",
+          "type": "209",
+          "stat": "t209",
+          "method": "4",
+          "value": "19109",
+          "prob": "1"
+        },
+        "4": {
+          "id": "5150009",
+          "type": "209",
+          "stat": "t209",
+          "method": "4",
+          "value": "19110",
+          "prob": "1"
+        },
+        "5": {
+          "id": "5150010",
+          "type": "209",
+          "stat": "t209",
+          "method": "4",
+          "value": "19111",
+          "prob": "1"
+        }
+      },
+      "Crisis Manager": {
+        "1": {
+          "id": "5150036",
+          "type": "51",
+          "stat": "HP Recovery",
+          "method": "3",
+          "value": "0.02",
+          "prob": "1"
+        },
+        "2": {
+          "id": "5150037",
+          "type": "51",
+          "stat": "HP Recovery",
+          "method": "3",
+          "value": "0.025",
+          "prob": "1"
+        },
+        "3": {
+          "id": "5150038",
+          "type": "51",
+          "stat": "HP Recovery",
+          "method": "3",
+          "value": "0.03",
+          "prob": "1"
+        },
+        "4": {
+          "id": "5150039",
+          "type": "51",
+          "stat": "HP Recovery",
+          "method": "3",
+          "value": "0.035",
+          "prob": "1"
+        },
+        "5": {
+          "id": "5150040",
+          "type": "51",
+          "stat": "HP Recovery",
+          "method": "3",
+          "value": "0.04",
+          "prob": "1"
+        }
+      },
+      "Guardian of the Fabled Creature": {
+        "1": {
+          "id": "5150011",
+          "type": "102",
+          "stat": "Damage",
+          "method": "3",
+          "value": "0.98",
+          "prob": "1"
+        },
+        "2": {
+          "id": "5150012",
+          "type": "102",
+          "stat": "Damage",
+          "method": "3",
+          "value": "0.96",
+          "prob": "1"
+        },
+        "3": {
+          "id": "5150013",
+          "type": "102",
+          "stat": "Damage",
+          "method": "3",
+          "value": "0.94",
+          "prob": "1"
+        },
+        "4": {
+          "id": "5150014",
+          "type": "102",
+          "stat": "Damage",
+          "method": "3",
+          "value": "0.92",
+          "prob": "1"
+        },
+        "5": {
+          "id": "5150015",
+          "type": "102",
+          "stat": "Damage",
+          "method": "3",
+          "value": "0.90",
+          "prob": "1"
+        }
+      },
+      "Hymn of Faith": {
+        "1": {
+          "id": "5150041",
+          "type": "53",
+          "stat": "t53",
+          "method": "3",
+          "value": "19112",
+          "prob": "1"
+        },
+        "2": {
+          "id": "5150042",
+          "type": "53",
+          "stat": "t53",
+          "method": "3",
+          "value": "19114",
+          "prob": "1"
+        },
+        "3": {
+          "id": "5150043",
+          "type": "53",
+          "stat": "t53",
+          "method": "3",
+          "value": "19116",
+          "prob": "1"
+        },
+        "4": {
+          "id": "5150044",
+          "type": "53",
+          "stat": "t53",
+          "method": "3",
+          "value": "19118",
+          "prob": "1"
+        },
+        "5": {
+          "id": "5150045",
+          "type": "53",
+          "stat": "t53",
+          "method": "3",
+          "value": "19120",
+          "prob": "1"
+        }
+      },
+      "Optimized Reflexes": {
+        "1": {
+          "id": "5150031",
+          "type": "7",
+          "stat": "Crit Resist Factor",
+          "method": "2",
+          "value": "20",
+          "prob": "1"
+        },
+        "2": {
+          "id": "5150032",
+          "type": "7",
+          "stat": "Crit Resist Factor",
+          "method": "2",
+          "value": "30",
+          "prob": "1"
+        },
+        "3": {
+          "id": "5150033",
+          "type": "7",
+          "stat": "Crit Resist Factor",
+          "method": "2",
+          "value": "40",
+          "prob": "1"
+        },
+        "4": {
+          "id": "5150034",
+          "type": "7",
+          "stat": "Crit Resist Factor",
+          "method": "2",
+          "value": "50",
+          "prob": "1"
+        },
+        "5": {
+          "id": "5150035",
+          "type": "7",
+          "stat": "Crit Resist Factor",
+          "method": "2",
+          "value": "60",
+          "prob": "1"
+        }
+      },
+      "Perfection": {
+        "1": {
+          "id": "5150021",
+          "type": "102",
+          "stat": "Damage",
+          "method": "3",
+          "value": "0.98",
+          "prob": "1"
+        },
+        "2": {
+          "id": "5150022",
+          "type": "102",
+          "stat": "Damage",
+          "method": "3",
+          "value": "0.975",
+          "prob": "1"
+        },
+        "3": {
+          "id": "5150023",
+          "type": "102",
+          "stat": "Damage",
+          "method": "3",
+          "value": "0.97",
+          "prob": "1"
+        },
+        "4": {
+          "id": "5150024",
+          "type": "102",
+          "stat": "Damage",
+          "method": "3",
+          "value": "0.965",
+          "prob": "1"
+        },
+        "5": {
+          "id": "5150025",
+          "type": "102",
+          "stat": "Damage",
+          "method": "3",
+          "value": "0.96",
+          "prob": "1"
+        }
+      },
+      "Sacred Guardian": {
+        "1": {
+          "id": "5150026",
+          "type": "110",
+          "stat": "HP Recovery",
+          "method": "3",
+          "value": "1.10",
+          "prob": "1"
+        },
+        "2": {
+          "id": "5150027",
+          "type": "110",
+          "stat": "HP Recovery",
+          "method": "3",
+          "value": "1.15",
+          "prob": "1"
+        },
+        "3": {
+          "id": "5150028",
+          "type": "110",
+          "stat": "HP Recovery",
+          "method": "3",
+          "value": "1.20",
+          "prob": "1"
+        },
+        "4": {
+          "id": "5150029",
+          "type": "110",
+          "stat": "HP Recovery",
+          "method": "3",
+          "value": "1.25",
+          "prob": "1"
+        },
+        "5": {
+          "id": "5150030",
+          "type": "110",
+          "stat": "HP Recovery",
+          "method": "3",
+          "value": "1.30",
+          "prob": "1"
+        }
+      },
+      "Survivalist": {
+        "1": {
+          "id": "5150016",
+          "type": "111",
+          "stat": "t111",
+          "method": "2",
+          "value": "0.08",
+          "prob": "1"
+        },
+        "2": {
+          "id": "5150017",
+          "type": "111",
+          "stat": "t111",
+          "method": "2",
+          "value": "0.11",
+          "prob": "1"
+        },
+        "3": {
+          "id": "5150018",
+          "type": "111",
+          "stat": "t111",
+          "method": "2",
+          "value": "0.14",
+          "prob": "1"
+        },
+        "4": {
+          "id": "5150019",
+          "type": "111",
+          "stat": "t111",
+          "method": "2",
+          "value": "0.17",
+          "prob": "1"
+        },
+        "5": {
+          "id": "5150020",
+          "type": "111",
+          "stat": "t111",
+          "method": "2",
+          "value": "0.20",
+          "prob": "1"
+        }
+      }
+    },
+    "Shoes": {
+      "Blessing of the Fabled Creature": {
+        "1": {
+          "id": "5150056",
+          "type": "102",
+          "stat": "Damage",
+          "method": "3",
+          "value": "0.98",
+          "prob": "1"
+        },
+        "2": {
+          "id": "5150057",
+          "type": "102",
+          "stat": "Damage",
+          "method": "3",
+          "value": "0.96",
+          "prob": "1"
+        },
+        "3": {
+          "id": "5150058",
+          "type": "102",
+          "stat": "Damage",
+          "method": "3",
+          "value": "0.94",
+          "prob": "1"
+        },
+        "4": {
+          "id": "5150059",
+          "type": "102",
+          "stat": "Damage",
+          "method": "3",
+          "value": "0.92",
+          "prob": "1"
+        },
+        "5": {
+          "id": "5150060",
+          "type": "102",
+          "stat": "Damage",
+          "method": "3",
+          "value": "0.90",
+          "prob": "1"
+        }
+      },
+      "Breath of Life": {
+        "1": {
+          "id": "5150071",
+          "type": "110",
+          "stat": "HP Recovery",
+          "method": "3",
+          "value": "1.13",
+          "prob": "1"
+        },
+        "2": {
+          "id": "5150072",
+          "type": "110",
+          "stat": "HP Recovery",
+          "method": "3",
+          "value": "1.16",
+          "prob": "1"
+        },
+        "3": {
+          "id": "5150073",
+          "type": "110",
+          "stat": "HP Recovery",
+          "method": "3",
+          "value": "1.19",
+          "prob": "1"
+        },
+        "4": {
+          "id": "5150074",
+          "type": "110",
+          "stat": "HP Recovery",
+          "method": "3",
+          "value": "1.22",
+          "prob": "1"
+        },
+        "5": {
+          "id": "5150075",
+          "type": "110",
+          "stat": "HP Recovery",
+          "method": "3",
+          "value": "1.25",
+          "prob": "1"
+        }
+      },
+      "Hairsbreadth": {
+        "1": {
+          "id": "5150066",
+          "type": "209",
+          "stat": "t209",
+          "method": "4",
+          "value": "19158",
+          "prob": "1"
+        },
+        "2": {
+          "id": "5150067",
+          "type": "209",
+          "stat": "t209",
+          "method": "4",
+          "value": "19159",
+          "prob": "1"
+        },
+        "3": {
+          "id": "5150068",
+          "type": "209",
+          "stat": "t209",
+          "method": "4",
+          "value": "19160",
+          "prob": "1"
+        },
+        "4": {
+          "id": "5150069",
+          "type": "209",
+          "stat": "t209",
+          "method": "4",
+          "value": "19161",
+          "prob": "1"
+        },
+        "5": {
+          "id": "5150070",
+          "type": "209",
+          "stat": "t209",
+          "method": "4",
+          "value": "19162",
+          "prob": "1"
+        }
+      },
+      "Inverted Result": {
+        "1": {
+          "id": "5150061",
+          "type": "106",
+          "stat": "Active Effect",
+          "method": "4",
+          "value": "19137",
+          "prob": "1"
+        },
+        "2": {
+          "id": "5150062",
+          "type": "106",
+          "stat": "Active Effect",
+          "method": "4",
+          "value": "19138",
+          "prob": "1"
+        },
+        "3": {
+          "id": "5150063",
+          "type": "106",
+          "stat": "Active Effect",
+          "method": "4",
+          "value": "19139",
+          "prob": "1"
+        },
+        "4": {
+          "id": "5150064",
+          "type": "106",
+          "stat": "Active Effect",
+          "method": "4",
+          "value": "19140",
+          "prob": "1"
+        },
+        "5": {
+          "id": "5150065",
+          "type": "106",
+          "stat": "Active Effect",
+          "method": "4",
+          "value": "19141",
+          "prob": "1"
+        }
+      },
+      "Last Stand": {
+        "1": {
+          "id": "5150081",
+          "type": "106",
+          "stat": "Active Effect",
+          "method": "4",
+          "value": "19142",
+          "prob": "1"
+        },
+        "2": {
+          "id": "5150082",
+          "type": "106",
+          "stat": "Active Effect",
+          "method": "4",
+          "value": "19143",
+          "prob": "1"
+        },
+        "3": {
+          "id": "5150083",
+          "type": "106",
+          "stat": "Active Effect",
+          "method": "4",
+          "value": "19144",
+          "prob": "1"
+        },
+        "4": {
+          "id": "5150084",
+          "type": "106",
+          "stat": "Active Effect",
+          "method": "4",
+          "value": "19145",
+          "prob": "1"
+        },
+        "5": {
+          "id": "5150085",
+          "type": "106",
+          "stat": "Active Effect",
+          "method": "4",
+          "value": "19146",
+          "prob": "1"
+        }
+      },
+      "Lightning Speed": {
+        "1": {
+          "id": "5150076",
+          "type": "5",
+          "stat": "Movement Speed",
+          "method": "2",
+          "value": "13",
+          "prob": "1"
+        },
+        "2": {
+          "id": "5150077",
+          "type": "5",
+          "stat": "Movement Speed",
+          "method": "2",
+          "value": "16",
+          "prob": "1"
+        },
+        "3": {
+          "id": "5150078",
+          "type": "5",
+          "stat": "Movement Speed",
+          "method": "2",
+          "value": "19",
+          "prob": "1"
+        },
+        "4": {
+          "id": "5150079",
+          "type": "5",
+          "stat": "Movement Speed",
+          "method": "2",
+          "value": "22",
+          "prob": "1"
+        },
+        "5": {
+          "id": "5150080",
+          "type": "5",
+          "stat": "Movement Speed",
+          "method": "2",
+          "value": "25",
+          "prob": "1"
+        }
+      },
+      "Lucidity": {
+        "1": {
+          "id": "5150051",
+          "type": "228",
+          "stat": "t228",
+          "method": "2",
+          "value": "0.97",
+          "prob": "1"
+        },
+        "2": {
+          "id": "5150052",
+          "type": "228",
+          "stat": "t228",
+          "method": "2",
+          "value": "0.94",
+          "prob": "1"
+        },
+        "3": {
+          "id": "5150053",
+          "type": "228",
+          "stat": "t228",
+          "method": "2",
+          "value": "0.91",
+          "prob": "1"
+        },
+        "4": {
+          "id": "5150054",
+          "type": "228",
+          "stat": "t228",
+          "method": "2",
+          "value": "0.88",
+          "prob": "1"
+        },
+        "5": {
+          "id": "5150055",
+          "type": "228",
+          "stat": "t228",
+          "method": "2",
+          "value": "0.85",
+          "prob": "1"
+        }
+      },
+      "Mage Song": {
+        "1": {
+          "id": "5150086",
+          "type": "53",
+          "stat": "t53",
+          "method": "3",
+          "value": "19148",
+          "prob": "1"
+        },
+        "2": {
+          "id": "5150087",
+          "type": "53",
+          "stat": "t53",
+          "method": "3",
+          "value": "19150",
+          "prob": "1"
+        },
+        "3": {
+          "id": "5150088",
+          "type": "53",
+          "stat": "t53",
+          "method": "3",
+          "value": "19152",
+          "prob": "1"
+        },
+        "4": {
+          "id": "5150089",
+          "type": "53",
+          "stat": "t53",
+          "method": "3",
+          "value": "19154",
+          "prob": "1"
+        },
+        "5": {
+          "id": "5150090",
+          "type": "53",
+          "stat": "t53",
+          "method": "3",
+          "value": "19156",
+          "prob": "1"
+        }
+      },
+      "Phantom Veil": {
+        "1": {
+          "id": "5150046",
+          "type": "207",
+          "stat": "When entering combat",
+          "method": "4",
+          "value": "19122",
+          "prob": "1"
+        },
+        "2": {
+          "id": "5150047",
+          "type": "207",
+          "stat": "When entering combat",
+          "method": "4",
+          "value": "19125",
+          "prob": "1"
+        },
+        "3": {
+          "id": "5150048",
+          "type": "207",
+          "stat": "When entering combat",
+          "method": "4",
+          "value": "19128",
+          "prob": "1"
+        },
+        "4": {
+          "id": "5150049",
+          "type": "207",
+          "stat": "When entering combat",
+          "method": "4",
+          "value": "19131",
+          "prob": "1"
+        },
+        "5": {
+          "id": "5150050",
+          "type": "207",
+          "stat": "When entering combat",
+          "method": "4",
+          "value": "19134",
+          "prob": "1"
+        }
+      }
+    }
+  }
+}

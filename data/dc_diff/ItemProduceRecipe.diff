@@ -1,0 +1,103 @@
+# ItemProduceRecipe  +72 -26
+
+=== ADDED (72) ===
+</Materials>
+</Materials>
+</Materials>
+</Materials>
+</Materials>
+</Materials>
+</Materials>
+</Materials>
+</Recipe>
+</Recipe>
+</Recipe>
+</Recipe>
+</Recipe>
+</Recipe>
+</Recipe>
+</Recipe>
+<Material id="204050" count="1000" />
+<Material id="204050" count="1000" />
+<Material id="204050" count="1000" />
+<Material id="204050" count="1000" />
+<Material id="204050" count="1000" />
+<Material id="204050" count="1000" />
+<Material id="204050" count="1000" />
+<Material id="204050" count="1000" />
+<Material id="204050" count="1000" />
+<Material id="204050" count="1000" />
+<Material id="204050" count="1000" />
+<Material id="204050" count="1000" />
+<Material id="985528" count="50" />
+<Material id="985528" count="50" />
+<Material id="985528" count="50" />
+<Material id="985528" count="50" />
+<Material id="985529" count="50" />
+<Material id="985529" count="50" />
+<Material id="985529" count="50" />
+<Material id="985529" count="50" />
+<Material id="985530" count="20" />
+<Material id="985530" count="20" />
+<Material id="985530" count="20" />
+<Material id="985530" count="20" />
+<Materials>
+<Materials>
+<Materials>
+<Materials>
+<Materials>
+<Materials>
+<Materials>
+<Materials>
+<Recipe id="985500" categoryId="2006" maxSkillProf="800" subFatiguePoint="20" obtainable="true" needSkillId="21" recipeItemId="986428" addOnSuccessProf="0" needGrade="0" needSkillProf="0">
+<Recipe id="985501" categoryId="2006" maxSkillProf="800" subFatiguePoint="20" obtainable="true" needSkillId="21" recipeItemId="986429" addOnSuccessProf="0" needGrade="0" needSkillProf="0">
+<Recipe id="985502" categoryId="2006" maxSkillProf="800" subFatiguePoint="20" obtainable="true" needSkillId="21" recipeItemId="986430" addOnSuccessProf="0" needGrade="0" needSkillProf="0">
+<Recipe id="985503" categoryId="2007" maxSkillProf="800" subFatiguePoint="20" obtainable="true" needSkillId="21" recipeItemId="986431" addOnSuccessProf="0" needGrade="0" needSkillProf="0">
+<Recipe id="985504" categoryId="2007" maxSkillProf="800" subFatiguePoint="20" obtainable="true" needSkillId="21" recipeItemId="986432" addOnSuccessProf="0" needGrade="0" needSkillProf="0">
+<Recipe id="985505" categoryId="2007" maxSkillProf="800" subFatiguePoint="20" obtainable="true" needSkillId="21" recipeItemId="986433" addOnSuccessProf="0" needGrade="0" needSkillProf="0">
+<Recipe id="985506" categoryId="2008" maxSkillProf="800" subFatiguePoint="20" obtainable="true" needSkillId="21" recipeItemId="986434" addOnSuccessProf="0" needGrade="0" needSkillProf="0">
+<Recipe id="985507" categoryId="2008" maxSkillProf="800" subFatiguePoint="20" obtainable="true" needSkillId="21" recipeItemId="986435" addOnSuccessProf="0" needGrade="0" needSkillProf="0">
+<Recipe id="985508" categoryId="2008" maxSkillProf="800" subFatiguePoint="20" obtainable="true" needSkillId="21" recipeItemId="986436" addOnSuccessProf="0" needGrade="0" needSkillProf="0">
+<Recipe id="985509" categoryId="2009" maxSkillProf="800" subFatiguePoint="20" obtainable="true" needSkillId="21" recipeItemId="986437" addOnSuccessProf="0" needGrade="0" needSkillProf="0">
+<Recipe id="985510" categoryId="2009" maxSkillProf="800" subFatiguePoint="20" obtainable="true" needSkillId="21" recipeItemId="986438" addOnSuccessProf="0" needGrade="0" needSkillProf="0">
+<Recipe id="985511" categoryId="2009" maxSkillProf="800" subFatiguePoint="20" obtainable="true" needSkillId="21" recipeItemId="986439" addOnSuccessProf="0" needGrade="0" needSkillProf="0">
+<Result id="985500" count="1" criticalItemCount="2" criticalItemId="985500" />
+<Result id="985501" count="1" criticalItemCount="2" criticalItemId="985501" />
+<Result id="985502" count="1" criticalItemCount="2" criticalItemId="985502" />
+<Result id="985503" count="1" criticalItemCount="2" criticalItemId="985503" />
+<Result id="985504" count="1" criticalItemCount="2" criticalItemId="985504" />
+<Result id="985505" count="1" criticalItemCount="2" criticalItemId="985505" />
+<Result id="985506" count="1" criticalItemCount="2" criticalItemId="985506" />
+<Result id="985507" count="1" criticalItemCount="2" criticalItemId="985507" />
+<Result id="985508" count="1" criticalItemCount="2" criticalItemId="985508" />
+<Result id="985509" count="1" criticalItemCount="2" criticalItemId="985509" />
+<Result id="985510" count="1" criticalItemCount="2" criticalItemId="985510" />
+<Result id="985511" count="1" criticalItemCount="2" criticalItemId="985511" />
+
+=== REMOVED (26) ===
+<Material id="204050" count="1240" />
+<Material id="204050" count="240" />
+<Material id="960212" count="120" />
+<Material id="960212" count="120" />
+<Material id="960213" count="120" />
+<Material id="960213" count="120" />
+<Material id="960214" count="120" />
+<Material id="960214" count="120" />
+<Material id="960215" count="120" />
+<Material id="960215" count="120" />
+<Material id="960216" count="80" />
+<Material id="960217" count="80" />
+<Material id="960222" count="3" />
+<Material id="960222" count="648" />
+<Material id="960222" count="648" />
+<Material id="960223" count="216" />
+<Material id="960223" count="3" />
+<Material id="960225" count="4" />
+<Recipe id="960252" categoryId="2001" maxSkillProf="800" subFatiguePoint="20" obtainable="true" needSkillId="21" recipeItemId="960252" addOnSuccessProf="5" needGrade="1" needSkillProf="500">
+<Recipe id="960253" categoryId="2001" maxSkillProf="800" subFatiguePoint="80" obtainable="true" needSkillId="21" recipeItemId="960253" addOnSuccessProf="0" needGrade="2" needSkillProf="800">
+<Recipe id="960265" categoryId="2001" maxSkillProf="800" subFatiguePoint="20" obtainable="true" needSkillId="21" recipeItemId="960265" addOnSuccessProf="0" needGrade="0" needSkillProf="0">
+<Recipe id="960266" categoryId="2001" maxSkillProf="800" subFatiguePoint="20" obtainable="true" needSkillId="21" recipeItemId="960266" addOnSuccessProf="0" needGrade="0" needSkillProf="0">
+<Result id="960223" count="1" criticalItemCount="2" criticalItemId="960223" />
+<Result id="960224" count="1" criticalItemCount="2" criticalItemId="960224" />
+<Result id="960263" count="1" />
+<Result id="960264" count="1" />

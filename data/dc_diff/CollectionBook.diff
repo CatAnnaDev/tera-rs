@@ -1,0 +1,53 @@
+# CollectionBook  +24 -24
+
+=== ADDED (24) ===
+<RewardData id="1" amount="1" rewardItemId="69000" needPoint="500" />
+<RewardData id="10" amount="1" rewardItemId="69007" needPoint="9500" />
+<RewardData id="11" amount="1" rewardItemId="69007" needPoint="10500" />
+<RewardData id="12" amount="20" rewardItemId="300027" needPoint="11500" />
+<RewardData id="13" amount="1" rewardItemId="69007" needPoint="12500" />
+<RewardData id="14" amount="20" rewardItemId="300028" needPoint="13500" />
+<RewardData id="15" amount="1" rewardItemId="69007" needPoint="14500" />
+<RewardData id="16" amount="20" rewardItemId="340023" needPoint="15500" />
+<RewardData id="17" amount="1" rewardItemId="69007" needPoint="16500" />
+<RewardData id="18" amount="1" rewardItemId="69007" needPoint="17500" />
+<RewardData id="19" amount="20" rewardItemId="301027" needPoint="18500" />
+<RewardData id="2" amount="20" rewardItemId="340000" needPoint="1500" />
+<RewardData id="20" amount="1" rewardItemId="69007" needPoint="19500" />
+<RewardData id="21" amount="20" rewardItemId="301028" needPoint="20500" />
+<RewardData id="22" amount="1" rewardItemId="69007" needPoint="21500" />
+<RewardData id="23" amount="20" rewardItemId="341023" needPoint="22500" />
+<RewardData id="24" amount="1" rewardItemId="69007" needPoint="23500" />
+<RewardData id="3" amount="1" rewardItemId="69000" needPoint="2500" />
+<RewardData id="4" amount="20" rewardItemId="340001" needPoint="3500" />
+<RewardData id="5" amount="1" rewardItemId="69000" needPoint="4500" />
+<RewardData id="6" amount="1" rewardItemId="69000" needPoint="5500" />
+<RewardData id="7" amount="20" rewardItemId="341000" needPoint="6500" />
+<RewardData id="8" amount="1" rewardItemId="69000" needPoint="7500" />
+<RewardData id="9" amount="20" rewardItemId="341001" needPoint="8500" />
+
+=== REMOVED (24) ===
+<RewardData id="1" amount="1" needPoint="500" rewardItemId="69000" />
+<RewardData id="10" amount="1" needPoint="9500" rewardItemId="69007" />
+<RewardData id="11" amount="1" needPoint="10500" rewardItemId="69007" />
+<RewardData id="12" amount="20" needPoint="11500" rewardItemId="300027" />
+<RewardData id="13" amount="1" needPoint="12500" rewardItemId="69007" />
+<RewardData id="14" amount="20" needPoint="13500" rewardItemId="300028" />
+<RewardData id="15" amount="1" needPoint="14500" rewardItemId="69007" />
+<RewardData id="16" amount="20" needPoint="15500" rewardItemId="340023" />
+<RewardData id="17" amount="1" needPoint="16500" rewardItemId="69007" />
+<RewardData id="18" amount="1" needPoint="17500" rewardItemId="69007" />
+<RewardData id="19" amount="20" needPoint="18500" rewardItemId="301027" />
+<RewardData id="2" amount="20" needPoint="1500" rewardItemId="340000" />
+<RewardData id="20" amount="1" needPoint="19500" rewardItemId="69007" />
+<RewardData id="21" amount="20" needPoint="20500" rewardItemId="301028" />
+<RewardData id="22" amount="1" needPoint="21500" rewardItemId="69007" />
+<RewardData id="23" amount="20" needPoint="22500" rewardItemId="341023" />
+<RewardData id="24" amount="1" needPoint="23500" rewardItemId="69007" />
+<RewardData id="3" amount="1" needPoint="2500" rewardItemId="69000" />
+<RewardData id="4" amount="20" needPoint="3500" rewardItemId="340001" />
+<RewardData id="5" amount="1" needPoint="4500" rewardItemId="69000" />
+<RewardData id="6" amount="1" needPoint="5500" rewardItemId="69000" />
+<RewardData id="7" amount="20" needPoint="6500" rewardItemId="341000" />
+<RewardData id="8" amount="1" needPoint="7500" rewardItemId="69000" />
+<RewardData id="9" amount="20" needPoint="8500" rewardItemId="341001" />

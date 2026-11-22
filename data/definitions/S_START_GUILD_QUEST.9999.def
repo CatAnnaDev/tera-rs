@@ -1,0 +1,5 @@
+# auto-genere par tera-bot (scaffold, 1 echantillon(s)) : verifier/retyper les champs fixes
+ref str1
+int32 unk1
+byte unk2
+string str1

@@ -1,0 +1,29 @@
+# StrSheet_Region  +23 -1
+
+=== ADDED (23) ===
+<String id="1003" string="Western Baldera Camp" />
+<String id="1004" string="Spring of Arun" />
+<String id="1005" string="Central Baldera Camp" />
+<String id="1006" string="Shurian Base" />
+<String id="1007" string="Shurian North Gate" />
+<String id="1008" string="Cultist Refuge" />
+<String id="1009" string="Forest of Souls" />
+<String id="1010" string="Shurian Base" />
+<String id="1011" string="Renegade Garden" />
+<String id="1012" string="Crossroads of Agony" />
+<String id="3041" string="Damned Citadel" />
+<String id="3044" string="Stormed Citadel" />
+<String id="3044" string="Top Floor of the Stormed Citadel" />
+<String id="3045" string="Dakuryon Depot" />
+<String id="3048" string="Secret Training Camp" />
+<String id="3048001" string="Secret Training Camp" />
+<String id="3134" string="Autumn Grove" />
+<String id="320500001" string="Fusion Laboratory Entrance" />
+<String id="32050021" string="Verrak Fortress" />
+<String id="3400" string="Catalepticon (Easy)" />
+<String id="3401" string="Imperator's Sanctum" />
+<String id="3401001" string="Imperator's Sanctum" />
+<String id="5801004" string="Pegasus Platform" />
+
+=== REMOVED (1) ===
+<String id="3041" string="Top of the Damned Citadel" />

@@ -1,0 +1,7 @@
+# ReputationSystem  +1 -1
+
+=== ADDED (1) ===
+<NPCGuild id="609" stringId="609" groupId="3" reputationId="1" maxPoint="100000" startGrade="6">
+
+=== REMOVED (1) ===
+<NPCGuild id="609" stringId="609" groupId="3" reputationId="1" maxPoint="20000" startGrade="6">

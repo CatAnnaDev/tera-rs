@@ -1,0 +1,166 @@
+# StrSheet_UI  +157 -4
+
+=== ADDED (157) ===
+<String string="" stringId="$806013" />
+<String string="&lt;font color='#3FCBE4'&gt;Card Fusion&lt;/font&gt;&lt;br&gt;Fuse cards to receive high-grade card fragments." stringId="$051013" />
+<String string="Abbreviate with letters" stringId="$231375" />
+<String string="Add a bound source item for the transfer." stringId="$155091" />
+<String string="Add a bound target item for the transfer." stringId="$155090" />
+<String string="Add to list" stringId="$807017" />
+<String string="Adjust the transparency of the Defense, Dodge, and Retribution icons" stringId="$231372" />
+<String string="Apply" stringId="$807019" />
+<String string="Archer" stringId="$900005" />
+<String string="Automatic" stringId="$773014" />
+<String string="Available Items" stringId="$773013" />
+<String string="Beneficial" stringId="$807003" />
+<String string="Berserker" stringId="$900003" />
+<String string="Bonus Reward" stringId="$806012" />
+<String string="Brawler" stringId="$900010" />
+<String string="Buy Premium" stringId="$806007" />
+<String string="Camera Shake Settings" stringId="$231352" />
+<String string="Cancel" stringId="$773011" />
+<String string="Card Fragment Fusion" stringId="$773000" />
+<String string="Change Effect Display Settings" stringId="$807020" />
+<String string="Change the volume of NPCs.&#10;(Also affects volume of Personalized Greeting.)" stringId="$231365" />
+<String string="Change the volume of party member effects." stringId="$231361" />
+<String string="Complete" stringId="$806020" />
+<String string="Confirm" stringId="$773004" />
+<String string="Costume Shop" stringId="$821000" />
+<String string="Damage numbers are displayed at hit location." stringId="$231370" />
+<String string="Damage numbers are shown in the center of the monster." stringId="$231371" />
+<String string="Date of Deletion:" stringId="$807026" />
+<String string="Defaults" stringId="$231367" />
+<String string="Disable" stringId="$990002" />
+<String string="Display" stringId="$807013" />
+<String string="Duration" stringId="$807012" />
+<String string="During the transfer, the enchantments, random options, and the etching effects of the source item will be transferred to the target item." stringId="$155114" />
+<String string="Effect Information" stringId="$807001" />
+<String string="Effect Types" stringId="$807002" />
+<String string="Enable other players' emojis" stringId="$231900" />
+<String string="Enchantment Level" stringId="$155099" />
+<String string="Equipment Material" stringId="$155112" />
+<String string="Etchings" stringId="$155101" />
+<String string="Focus Bar Icons" stringId="$990001" />
+<String string="Focused" stringId="$807021" />
+<String string="Free" stringId="$806010" />
+<String string="Fusion Complete" stringId="$773009" />
+<String string="Fusion Complete" stringId="$773010" />
+<String string="Fusion Complete" stringId="$773017" />
+<String string="Fusion Quantity" stringId="$773016" />
+<String string="Fusion" stringId="$773008" />
+<String string="Get Reward" stringId="$773007" />
+<String string="Gunner" stringId="$900009" />
+<String string="Harmful" stringId="$807004" />
+<String string="Highlighted" stringId="$807022" />
+<String string="If focused display is activated, a corresponding effect icon is shown in the effect menu." stringId="$807031" />
+<String string="If highlighted display is activated, the effect icons are highlighted." stringId="$807032" />
+<String string="If you activate the Premium Pass, you can receive Premium rewards." stringId="$806014" />
+<String string="If you press Shift, you can compare everything with enchantment level +0.\n(Crystals, fusion options, and etching effects are not taken into account.)" stringId="$101122" />
+<String string="If you select the effect information, you can change the effect display settings." stringId="$807015" />
+<String string="Item after the Transfer" stringId="$155113" />
+<String string="JACKPOT" stringId="$773015" />
+<String string="Lancer" stringId="$900001" />
+<String string="List of Beneficial Effects" stringId="$807009" />
+<String string="List of Harmful Effects" stringId="$807010" />
+<String string="Lock" stringId="$231368" />
+<String string="Magic Resistance: {value}" stringId="$801003" />
+<String string="Manage Effects" stringId="$807000" />
+<String string="Mileage Points are accumulated if you do not receive higher-grade card fragments when combining card fragments. Normal ranks accumulate 20 Mileage Points, and high-grade ranks accumulate 40. If your Mileage Points are full, you will receive a reward." stringId="$773005" />
+<String string="Mileage Points" stringId="$773006" />
+<String string="Monthly Pass" stringId="$821001" />
+<String string="Mystic" stringId="$900007" />
+<String string="NPC volume" stringId="$231364" />
+<String string="Name" stringId="$807011" />
+<String string="New Effects" stringId="$807008" />
+<String string="Ninja" stringId="$900011" />
+<String string="Not enough material" stringId="$153075" />
+<String string="Not enough production points" stringId="$153074" />
+<String string="Number of Beneficial Effects: &lt;font color='#6CC219'&gt;{CurrentCount}&lt;/font&gt;/{MaxCount}" stringId="$807006" />
+<String string="Number of Harmful Effects: &lt;font color='#6CC219'&gt;{CurrentCount}&lt;/font&gt;/{MaxCount}" stringId="$807007" />
+<String string="Number of New Effects: &lt;font color='#6CC219'&gt;{CurrentCount}&lt;/font&gt;" stringId="$807005" />
+<String string="Once per day. The mission is reset at 06:00 server time." stringId="$806022" />
+<String string="Once the duration is up, the effect information is automatically removed." stringId="$807014" />
+<String string="Once you have reached the last level of the TERA Pass, you will receive a &lt;font color='#00FFFF'&gt;TERA Pass Token&lt;/font&gt; each time you collect points." stringId="$806015" />
+<String string="Only players who have a &lt;font color='#74D6FF'&gt;[Premium] Monthly Pass&lt;/font&gt; can use the free costumes." stringId="$821003" />
+<String string="Option to be discarded." stringId="$155098" />
+<String string="Option to be transferred." stringId="$155097" />
+<String string="Party member volume" stringId="$231360" />
+<String string="Performing the transfer will consume the required item." stringId="$155096" />
+<String string="Physical Resistance: {value}" stringId="$801002" />
+<String string="Player sound effects" stringId="$231359" />
+<String string="Premium Pass already active" stringId="$806005" />
+<String string="Premium" stringId="$806011" />
+<String string="Priest" stringId="$900006" />
+<String string="Random Fusion" stringId="$773002" />
+<String string="Random Option" stringId="$155100" />
+<String string="Random Option" stringId="$950032" />
+<String string="Reaper" stringId="$900008" />
+<String string="Remove" stringId="$807018" />
+<String string="Repeatable missions do not disappear even after completion and can be completed again." stringId="$806021" />
+<String string="Required Item(s)" stringId="$155093" />
+<String string="Season Fusion" stringId="$773001" />
+<String string="Season Mission" stringId="$806008" />
+<String string="Selection Fusion" stringId="$773003" />
+<String string="Show big damage" stringId="$231374" />
+<String string="Show damage numbers" stringId="$231369" />
+<String string="Show full number" stringId="$231376" />
+<String string="Show race/class instead of party member names" stringId="$231366" />
+<String string="Slayer" stringId="$900002" />
+<String string="Sorcerer" stringId="$900004" />
+<String string="Sort" stringId="$773012" />
+<String string="Standard Option" stringId="$950030" />
+<String string="Status" stringId="$461064" />
+<String string="Success" stringId="$155116" />
+<String string="Support Option" stringId="$950031" />
+<String string="Switching changes the default stat." stringId="$101121" />
+<String string="Switching changes the entire stat." stringId="$101120" />
+<String string="TERA Pass Reward" stringId="$806009" />
+<String string="TERA Pass Season {value}" stringId="$806004" />
+<String string="TERA Pass" stringId="$806016" />
+<String string="TP" stringId="$806017" />
+<String string="Target Item for the Transfer" stringId="$155111" />
+<String string="The enchantments, random options, and etchings of your current gear will be transferred to the equipment displayed on the right. The item on the left will be reset." stringId="$155102" />
+<String string="The entire number is displayed no matter how large." stringId="$231378" />
+<String string="The selected sorting settings are not applied to the effect menu." stringId="$231373" />
+<String string="Tikat Shop" stringId="$051004" />
+<String string="Time until update: {UpdateRemainTime}" stringId="$821007" />
+<String string="Toggle mount sound effects" stringId="$231362" />
+<String string="Toggle stamp sound effects" stringId="$231363" />
+<String string="Transfer Result" stringId="$155115" />
+<String string="Transfer" stringId="$155089" />
+<String string="Transfer" stringId="$155094" />
+<String string="Unlocking the Class Change Skill" stringId="$083047" />
+<String string="Use for free" stringId="$821002" />
+<String string="Valkyrie" stringId="$900012" />
+<String string="Warrior" stringId="$900000" />
+<String string="When showing large damage numbers exceeding 10,000, use the abbreviations K, M and B.\n1,234,567 -&gt; 1,234 K\n123,456,789 -&gt; 123.4 M" stringId="$231377" />
+<String string="You can change the effect display settings by clicking on the list on the left." stringId="$807028" />
+<String string="You can obtain a maximum of {Max} Pass Points per day from repeatable missions.\nDaily quests and one-time missions are not affected by Pass Points limits.\nThe points limit is reset every day at 06:00 server time." stringId="$806023" />
+<String string="You can use the costumes in the Monthly Pass Costume Shop for free." stringId="$821006" />
+<String string="You can view detailed effect information by clicking on the list on the left." stringId="$807027" />
+<String string="You cannot change the effect display settings in battle." stringId="$807016" />
+<String string="You cannot purchase the Premium Registration Certificate at the moment. More detailed information can be found in the note." stringId="$806019" />
+<String string="You cannot receive any Pass points or missions.\nMore detailed information can be found in the note." stringId="$806006" />
+<String string="You have no new effects." stringId="$807029" />
+<String string="You have reached the maximum TERA Pass level and cannot purchase any more levels." stringId="$806018" />
+<String string="You haven't learned a design yet." stringId="$153072" />
+<String string="You haven't received any new effects.\nAdd new effects to the list using the corresponding menu option." stringId="$807030" />
+<String string="Your crafting skill is insufficient." stringId="$153073" />
+<String string="[Premium] Buy Monthly Pass" stringId="$821005" />
+<String string="[Premium] Monthly Pass" stringId="$821004" />
+<String string="[The season ends on: {time}]" stringId="$806000" />
+<String string="{Day} day(s)" stringId="$821008" />
+<String string="{Day} days" stringId="$807025" />
+<String string="{Hour} hour(s)" stringId="$821009" />
+<String string="{Hour} hours" stringId="$807024" />
+<String string="{Minute} min." stringId="$807023" />
+<String string="{Minute} min." stringId="$821010" />
+<String string="{day} days" stringId="$806001" />
+<String string="{hour} hours" stringId="$806002" />
+<String string="{minutes} min." stringId="$806003" />
+
+=== REMOVED (4) ===
+<String string="" stringId="$051013" />
+<String string="Enable other players' emojis" stringId="$231352" />
+<String string="Matching Status" stringId="$461064" />
+<String string="TERA Store" stringId="$051004" />

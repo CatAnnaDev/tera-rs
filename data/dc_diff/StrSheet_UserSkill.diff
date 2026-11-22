@@ -1,0 +1,1052 @@
+# StrSheet_UserSkill  +524 -523
+
+=== ADDED (524) ===
+<String id="122002" name="Riding Skill: Aeolian Zebra" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122003" name="Riding Skill: Death Charger" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122012" name="Riding Skill: Saolo" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122013" name="Riding Skill: Paolo" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122014" name="Riding Skill: Tigerinho" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122015" name="Riding Skill: Tigeraldo" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122027" name="Flying Skill: Fyrewing" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122030" name="Riding Skill: Boneshaker" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122031" name="Riding Skill: Boneshaker" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122032" name="Riding Skill: Boneshaker" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122033" name="Riding Skill: EX-TRM" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122034" name="Riding Skill: EX-TRM" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122035" name="Riding Skill: EX-TRM" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122036" name="Riding Skill: Sport RX800" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122037" name="Riding Skill: Sport RX800" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122038" name="Riding Skill: Sport RX800" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122039" name="Riding Skill: Sport RX800" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122040" name="Riding Skill: Sport SX800" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122041" name="Riding Skill: Sport SX800" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122042" name="Riding Skill: Sport SX800" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122043" name="Riding Skill: Sport SX800" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122044" name="Riding Skill: Sport GX800" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122045" name="Riding Skill: Sport GX800" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122046" name="Riding Skill: Sport GX800" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122047" name="Riding Skill: Sport GX800" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122048" name="Riding Skill: Sport RX800" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122049" name="Riding Skill: Sport SX800" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122050" name="Riding Skill: Sport GX800" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122051" name="Riding Skill: Litterbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122052" name="Riding Skill: Litterbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122053" name="Riding Skill: Litterbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122054" name="Riding Skill: Litterbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122055" name="Riding Skill: Humbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122056" name="Riding Skill: Humbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122057" name="Riding Skill: Humbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122058" name="Riding Skill: Humbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122059" name="Riding Skill: Jitterbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122060" name="Riding Skill: Jitterbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122061" name="Riding Skill: Jitterbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122062" name="Riding Skill: Jitterbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122063" name="Riding Skill: Litterbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122064" name="Riding Skill: Litterbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122065" name="Riding Skill: Litterbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122066" name="Riding Skill: Litterbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122067" name="Riding Skill: Humbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122068" name="Riding Skill: Humbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122069" name="Riding Skill: Humbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122070" name="Riding Skill: Humbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122071" name="Riding Skill: Jitterbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122072" name="Riding Skill: Jitterbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122073" name="Riding Skill: Jitterbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122074" name="Riding Skill: Jitterbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122075" name="Riding Skill: Emerald Tail" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122076" name="Riding Skill: Emerald Tail" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122077" name="Riding Skill: Emerald Tail" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122078" name="Riding Skill: Emerald Tail" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122079" name="Riding Skill: Obsidian Tail" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122080" name="Riding Skill: Obsidian Tail" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122081" name="Riding Skill: Obsidian Tail" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122082" name="Riding Skill: Obsidian Tail" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122083" name="Riding Skill: Pixie Dreams" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122084" name="Riding Skill: Pixie Dreams" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122085" name="Riding Skill: Pixie Dreams" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122086" name="Riding Skill: Pixie Dreams" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122087" name="Riding Skill: Police Car" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122088" name="Riding Skill: Police Car" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122089" name="Riding Skill: Police Car" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122095" name="Flying Skill: Ebonwing" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122096" name="Riding Skill: Almighty Emerald Tail" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122097" name="Riding Skill: Almighty Obsidian Tail" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122098" name="Riding Skill: Maki Kitty" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122099" name="Riding Skill: Maki Kitty" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122100" name="Riding Skill: Maki Kitty" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122101" name="Riding Skill: Maki Kitty" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122102" name="Riding Skill: Nigiri Kitty" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122103" name="Riding Skill: Nigiri Kitty" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122104" name="Riding Skill: Nigiri Kitty" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122105" name="Riding Skill: Nigiri Kitty" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122106" name="Riding Skill: Oshi Kitty" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122107" name="Riding Skill: Oshi Kitty" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122108" name="Riding Skill: Oshi Kitty" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122109" name="Riding Skill: Oshi Kitty" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122110" name="Riding Skill: Maki Kitty" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122111" name="Riding Skill: Nigiri Kitty" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122112" name="Riding Skill: Oshi Kitty" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122113" name="Riding Skill: Tempersteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122114" name="Riding Skill: Tempersteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122115" name="Riding Skill: Tempersteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122116" name="Riding Skill: Tempersteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122117" name="Riding Skill: Goldensteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122118" name="Riding Skill: Goldensteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122119" name="Riding Skill: Goldensteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122120" name="Riding Skill: Goldensteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122121" name="Riding Skill: Ashensteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122122" name="Riding Skill: Ashensteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122123" name="Riding Skill: Ashensteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122124" name="Riding Skill: Ashensteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122125" name="Riding Skill: Crimsonsteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122126" name="Riding Skill: Crimsonsteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122127" name="Riding Skill: Crimsonsteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122128" name="Riding Skill: Crimsonsteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122129" name="Riding Skill: Shadowsteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122130" name="Riding Skill: Shadowsteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122131" name="Riding Skill: Shadowsteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122132" name="Riding Skill: Shadowsteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122133" name="Riding Skill: Shadowsteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122134" name="Riding Skill: Blue Gokart" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122135" name="Riding Skill: Red Gokart" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122136" name="Riding Skill: Green Gokart" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122137" name="Riding Skill: Yellow Gokart" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122138" name="Riding Skill: Blue Speedy Gokart" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122139" name="Riding Skill: Pink Speedy Gokart" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122140" name="Riding Skill: Yellow Speedy Gokart" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122141" name="Riding Skill: Green Speedy Gokart" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122142" name="Riding Skill: Blue Hyper Gokart" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122143" name="Riding Skill: Red Hyper Gokart" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122144" name="Riding Skill: Black Hyper Gokart" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122145" name="Riding Skill: Purple Hyper Gokart" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122146" name="Riding Skill: Frostlion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122147" name="Riding Skill: Nightlion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122148" name="Riding Skill: Smolder" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122149" name="Riding Skill: Jeweled Lion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122150" name="Riding Skill: Goldmane" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122151" name="Riding Skill: Silvermane" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122152" name="Flying Skill: Pegasus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122153" name="Flying Skill: Tulpar" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122154" name="Flying Skill: Black Pegasus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122155" name="Flying Skill: Pegasus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122156" name="Flying Skill: Tulpar" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122157" name="Flying Skill: Black Pegasus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122158" name="Riding Skill: Frostlion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122159" name="Riding Skill: Frostlion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122160" name="Riding Skill: Frostlion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122161" name="Riding Skill: Nightlion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122162" name="Riding Skill: Nightlion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122163" name="Riding Skill: Nightlion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122164" name="Riding Skill: Smolder" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122165" name="Riding Skill: Smolder" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122166" name="Riding Skill: Smolder" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122167" name="Riding Skill: Jeweled Lion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122168" name="Riding Skill: Jeweled Lion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122169" name="Riding Skill: Jeweled Lion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122170" name="Riding Skill: Goldmane" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122171" name="Riding Skill: Goldmane" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122172" name="Riding Skill: Goldmane" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122173" name="Riding Skill: Silvermane" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122174" name="Riding Skill: Silvermane" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122175" name="Riding Skill: Silvermane" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122176" name="Flying Skill: Pegasus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122177" name="Flying Skill: Pegasus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122178" name="Flying Skill: Pegasus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122179" name="Flying Skill: Tulpar" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122180" name="Flying Skill: Tulpar" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122181" name="Flying Skill: Tulpar" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122182" name="Flying Skill: Black Pegasus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122183" name="Flying Skill: Black Pegasus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122184" name="Flying Skill: Black Pegasus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122185" name="Flying Skill: Waddles" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122186" name="Flying Skill: Waddles" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122187" name="Flying Skill: Waddles" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122188" name="Flying Skill: Waddles" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122189" name="Flying Skill: Harry Porker" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122190" name="Flying Skill: Harry Porker" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122191" name="Flying Skill: Harry Porker" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122192" name="Flying Skill: Harry Porker" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122193" name="Flying Skill: Boss" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122194" name="Flying Skill: Boss" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122195" name="Flying Skill: Boss" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122196" name="Flying Skill: Boss" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122197" name="Flying Skill: Petunia" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122198" name="Flying Skill: Petunia" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122199" name="Flying Skill: Petunia" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122200" name="Flying Skill: Petunia" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122201" name="Flying Skill: Road Hog" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122202" name="Flying Skill: Road Hog" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122203" name="Flying Skill: Road Hog" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122204" name="Flying Skill: Road Hog" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122205" name="Flying Skill: Waddles" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122206" name="Flying Skill: Waddles" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122207" name="Flying Skill: Waddles" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122208" name="Flying Skill: Waddles" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122209" name="Flying Skill: Harry Porker" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122210" name="Flying Skill: Harry Porker" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122211" name="Flying Skill: Harry Porker" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122212" name="Flying Skill: Harry Porker" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122213" name="Flying Skill: Boss" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122214" name="Flying Skill: Boss" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122215" name="Flying Skill: Boss" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122216" name="Flying Skill: Boss" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122217" name="Flying Skill: Petunia" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122218" name="Flying Skill: Petunia" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122219" name="Flying Skill: Petunia" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122220" name="Flying Skill: Petunia" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122221" name="Flying Skill: Road Hog" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122222" name="Flying Skill: Road Hog" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122223" name="Flying Skill: Road Hog" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122224" name="Flying Skill: Road Hog" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122225" name="Flying Skill: Llara" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122226" name="Flying Skill: Llara" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122227" name="Flying Skill: Llara" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122228" name="Flying Skill: Llara" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122229" name="Flying Skill: LLewellyn" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122230" name="Flying Skill: LLewellyn" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122231" name="Flying Skill: LLewellyn" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122232" name="Flying Skill: LLewellyn" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122233" name="Flying Skill: Llyn" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122234" name="Flying Skill: Llyn" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122235" name="Flying Skill: Llyn" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122236" name="Flying Skill: Llyn" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122237" name="Flying Skill: Lloyd" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122238" name="Flying Skill: Lloyd" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122239" name="Flying Skill: Lloyd" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122240" name="Flying Skill: Lloyd" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122241" name="Flying Skill: Armored Dragon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122242" name="Flying Skill: Fire Dragon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122243" name="Flying Skill: Spirit Dragon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122244" name="Flying Skill: Diamond Dragon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122245" name="Flying Skill: Armored Dragon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122246" name="Flying Skill: Fire Dragon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122247" name="Flying Skill: Spirit Dragon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122248" name="Flying Skill: Diamond Dragon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000001" name="Riding Skill: Lupus Obscurus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000002" name="Riding Skill: Lupus Obscurus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000003" name="Riding Skill: Lupus Obscurus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000004" name="Riding Skill: Lupus Obscurus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000005" name="Riding Skill: Lupus Aeris" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000006" name="Riding Skill: Lupus Aeris" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000007" name="Riding Skill: Lupus Aurum" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000008" name="Riding Skill: Lupus Aurum" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000009" name="Riding Skill: Lupus Aurum" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000010" name="Riding Skill: Lupus Noctus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000011" name="Riding Skill: Lupus Noctus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000012" name="Riding Skill: Lupus Noctus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000013" name="Riding Skill: Lupus Argentum" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000014" name="Riding Skill: Lupus Argentum" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000015" name="Riding Skill: Lupus Argentum" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000016" name="Riding Skill: Frost Tail" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000017" name="Riding Skill: Frost Tail" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000018" name="Riding Skill: Ember Tail" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000019" name="Riding Skill: Ember Tail" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000020" name="Riding Skill: Eager Polar Bear" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000021" name="Riding Skill: Eager Polar Bear" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000022" name="Riding Skill: Eager Polar Bear" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000023" name="Riding Skill: Eager Polar Bear" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000024" name="Riding Skill: Eager Grizzly Bear" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000025" name="Riding Skill: Eager Grizzly Bear" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000026" name="Riding Skill: Eager Grizzly Bear" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000027" name="Riding Skill: Eager Grizzly Bear" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000028" name="Riding Skill: Eager Panda" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000029" name="Riding Skill: Eager Panda" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000030" name="Riding Skill: Eager Panda" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000031" name="Riding Skill: Eager Panda" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000032" name="Flying Skill: Roddie" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000033" name="Flying Skill: Roddie" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000034" name="Flying Skill: Roddie" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000035" name="Flying Skill: Roddie" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000036" name="Flying Skill: Jadewing" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000037" name="Flying Skill: Jadewing" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000038" name="Flying Skill: Jadewing" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000039" name="Flying Skill: Jadewing" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000040" name="Flying Skill: Ebonwing" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000041" name="Flying Skill: Ebonwing" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000042" name="Flying Skill: Ebonwing" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000043" name="Flying Skill: Ebonwing" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000044" name="Flying Skill: Silverwing" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000045" name="Flying Skill: Silverwing" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000046" name="Flying Skill: Silverwing" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000047" name="Flying Skill: Silverwing" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000048" name="Riding Skill: Rainbow" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000049" name="Riding Skill: Rainbow" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000050" name="Riding Skill: Rainbow" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000051" name="Riding Skill: Sport RX800" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000052" name="Riding Skill: Sport RX800" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000053" name="Riding Skill: Sport RX800" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000054" name="Riding Skill: Sport RX800" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000055" name="Riding Skill: Sport SX800" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000056" name="Riding Skill: Sport SX800" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000057" name="Riding Skill: Sport SX800" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000058" name="Riding Skill: Sport SX800" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000059" name="Riding Skill: Sport GX800" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000060" name="Riding Skill: Sport GX800" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000061" name="Riding Skill: Sport GX800" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000062" name="Riding Skill: Sport GX800" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000063" name="Riding Skill: Sport RX800" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000064" name="Riding Skill: Sport SX800" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000065" name="Riding Skill: Sport GX800" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000066" name="Riding Skill: Night Mare" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000067" name="Riding Skill: Night Mare" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000068" name="Riding Skill: Night Mare" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000069" name="Flying Skill: Ebonwing" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000070" name="Flying Skill: Waddles" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000071" name="Flying Skill: Waddles" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000072" name="Flying Skill: Waddles" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000073" name="Flying Skill: Harry Porker" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000074" name="Flying Skill: Harry Porker" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000075" name="Flying Skill: Harry Porker" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000076" name="Flying Skill: Harry Porker" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000077" name="Flying Skill: Boss" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000078" name="Flying Skill: Boss" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000079" name="Flying Skill: Boss" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000080" name="Flying Skill: Petunia" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000081" name="Flying Skill: Petunia" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000082" name="Flying Skill: Petunia" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000083" name="Flying Skill: Road Hog" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000084" name="Flying Skill: Road Hog" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000085" name="Flying Skill: Road Hog" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000086" name="Riding Skill: Blaze" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000089" name="Riding Skill: Jitterbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000090" name="Riding Skill: Jitterbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000091" name="Riding Skill: Jitterbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000092" name="Riding Skill: Jitterbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000093" name="Riding Skill: Humbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000094" name="Riding Skill: Humbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000095" name="Riding Skill: Humbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000096" name="Riding Skill: Humbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000097" name="Riding Skill: Litterbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000098" name="Riding Skill: Litterbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000099" name="Riding Skill: Litterbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000100" name="Riding Skill: Litterbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000101" name="Riding Skill: Jitterbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000102" name="Riding Skill: Jitterbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000103" name="Riding Skill: Jitterbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000104" name="Riding Skill: Jitterbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000105" name="Riding Skill: Humbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000106" name="Riding Skill: Humbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000107" name="Riding Skill: Humbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000108" name="Riding Skill: Humbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000109" name="Riding Skill: Litterbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000110" name="Riding Skill: Litterbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000111" name="Riding Skill: Litterbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000112" name="Riding Skill: Litterbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000113" name="Flying Skill: Emerald Tail" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000114" name="Flying Skill: Emerald Tail" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000115" name="Flying Skill: Emerald Tail" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000116" name="Flying Skill: Emerald Tail" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000117" name="Flying Skill: Obsidian Tail" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000118" name="Flying Skill: Obsidian Tail" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000119" name="Flying Skill: Obsidian Tail" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000120" name="Flying Skill: Obsidian Tail" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000121" name="Riding Skill: Pixie Dreams" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000122" name="Riding Skill: Pixie Dreams" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000123" name="Riding Skill: Pixie Dreams" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000124" name="Riding Skill: Pixie Dreams" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000125" name="Flying Skill: Emerald Tail" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000126" name="Flying Skill: Obsidian Tail" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000127" name="Riding Skill: Pixie Dreams" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000128" name="Riding Skill: Police Car" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000129" name="Riding Skill: Police Car" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000130" name="Riding Skill: Police Car" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000136" name="Riding Skill: Maki Kitty" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000137" name="Riding Skill: Nigiri Kitty" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000138" name="Riding Skill: Oshi Kitty" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000139" name="Riding Skill: Maki Kitty" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000140" name="Riding Skill: Maki Kitty" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000141" name="Riding Skill: Maki Kitty" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000142" name="Riding Skill: Maki Kitty" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000143" name="Riding Skill: Maki Kitty" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000144" name="Riding Skill: Maki Kitty" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000145" name="Riding Skill: Maki Kitty" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000146" name="Riding Skill: Maki Kitty" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000147" name="Riding Skill: Oshi Kitty" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000148" name="Riding Skill: Oshi Kitty" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000149" name="Riding Skill: Oshi Kitty" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000150" name="Riding Skill: Oshi Kitty" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000151" name="Riding Skill: Maki Kitty" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000152" name="Riding Skill: Nigiri Kitty" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000153" name="Riding Skill: Oshi Kitty" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000154" name="Riding Skill: Tempersteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000155" name="Riding Skill: Tempersteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000156" name="Riding Skill: Tempersteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000157" name="Riding Skill: Tempersteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000158" name="Riding Skill: Goldensteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000159" name="Riding Skill: Goldensteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000160" name="Riding Skill: Goldensteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000161" name="Riding Skill: Goldensteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000162" name="Riding Skill: Ashensteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000163" name="Riding Skill: Ashensteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000164" name="Riding Skill: Ashensteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000165" name="Riding Skill: Ashensteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000166" name="Riding Skill: Crimsonsteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000167" name="Riding Skill: Crimsonsteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000168" name="Riding Skill: Crimsonsteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000169" name="Riding Skill: Crimsonsteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000170" name="Riding Skill: Shadowsteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000171" name="Riding Skill: Shadowsteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000172" name="Riding Skill: Shadowsteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000173" name="Riding Skill: Shadowsteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000174" name="Riding Skill: Shadowsteed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000175" name="Riding Skill: Smolder" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000176" name="Riding Skill: Smolder" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000177" name="Riding Skill: Smolder" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000178" name="Riding Skill: Terminus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000179" name="Riding Skill: Terminus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000180" name="Riding Skill: Terminus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000181" name="Riding Skill: Jitterbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000182" name="Riding Skill: Humbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000183" name="Riding Skill: Litterbug" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000184" name="Riding Skill: Blue Gokart" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000185" name="Riding Skill: Red Gokart" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000186" name="Riding Skill: Green Gokart" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000187" name="Riding Skill: Yellow Gokart" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000188" name="Riding Skill: Blue Speedy Gokart" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000189" name="Riding Skill: Pink Speedy Gokart" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000190" name="Riding Skill: Yellow Speedy Gokart" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000191" name="Riding Skill: Green Speedy Gokart" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000192" name="Riding Skill: Blue Hyper Gokart" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000193" name="Riding Skill: Red Hyper Gokart" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000194" name="Riding Skill: Black Hyper Gokart" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000195" name="Riding Skill: Purple Hyper Gokart" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000196" name="Riding Skill: Frostlion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000197" name="Riding Skill: Nightlion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000198" name="Riding Skill: Smolder" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000199" name="Riding Skill: Smolder" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000200" name="Riding Skill: Goldmane" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000201" name="Riding Skill: Silvermane" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000202" name="Flying Skill: Pegasus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000203" name="Flying Skill: Tulpar" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000204" name="Flying Skill: Black Pegasus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000205" name="Flying Skill: Pegasus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000206" name="Flying Skill: Tulpar" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000207" name="Flying Skill: Black Pegasus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000208" name="Riding Skill: Frostlion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000209" name="Riding Skill: Frostlion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000210" name="Riding Skill: Frostlion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000211" name="Riding Skill: Nightlion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000212" name="Riding Skill: Nightlion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000213" name="Riding Skill: Nightlion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000214" name="Riding Skill: Smolder" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000215" name="Riding Skill: Smolder" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000216" name="Riding Skill: Smolder" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000217" name="Riding Skill: Smolder" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000218" name="Riding Skill: Jeweled Lion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000219" name="Riding Skill: Jeweled Lion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000220" name="Riding Skill: Goldmane" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000221" name="Riding Skill: Goldmane" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000222" name="Riding Skill: Goldmane" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000223" name="Riding Skill: Silvermane" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000224" name="Riding Skill: Silvermane" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000225" name="Riding Skill: Silvermane" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000226" name="Flying Skill: Pegasus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000227" name="Flying Skill: Pegasus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000228" name="Flying Skill: Pegasus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000229" name="Flying Skill: Tulpar" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000230" name="Flying Skill: Tulpar" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000231" name="Flying Skill: Tulpar" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000232" name="Flying Skill: Black Pegasus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000233" name="Flying Skill: Black Pegasus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000234" name="Flying Skill: Black Pegasus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000235" name="Flying Skill: Waddles" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000236" name="Flying Skill: Waddles" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000237" name="Flying Skill: Waddles" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000238" name="Flying Skill: Waddles" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000239" name="Flying Skill: Harry Porker" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000240" name="Flying Skill: Harry Porker" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000241" name="Flying Skill: Harry Porker" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000242" name="Flying Skill: Harry Porker" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000243" name="Flying Skill: Boss" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000244" name="Flying Skill: Boss" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000245" name="Flying Skill: Boss" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000246" name="Flying Skill: Boss" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000247" name="Flying Skill: Petunia" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000248" name="Flying Skill: Petunia" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000249" name="Flying Skill: Petunia" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000250" name="Flying Skill: Petunia" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000251" name="Flying Skill: Road Hog" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000252" name="Flying Skill: Road Hog" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000253" name="Flying Skill: Road Hog" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000254" name="Flying Skill: Road Hog" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000255" name="Flying Skill: Waddles" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000256" name="Flying Skill: Waddles" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000257" name="Flying Skill: Waddles" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000258" name="Flying Skill: Waddles" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000259" name="Flying Skill: Harry Porker" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000260" name="Flying Skill: Harry Porker" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000261" name="Flying Skill: Harry Porker" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000262" name="Flying Skill: Harry Porker" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000263" name="Flying Skill: Boss" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000264" name="Flying Skill: Boss" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000265" name="Flying Skill: Boss" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000266" name="Flying Skill: Boss" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000267" name="Flying Skill: Petunia" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000268" name="Flying Skill: Petunia" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000269" name="Flying Skill: Petunia" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000270" name="Flying Skill: Petunia" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000271" name="Flying Skill: Road Hog" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000272" name="Flying Skill: Road Hog" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000273" name="Flying Skill: Road Hog" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000274" name="Flying Skill: Road Hog" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000275" name="Flying Skill: Llara" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000276" name="Flying Skill: Llara" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000277" name="Flying Skill: Llara" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000278" name="Flying Skill: Llara" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000279" name="Flying Skill: LLewellyn" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000280" name="Flying Skill: LLewellyn" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000281" name="Flying Skill: LLewellyn" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000282" name="Flying Skill: LLewellyn" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000283" name="Flying Skill: Llyn" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000284" name="Flying Skill: Llyn" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000285" name="Flying Skill: Llyn" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000286" name="Flying Skill: Lloyd" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000287" name="Flying Skill: Lloyd" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000288" name="Flying Skill: Lloyd" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000289" name="Flying Skill: Lloyd" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000290" name="Flying Skill: Lloyd" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000291" name="Flying Skill: Nightlion" gender="Common" race="Common" tooltip="$H_S_GOODSpeed 280. Flying 280, OP 538.$COLOR_END$BR$BR$COLOR_ENDA black sky lion (MP, HP) with 280 movement speed and 280 flight speed.$COLOR_END$BR$H_S_GOODRecovers HP and MP." class="Common" />
+<String id="200200" name="Inescapable Doom II" gender="Common" race="Common" tooltip="&lt;font color = '#00A0FF'&gt;[Effect]&lt;/font&gt;$BRBriefly slows movement of targets within 5m radius by 62%.$BR$BR&lt;font color = '#00A0FF'&gt;[PvP]&lt;/font&gt;$BRPrevents other players from using evasive and movement skills.$BR$BR&lt;font color = '#00A0FF'&gt;[Skill Usage]&lt;/font&gt;$BRUse the skill button before attacking a quick-moving enemy.$BR$BR&lt;font color = '#00A0FF'&gt;[Chain Skill Guide]&lt;/font&gt;$BRWhile &lt;font color = '#F9B600'&gt;Intimidation&lt;/font&gt; is active with &lt;font color = '#F9B600'&gt;Bloodlust Mock&lt;/font&gt; skill advancement, enrages all monsters within 10m and increases your &lt;font color = '#66bbff'&gt;aggro&lt;/font&gt;, but cooldown increases to 5 min." class="Berserker" />
+<String id="200201" name="Infuriate" gender="Common" race="Common" tooltip="&lt;font color = '#00A0FF'&gt;[Effect]&lt;/font&gt;$BREnrages all monsters within 10m, forcing them to attack you, and sharply increases your &lt;font color = '#66bbff'&gt;aggro&lt;/font&gt;.$BR$BR&lt;font color = '#00A0FF'&gt;[Skill Usage]&lt;/font&gt;$BRAvailable only while &lt;font color = '#F9B600'&gt;Intimidation&lt;/font&gt; is active. Replaces &lt;font color = '#F9B600'&gt;Inescapable Doom&lt;/font&gt; with the &lt;font color = '#F9B600'&gt;Bloodlust: Mock&lt;/font&gt; skill advancement." class="Berserker" />
+<String id="240100" name="Volley of Curses I" gender="Common" race="Common" tooltip="&lt;font color = '#00A0FF'&gt;[Affected Effect]&lt;/font&gt;$BRLock on up to 4 targets within 27m and inflict a curse that does $value(+$calcValue(multiple,1002,1,0)) damage every $tickInterval for $time.$BRPeriodic damage is increased by $H_S_GOOD100%$COLOR_END of your Magic Amplification.$BR&lt;font color = '#00A0FF'&gt;[PvP]&lt;/font&gt; Deals 1212$calcValue(multiple,1002,0.03,0) to other players.$BRStacks up to 3 times.$BRDecreases Magic and Physical Resistance of target by $calcValue(multiple,1004,0.3,3).$BRThis effect is increased by $H_S_GOOD30%$COLOR_END of your Magic Resistance.$BR$BR&lt;font color = '#00A0FF'&gt;[Skill Usage]&lt;/font&gt;Press the skill button once and move over to lock on to targets, then press the skill button again or left-click to shoot at all targets." class="Elementalist" />
+<String id="290900" name="Triple Nemesis IX" gender="Common" race="Common" tooltip="&lt;font color = '#00A0FF'&gt;[Effect]&lt;/font&gt;$BRThrow energy pulses at a target up to $maxDistance away.$BR&lt;font color = '#66bbff'&gt;Holding or repeatedly pressing&lt;/font&gt; the skill button generates up to three pulses.$BR&lt;font color = '#00A0FF'&gt;[PvP]&lt;/font&gt;$BRReduced damage at max distance.$BR$BR&lt;font color = '#00A0FF'&gt;[Affected Effect]&lt;/font&gt;$BRDecreases Magic and Physical Resistance of target by $calcValue(multiple,1004,0.3,3) on successful hit.$BRThis effect is increased by $H_S_GOOD30%$COLOR_END of your Magic Resistance.$BR$BR[Skill Usage]&lt;/font&gt;Use to damage 1 to 3 distant enemies." class="Priest" />
+<String id="3366000" name="Riding Skill: Paolo" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="3366001" name="Riding Skill: White Tigerinho" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="3366026" name="Flying Skill: Fyrewing" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="3366027" name="Flying Skill: Fyrewing" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="3366028" name="Flying Skill: Fyrewing" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="3366029" name="Flying Skill: Fyrewing" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="3366033" name="Riding Skill: Boneshaker" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="3366034" name="Riding Skill: Boneshaker" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="3366035" name="Riding Skill: Boneshaker" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="3366036" name="Riding Skill: EX-TRM" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="3366037" name="Riding Skill: EX-TRM" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="3366038" name="Riding Skill: EX-TRM" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="60401323" name="Moon Lotus Aura" gender="Common" race="Common" tooltip="Activate the Moon Lotus Aura to sheath yourself in a gleaming aura for 30 seconds and receive the Moon Lotus Blessing for 15 minutes.&lt;br&gt;&lt;br&gt;$H_W_GOOD[Effect]$COLOR_ENDCompletely restores your HP and MP, increases your attack speed by $H_W_GOOD5$COLOR_END and your movement speed in combat by $H_W_GOOD5$COLOR_END.&lt;br&gt;&lt;br&gt;$H_W_BADBlessing cooldown: 25 minutes$COLOR_END&lt;br&gt;$H_W_BADAura cooldown: 5 seconds$COLOR_END&lt;br&gt;&lt;br&gt;The aura disappears when you enter combat, the blessing remains." class="Common" />
+<String id="60401326" name="Moon Lotus Blessing" gender="Common" race="Common" tooltip="Activate the Moon Lotus Aura to sheath yourself in a gleaming aura for 30 seconds and receive the Moon Lotus Blessing for 15 minutes. Aura cooldown: 5 seconds&lt;br&gt;&lt;br&gt;$H_W_GOOD[Effect]$COLOR_END&lt;br&gt;Completely restores your HP and MP, increases your attack speed by $H_W_GOOD5$COLOR_END and your movement speed in combat by $H_W_GOOD5$COLOR_END.&lt;br&gt;$H_W_BADBlessing cooldown: 25 minutes.$COLOR_END$H_W_BADCannot be used in combination with other Lotus Blessings.$COLOR_END&lt;br&gt;&lt;br&gt;The aura disappears when you enter combat, the blessing remains." class="Common" />
+<String id="61401324" name="Star Lotus Aura" gender="Common" race="Common" tooltip="Activate the Star Lotus Aura to sheath yourself in a gleaming aura for 30 seconds and receive the Star Lotus Blessing for 15 minutes.&lt;br&gt;&lt;br&gt;$H_W_GOOD[Effect]$COLOR_ENDCompletely restores your HP and MP, increases your attack speed by $H_W_GOOD5$COLOR_END and your movement speed in combat by $H_W_GOOD5$COLOR_END.&lt;br&gt;&lt;br&gt;$H_W_BADBlessing cooldown: 25 minutes$COLOR_END&lt;br&gt;$H_W_BADAura cooldown: 5 seconds$COLOR_END&lt;br&gt;&lt;br&gt;The aura disappears when you enter combat, the blessing remains." class="Common" />
+
+=== REMOVED (523) ===
+<String id="122002" name="Summon a Trained Zebra" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122003" name="Summon Trained Death Steed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122012" name="Southern Tiger Original Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122013" name="Summon: Paolo" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122014" name="Taegeuk Warrior Tiger Original Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122015" name="World Cup Taegeuk Warrior Baekho Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122027" name="Summon giraffe" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122030" name="Summon Skeleton Steed of the Dead" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122031" name="Summon Skeleton Steed of the Dead" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122032" name="Summon Skeleton Steed of the Dead" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122033" name="Summon Skeleton Steed of the Dead" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122034" name="Summon Magic Machine BTS-001" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122035" name="Summon Magic Machine BTS-001" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122036" name="Speedy-Y 2.8 Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122037" name="Speedy-Y 2.8 Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122038" name="Speedy-Y 2.8 Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122039" name="Speedy-Y 2.8 Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122040" name="Speedy-R 2.8 Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122041" name="Speedy-R 2.8 Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122042" name="Speedy-R 2.8 Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122043" name="Speedy-R 2.8 Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122044" name="Speedy-R 2.8 Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122045" name="Speedy-B 2.8 Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122046" name="Speedy-B 2.8 Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122047" name="Speedy-B 2.8 Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122048" name="Flash-Y 2.85 Turbo Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122049" name="Flash-R 2.85 Turbo Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122050" name="Flash-B 2.85 Turbo Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122051" name="Gentle Summoning" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122052" name="Summon Gentle Dingry" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122053" name="Summon Gentle Dingry" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122054" name="Summon Gentle Dingry" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122055" name="Summon Angry Angry" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122056" name="Summon Angry Angry" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122057" name="Summon Angry Angry" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122058" name="Summon Angry Angry" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122059" name="Summon Sleepy Squeak" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122060" name="Summon Sleepy Squeak" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122061" name="Summon Sleepy Squeak" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122062" name="Summon Sleepy Squeak" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122063" name="Summon Sleepy Squeak" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122064" name="Rare Gentle Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122065" name="Rare Gentle Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122066" name="Rare Gentle Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122067" name="Rare Angry Angry Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122068" name="Rare Angry Angry Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122069" name="Rare Angry Angry Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122070" name="Rare Angry Angry Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122071" name="Rare Sleepy Squeak is Summoned" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122072" name="Rare Sleepy Squeak is Summoned" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122073" name="Rare Sleepy Squeak is Summoned" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122074" name="Rare Sleepy Squeak is Summoned" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122075" name="Summon Green Okami" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122076" name="Summon Green Okami" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122077" name="Summon Green Okami" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122078" name="Summon Green Okami" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122079" name="Summon Black Ookami" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122080" name="Summon Black Ookami" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122081" name="Summon Black Ookami" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122082" name="Summon Black Ookami" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122083" name="Summon Pink Unicorn" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122084" name="Summon Pink Unicorn" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122085" name="Summon Pink Unicorn" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122086" name="Summon Pink Unicorn" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122087" name="Police Car Summons" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122088" name="Police Car Summons" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122089" name="Police Car Summons" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122095" name="Skill Manual: Summon Awakened Black Giraffe" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122096" name="Summon Awakening Green Okami" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122097" name="Summon Awakening Black Ookami" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122098" name="Summon Sushi Cat A_R" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122099" name="Summon Sushi Cat A_R" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122100" name="Summon Sushi Cat A_R" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122101" name="Summon Sushi Cat A_R" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122102" name="Sushi Cat B_R" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122103" name="Summon Sushi Cat B_R" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122104" name="Summon Sushi Cat B_R" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122105" name="Summon Sushi Cat B_R" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122106" name="Sushi Cat C_R" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122107" name="Sushi Cat C_R" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122108" name="Summon Sushi Cat C_R" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122109" name="Summon Sushi Cat C_R" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122110" name="Awakened sushi cat A_R" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122111" name="Awakened sushi cat B_R" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122112" name="Awakened sushi cat C_R" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122113" name="Skill Manual: Ghost Horse A" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122114" name="Skill Manual: Ghost Horse A" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122115" name="Skill Manual: Ghost Horse A" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122116" name="Skill Manual: Ghost Horse A" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122117" name="Skill Manual: Ghost Horse B" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122118" name="Skill Manual: Ghost Horse B" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122119" name="Skill Manual: Ghost Horse B" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122120" name="Skill Manual: Ghost Horse B" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122121" name="Skill Manual: Ghost Horse C" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122122" name="Skill Manual: Ghost Horse C" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122123" name="Skill Manual: Ghost Horse C" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122124" name="Skill Manual: Ghost Horse C" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122125" name="Skill Manual: Ghost Horse D" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122126" name="Skill Manual: Ghost Horse D" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122127" name="Skill Manual: Ghost Horse D" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122128" name="Skill Manual: Ghost Horse D" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122129" name="Skill Manual: Ghost Horse A_R" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122130" name="Skill Manual: Ghost Horse A_R" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122131" name="Skill Manual: Ghost Horse A_R" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122132" name="Skill Manual: Ghost Horse A_R" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122133" name="Skill Manual: Ghost Horse A_R" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122134" name="Practice Cart [Original] Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122135" name="Summon Practice Cart[Red]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122136" name="Summon Practice Cart [Green]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122137" name="Summon Practice Cart [Yellow]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122138" name="Summon Lulu [Original]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122139" name="Summon Lulu [Pink]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122140" name="Summon Lulu [Yellow]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122141" name="Summon Lulu [Mint]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122142" name="Saber [Original] Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122143" name="Summon Saber[Red]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122144" name="Summon Saber [Black]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122145" name="Summon Saber[Purple]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122146" name="Summon Liberated White Lion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122147" name="Summon Liberated Black Lion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122148" name="Summon Liberated Bahar's Lion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122149" name="Summon the liberated Bahar's Lion [Brown]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122150" name="Summon Liberated Bahar's Lion [Gold]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122151" name="Summon Liberated Bahar's Messenger [Silver]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122152" name="Summon Liberated Pegasus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122153" name="Summon Brown Flying Steed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122154" name="Summon Jet Black Pegasus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122155" name="Summon Liberated Pegasus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122156" name="Summon Brown Flying Steed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122157" name="Summon Jet Black Pegasus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122158" name="Summon Liberated White Lion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122159" name="Summon Liberated White Lion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122160" name="Summon Liberated White Lion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122161" name="Summon Liberated Black Lion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122162" name="Summon Liberated Black Lion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122163" name="Summon Liberated Black Lion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122164" name="Summon Liberated Bahar's Lion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122165" name="Summon Liberated Bahar's Lion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122166" name="Summon Liberated Bahar's Lion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122167" name="Summon the liberated Bahar's Lion [Brown]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122168" name="Summon the liberated Bahar's Lion [Brown]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122169" name="Summon the liberated Bahar's Lion [Brown]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122170" name="Summon Liberated Bahar's Lion [Gold]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122171" name="Summon Liberated Bahar's Lion [Gold]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122172" name="Summon Liberated Bahar's Lion [Gold]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122173" name="Summon Liberated Bahar's Messenger [Silver]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122174" name="Summon Liberated Bahar's Messenger [Silver]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122175" name="Summon Liberated Bahar's Messenger [Silver]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122176" name="Summon Liberated Pegasus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122177" name="Summon Liberated Pegasus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122178" name="Summon Liberated Pegasus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122179" name="Summon Brown Flying Steed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122180" name="Summon Brown Flying Steed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122181" name="Summon Brown Flying Steed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122182" name="Summon Jet Black Pegasus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122183" name="Summon Jet Black Pegasus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122184" name="Summon Jet Black Pegasus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122185" name="Summon a Little Pig with White Wings" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122186" name="Summon a Little Pig with White Wings" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122187" name="Summon a Little Pig with White Wings" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122188" name="Summon a Little Pig with White Wings" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122189" name="Summon white-winged spotted pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122190" name="Summon white-winged spotted pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122191" name="Summon white-winged spotted pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122192" name="Summon white-winged spotted pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122193" name="Summon Black Pig with White Wings" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122194" name="Summon Black Pig with White Wings" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122195" name="Summon Black Pig with White Wings" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122196" name="Summon Black Pig with White Wings" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122197" name="Summon Donna, the White Winged Flower Pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122198" name="Summon Donna, the White Winged Flower Pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122199" name="Summon Donna, the White Winged Flower Pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122200" name="Summon Donna, the White Winged Flower Pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122201" name="Summon a pack of white-winged runaway pigs" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122202" name="Summon a pack of white-winged runaway pigs" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122203" name="Summon a pack of white-winged runaway pigs" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122204" name="Summon a pack of white-winged runaway pigs" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122205" name="Summon a Little Pig with Rainbow Wings" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122206" name="Summon a Little Pig with Rainbow Wings" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122207" name="Summon a Little Pig with Rainbow Wings" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122208" name="Summon a Little Pig with Rainbow Wings" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122209" name="Summon the rainbow winged spotted pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122210" name="Summon the rainbow winged spotted pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122211" name="Summon the rainbow winged spotted pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122212" name="Summon the rainbow winged spotted pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122213" name="Summon Black Pig, Black Pig with Rainbow Wings" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122214" name="Summon Black Pig, Black Pig with Rainbow Wings" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122215" name="Summon Black Pig, Black Pig with Rainbow Wings" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122216" name="Summon Black Pig, Black Pig with Rainbow Wings" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122217" name="Summon Donna, the Rainbow Winged Flower Pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122218" name="Summon Donna, the Rainbow Winged Flower Pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122219" name="Summon Donna, the Rainbow Winged Flower Pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122220" name="Summon Donna, the Rainbow Winged Flower Pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122221" name="Summon a pack of Rainbow Wings Runaway Pigs" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122222" name="Summon a pack of Rainbow Wings Runaway Pigs" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122223" name="Summon a pack of Rainbow Wings Runaway Pigs" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122224" name="Summon a pack of Rainbow Wings Runaway Pigs" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122225" name="Summon cute llama (white)" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122226" name="Summon cute llama (white)" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122227" name="Summon cute llama (white)" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122228" name="Summon cute llama (white)" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122229" name="Stylish Tuxedo Tie Llama (White) Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122230" name="Stylish Tuxedo Tie Llama (White) Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122231" name="Stylish Tuxedo Tie Llama (White) Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122232" name="Stylish Tuxedo Tie Llama (White) Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122233" name="Summon a cute little llama (brown) lvl 1" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122234" name="Summon a cute little llama (brown)" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122235" name="Summon a cute little llama (brown)" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122236" name="Summon a cute little llama (brown)" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122237" name="Summon Stylish Tuxedo Tie Llama (Brown)" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122238" name="Summon Stylish Tuxedo Tie Llama (Brown)" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122239" name="Summon Stylish Tuxedo Tie Llama (Brown)" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122240" name="Summon Stylish Tuxedo Tie Llama (Brown)" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122241" name="Summon Stylish Tuxedo Tie Llama (Brown)" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122242" name="Summon Red Dragon (Limited Time)" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122243" name="Summon Red Dragon (Limited Time)" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122244" name="Summon Diamond Dragon (Term)" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122245" name="Summon Steel Dragon (Rare) (Temporary)" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122246" name="Summon Red Dragon (Rare) (Limited Time)" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122247" name="Summon Ghost Dragon (Rare) (Term)" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="122248" name="Summon Diamond Dragon (Rare) (Term)" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000001" name="Summon Gray Sharppin - MP Recovery" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000002" name="Summon Gray Sharppin" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000003" name="Summon Gray Sharppin" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000004" name="Summon Gray Sharppin" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000005" name="Summon Gold Gloss Sharppin" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000006" name="Summon Gold Gloss Sharppin" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000007" name="Summon Gold Sharppin" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000008" name="Summon Gold Sharppin" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000009" name="Summon Gold Sharppin" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000010" name="Summon Dark Purple Sharppin" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000011" name="Summon Dark Purple Sharppin" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000012" name="Summon Dark Purple Sharppin" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000013" name="Summon Silver Sharppin" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000014" name="Summon Silver Sharppin" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000015" name="Summon Silver Sharppin" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000016" name="Summon Silver Sharppin" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000017" name="Summon Silver Sharppin" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000018" name="Summon Red Ookami" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000019" name="Summon Red Ookami" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000020" name="Summon Winter Bear" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000021" name="Summon Winter Bear" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000022" name="Summon Winter Bear" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000023" name="Summon Winter Bear" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000024" name="Summon Brown Bear" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000025" name="Summon Brown Bear" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000026" name="Summon Brown Bear" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000027" name="Summon Brown Bear" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000028" name="Summon Panda" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000029" name="Summon Panda" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000030" name="Summon Panda" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000031" name="Summon Panda" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000032" name="Summon Golden Pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000033" name="Summon Golden Pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000034" name="Summon Golden Pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000035" name="Summon Golden Pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000036" name="Summon Green Giraffe" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000037" name="Summon Green Giraffe" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000038" name="Summon Green Giraffe" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000039" name="Summon Green Giraffe" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000040" name="Summon Black Giraffe" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000041" name="Summon Black Giraffe" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000042" name="Summon Black Giraffe" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000043" name="Summon Black Giraffe" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000044" name="Summon silver giraffe" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000045" name="Summon silver giraffe" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000046" name="Summon silver giraffe" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000047" name="Summon silver giraffe" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000048" name="Summon Starlight Unicorn" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000049" name="Summon Starlight Unicorn" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000050" name="Summon Starlight Unicorn" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000051" name="Speedy-Y 2.8 Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000052" name="Speedy-Y 2.8 Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000053" name="Speedy-Y 2.8 Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000054" name="Speedy-Y 2.8 Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000055" name="Speedy-R 2.8 Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000056" name="Speedy-R 2.8 Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000057" name="Speedy-R 2.8 Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000058" name="Speedy-R 2.8 Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000059" name="Speedy-B 2.8 Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000060" name="Speedy-B 2.8 Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000061" name="Speedy-B 2.8 Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000062" name="Speedy-B 2.8 Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000063" name="Flash-Y 2.85 Turbo Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000064" name="Flash-R 2.85 Turbo Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000065" name="Flash-B 2.85 Turbo Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000066" name="Summon Hellfire Steed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000067" name="Summon Hellfire Steed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000068" name="Summon Hellfire Steed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000069" name="Skill Manual: Summon Awakened Black Giraffe" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000070" name="Summon Little Pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000071" name="Summon Little Pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000072" name="Summon Little Pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000073" name="Summon the Spotted Pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000074" name="Summon the Spotted Pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000075" name="Summon the Spotted Pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000076" name="Summon the Spotted Pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000077" name="Summon Black Pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000078" name="Summon Black Pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000079" name="Summon Black Pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000080" name="Summon Flower Pig Donna" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000081" name="Summon Flower Pig Donna" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000082" name="Summon Flower Pig Donna" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000083" name="Summon a Bunch of Runaway Pigs" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000084" name="Summon a Bunch of Runaway Pigs" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000085" name="Summon a Bunch of Runaway Pigs" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000086" name="Summon Awakening Flame Wings Taki" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000089" name="Gentle Summoning" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000090" name="Gentle Summoning" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000091" name="Gentle Summoning" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000092" name="Gentle Summoning" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000093" name="Summon Angry Angry" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000094" name="Summon Angry Angry" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000095" name="Summon Angry Angry" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000096" name="Summon Angry Angry" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000097" name="Summon Sleepy Squeak" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000098" name="Summon Sleepy Squeak" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000099" name="Summon Sleepy Squeak" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000100" name="Summon Sleepy Squeak" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000101" name="Rare Gentle Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000102" name="Rare Gentle Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000103" name="Rare Gentle Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000104" name="Rare Gentle Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000105" name="Rare Angry Angry Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000106" name="Rare Angry Angry Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000107" name="Rare Angry Angry Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000108" name="Rare Angry Angry Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000109" name="Rare sleepy squeak is summoned" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000110" name="Rare sleepy squeak is summoned" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000111" name="Rare sleepy squeak is summoned" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000112" name="Rare sleepy squeak is summoned" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000113" name="Summon Green Okami" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000114" name="Summon Green Okami" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000115" name="Summon Green Okami" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000116" name="Summon Green Okami" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000117" name="Summon Black Ookami" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000118" name="Summon Black Ookami" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000119" name="Summon Black Ookami" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000120" name="Summon Black Ookami" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000121" name="Summon Pink Unicorn" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000122" name="Summon Pink Unicorn" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000123" name="Summon Pink Unicorn" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000124" name="Summon Pink Unicorn" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000125" name="Summon Awakening Green Okami" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000126" name="Summon Awakening Black Ookami" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000127" name="Summon Awakening Black Ookami" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000128" name="Police Car Summons" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000129" name="Police Car Summons" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000130" name="Police Car Summons" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000136" name="Summon Sushi Cat A" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000137" name="Summon Sushi Cat B" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000138" name="Summon sushi cat C" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000139" name="Summon Sushi Cat A_R" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000140" name="Summon Sushi Cat A_R" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000141" name="Summon Sushi Cat A_R" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000142" name="Summon Sushi Cat A_R" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000143" name="Summon Sushi Cat A_R" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000144" name="Summon Sushi Cat A_R" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000145" name="Summon Sushi Cat A_R" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000146" name="Summon Sushi Cat A_R" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000147" name="Summon Sushi Cat C_R" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000148" name="Summon Sushi Cat C_R" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000149" name="Summon Sushi Cat C_R" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000150" name="Summon Sushi Cat C_R" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000151" name="Summon Awakened Sushi Cat A_R" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000152" name="Summon Awakened Sushi Cat B_R" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000153" name="Summon Awakened Sushi Cat C_R" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000154" name="Skill Manual: Ghost Horse A" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000155" name="Skill Manual: Ghost Horse A" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000156" name="Skill Manual: Ghost Horse A" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000157" name="Skill Manual: Ghost Horse A" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000158" name="Skill Manual: Ghost Horse B" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000159" name="Skill Manual: Ghost Horse B" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000160" name="Skill Manual: Ghost Horse B" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000161" name="Skill Manual: Ghost Horse B" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000162" name="Skill Manual: Ghost Horse C" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000163" name="Skill Manual: Ghost Horse C" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000164" name="Skill Manual: Ghost Horse C" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000165" name="Skill Manual: Ghost Horse C" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000166" name="Skill Manual: Ghost Horse D" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000167" name="Skill Manual: Ghost Horse D" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000168" name="Skill Manual: Ghost Horse D" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000169" name="Skill Manual: Ghost Horse D" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000170" name="Skill Manual: Ghost Horse A_R" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000171" name="Skill Manual: Ghost Horse A_R" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000172" name="Skill Manual: Ghost Horse A_R" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000173" name="Skill Manual: Ghost Horse A_R" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000174" name="Skill Manual: Ghost Horse A_R" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000175" name="Skill Manual: Summon Awakened Bahar's Lion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000176" name="Skill Manual: Summon Awakened Bahar's Lion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000177" name="Skill Manual: Summon Awakened Bahar's Lion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000178" name="Skill Manual: Summon Awakened Argon Battle Horse" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000179" name="Skill Manual: Summon Awakened Argon Battle Horse" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000180" name="Skill Manual: Summon Awakened Argon Battle Horse" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000181" name="Summon Awakened Rare Gentle Chingry" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000182" name="Summon Awakened Rare Gentle Chingry" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000183" name="Summon the Awakened Rare Sleepy Squeak" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000184" name="Summon the Awakened Rare Sleepy Squeak" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000185" name="Summon Practice Cart[Red]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000186" name="Summon Practice Cart [Green]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000187" name="Summon Practice Cart [Yellow]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000188" name="Summon Lulu [Original]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000189" name="Summon Lulu [Pink]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000190" name="Summon Lulu [Yellow]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000191" name="Summon Lulu [Mint]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000192" name="Saber [Original] Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000193" name="Summon Saber[Red]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000194" name="Summon Saber [Black]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000195" name="Summon Saber[Purple]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000196" name="Summon Liberated White Lion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000197" name="Summon Liberated Black Lion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000198" name="Summon Liberated Bahar's Lion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000199" name="Summon Liberated Bahar's Lion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000200" name="Summon Liberated Bahar's Lion [Gold]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000201" name="Summon Liberated Bahar's Messenger [Silver]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000202" name="Summon Liberated Pegasus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000203" name="Summon Brown Flying Steed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000204" name="Summon Jet Black Pegasus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000205" name="Summon Liberated Pegasus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000206" name="Summon Brown Flying Steed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000207" name="Summon Jet Black Pegasus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000208" name="Summon Liberated White Lion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000209" name="Summon Liberated White Lion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000210" name="Summon Liberated White Lion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000211" name="Summon Liberated Black Lion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000212" name="Summon Liberated Black Lion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000213" name="Summon Liberated Black Lion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000214" name="Summon Liberated Bahar's Lion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000215" name="Summon Liberated Bahar's Lion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000216" name="Summon Liberated Bahar's Lion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000217" name="Summon Liberated Bahar's Lion" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000218" name="Summon the liberated Bahar's Lion [Brown]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000219" name="Summon the liberated Bahar's Lion [Brown]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000220" name="Summon Liberated Bahar's Lion [Gold]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000221" name="Summon Liberated Bahar's Lion [Gold]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000222" name="Summon Liberated Bahar's Lion [Gold]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000223" name="Summon Liberated Bahar's Messenger [Silver]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000224" name="Summon Liberated Bahar's Messenger [Silver]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000225" name="Summon Liberated Bahar's Messenger [Silver]" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000226" name="Summon Liberated Pegasus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000227" name="Summon Liberated Pegasus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000228" name="Summon Liberated Pegasus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000229" name="Summon Brown Flying Steed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000230" name="Summon Brown Flying Steed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000231" name="Summon Brown Flying Steed" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000232" name="Summon Jet Black Pegasus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000233" name="Summon Jet Black Pegasus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000234" name="Summon Jet Black Pegasus" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000235" name="Summon a Little Pig with White Wings" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000236" name="Summon a Little Pig with White Wings" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000237" name="Summon a Little Pig with White Wings" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000238" name="Summon a Little Pig with White Wings" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000239" name="Summon white-winged spotted pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000240" name="Summon white-winged spotted pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000241" name="Summon white-winged spotted pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000242" name="Summon white-winged spotted pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000243" name="Summon Black Pig with White Wings" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000244" name="Summon Black Pig with White Wings" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000245" name="Summon Black Pig with White Wings" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000246" name="Summon Black Pig with White Wings" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000247" name="Summon Donna, the White Winged Flower Pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000248" name="Summon Donna, the White Winged Flower Pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000249" name="Summon Donna, the White Winged Flower Pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000250" name="Summon Donna, the White Winged Flower Pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000251" name="Summon a pack of white-winged runaway pigs" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000252" name="Summon a pack of white-winged runaway pigs" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000253" name="Summon a pack of white-winged runaway pigs" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000254" name="Summon a pack of white-winged runaway pigs" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000255" name="Summon a Little Pig with Rainbow Wings" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000256" name="Summon a Little Pig with Rainbow Wings" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000257" name="Summon a Little Pig with Rainbow Wings" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000258" name="Summon a Little Pig with Rainbow Wings" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000259" name="Summon the rainbow winged spotted pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000260" name="Summon the rainbow winged spotted pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000261" name="Summon the rainbow winged spotted pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000262" name="Summon the rainbow winged spotted pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000263" name="Summon Black Pig, Black Pig with Rainbow Wings" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000264" name="Summon Black Pig, Black Pig with Rainbow Wings" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000265" name="Summon Black Pig, Black Pig with Rainbow Wings" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000266" name="Summon Black Pig, Black Pig with Rainbow Wings" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000267" name="Summon Donna, the Rainbow Winged Flower Pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000268" name="Summon Donna, the Rainbow Winged Flower Pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000269" name="Summon Donna, the Rainbow Winged Flower Pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000270" name="Summon Donna, the Rainbow Winged Flower Pig" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000271" name="Summon a pack of Rainbow Wings Runaway Pigs" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000272" name="Summon a pack of Rainbow Wings Runaway Pigs" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000273" name="Summon a pack of Rainbow Wings Runaway Pigs" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000274" name="Summon a pack of Rainbow Wings Runaway Pigs" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000275" name="Summon cute llama (white)" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000276" name="Summon cute llama (white)" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000277" name="Summon cute llama (white)" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000278" name="Summon cute llama (white)" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000279" name="Stylish Tuxedo Tie Llama (White) Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000280" name="Stylish Tuxedo Tie Llama (White) Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000281" name="Stylish Tuxedo Tie Llama (White) Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000282" name="Stylish Tuxedo Tie Llama (White) Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000283" name="Summon a cute little llama (brown)" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000284" name="Summon a cute little llama (brown)" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000285" name="Summon a cute little llama (brown)" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000286" name="Summon Stylish Tuxedo Tie Llama (Brown)" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000287" name="Summon Stylish Tuxedo Tie Llama (Brown)" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000288" name="Summon Stylish Tuxedo Tie Llama (Brown)" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000289" name="Summon Stylish Tuxedo Tie Llama (Brown)" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000290" name="Summon Stylish Tuxedo Tie Llama (Brown)" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="16000291" name="Summon: Black Sky Lion (MP, HP)" gender="Common" race="Common" tooltip="$H_S_GOODSpeed 280. Flying 280, OP 538.$COLOR_END$BR$BR$COLOR_ENDA black sky lion (MP, HP) with 280 movement speed and 280 flight speed.$COLOR_END$BR$H_S_GOODRecovers HP and MP." class="Common" />
+<String id="200200" name="Inescapable Doom II" gender="Common" race="Common" tooltip="&lt;font color = '#00A0FF'&gt;[Effect]&lt;/font&gt;$BRBriefly slows movement of targets within 5m radius by 62%.$BR$BR&lt;font color = '#00A0FF'&gt;[PvP]&lt;/font&gt;$BRPrevents other players from using evasive and movement skills.$BR$BR&lt;font color = '#00A0FF'&gt;[Skill Usage]&lt;/font&gt;$BRUse the skill button before attacking a quick-moving enemy." class="Berserker" />
+<String id="240100" name="Volley of Curses I" gender="Common" race="Common" tooltip="&lt;font color = '#00A0FF'&gt;[Affected Effect]&lt;/font&gt;$BRLock on up to 4 targets within 27m and inflict a curse that does $value(+$calcValue(multiple,1002,1,0)) damage every $tickInterval for $time.$BRPeriodic damage is increased by $H_S_GOOD100%$COLOR_END of your Magic Amplification.$BR&lt;font color = '#00A0FF'&gt;[PvP]&lt;/font&gt; Deals 1212$calcValue(multiple,1002,0.03,0) to other players.$BRStacks up to 3 times.$BRDecreases Magic and Physical Resistance of target by $calcValue(multiple,1004,0.2,3).$BRThis effect is increased by $H_S_GOOD20%$COLOR_END of your Magic Resistance.$BR$BR&lt;font color = '#00A0FF'&gt;[Skill Usage]&lt;/font&gt;Press the skill button once and move over to lock on to targets, then press the skill button again or left-click to shoot at all targets." class="Elementalist" />
+<String id="290900" name="Triple Nemesis IX" gender="Common" race="Common" tooltip="&lt;font color = '#00A0FF'&gt;[Effect]&lt;/font&gt;$BRThrow energy pulses at a target up to $maxDistance away.$BR&lt;font color = '#66bbff'&gt;Holding or repeatedly pressing&lt;/font&gt; the skill button generates up to three pulses.$BR&lt;font color = '#00A0FF'&gt;[PvP]&lt;/font&gt;$BRReduced damage at max distance.$BR$BR&lt;font color = '#00A0FF'&gt;[Affected Effect]&lt;/font&gt;$BRDecreases Magic and Physical Resistance of target by $calcValue(multiple,1004,0.2,3) on successful hit.$BRThis effect is increased by $H_S_GOOD20%$COLOR_END of your Magic Resistance.$BR$BR[Skill Usage]&lt;/font&gt;Use to damage 1 to 3 distant enemies." class="Priest" />
+<String id="3366000" name="World Cup Southern White Tiger Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="3366001" name="World Cup Taegeuk Warrior Baekho Summon" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="3366026" name="Summon giraffe" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="3366027" name="Summon giraffe" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="3366028" name="Summon giraffe" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="3366029" name="Summon giraffe" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="3366033" name="Summon Skeleton Steed of the Dead" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="3366034" name="Summon Skeleton Steed of the Dead" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="3366035" name="Summon Skeleton Steed of the Dead" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="3366036" name="Summon Magic Machine BTS-001" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="3366037" name="Summon Magic Machine BTS-001" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="3366038" name="Summon Magic Machine BTS-001" gender="Common" race="Common" tooltip="" class="Common" />
+<String id="60401323" name="Moon Lotus Aura" gender="Common" race="Common" tooltip="Activate the Moon Lotus Aura to sheath yourself in a gleaming aura for 30 seconds and receive the Moon Lotus Blessing for 15 minutes.&lt;br&gt;&lt;br&gt;$H_W_GOOD[Effect]$COLOR_ENDCompletely restores your HP and MP, increases your attack speed by $H_W_GOOD5$COLOR_END and your movement speed in combat by $H_W_GOOD5$COLOR_END.&lt;br&gt;&lt;br&gt;$H_W_BADBlessing cooldown: 30 minutes$COLOR_END&lt;br&gt;$H_W_BADAura cooldown: 5 seconds$COLOR_END&lt;br&gt;&lt;br&gt;The aura disappears when you enter combat, the blessing remains." class="Common" />
+<String id="60401326" name="Moon Lotus Blessing" gender="Common" race="Common" tooltip="Activate the Moon Lotus Aura to sheath yourself in a gleaming aura for 30 seconds and receive the Moon Lotus Blessing for 15 minutes. Aura cooldown: 5 seconds&lt;br&gt;&lt;br&gt;$H_W_GOOD[Effect]$COLOR_END&lt;br&gt;Completely restores your HP and MP, increases your attack speed by $H_W_GOOD5$COLOR_END and your movement speed in combat by $H_W_GOOD5$COLOR_END.&lt;br&gt;$H_W_BADBlessing cooldown: 30 minutes.$COLOR_END$H_W_BADCannot be used in combination with other Lotus Blessings.$COLOR_END&lt;br&gt;&lt;br&gt;The aura disappears when you enter combat, the blessing remains." class="Common" />
+<String id="61401324" name="Star Lotus Aura" gender="Common" race="Common" tooltip="Activate the Star Lotus Aura to sheath yourself in a gleaming aura for 30 seconds and receive the Star Lotus Blessing for 15 minutes.&lt;br&gt;&lt;br&gt;$H_W_GOOD[Effect]$COLOR_ENDCompletely restores your HP and MP, increases your attack speed by $H_W_GOOD5$COLOR_END and your movement speed in combat by $H_W_GOOD5$COLOR_END.&lt;br&gt;&lt;br&gt;$H_W_BADBlessing cooldown: 30 minutes$COLOR_END&lt;br&gt;$H_W_BADAura cooldown: 5 seconds$COLOR_END&lt;br&gt;&lt;br&gt;The aura disappears when you enter combat, the blessing remains." class="Common" />

@@ -1,0 +1,14 @@
+# QuestGroupList  +9 -0
+
+=== ADDED (9) ===
+</StoryGroup>
+<Quest id="101" dec="Journey to Baldera" />
+<Quest id="102" dec="Spring of Arun" />
+<Quest id="103" dec="The Forgotten City of Balderon" />
+<Quest id="104" dec="Shade's Whereabouts" />
+<Quest id="105" dec="[Important] Second Argon Invasion" />
+<Quest id="118307" dec="[Important] Mahtnan Equipment" />
+<Quest id="310701" dec="[Important] Slanderer (Desolarus Dungeon 1)" />
+<StoryGroup id="3000" name="Baldera">
+
+=== REMOVED (0) ===

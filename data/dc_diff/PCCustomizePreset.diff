@@ -1,0 +1,61 @@
+# PCCustomizePreset  +34 -22
+
+=== ADDED (34) ===
+<Decal id="10" description="sexy" resource="PC_Decal.NewTex.Decal_Popori_F_AH0010_NEW" scaleX="1" scaleY="1" icon="29000023" translationX="0" translationY="0" />
+<Decal id="11" description="sexy" resource="PC_Decal.CastanicF.Decal_Castanic_F_AD1007" scaleX="1" scaleY="1" icon="29000000" translationX="0" translationY="0" />
+<Decal id="11" description="sexy" resource="PC_Decal.CastanicF.Decal_Castanic_F_AK1004" scaleX="1" scaleY="1" icon="29000001" translationX="0" translationY="0" />
+<Decal id="11" description="sexy" resource="PC_Decal.NewTex.Decal_Popori_F_AH0011_NEW" scaleX="1" scaleY="1" icon="29000024" translationX="0" translationY="0" />
+<Decal id="12" description="sexy" resource="PC_Decal.NewTex.Decal_Popori_F_AH0012_NEW" scaleX="1" scaleY="1" icon="29000025" translationX="0" translationY="0" />
+<Decal id="12" description="sexy" resource="PC_Decal.Tex.AsuraDecal_CF10_001" scaleX="1" scaleY="1" icon="29000002" translationX="0" translationY="0" />
+<Decal id="13" description="sexy" resource="PC_Decal.Tex.AsuraDecal_CF10_002" scaleX="1" scaleY="1" icon="29000003" translationX="0" translationY="0" />
+<Decal id="14" description="sexy" resource="PC_Decal.Tex.AsuraDecal_CF10_003" scaleX="1" scaleY="1" icon="29000004" translationX="0" translationY="0" />
+<Decal id="15" description="sexy" resource="PC_Decal.Tex.AsuraDecal_CF10_004" scaleX="1" scaleY="1" icon="29000005" translationX="0" translationY="0" />
+<Decal id="20" description="sexy" resource="PC_Decal.NewTex.Decal_Popori_F_AH0015_NEW" scaleX="1" scaleY="1" icon="29000026" translationX="0" translationY="0" />
+<Decal id="21" description="sexy" resource="PC_Decal.NewTex.Decal_Popori_F_AH0016_NEW" scaleX="1" scaleY="1" icon="29000027" translationX="0" translationY="0" />
+<Decal id="22" description="sexy" resource="PC_Decal.NewTex.Decal_Popori_F_AH0017_NEW" scaleX="1" scaleY="1" icon="29000028" translationX="0" translationY="0" />
+<Decal id="23" description="sexy" resource="PC_Decal.NewTex.Decal_Popori_F_AK0018_NEW" scaleX="1" scaleY="1" icon="29000033" translationX="0" translationY="0" />
+<Decal id="23" description="sexy" resource="PC_Decal.PoporiF.Decal_Popori_F_AH1004" scaleX="1" scaleY="1" icon="29000006" translationX="0" translationY="0" />
+<Decal id="24" description="sexy" resource="PC_Decal.PoporiF.Decal_Popori_F_AH2004" scaleX="1" scaleY="1" icon="29000007" translationX="0" translationY="0" />
+<Decal id="24" description="sexy" resource="PC_Decal.PoporiF.Decal_Popori_F_AK1004" scaleX="1" scaleY="1" icon="29000010" translationX="0" translationY="0" />
+<Decal id="25" description="sexy" resource="PC_Decal.PoporiF.Decal_Popori_F_AH3004" scaleX="1" scaleY="1" icon="29000008" translationX="0" translationY="0" />
+<Decal id="25" description="sexy" resource="PC_Decal.PoporiF.Decal_Popori_F_AK2004" scaleX="1" scaleY="1" icon="29000011" translationX="0" translationY="0" />
+<Decal id="26" description="sexy" resource="PC_Decal.PoporiF.Decal_Popori_F_AK3004" scaleX="1" scaleY="1" icon="29000012" translationX="0" translationY="0" />
+<Decal id="26" description="sexy" resource="PC_Decal.Tex.AsuraDecal_PF07_001" scaleX="1" scaleY="1" icon="29000009" translationX="0" translationY="0" />
+<Decal id="27" description="sexy" resource="PC_Decal.PoporiF.Decal_Popori_F_AK4004" scaleX="1" scaleY="1" icon="29000013" translationX="0" translationY="0" />
+<Decal id="30" description="sexy" resource="PC_Decal.Tex.AsuraDecal_PF10_003" scaleX="1" scaleY="1" icon="29000014" translationX="0" translationY="0" />
+<Decal id="31" description="sexy" resource="PC_Decal.Tex.AsuraDecal_PF10_004" scaleX="1" scaleY="1" icon="29000015" translationX="0" translationY="0" />
+<Decal id="32" description="sexy" resource="PC_Decal.Tex.AsuraDecal_PF10_005" scaleX="1" scaleY="1" icon="29000016" translationX="0" translationY="0" />
+<Decal id="33" description="sexy" resource="PC_Decal.Tex.AsuraDecal_PF10_006" scaleX="1" scaleY="1" icon="29000017" translationX="0" translationY="0" />
+<Decal id="5" description="sexy" resource="PC_Decal.NewTex.Decal_Popori_F_AH0005_NEW" scaleX="1" scaleY="1" icon="29000018" translationX="0" translationY="0" />
+<Decal id="5" description="sexy" resource="PC_Decal.NewTex.Decal_Popori_F_AK0005_NEW" scaleX="1" scaleY="1" icon="29000029" translationX="0" translationY="0" />
+<Decal id="6" description="sexy" resource="PC_Decal.NewTex.Decal_Popori_F_AH0006_NEW" scaleX="1" scaleY="1" icon="29000019" translationX="0" translationY="0" />
+<Decal id="6" description="sexy" resource="PC_Decal.NewTex.Decal_Popori_F_AK0006_NEW" scaleX="1" scaleY="1" icon="29000030" translationX="0" translationY="0" />
+<Decal id="7" description="sexy" resource="PC_Decal.NewTex.Decal_Popori_F_AH0007_NEW" scaleX="1" scaleY="1" icon="29000020" translationX="0" translationY="0" />
+<Decal id="7" description="sexy" resource="PC_Decal.NewTex.Decal_Popori_F_AK0007_NEW" scaleX="1" scaleY="1" icon="29000031" translationX="0" translationY="0" />
+<Decal id="8" description="sexy" resource="PC_Decal.NewTex.Decal_Popori_F_AH0008_NEW" scaleX="1" scaleY="1" icon="29000021" translationX="0" translationY="0" />
+<Decal id="8" description="sexy" resource="PC_Decal.NewTex.Decal_Popori_F_AK0008_NEW" scaleX="1" scaleY="1" icon="29000032" translationX="0" translationY="0" />
+<Decal id="9" description="sexy" resource="PC_Decal.NewTex.Decal_Popori_F_AH0009_NEW" scaleX="1" scaleY="1" icon="29000022" translationX="0" translationY="0" />
+
+=== REMOVED (22) ===
+<Decal id="10" description="sexy" resource="PC_Decal.NewTex.Decal_Popori_F_AH0010_NEW" scaleX="1" scaleY="1" icon="21000704" translationX="0" translationY="0" />
+<Decal id="11" description="sexy" resource="PC_Decal.CastanicF.Decal_Castanic_F_AD1007" scaleX="1" scaleY="1" icon="20800307" translationX="0" translationY="0" />
+<Decal id="11" description="sexy" resource="PC_Decal.NewTex.Decal_Popori_F_AH0011_NEW" scaleX="1" scaleY="1" icon="21000704" translationX="0" translationY="0" />
+<Decal id="12" description="sexy" resource="PC_Decal.NewTex.Decal_Popori_F_AH0012_NEW" scaleX="1" scaleY="1" icon="21000704" translationX="0" translationY="0" />
+<Decal id="20" description="sexy" resource="PC_Decal.NewTex.Decal_Popori_F_AH0015_NEW" scaleX="1" scaleY="1" icon="21000704" translationX="0" translationY="0" />
+<Decal id="21" description="sexy" resource="PC_Decal.NewTex.Decal_Popori_F_AH0016_NEW" scaleX="1" scaleY="1" icon="21000704" translationX="0" translationY="0" />
+<Decal id="22" description="sexy" resource="PC_Decal.NewTex.Decal_Popori_F_AH0017_NEW" scaleX="1" scaleY="1" icon="21000704" translationX="0" translationY="0" />
+<Decal id="23" description="sexy" resource="PC_Decal.NewTex.Decal_Popori_F_AK0018_NEW" scaleX="1" scaleY="1" icon="21001004" translationX="0" translationY="0" />
+<Decal id="23" description="sexy" resource="PC_Decal.PoporiF.Decal_Popori_F_AH1004" scaleX="1" scaleY="1" icon="21000704" translationX="0" translationY="0" />
+<Decal id="24" description="sexy" resource="PC_Decal.PoporiF.Decal_Popori_F_AH2004" scaleX="1" scaleY="1" icon="21000704" translationX="0" translationY="0" />
+<Decal id="24" description="sexy" resource="PC_Decal.PoporiF.Decal_Popori_F_AK1004" scaleX="1" scaleY="1" icon="21001004" translationX="0" translationY="0" />
+<Decal id="25" description="sexy" resource="PC_Decal.PoporiF.Decal_Popori_F_AH3004" scaleX="1" scaleY="1" icon="21000704" translationX="0" translationY="0" />
+<Decal id="25" description="sexy" resource="PC_Decal.PoporiF.Decal_Popori_F_AK2004" scaleX="1" scaleY="1" icon="21001004" translationX="0" translationY="0" />
+<Decal id="5" description="sexy" resource="PC_Decal.NewTex.Decal_Popori_F_AH0005_NEW" scaleX="1" scaleY="1" icon="21000704" translationX="0" translationY="0" />
+<Decal id="5" description="sexy" resource="PC_Decal.NewTex.Decal_Popori_F_AK0005_NEW" scaleX="1" scaleY="1" icon="21001004" translationX="0" translationY="0" />
+<Decal id="6" description="sexy" resource="PC_Decal.NewTex.Decal_Popori_F_AH0006_NEW" scaleX="1" scaleY="1" icon="21000704" translationX="0" translationY="0" />
+<Decal id="6" description="sexy" resource="PC_Decal.NewTex.Decal_Popori_F_AK0006_NEW" scaleX="1" scaleY="1" icon="21001004" translationX="0" translationY="0" />
+<Decal id="7" description="sexy" resource="PC_Decal.NewTex.Decal_Popori_F_AH0007_NEW" scaleX="1" scaleY="1" icon="21000704" translationX="0" translationY="0" />
+<Decal id="7" description="sexy" resource="PC_Decal.NewTex.Decal_Popori_F_AK0007_NEW" scaleX="1" scaleY="1" icon="21001004" translationX="0" translationY="0" />
+<Decal id="8" description="sexy" resource="PC_Decal.NewTex.Decal_Popori_F_AH0008_NEW" scaleX="1" scaleY="1" icon="21000704" translationX="0" translationY="0" />
+<Decal id="8" description="sexy" resource="PC_Decal.NewTex.Decal_Popori_F_AK0008_NEW" scaleX="1" scaleY="1" icon="21001004" translationX="0" translationY="0" />
+<Decal id="9" description="sexy" resource="PC_Decal.NewTex.Decal_Popori_F_AH0009_NEW" scaleX="1" scaleY="1" icon="21000704" translationX="0" translationY="0" />

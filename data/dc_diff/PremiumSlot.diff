@@ -1,0 +1,7 @@
+# PremiumSlot  +1 -1
+
+=== ADDED (1) ===
+<Slot type="UseItem" templateId="150534" />
+
+=== REMOVED (1) ===
+<Slot type="GetItem" templateId="960006" />

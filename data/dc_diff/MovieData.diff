@@ -1,0 +1,14 @@
+# MovieData  +9 -0
+
+=== ADDED (9) ===
+</MovieGroup>
+</MovieGroup>
+</MovieGroup>
+<Movie movie="Valderra_ACN_SC01" requiredClass="Common" gameFadeOutTime="1" isMatinee="true" />
+<Movie movie="Valderra_Durion_SC02" requiredClass="Common" gameFadeOutTime="1" isMatinee="true" />
+<Movie movie="Valderra_Durion_SC03" requiredClass="Common" gameFadeOutTime="1" isMatinee="true" />
+<MovieGroup id="3601">
+<MovieGroup id="3602">
+<MovieGroup id="3603">
+
+=== REMOVED (0) ===

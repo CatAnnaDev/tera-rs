@@ -1,0 +1,12 @@
+# StrSheet_SystemMessage  +7 -0
+
+=== ADDED (7) ===
+<String string="Cancel" readableId="SMT_ENCHANT_MOVE_MESSAGE_BOX_NO" effect="-1" sound="-1" style="SMS_DEFAULT" delayTime="0" displayChat="false" />
+<String string="Continue" readableId="SMT_ENCHANT_MOVE_MESSAGE_BOX_YES" effect="-1" sound="-1" style="SMS_DEFAULT" delayTime="0" displayChat="false" />
+<String string="Continue" readableId="SMT_ENCHANT_MOVE_WARNING_MESSAGE_BOX_YES" effect="-1" sound="-1" style="SMS_DEFAULT" delayTime="0" displayChat="false" />
+<String string="The enchantment level of the source item is lower than that of the target item. Do you want to use this item?" readableId="SMT_ENCHANT_MOVE_WARNING_MESSAGE_BOX_TEXT" effect="-1" sound="2001" style="SMS_DEFAULT" delayTime="0" displayChat="false" />
+<String string="The enchantments, random options, and etchings of {MaterialItemName} will be transferred to {TargetItemName}. Do you want to perform the transfer?" readableId="SMT_ENCHANT_MOVE_MESSAGE_BOX_TEXT" effect="-1" sound="2001" style="SMS_DEFAULT" delayTime="0" displayChat="false" />
+<String string="Transfer" readableId="SMT_ENCHANT_MOVE_MESSAGE_BOX_TITLE" effect="-1" sound="-1" style="SMS_DEFAULT" delayTime="0" displayChat="false" />
+<String string="Warning" readableId="SMT_ENCHANT_MOVE_WARNING_MESSAGE_BOX_TITLE" effect="-1" sound="-1" style="SMS_DEFAULT" delayTime="0" displayChat="false" />
+
+=== REMOVED (0) ===

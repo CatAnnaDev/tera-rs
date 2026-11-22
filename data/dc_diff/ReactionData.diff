@@ -1,0 +1,41 @@
+# ReactionData  +36 -0
+
+=== ADDED (36) ===
+</Action>
+</Action>
+</Action>
+</Reaction>
+</Reaction>
+</Reaction>
+</Stage>
+</Stage>
+</Stage>
+</StageList>
+</StageList>
+</StageList>
+<Action>
+<Action>
+<Action>
+<AnimSeq animSet="Rogashe_ANI.Anim.Rogashe_Anim" duration="100" animName="Wait" animRate="1.2" blendInTime="0" bAnimLooping="false" loopingRate="1" readOnlyDuration="0" rootMotionXYRate="1" rootMotionZRate="1" />
+<AnimSeq animSet="Rogashe_ANI.Anim.Rogashe_Anim" duration="5000" animName="Groggy" animRate="1" blendInTime="0" bAnimLooping="true" loopingRate="1" readOnlyDuration="0" rootMotionXYRate="1" rootMotionZRate="1" />
+<AnimSeq animSet="Rogashe_ANI.Anim.Rogashe_Drone_Anim" duration="-1" animName="Wait" animRate="1.2" blendInTime="0" bAnimLooping="false" loopingRate="1" readOnlyDuration="0" rootMotionXYRate="1" rootMotionZRate="1" />
+<CameraShake duration="0" startTime="-1" fovAmplitude="0" fovFrequency="500" locAmplitudeX="0" locAmplitudeY="0" locAmplitudeZ="0" locFrequencyX="500" locFrequencyY="500" locFrequencyZ="500" rotAmplitudeX="0" rotAmplitudeY="0" rotAmplitudeZ="0" rotFrequencyX="500" rotFrequencyY="500" rotFrequencyZ="500" shakeRadius="0" />
+<CameraShake duration="0" startTime="-1" fovAmplitude="0" fovFrequency="500" locAmplitudeX="0" locAmplitudeY="0" locAmplitudeZ="0" locFrequencyX="500" locFrequencyY="500" locFrequencyZ="500" rotAmplitudeX="0" rotAmplitudeY="0" rotAmplitudeZ="0" rotFrequencyX="500" rotFrequencyY="500" rotFrequencyZ="500" shakeRadius="0" />
+<CameraShake duration="0" startTime="-1" fovAmplitude="0" fovFrequency="500" locAmplitudeX="0" locAmplitudeY="0" locAmplitudeZ="0" locFrequencyX="500" locFrequencyY="500" locFrequencyZ="500" rotAmplitudeX="0" rotAmplitudeY="0" rotAmplitudeZ="0" rotFrequencyX="500" rotFrequencyY="500" rotFrequencyZ="500" shakeRadius="0" />
+<MoveInvincible startTime="0" endTime="0" />
+<MoveInvincible startTime="0" endTime="0" />
+<MoveInvincible startTime="0" endTime="0" />
+<Pending startTime="-1" />
+<Pending startTime="-1" />
+<Pending startTime="-1" />
+<Reaction id="3043801" basicActionId="3043800" parentReactionId="0">
+<Reaction id="3043802" basicActionId="3043800" parentReactionId="0">
+<Reaction id="3043811" basicActionId="3043810" parentReactionId="0">
+<Stage>
+<Stage>
+<Stage>
+<StageList>
+<StageList>
+<StageList>
+
+=== REMOVED (0) ===

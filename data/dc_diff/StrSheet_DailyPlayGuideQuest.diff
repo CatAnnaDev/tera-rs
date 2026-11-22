@@ -1,0 +1,35 @@
+# StrSheet_DailyPlayGuideQuest  +19 -11
+
+=== ADDED (19) ===
+<String id="700029101" string="Claim your rewards!" />
+<String id="700036100" string="[Antaroth's Abyss (Hard)] Defeat Nightmare Antaroth!" />
+<String id="700045001" string="Conquer Antaroth’s Abyss (Hard)" />
+<String id="700050001" string="Complete Bahaar’s Sanctum" />
+<String id="700050101" string="Claim your reward!" />
+<String id="700055101" string="Claim your reward!" />
+<String id="700056101" string="Claim your reward!" />
+<String id="700058001" string="Complete Corrupted Skynest" />
+<String id="700058100" string="[Corrupted Skynest] Defeat Kelsaik!" />
+<String id="700058101" string="Claim your reward!" />
+<String id="700059001" string="Conquer Corrupted Skynest (Hard)" />
+<String id="700059100" string="[Corrupted Skynest (Hard)] Defeat Nightmare Kelsaik!" />
+<String id="700059101" string="Claim your reward!" />
+<String id="700129101" string="Claim your rewards!" />
+<String id="700145001" string="Complete Antaroth’s Abyss (Hard)" />
+<String id="700150001" string="Complete Bahaar’s Sanctum" />
+<String id="700150101" string="Claim your reward!" />
+<String id="700161001" string="Conquer Draakon Arena" />
+<String id="70016101" string="Claim your reward!" />
+
+=== REMOVED (11) ===
+<String id="700029101" string="Claim your reward!" />
+<String id="700036100" string="[Thaumetal Refinery (Hard)] Defeat Nightmare Gaaruksalk!" />
+<String id="700045001" string="Conquer Antaroth's Abyss (Hard)" />
+<String id="700050001" string="Complete Bahaar's Sanctum" />
+<String id="700055101" string="&quot;Claim your reward!&quot;" />
+<String id="700056101" string="&quot;Claim your reward!&quot;" />
+<String id="700129101" string="Claim your reward!" />
+<String id="700145001" string="Complete Antaroth's Abyss (Hard)" />
+<String id="700150001" string="Complete Bahaar's Sanctum" />
+<String id="700161001" string="Conquer Kalligar’s Training Ground" />
+<String id="70016101" string="Claim your rewards!" />

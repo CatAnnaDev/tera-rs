@@ -1,0 +1,25 @@
+# CardTemplateData  +20 -0
+
+=== ADDED (20) ===
+</CardPassive>
+</CardPassive>
+</CardPassive>
+</CardPassive>
+</CardTemplate>
+</CardTemplate>
+</CardTemplate>
+</CardTemplate>
+<CardPassive>
+<CardPassive>
+<CardPassive>
+<CardPassive>
+<CardTemplate id="303025" level="3" property="1" effect="img://__Image_Cards.CardEffect_Level04_Basic" category="30025" collectionBookPoint="5" cost="3" image="img://__Image_Cards.Card_C_Foolsday_Kaia" needAmountForActivation="20" superiorCardItemId="0">
+<CardTemplate id="303026" level="3" property="1" effect="img://__Image_Cards.CardEffect_Level04_Basic" category="30026" collectionBookPoint="5" cost="3" image="img://__Image_Cards.Card_C_Foolsday_Velik" needAmountForActivation="20" superiorCardItemId="0">
+<CardTemplate id="323024" level="3" property="3" effect="img://__Image_Cards.CardEffect_Level04_Basic" category="32024" collectionBookPoint="5" cost="4" image="img://__Image_Cards.Card_B_SkyLotusFlower" needAmountForActivation="20" superiorCardItemId="321023">
+<CardTemplate id="323025" level="3" property="3" effect="img://__Image_Cards.CardEffect_Level04_Basic" category="32025" collectionBookPoint="5" cost="3" image="img://__Image_Cards.Card_B_FrostFlower" needAmountForActivation="20" superiorCardItemId="321023">
+<Passivity id="30302500" />
+<Passivity id="30302600" />
+<Passivity id="32301800" />
+<Passivity id="32301900" />
+
+=== REMOVED (0) ===

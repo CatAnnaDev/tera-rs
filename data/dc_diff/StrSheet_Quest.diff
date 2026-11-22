@@ -1,0 +1,455 @@
+# StrSheet_Quest  +390 -60
+
+=== ADDED (390) ===
+</StrSheet_Quest>
+</StrSheet_Quest>
+</StrSheet_Quest>
+</StrSheet_Quest>
+</StrSheet_Quest>
+</StrSheet_Quest>
+</StrSheet_Quest>
+</StrSheet_Quest>
+</StrSheet_Quest>
+</StrSheet_Quest>
+</StrSheet_Quest>
+</StrSheet_Quest>
+</StrSheet_Quest>
+</StrSheet_Quest>
+</StrSheet_Quest>
+</StrSheet_Quest>
+</StrSheet_Quest>
+</StrSheet_Quest>
+</StrSheet_Quest>
+</StrSheet_Quest>
+</StrSheet_Quest>
+</StrSheet_Quest>
+</StrSheet_Quest>
+</StrSheet_Quest>
+</StrSheet_Quest>
+</StrSheet_Quest>
+</StrSheet_Quest>
+</StrSheet_Quest>
+</StrSheet_Quest>
+</StrSheet_Quest>
+<StrSheet_Quest>
+<StrSheet_Quest>
+<StrSheet_Quest>
+<StrSheet_Quest>
+<StrSheet_Quest>
+<StrSheet_Quest>
+<StrSheet_Quest>
+<StrSheet_Quest>
+<StrSheet_Quest>
+<StrSheet_Quest>
+<StrSheet_Quest>
+<StrSheet_Quest>
+<StrSheet_Quest>
+<StrSheet_Quest>
+<StrSheet_Quest>
+<StrSheet_Quest>
+<StrSheet_Quest>
+<StrSheet_Quest>
+<StrSheet_Quest>
+<StrSheet_Quest>
+<StrSheet_Quest>
+<StrSheet_Quest>
+<StrSheet_Quest>
+<StrSheet_Quest>
+<StrSheet_Quest>
+<StrSheet_Quest>
+<StrSheet_Quest>
+<StrSheet_Quest>
+<StrSheet_Quest>
+<StrSheet_Quest>
+<String id="101001" string="[Important] Journey to Baldera" />
+<String id="101002" string="&quot;All right.&quot;" />
+<String id="101003" string="Speak with {@linkcreature:528#10000#Hasmina}.&lt;BR&gt;[Speak with {@linkcreature:84#1088#Yunari} to enter the Kaiator Headquarters.]" />
+<String id="101004" string="Stop the investigation." />
+<String id="101005" string="Take a closer look at the captured argon kelba." />
+<String id="101006" string="&quot;All right.&quot;" />
+<String id="101007" string="Speak with Kaia." />
+<String id="101008" string="&quot;I'm ready.&quot;" />
+<String id="101009" string="Speak with Hoakha to travel to Castanica." />
+<String id="101010" string="Castanica" />
+<String id="101011" string="You have arrived in Castanica." />
+<String id="101012" string="Go to Masters Square in Castanica." />
+<String id="101013" string="&quot;All right.&quot;" />
+<String id="101014" string="Speak with Hasmina." />
+<String id="101015" string="Tavern" />
+<String id="101016" string="You have arrived at the Tavern." />
+<String id="101017" string="Go to the Tavern in Castanica." />
+<String id="101018" string="&quot;All right.&quot;" />
+<String id="101019" string="Ask Radia about Rhodos's whereabouts and the argons." />
+<String id="101020" string="&quot;I will discuss it with my allies.&quot;" />
+<String id="101021" string="Speak with Shade on the 2nd floor of the Tavern." />
+<String id="101022" string="&quot;See you at the Vexatus Swamp.&quot;" />
+<String id="101023" string="Speak with Shade." />
+<String id="101024" string="Dusk Street" />
+<String id="101025" string="Head to Dusk Street and prepare for the journey." />
+<String id="101026" string="Vexatus Swamp" />
+<String id="101027" string="The travel party is waiting for you." />
+<String id="101028" string="Head to Vexatus Swamp and meet up with your allies." />
+<String id="101029" string="&quot;I'll check my inventory.&quot;" />
+<String id="101030" string="Speak with Hasmina." />
+<String id="101031" string="Use Kaia's Faerie in your inventory." />
+<String id="101032" string="You are ready to go." />
+<String id="101033" string="Speak with Kaia's Faerie." />
+<String id="101034" string="Oblivion Woods" />
+<String id="101035" string="Go to Oblivion Woods. Kaia's Faerie will lead you there.&lt;BR&gt;(Oblivion Woods are located to the north of Crescentia in Arcadia.)" />
+<String id="101036" string="&quot;I see.&quot;" />
+<String id="101037" string="Speak with Hasmina." />
+<String id="102001" string="[Important] Spring of Arun" />
+<String id="102002" string="Ruinweald" />
+<String id="102003" string="Go to Ruinweald." />
+<String id="102004" string="&quot;All right.&quot;" />
+<String id="102005" string="Speak with Shade." />
+<String id="102006" string="Unicorn Leather" />
+<String id="102007" string="Ghilliedhu Leaf" />
+<String id="102008" string="Defeat {@linkcreature:1#6#Poisoned Unicorns} and {@linkcreature:1#2#Meandering Forest Ghilliedhus}, and collect samples of them to take to {@linkcreature:1#10021#Shade}." />
+<String id="102009" string="Defeat {@linkcreature:1#6#Poisoned Unicorns} and {@linkcreature:1#2#Meandering Forest Ghilliedhus}, and collect samples of them to take to {@linkcreature:1#10021#Shade}." />
+<String id="102010" string="&quot;I see.&quot;" />
+<String id="102011" string="Southern Gate" />
+<String id="102012" string="Go to the Southern Gate of the Shurian Base." />
+<String id="102013" string="Spring of Arun" />
+<String id="102014" string="Examine the Spring of Arun close up." />
+<String id="102015" string="&quot;Yes.&quot;" />
+<String id="102016" string="Speak with Hasmina." />
+<String id="102017" string="&quot;All right.&quot;" />
+<String id="102018" string="Talk to the Shurian Shaman Kaisha." />
+<String id="102019" string="Sabotage Akasha's Machine." />
+<String id="102020" string="&quot;Thanks.&quot;" />
+<String id="102021" string="Talk to Kaisha." />
+<String id="102022" string="&quot;Let' go.&quot;" />
+<String id="102023" string="Follow the path and it'll take you to a safe place." />
+<String id="102024" string="Go to the &lt;font color='#0080FF'&gt;&lt;A href=&quot;markmap:loc=7006#144102,16638,2229&amp;type=1&amp;name=Shurian North Gate&quot;&gt;{@Rgn:1007$$Shurian North Gate}&lt;/A&gt;&lt;/font&gt; with the {@linkcreature:1#10401$$Shurian Guide}." />
+<String id="102025" string="Haven" />
+<String id="102026" string="Head to the Haven that the Shurian Guide showed you." />
+<String id="102027" string="&quot;I see.&quot;" />
+<String id="102028" string="Speak with Geri Morris." />
+<String id="102029" string="Balderon Bridge" />
+<String id="102030" string="You have found the Balderon Bridge." />
+<String id="102031" string="Go to the Balderon Bridge." />
+<String id="102032" string="Balderon" />
+<String id="102033" string="You have discovered the magnificent ruins of Balderon." />
+<String id="102034" string="Head to Balderon." />
+<String id="102035" string="&quot;All right.&quot;" />
+<String id="102036" string="Speak with Hasmina." />
+<String id="102037" string="&quot;I see.&quot;" />
+<String id="102038" string="Speak with Shade." />
+<String id="103001" string="[Important] The Forgotten City of Balderon" />
+<String id="103002" string="&quot;All right.&quot;" />
+<String id="103003" string="Ask Braam about Baldera." />
+<String id="103004" string="&quot;Thanks.&quot;" />
+<String id="103005" string="Find out about the argons' whereabouts from the Angler Token Vendor Chanel Elin." />
+<String id="103006" string="&quot;For the federation!&quot;" />
+<String id="103007" string="You ask the Flight Manager Gajuang about the argons' whereabouts." />
+<String id="103008" string="Dungeon Resonance" />
+<String id="103009" string="Head to the location of the Dungeon Resonance." />
+<String id="103010" string="&quot;I see.&quot;" />
+<String id="103011" string="Speak with Hasmina." />
+<String id="103012" string="&quot;I see.&quot;" />
+<String id="103013" string="Speak with Shade." />
+<String id="104001" string="[Important] Shade's Whereabouts" />
+<String id="104002" string="&quot;All right.&quot;" />
+<String id="104003" string="Speak with Shade." />
+<String id="104004" string="&quot;I'll talk to Hasmina about it.&quot;" />
+<String id="104005" string="Speak with Hoakha." />
+<String id="104006" string="&quot;All right.&quot;" />
+<String id="104007" string="Speak with Hasmina." />
+<String id="104008" string="Balderon Exit" />
+<String id="104009" string="Use the Balderon Exit." />
+<String id="10401" string="Some time has passed since Shade disappeared." />
+<String id="104010" string="&quot;I see.&quot;" />
+<String id="104011" string="Speak with Danju." />
+<String id="104012" string="Balderon Bridge" />
+<String id="104013" string="Go to the Balderon Bridge." />
+<String id="104014" string="You should find Shade." />
+<String id="104015" string="Speak with the Shurian Guardian who suddenly appeared." />
+<String id="104016" string="Place where Shade disappeared" />
+<String id="104017" string="Go to the Place where Shade disappeared." />
+<String id="104018" string="Investigate the Suspicious Bush." />
+<String id="104019" string="Dakuryon Depot" />
+<String id="10402" string="It seems your allies cannot wait any longer." />
+<String id="104020" string="You have gone to an unknown place." />
+<String id="104021" string="Go to the Dakuryon Depot. (Use the {@linkcreature:1#20000#Teleportal} to reach the Dakuryon Depot.)" />
+<String id="104022" string="&quot;All right.&quot;" />
+<String id="104023" string="Speak with Hasmina." />
+<String id="104024" string="Defeat the Kallan Reaver and BB-29." />
+<String id="104025" string="Creative Corridor" />
+<String id="104026" string="Go to the Creative Corridor." />
+<String id="104027" string="Place where Rhodos is being held" />
+<String id="104028" string="Go to the Place where Rhodos is being held." />
+<String id="104029" string="Rhodos's Location" />
+<String id="104030" string="Go to Rhodos's Location." />
+<String id="104031" string="The rescue Rhodos." />
+<String id="104032" string="Examine Rhodos." />
+<String id="104033" string="You lay Rhodos's body on the ground." />
+<String id="104034" string="Examine Rhodos." />
+<String id="104035" string="&quot;Let's return to Balderon.&quot;" />
+<String id="104036" string="Speak with Hoakha." />
+<String id="104037" string="The NPC I'm thinking of..." />
+<String id="104038" string="Speak with Hasmina." />
+<String id="104039" string="&quot;It's been an honor.&quot;" />
+<String id="104040" string="Speak with Kaia." />
+<String id="105001" string="[Important] Second Argon Invasion" />
+<String id="105002" string="&quot;Hasmina is not to blame.&quot;" />
+<String id="105003" string="Speak with Hasmina." />
+<String id="105004" string="You look at where Hoakha is pointing." />
+<String id="105005" string="Speak with Hoakha." />
+<String id="105006" string="&quot;Got it.&quot;" />
+<String id="105007" string="Speak with Kaisha." />
+<String id="105008" string="Shurian North Gate" />
+<String id="105009" string="Go to the Shurian North Gate." />
+<String id="105010" string="Spring of Arun" />
+<String id="105011" string="Go to the Spring of Arun." />
+<String id="105012" string="&quot;I will defeat the priest.&quot;" />
+<String id="105013" string="Speak with Hasmina." />
+<String id="105014" string="Kill the argon magister priest." />
+<String id="105015" string="Red Argon Incubator" />
+<String id="105016" string="Head to the Red Argon Incubator being protected by the argon magister priest." />
+<String id="105017" string="&quot;All right.&quot;" />
+<String id="105018" string="Speak with Hasmina." />
+<String id="105019" string="Old Building" />
+<String id="105020" string="Go to the Shurian Old Building." />
+<String id="105021" string="&quot;All right.&quot;" />
+<String id="105022" string="Speak with Hoakha." />
+<String id="105023" string="Middle of the Root" />
+<String id="105024" string="Go to the marked area on the ground: Middle of the Root." />
+<String id="105025" string="Start of the Root" />
+<String id="105026" string="You have arrived at the root. The root leads toward Granarkus." />
+<String id="105027" string="Go to the marked area on the ground: Start of the Root." />
+<String id="105028" string="&quot;All right.&quot;" />
+<String id="105029" string="Land on the ground and speak with Hasmina." />
+<String id="118307001" string="[Important] Mahtnan Equipment" />
+<String id="118307002" string="&quot;Got it!&quot;" />
+<String id="118307003" string="Talk to Mystel at the Highwatch." />
+<String id="118307015" string="&quot;Got it!&quot;" />
+<String id="118307016" string="Talk to Mystel at the Highwatch to receive the Mahtnan equipment." />
+<String id="310701001" string="[Important] Slanderer" />
+<String id="310701002" string="&quot;I'll help you.&quot;" />
+<String id="310701003" string="Speak with Hasmina in Balderon." />
+<String id="310701004" string="&quot;You can relax now.&quot;" />
+<String id="310701005" string="Speak with Zerar." />
+<String id="310701006" string="Argon-Occupied Territory" />
+<String id="310701007" string="Head to the argon-occupied territory." />
+<String id="310701008" string="&quot;Okay.&quot;" />
+<String id="310701009" string="Speak with Hasmina in the argon-occupied territory." />
+<String id="310701010" string="&quot;All right.&quot;" />
+<String id="310701011" string="Talk to Kaisha." />
+<String id="310701012" string="Put the Shurian warriors out of their misery." />
+<String id="310701013" string="&quot;All right.&quot;" />
+<String id="310701014" string="Speak with Hasmina at the argon landing site." />
+<String id="310701015" string="Place where Dakuryon disappeared" />
+<String id="310701016" string="Go to the Place where Dakuryon disappeared." />
+<String id="310701017" string="I think so too." />
+<String id="310701018" string="Go to the platform at the landing site and talk to Hasmina." />
+<String id="350002001" string="[540] The Abscess" />
+<String id="350002002" string="[The Abscess] Defeat Krakatox!" />
+<String id="350003001" string="[540] Velik's Hold (5-Person)" />
+<String id="350003002" string="[Velik's Hold] Defeat Veldeg!" />
+<String id="350005001" string="[540] Imperator's Sanctum" />
+<String id="350005002" string="[Imperator's Sanctum] Defeat Imperator!" />
+<String id="350006001" string="[544] Draakon Arena" />
+<String id="350006002" string="[Draakon Arena] Defeat Commander Kalligar!" />
+<String id="350007001" string="[544] Gossamer Vault" />
+<String id="350007002" string="[Gossamer Vault] Defeat the Gossamer Regent!" />
+<String id="350008001" string="[544] Catalepticon (Easy)" />
+<String id="350008002" string="[Catalepticon (Easy)] Defeat Lumikan!" />
+<String id="350010001" string="[548] Corrupted Skynest" />
+<String id="350010002" string="[Corrupted Skynest] Defeat Kelsaik!" />
+<String id="350011001" string="[548] Broken Prison" />
+<String id="350011002" string="[Broken Prison] Defeat Balbatos!" />
+<String id="350012001" string="[548] Fusion Laboratory" />
+<String id="350012002" string="[Fusion Laboratory] Defeat Rogash!" />
+<String id="350013001" string="[548] Damned Citadel" />
+<String id="350013002" string="[Damned Citadel] Defeat the demon Harnovog!" />
+<String id="350014001" string="[551] Forbidden Arena [Nightmare Undying Warlord]" />
+<String id="350014002" string="[Forbidden Arena] Defeat the Nightmare Undying Warlord!" />
+<String id="350016001" string="[548] Velik's Sanctuary" />
+<String id="350016002" string="[Velik's Sanctuary] Defeat Lakan!" />
+<String id="350019001" string="[548] Ice Throne" />
+<String id="350020001" string="[551] Cursed Fusion Laboratory" />
+<String id="350020002" string="[Cursed Fusion Laboratory] Defeat Rampaging Rogash!" />
+<String id="350021001" string="[551] Gossamer Vault (Hard)" />
+<String id="350021002" string="[Gossamer Vault (Hard)] Defeat Nightmare Gossamer Regent!" />
+<String id="350022001" string="[551] Grotto of Lost Souls (Hard)" />
+<String id="350022002" string="[Grotto of Lost Souls (Hard)] Defeat Nightmare Kylos!" />
+<String id="350023001" string="[551] Akalath Quarantine" />
+<String id="350023002" string="[Akalath Quarantine] Defeat Akalath Kashir!" />
+<String id="350026001" string="[551] Antaroth's Abyss (Hard)" />
+<String id="350026002" string="[Antaroth's Abyss (Hard)] Defeat Nightmare Antaroth!" />
+<String id="350027001" string="[555] Corrupted Skynest (Hard)" />
+<String id="350027002" string="[Corrupted Skynest (Hard)] Defeat Nightmare Kelsaik!" />
+<String id="350028001" string="[555] Bahaar's Sanctum" />
+<String id="350028002" string="[Bahaar's Sanctum] Defeat Bahaar!" />
+<String id="350029001" string="[555] Exalted Dreadspire" />
+<String id="350029002" string="[Exalted Dreadspire] Defeat Shandra Manaya's Shade!" />
+<String id="350030001" string="[542] Hall of the Argon Queen (Hard)" />
+<String id="350030002" string="[Hall of the Argon Queen (Hard)] Defeat Revivified Shandra Manaya!" />
+<String id="350030003" string="Get Reward" />
+<String id="350030004" string="Accept mission" />
+<String id="61801010" string="Collect an Argon Weapon from {@linkcreature:511#81101$$Krakatox} and an Argon Core from {@linkcreature:511#81102$$Thalweg} in The Abscess." />
+<String id="61801018" string="Defeat {@linkcreature:3400#1000$$Lumikan} in Catalepticon (Easy) and collect a Primal Ember." />
+<String id="700056003" string="Claim your reward!" />
+<String id="700057001" string="Conquer Akalath Quarantine" />
+<String id="700057002" string="[Akalath Quarantine] Defeat Akalath Kashir!" />
+<String id="700058003" string="Claim your reward!" />
+<String id="700059002" string="[Corrupted Skynest (Hard)] Defeat Nightmare Kelsaik!" />
+<String id="700059003" string="Claim your reward!" />
+<String id="700067003" string="Claim your reward!" />
+<String id="700109001" string="Conquer the Demokron Factory (Hard)" />
+<String id="700109002" string="[Demokron Factory (Hard)] Defeat Nightmare Verno!" />
+<String id="700109003" string="Claim your rewards!" />
+<String id="700156003" string="Claim your reward!" />
+<String id="700157001" string="Conquer Akalath Quarantine" />
+<String id="700157002" string="[Akalath Quarantine] Defeat Akalath Kashir!" />
+<String id="700158003" string="Claim your reward!" />
+<String id="700159002" string="[Corrupted Skynest (Hard)] Defeat Nightmare Kelsaik!" />
+<String id="700159003" string="Claim your reward!" />
+<String id="700167003" string="Claim your reward!" />
+<String id="700522001" string="Conquer Cursed Antaroth's Abyss" />
+<String id="700522002" string="[Cursed Antaroth's Abyss] Defeat Cursed Antaroth!" />
+<String id="700522003" string="Claim your reward!" />
+<String id="700527001" string="Conquer the Secret Training Camp" />
+<String id="700527001" string="Conquer the Secret Training Camp" />
+<String id="700527002" string="[Secret Training Camp] Defeat Fledgling Petrax!" />
+<String id="700527002" string="[Secret Training Camp] Defeat Fledgling Petrax!" />
+<String id="700527003" string="Claim your reward!" />
+<String id="700527003" string="Claim your reward!" />
+<String id="700528001" string="Conquer the Secret Training Camp" />
+<String id="700528001" string="Conquer the Secret Training Camp" />
+<String id="700528002" string="[Secret Training Camp] Defeat Tamed Petrax!" />
+<String id="700528002" string="[Secret Training Camp] Defeat Tamed Petrax!" />
+<String id="700528003" string="Claim your reward!" />
+<String id="700528003" string="Claim your reward!" />
+<String id="700529001" string="Conquer the Secret Training Camp" />
+<String id="700529001" string="Conquer the Secret Training Camp" />
+<String id="700529002" string="[Secret Training Camp] Defeat Fledgling Basilisk!" />
+<String id="700529002" string="[Secret Training Camp] Defeat Fledgling Basilisk!" />
+<String id="700529003" string="Claim your reward!" />
+<String id="700529003" string="Claim your reward!" />
+<String id="700530001" string="Conquer the Secret Training Camp" />
+<String id="700530001" string="Conquer the Secret Training Camp" />
+<String id="700530002" string="[Secret Training Camp] Defeat Tamed Basilisk!" />
+<String id="700530002" string="[Secret Training Camp] Defeat Tamed Basilisk!" />
+<String id="700530003" string="Claim your reward!" />
+<String id="700530003" string="Claim your reward!" />
+<String id="700531001" string="Conquer the Secret Training Camp" />
+<String id="700531001" string="Conquer the Secret Training Camp" />
+<String id="700531002" string="[Secret Training Camp] Defeat Empowered Vulcan!" />
+<String id="700531002" string="[Secret Training Camp] Defeat Empowered Vulcan!" />
+<String id="700531003" string="Claim your reward!" />
+<String id="700531003" string="Claim your reward!" />
+<String id="700536001" string="Complete the Damned Citadel" />
+<String id="700536002" string="[Damned Citadel] Defeat the demon Harnovog!" />
+<String id="700536003" string="Claim your reward!" />
+<String id="700537001" string="Conquer the Stormed Citadel" />
+<String id="700537002" string="[Stormed Citadel] Defeat the demon Harnovog!" />
+<String id="700537003" string="Claim your reward!" />
+<String id="700538001" string="Conquer the Cursed Fusion Laboratory" />
+<String id="700538002" string="[Cursed Fusion Laboratory] Defeat Rampaging Rogash!" />
+<String id="700538003" string="Claim your reward!" />
+<String id="700539001" string="Conquer the Fusion Laboratory" />
+<String id="700539002" string="[Fusion Laboratory] Defeat Rogash!" />
+<String id="700539003" string="Claim your reward!" />
+<String id="700543001" string="Conquer Catalepticon (Easy)" />
+<String id="700543002" string="[Catalepticon (Easy)] Defeat Lumikan!" />
+<String id="700543003" string="Claim your reward!" />
+<String id="700544001" string="Conquer Imperator's Sanctum" />
+<String id="700544002" string="[Imperator's Sanctum] Defeat Imperator!" />
+<String id="700544003" string="Claim your reward!" />
+<String id="700636001" string="Complete the Damned Citadel" />
+<String id="700636002" string="[Damned Citadel] Defeat the demon Harnovog!" />
+<String id="700636003" string="Claim your reward!" />
+<String id="700637001" string="Conquer the Stormed Citadel" />
+<String id="700637002" string="[Stormed Citadel] Defeat the demon Harnovog!" />
+<String id="700637003" string="Claim your reward!" />
+<String id="700638001" string="Conquer the Cursed Fusion Laboratory" />
+<String id="700638002" string="[Cursed Fusion Laboratory] Defeat Rampaging Rogash!" />
+<String id="700638003" string="Claim your reward!" />
+<String id="700639001" string="Conquer the Fusion Laboratory" />
+<String id="700639002" string="[Fusion Laboratory] Defeat Rogash!" />
+<String id="700639003" string="Claim your reward!" />
+<String id="700643001" string="Conquer Catalepticon (Easy)" />
+<String id="700643002" string="[Catalepticon (Easy)] Defeat Lumikan!" />
+<String id="700643003" string="Claim your reward!" />
+<String id="700644001" string="Conquer Imperator's Sanctum" />
+<String id="700644002" string="[Imperator's Sanctum] Defeat Imperator!" />
+<String id="700644003" string="Claim your reward!" />
+<String id="704801001" string="Vanguard Request: Level 1 (Item Level 501)" />
+<String id="704801002" string="[Secret Training Camp] Defeat Fledgling Petrax." />
+<String id="704801003" string="Claim your monetary reward." />
+<String id="704802001" string="Vanguard Request: Level 2 (Item Level 505)" />
+<String id="704802002" string="[Secret Training Camp] Defeat Tamed Petrax." />
+<String id="704802003" string="Claim your monetary reward." />
+<String id="704803001" string="Vanguard Request: Level 3 (Item Level 509)" />
+<String id="704803002" string="[Secret Training Camp] Defeat Fledgling Basilisk." />
+<String id="704803003" string="Claim your monetary reward." />
+<String id="704804001" string="Vanguard Request: Level 4 (Item Level 512)" />
+<String id="704804002" string="[Secret Training Camp] Defeat Tamed Basilisk." />
+<String id="704804003" string="Claim your monetary reward." />
+<String id="704805001" string="Vanguard Request: Level 5 (Item Level 515)" />
+<String id="704805002" string="[Secret Training Camp] Defeat Empowered Vulcan." />
+<String id="704805003" string="Claim your monetary reward." />
+
+=== REMOVED (60) ===
+<String id="350002001" string="[519] Ruinous Manor" />
+<String id="350002002" string="[Ruinous Manor] Defeat Lachelith!" />
+<String id="350003001" string="[519] Thaumetal Refinery" />
+<String id="350003002" string="[Thaumetal Refinery] Defeat Garusaalk!" />
+<String id="350005001" string="[519] Fluffy Arena" />
+<String id="350005002" string="[Fluffy Arena] Defeat Uwufna!" />
+<String id="350006001" string="[523] Shadow Sanguinary" />
+<String id="350006002" string="[Shadow Sanguinary] Defeat Dakuryon!" />
+<String id="350007001" string="[523] Sky Cruiser Endeavor" />
+<String id="350007002" string="[Sky Cruiser Endeavor] Defeat Darkan!" />
+<String id="350008001" string="[523] Kalivan's Dreadnaught" />
+<String id="350008002" string="[Kalivan's Dreadnaught] Defeat Kalivan!" />
+<String id="350010001" string="[527] Rift Edge" />
+<String id="350010002" string="[Rift Edge] Defeat Koleogg!" />
+<String id="350011001" string="[527] Forsaken Island" />
+<String id="350011002" string="[Forsaken Island] Defeat Desolarus!" />
+<String id="350012001" string="[527] Killing Grounds" />
+<String id="350012002" string="[Killing Grounds] Defeat Gardan!" />
+<String id="350013001" string="[527] Catalepticon" />
+<String id="350013002" string="[Catalepticon] Defeat Lumikan!" />
+<String id="350014001" string="[531] Forbidden Arena: Nightmare Undying Warlord" />
+<String id="350014002" string="[Forbidden Arena: Nightmare Undying Warlord] Defeat Nightmare Undying Warlord!" />
+<String id="350016001" string="[531] Red Refuge (Hard)" />
+<String id="350016002" string="[Red Refuge (Hard)] Defeat Nigthmare Argog!" />
+<String id="350019001" string="[531] Ice Throne" />
+<String id="350020001" string="[531] Crimson Killing Grounds" />
+<String id="350020002" string="[Crimson Killing Grounds] Defeat Nightmare Gardan!" />
+<String id="350021001" string="[535] Draakon Arena (Hard)" />
+<String id="350021002" string="[Draakon Arena (Hard)] Defeat Nightmare Commander Kalligar!" />
+<String id="350022001" string="[535] Rampaging RK-9 Kennel" />
+<String id="350022002" string="[Rampaging RK-9 Kennel] Defeat Rampaging RK-9!" />
+<String id="350023001" string="[535] Ruinous Manor (Hard)" />
+<String id="350023002" string="[Ruinous Manor (Hard)] Defeat Nightmare Lachelith!" />
+<String id="350026001" string="[535] Twisted Abyss" />
+<String id="350026002" string="[Twisted Abyss] Defeat Cursed Antaroth!" />
+<String id="350027001" string="[539] Chaos Ice Throne" />
+<String id="350027002" string="[Chaos Ice Throne] Defeat Slayer Hellen!" />
+<String id="350028001" string="[539] Hall of the Argon Queen" />
+<String id="350028002" string="[Hall of the Argon Queen] Defeat Revivified Shandra Manaya!" />
+<String id="350029001" string="[539] Dreadspire" />
+<String id="350029002" string="[Dreadspire] Defeat Shandra Manaya!" />
+<String id="61801010" string="Collect an Argon Core and an Argon Weapon at the Secret Base in Verrak Fortress." />
+<String id="61801018" string="Defeat {@linkcreature:780#3000$$Veldeg} in Velik's Hold and collect a Primal Ember." />
+<String id="700056003" string="&quot;Claim your reward!&quot;" />
+<String id="700057001" string="Conquer Verrak Fortress" />
+<String id="700057002" string="[Verrak Fortress] Defeat Akalath Kashir in the Akalath Quarantine!" />
+<String id="700058003" string="&quot;Claim your reward!&quot;" />
+<String id="700059002" string="[Corrupted Skynest] Defeat Kelsaik!" />
+<String id="700059003" string="&quot;Claim your reward!&quot;" />
+<String id="700067003" string="&quot;Claim your reward!&quot;" />
+<String id="700108001" string="Demokron Factory" />
+<String id="700108002" string="[Demokron Factory] Defeat Verno!" />
+<String id="700108003" string="Claim your rewards!" />
+<String id="700156003" string="&quot;Claim your reward!&quot;" />
+<String id="700157001" string="Conquer Verrak Fortress" />
+<String id="700157002" string="[Verrak Fortress] Defeat Akalath Kashir in the Akalath Quarantine!" />
+<String id="700158003" string="&quot;Claim your reward!&quot;" />
+<String id="700159002" string="[Corrupted Skynest] Defeat Kelsaik!" />
+<String id="700159003" string="&quot;Claim your reward!&quot;" />
+<String id="700167003" string="&quot;Claim your reward!&quot;" />

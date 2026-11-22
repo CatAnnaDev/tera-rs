@@ -1,0 +1,29 @@
+{
+  "fallback": "Salut ! Pour toute question guilde, contacte Candrena ou Pholecia. Tape 'event', 'recrutement' ou 'regles' pour une reponse auto.",
+  "rules": [
+    {
+      "keywords": ["event", "horaire", "quand", "raid", "gvg"],
+      "answer": "Events guilde : GvG mardi/jeudi 21h, raid dimanche 20h. Inscription sur le Discord."
+    },
+    {
+      "keywords": ["recrut", "rejoindre", "guilde", "invite", "postuler"],
+      "answer": "On recrute ! Niveau 70 + stuff correct. Contacte un officier (Candrena/Pholecia) en jeu ou sur le Discord."
+    },
+    {
+      "keywords": ["regle", "rules", "charte"],
+      "answer": "Regles : respect entre membres, presence aux events majeurs, pas de ninja-loot. Detail complet sur le Discord."
+    },
+    {
+      "keywords": ["discord", "lien", "serveur vocal"],
+      "answer": "Discord de la guilde : demande le lien a un officier en jeu."
+    },
+    {
+      "keywords": ["prix", "vendre", "acheter", "broker"],
+      "answer": "Pour les prix du broker, regarde en jeu ; je ne gere pas les ventes en whisper."
+    },
+    {
+      "keywords": ["merci", "thanks", "ty"],
+      "answer": "Avec plaisir ! o/"
+    }
+  ]
+}

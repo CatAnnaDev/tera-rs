@@ -1,0 +1,572 @@
+{
+"10:99": {
+"name": "Divine Reaver (Serpentis Isle)",
+"type": "boss de monde",
+"region": "Ostgarath"
+},
+"4:5011": {
+"name": "Tempest Kanash (Fyrmount)",
+"type": "boss de monde",
+"region": "Ostgarath"
+},
+"38:35": {
+"name": "Nyxarras (Sienna Canyon)",
+"type": "boss de monde",
+"region": "Val Elenium"
+},
+"57:33": {
+"name": "Betsael (Amena Quatla)",
+"type": "boss de monde",
+"region": "Sylvanoth"
+},
+"51:7011": {
+"name": "Linyphi (Vale of Spires)",
+"type": "boss de monde",
+"region": "Lorcada"
+},
+"52:9050": {
+"name": "Yunaras Snaggletooth (Plain of the Damned)",
+"type": "boss de monde",
+"region": "Lorcada"
+},
+"26:5001": {
+"name": "Ortan (Blessing Basin)",
+"type": "boss de raid",
+"region": "Essenia"
+},
+"39:501": {
+"name": "Hazard (Quarantine Zone)",
+"type": "boss de raid",
+"region": "Val Palrada"
+},
+"51:4001": {
+"name": "Cerrus",
+"type": "boss de raid",
+"region": "Lorcada"
+},
+"29:2001": {
+"name": "Anansha (Timeless Woods)",
+"type": "boss event",
+"region": ""
+},
+"34:2002": {
+"name": "Frygaras (Frost Reach)",
+"type": "boss event",
+"region": ""
+},
+"34:2003": {
+"name": "Sabranak (Frost Reach)",
+"type": "boss event",
+"region": ""
+},
+"152:2001": {
+"name": "Anansha (Велика: Эпоха смуты)",
+"type": "boss event",
+"region": ""
+},
+"152:2002": {
+"name": "Frygaras (Велика: Эпоха смуты)",
+"type": "boss event",
+"region": ""
+},
+"152:2003": {
+"name": "Sabranak (Велика: Эпоха смуты)",
+"type": "boss event",
+"region": ""
+},
+"152:7001": {
+"name": "Anansha (Велика: Эпоха смуты)",
+"type": "boss event",
+"region": ""
+},
+"152:7002": {
+"name": "Frygaras (Велика: Эпоха смуты)",
+"type": "boss event",
+"region": ""
+},
+"152:7003": {
+"name": "Sabranak (Велика: Эпоха смуты)",
+"type": "boss event",
+"region": ""
+},
+"2020:1100": {
+"name": "[Exodor] Supreme Draakon Pursuer",
+"type": "boss event",
+"region": ""
+},
+"2020:1101": {
+"name": "[Exodor] Draakon Guard-Captain",
+"type": "boss event",
+"region": ""
+},
+"2020:1102": {
+"name": "[Exodor] Supreme Draakon Dominator",
+"type": "boss event",
+"region": ""
+},
+"2020:1200": {
+"name": "[Exodor] Elite Naga Priest",
+"type": "boss event",
+"region": ""
+},
+"2020:1201": {
+"name": "[Exodor] Elite Naga Knight",
+"type": "boss event",
+"region": ""
+},
+"2020:1202": {
+"name": "[Exodor] Elite Naga Executioner",
+"type": "boss event",
+"region": ""
+},
+"2020:1300": {
+"name": "[Exodor] Manuk",
+"type": "boss event",
+"region": ""
+},
+"2020:1400": {
+"name": "[Exodor] Axcellob",
+"type": "boss event",
+"region": ""
+},
+"2020:1500": {
+"name": "[Exodor] Zemces",
+"type": "boss event",
+"region": ""
+},
+"2020:1600": {
+"name": "[Exodor] Взбешенный красный лишайник",
+"type": "boss event",
+"region": ""
+},
+"2020:1601": {
+"name": "[Exodor] Thorny Eyestalker",
+"type": "boss event",
+"region": ""
+},
+"2020:1700": {
+"name": "[Exodor] Vekes",
+"type": "boss event",
+"region": ""
+},
+"2020:7000": {
+"name": "[Exodor] Tomb Robber Bari",
+"type": "boss event",
+"region": ""
+},
+"2020:7001": {
+"name": "[Exodor] Tomb Robber Robin",
+"type": "boss event",
+"region": ""
+},
+"2020:7002": {
+"name": "[Exodor] Tomb Robber Gibi",
+"type": "boss event",
+"region": ""
+},
+"26:6001": {
+"name": "Caiman Wanderer",
+"type": "boss event",
+"region": ""
+},
+"27:6001": {
+"name": "Caiman Wanderer",
+"type": "boss event",
+"region": ""
+},
+"29:6002": {
+"name": "Caiman Wanderer",
+"type": "boss event",
+"region": ""
+},
+"30:6001": {
+"name": "Caiman Wanderer",
+"type": "boss event",
+"region": ""
+},
+"38:6001": {
+"name": "Caiman Wanderer",
+"type": "boss event",
+"region": ""
+},
+"181:6001": {
+"name": "Caiman Wanderer",
+"type": "boss event",
+"region": ""
+},
+"1023:200002": {
+"name": "(Event) Grumpy Santa",
+"type": "boss event",
+"region": ""
+},
+"1023:200003": {
+"name": "(Event) Tiny Santa",
+"type": "boss event",
+"region": ""
+},
+"1023:240035": {
+"name": "(Event) Argon Vanguard",
+"type": "boss event",
+"region": ""
+},
+"1023:240036": {
+"name": "(Event) Argon Vanguard",
+"type": "boss event",
+"region": ""
+},
+"1023:99999997": {
+"name": "(Event) Santa",
+"type": "boss event",
+"region": ""
+},
+"1023:99999998": {
+"name": "(Event) Mini Santa",
+"type": "boss event",
+"region": ""
+},
+"54:101": {
+"name": "(Event) Sakura Ghilliedhu",
+"type": "boss event",
+"region": ""
+},
+"52:99999997": {
+"name": "(Event) Santa",
+"type": "boss event",
+"region": ""
+},
+"52:99999998": {
+"name": "(Event) Mini santa",
+"type": "boss event",
+"region": ""
+},
+"32:99999997": {
+"name": "(Event) Santa",
+"type": "boss event",
+"region": ""
+},
+"32:99999998": {
+"name": "(Event) Mini santa",
+"type": "boss event",
+"region": ""
+},
+"34:99999997": {
+"name": "(Event) Santa",
+"type": "boss event",
+"region": ""
+},
+"34:99999998": {
+"name": "(Event) Mini santa",
+"type": "boss event",
+"region": ""
+},
+"72:1276": {
+"name": "Mystery Market Coin Vendor (Allemantheia)",
+"type": "gobelin",
+"region": "Allemantheia"
+},
+"183:1276": {
+"name": "Mystery Market Coin Vendor (Highwatch)",
+"type": "gobelin",
+"region": "Highwatch"
+},
+"63:1276": {
+"name": "Mystery Market Coin Vendor (Velika)",
+"type": "gobelin",
+"region": "Velika"
+},
+"63:1284": {
+"name": "Mystery Market Coin Vendor (Velika)",
+"type": "gobelin",
+"region": "Velika"
+},
+"84:1276": {
+"name": "Mystery Market Coin Vendor (Kaiator)",
+"type": "gobelin",
+"region": "Kaiator"
+},
+"63:1278": {
+"name": "Veracun",
+"type": "marchand mystere",
+"region": "Around the Velika"
+},
+"72:1278": {
+"name": "Alluman",
+"type": "marchand mystere",
+"region": "Around the Allemantheia"
+},
+"84:1278": {
+"name": "Kaidera",
+"type": "marchand mystere",
+"region": "Around the Kaiator"
+},
+"13:1271": {
+"name": "Vardung",
+"type": "marchand mystere",
+"region": "Island of Dawn"
+},
+"172:1271": {
+"name": "Varrek (Savage Reach)",
+"type": "marchand mystere",
+"region": "Val Oriyn"
+},
+"181:1271": {
+"name": "Varrek (Ex Prima)",
+"type": "marchand mystere",
+"region": "Val Oriyn"
+},
+"182:1271": {
+"name": "Varrek (Spring Valley)",
+"type": "marchand mystere",
+"region": "Val Oriyn"
+},
+"183:1278": {
+"name": "Varrek (Highwatch)",
+"type": "marchand mystere",
+"region": "Val Oriyn"
+},
+"191:1271": {
+"name": "Varrek (Arx Umbra)",
+"type": "marchand mystere",
+"region": "Val Oriyn"
+},
+"2:1271": {
+"name": "Arcun (Fey Forest / Lumbertown)",
+"type": "marchand mystere",
+"region": "Arcadia"
+},
+"3:1271": {
+"name": "Arcun (Oblivion Woods / Crescentia)",
+"type": "marchand mystere",
+"region": "Arcadia"
+},
+"5:1271": {
+"name": "Arcun (Tuwangi Mire)",
+"type": "marchand mystere",
+"region": "Arcadia"
+},
+"6:1271": {
+"name": "Arcun (Valley of Titans)",
+"type": "marchand mystere",
+"region": "Arcadia"
+},
+"7:1271": {
+"name": "Arcun (Celestial Hills)",
+"type": "marchand mystere",
+"region": "Arcadia"
+},
+"18:1271": {
+"name": "Viadu (Colossal Ruins)",
+"type": "marchand mystere",
+"region": "Val Aureum"
+},
+"19:1271": {
+"name": "Viadu (Freeholds)",
+"type": "marchand mystere",
+"region": "Val Aureum"
+},
+"21:1271": {
+"name": "Viadu (Basilisk Crag / Chebika)",
+"type": "marchand mystere",
+"region": "Val Aureum"
+},
+"24:1271": {
+"name": "Viadu (Aurum Road / Tulufan)",
+"type": "marchand mystere",
+"region": "Val Aureum"
+},
+"4:1271": {
+"name": "Eteral (Fyrmount)",
+"type": "marchand mystere",
+"region": "Ostgarath"
+},
+"9:1271": {
+"name": "Eteral (Ascension Valley / Castanica)",
+"type": "marchand mystere",
+"region": "Ostgarath"
+},
+"10:1271": {
+"name": "Eteral (Serpentis Isle)",
+"type": "marchand mystere",
+"region": "Ostgarath"
+},
+"11:1271": {
+"name": "Eteral (Jagged Coast / Cutthroat Harbor)",
+"type": "marchand mystere",
+"region": "Ostgarath"
+},
+"12:1271": {
+"name": "Eteral (Mistmoor Island)",
+"type": "marchand mystere",
+"region": "Ostgarath"
+},
+"15:1271": {
+"name": "Foretta (Cliffs of Insanity)",
+"type": "marchand mystere",
+"region": "Poporia"
+},
+"16:1271": {
+"name": "Foretta (Vale of the Fang)",
+"type": "marchand mystere",
+"region": "Poporia"
+},
+"17:1271": {
+"name": "Foretta (Paraanon Ravine / Popolion)",
+"type": "marchand mystere",
+"region": "Poporia"
+},
+"23:1271": {
+"name": "Foretta (Lake of Tears / Pora Elinu)",
+"type": "marchand mystere",
+"region": "Poporia"
+},
+"26:1271": {
+"name": "Ezart (Blessing Basin / Tralion)",
+"type": "marchand mystere",
+"region": "Essenia"
+},
+"27:1271": {
+"name": "Ezart (Essenian Crest)",
+"type": "marchand mystere",
+"region": "Essenia"
+},
+"28:1271": {
+"name": "Ezart (Blightwood)",
+"type": "marchand mystere",
+"region": "Essenia"
+},
+"29:1271": {
+"name": "Ezart (Timeless Woods 1)",
+"type": "marchand mystere",
+"region": "Essenia"
+},
+"29:1272": {
+"name": "Ezart (Timeless Woods 2)",
+"type": "marchand mystere",
+"region": "Essenia"
+},
+"31:1271": {
+"name": "Storan (Tempest Reach)",
+"type": "marchand mystere",
+"region": "Westonia"
+},
+"32:1271": {
+"name": "Storan (Mount Tyrannas / Acarum)",
+"type": "marchand mystere",
+"region": "Westonia"
+},
+"34:1271": {
+"name": "Storan (Frost Reach / Bleakrock)",
+"type": "marchand mystere",
+"region": "Westonia"
+},
+"30:1271": {
+"name": "Versa (Balder's Refuge / Bastion)",
+"type": "marchand mystere",
+"region": "Veritas District"
+},
+"35:1271": {
+"name": "Viace (Wyrmgorge / Elenea)",
+"type": "marchand mystere",
+"region": "Val Elenium"
+},
+"36:1271": {
+"name": "Viace (Tor Exsul)",
+"type": "marchand mystere",
+"region": "Val Elenium"
+},
+"38:1271": {
+"name": "Viace (Sienna Canyon)",
+"type": "marchand mystere",
+"region": "Val Elenium"
+},
+"40:1271": {
+"name": "Vaneva (Quarantine Zone / Frontera)",
+"type": "marchand mystere",
+"region": "Val Palrada"
+},
+"41:1271": {
+"name": "Vaneva (Feral Valley)",
+"type": "marchand mystere",
+"region": "Val Palrada"
+},
+"51:1271": {
+"name": "Loahcun (Vale of Spires)",
+"type": "marchand mystere",
+"region": "Lorcada"
+},
+"52:1271": {
+"name": "Locarnum (Plain of the Damned / Habere)",
+"type": "marchand mystere",
+"region": "Lorcada"
+},
+"54:1271": {
+"name": "Silvette (Seeliewood / Scythera Fae)",
+"type": "marchand mystere",
+"region": "Sylvanoth"
+},
+"55:1271": {
+"name": "Silvette (Darkquaver Woods / Dragonfall)",
+"type": "marchand mystere",
+"region": "Sylvanoth"
+},
+"56:1271": {
+"name": "Silvette (Susurrus Woods)",
+"type": "marchand mystere",
+"region": "Sylvanoth"
+},
+"57:1271": {
+"name": "Silvette (Amena Quatla)",
+"type": "marchand mystere",
+"region": "Sylvanoth"
+},
+"45:1271": {
+"name": "Lotica (Thrallhold / Pathfinder Post)",
+"type": "marchand mystere",
+"region": "Val Tirkai"
+},
+"47:1271": {
+"name": "Lotica (Tirkai Forest)",
+"type": "marchand mystere",
+"region": "Val Tirkai"
+},
+"48:1271": {
+"name": "Hecurn (Khanovar Front / Zulfikar Fortress)",
+"type": "marchand mystere",
+"region": "Helkan District"
+},
+"49:1271": {
+"name": "Locarnum (Argonea / Kanstria)",
+"type": "marchand mystere",
+"region": "Val Kaeli"
+},
+"50:1271": {
+"name": "Locarnum (Granarkus)",
+"type": "marchand mystere",
+"region": "Val Kaeli"
+},
+"63:1271": {
+"name": "Mystery Merchant (Velika 1)",
+"type": "marchand mystere",
+"region": ""
+},
+"63:1279": {
+"name": "Mystery Merchant (Velika 2)",
+"type": "marchand mystere",
+"region": ""
+},
+"72:1271": {
+"name": "Mystery Merchant (Allemantheia)",
+"type": "marchand mystere",
+"region": ""
+},
+"84:1271": {
+"name": "Mystery Merchant (Kaiator)",
+"type": "marchand mystere",
+"region": ""
+},
+"183:1271": {
+"name": "Mystery Merchant (Highwatch)",
+"type": "marchand mystere",
+"region": ""
+}
+}

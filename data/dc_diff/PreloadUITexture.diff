@@ -1,0 +1,23 @@
+# PreloadUITexture  +18 -0
+
+=== ADDED (18) ===
+<UITexture gpkName="S1UIRES_Component" textureName="S1UIRES_Component.ButtonComponent_I1" />
+<UITexture gpkName="S1UIRES_Component" textureName="S1UIRES_Component.ComboBoxComponent_IF" />
+<UITexture gpkName="S1UIRES_Component" textureName="S1UIRES_Component.SlotComponent_I5" />
+<UITexture gpkName="S1UI_PaperDoll" textureName="S1UI_PaperDoll.PaperDoll_I11A" />
+<UITexture gpkName="S1UI_PaperDoll" textureName="S1UI_PaperDoll.PaperDoll_I11C" />
+<UITexture gpkName="S1UI_PaperDoll" textureName="S1UI_PaperDoll.PaperDoll_I11E" />
+<UITexture gpkName="S1UI_PaperDoll" textureName="S1UI_PaperDoll.PaperDoll_I156" />
+<UITexture gpkName="S1UI_PaperDoll" textureName="S1UI_PaperDoll.PaperDoll_I158" />
+<UITexture gpkName="S1UI_PaperDoll" textureName="S1UI_PaperDoll.PaperDoll_I160" />
+<UITexture gpkName="S1UI_PaperDoll" textureName="S1UI_PaperDoll.PaperDoll_I181" />
+<UITexture gpkName="S1UI_PaperDoll" textureName="S1UI_PaperDoll.PaperDoll_I185" />
+<UITexture gpkName="S1UI_PaperDoll" textureName="S1UI_PaperDoll.PaperDoll_I189" />
+<UITexture gpkName="S1UI_PaperDoll" textureName="S1UI_PaperDoll.PaperDoll_I1A1" />
+<UITexture gpkName="S1UI_PaperDoll" textureName="S1UI_PaperDoll.PaperDoll_I1A4" />
+<UITexture gpkName="S1UI_PaperDoll" textureName="S1UI_PaperDoll.PaperDoll_I24" />
+<UITexture gpkName="S1UI_PaperDoll" textureName="S1UI_PaperDoll.PaperDoll_I33" />
+<UITexture gpkName="S1UI_PaperDoll" textureName="S1UI_PaperDoll.PaperDoll_I4E" />
+<UITexture gpkName="S1UI_PaperDoll" textureName="S1UI_PaperDoll.PaperDoll_I51" />
+
+=== REMOVED (0) ===

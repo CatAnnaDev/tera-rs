@@ -1,0 +1,769 @@
+# StrSheet_Creature  +745 -19
+
+=== ADDED (745) ===
+</HuntingZone>
+</HuntingZone>
+</HuntingZone>
+</HuntingZone>
+</HuntingZone>
+</HuntingZone>
+</HuntingZone>
+</HuntingZone>
+</HuntingZone>
+</HuntingZone>
+<HuntingZone id="3044">
+<HuntingZone id="3045">
+<HuntingZone id="3048">
+<HuntingZone id="3050">
+<HuntingZone id="3105">
+<HuntingZone id="3134">
+<HuntingZone id="3137">
+<HuntingZone id="3205">
+<HuntingZone id="3400">
+<HuntingZone id="3401">
+<String name="" templateId="2099" gender="" race="" title="Baldera Soldier" class="" />
+<String name="" templateId="2188" gender="" race="" title="Balderon Guard" class="" />
+<String name="" templateId="2189" gender="" race="" title="Balderon Guard" class="" />
+<String name="" templateId="2190" gender="" race="" title="Balderon Guard" class="" />
+<String name="" templateId="2196" gender="" race="" title="Sentry" class="" />
+<String name="" templateId="2197" gender="" race="" title="Decanus" class="" />
+<String name="" templateId="2198" gender="" race="" title="Worker" class="" />
+<String name="" templateId="2208" gender="" race="" title="Baldera Soldier" class="" />
+<String name="" templateId="2242" gender="" race="" title="Worker" class="" />
+<String name="" templateId="2260" gender="" race="" title="Arcadia Soldier" class="" />
+<String name="" templateId="2261" gender="" race="" title="Arcadia Soldier" class="" />
+<String name="(This teleportal will exit Antaroth's Abyss.)" templateId="1501" gender="" race="" title="" class="" />
+<String name="(This teleportal will exit Antaroth's Abyss.)" templateId="1502" gender="" race="" title="" class="" />
+<String name="(This teleportal will exit Antaroth's Abyss.)" templateId="1503" gender="" race="" title="" class="" />
+<String name="(This teleportal will exit Antaroth's Abyss.)" templateId="1504" gender="" race="" title="" class="" />
+<String name="Abandoned Book" templateId="2133" gender="" race="" title="" class="" />
+<String name="Acarym" templateId="2207" gender="" race="" title="Sentry" class="" />
+<String name="Adreed" templateId="2254" gender="" race="" title="&quot;Daga&quot; Veteran" class="" />
+<String name="Adriel" templateId="2157" gender="" race="" title="" class="" />
+<String name="Aerithia" templateId="2027" gender="" race="" title="Smelting Materials" class="" />
+<String name="Agrakan" templateId="10131" gender="" race="" title="Triumph Token Collector" class="" />
+<String name="Agrakan" templateId="20807" gender="" race="" title="" class="" />
+<String name="Aileen" templateId="20403" gender="" race="" title="" class="" />
+<String name="Ailic" templateId="20801" gender="" race="" title="" class="" />
+<String name="Akalath Quarantine Entrance" templateId="1501" gender="" race="" title="Teleportal" class="" />
+<String name="Akazan" templateId="2275" gender="" race="" title="&quot;Isthel&quot; Tribune" class="" />
+<String name="Akoz" templateId="21202" title="" />
+<String name="Alicia" templateId="20601" gender="" race="" title="" class="" />
+<String name="Alisa" templateId="20400" gender="" race="" title="" class="" />
+<String name="Aliz" templateId="9052" gender="female" race="" title="Galaxy Explorer" class="" />
+<String name="Amaren" templateId="2276" gender="" race="" title="Architect-in-Training" class="" />
+<String name="Ameeba" templateId="2101" gender="" race="" title="Seeker" class="" />
+<String name="Amekel" templateId="2169" gender="" race="" title="Researcher" class="" />
+<String name="Ami" templateId="2063" gender="" race="" title="Mountain Climber" class="" />
+<String name="Anapang" templateId="3000" gender="" race="" title="Noble Cleric of Restoration" class="" />
+<String name="Anett" templateId="10121" gender="" race="" title="Guild Shop" class="" />
+<String name="Anett" templateId="20607" gender="" race="" title="" class="" />
+<String name="Angry Forest Ovolith" templateId="5010" gender="" race="" title="" class="" />
+<String name="Anki" templateId="2162" gender="" race="" title="Gatherer" class="" />
+<String name="Araxis" templateId="2093" gender="male" race="" title="Baldera Nexus Merchant" class="" />
+<String name="Archdevan Archer" templateId="2017" gender="" race="" title="Guard" class="" />
+<String name="Archdevan Blood Knight" templateId="2030" gender="" race="" title="Guard" class="" />
+<String name="Archdevan Guard" templateId="2020" gender="" race="" title="Dakuryon's Private Guard" class="" />
+<String name="Archdevan Hermit" templateId="2027" gender="" race="" title="Researcher" class="" />
+<String name="Archdevan Knight" templateId="2019" gender="" race="" title="Guard" class="" />
+<String name="Archdevan Leader" templateId="2022" gender="" race="" title="Dakuryon's Private Guard" class="" />
+<String name="Archdevan Mutant" templateId="2031" gender="" race="" title="Dakuryon's Servant" class="" />
+<String name="Archdevan Priest" templateId="2018" gender="" race="" title="Medic" class="" />
+<String name="Archdevan Sniper" templateId="2028" gender="" race="" title="Guard" class="" />
+<String name="Archdevan Sorcerer" templateId="2016" gender="" race="" title="Researcher" class="" />
+<String name="Archdevan Specimen" templateId="2021" gender="" race="" title="" class="" />
+<String name="Archdevan Swordsman" templateId="2023" gender="" race="" title="Guard" class="" />
+<String name="Archdevan Warrior" templateId="2032" gender="" race="" title="Dakuryon's Private Guard" class="" />
+<String name="Archelith" templateId="9017" gender="female" race="vampir" title="Vampir Royal" class="" />
+<String name="Argon Evolved Shurian Summoner" templateId="63" gender="" race="" title="Argon" class="" />
+<String name="Argon Evolved Shurian Warrior" templateId="62" gender="" race="" title="Argon" class="" />
+<String name="Argon Kelba Ranger" templateId="30040" title="" />
+<String name="Argon Kelba Ranger" templateId="31040" title="" />
+<String name="Argon Kelba Ranger" templateId="50" gender="" race="" title="" class="" />
+<String name="Argon Kelba Ranger" templateId="51" title="" />
+<String name="Argon Magister Priest" templateId="603" gender="" race="" title="Argon" class="" />
+<String name="Argon Magister Priest" templateId="613" title="" />
+<String name="Argon Magister Priest" templateId="623" title="" />
+<String name="Argon Magister" templateId="30050" gender="" race="" title="" class="" />
+<String name="Argon Magister" templateId="30110" title="" />
+<String name="Argon Mothership" templateId="30030" title="" />
+<String name="Argon Mothership" templateId="31030" title="" />
+<String name="Argon Mothership" templateId="40" gender="" race="" title="" class="" />
+<String name="Argon Mothership" templateId="41" title="" />
+<String name="Argonomorph Forest Raptor" templateId="5026" gender="" race="" title="" class="" />
+<String name="Arien" templateId="2131" gender="" race="" title="Balderon Vendor" class="" />
+<String name="Arren" templateId="2178" gender="" race="" title="Noble Cleric" class="" />
+<String name="Arskol" templateId="20811" gender="" race="" title="" class="" />
+<String name="Arunic Orrery" templateId="9007" gender="" race="" title="" class="" />
+<String name="Ashen Reaver" templateId="5007" gender="" race="" title="" class="" />
+<String name="Ashie" templateId="10060" gender="" race="" title="Dye Supply Merchant" class="" />
+<String name="Ashie" templateId="21007" title="" />
+<String name="Astro" templateId="9051" gender="male" race="" title="Galaxy Explorer" class="" />
+<String name="Autumn Spirit" templateId="1000" gender="male" race="monster" title="" class="" />
+<String name="Avel" templateId="20608" gender="" race="" title="" class="" />
+<String name="Axel" templateId="20303" gender="" race="" title="" class="" />
+<String name="Aylen" templateId="2138" gender="" race="" title="Abyss Reputation Merchant" class="" />
+<String name="Azuma" templateId="2164" gender="" race="" title="Researcher" class="" />
+<String name="Azurael" templateId="2070" gender="" race="" title="Infernal Covenant Officer" class="" />
+<String name="BB-29" templateId="2" title="Superior Demokron" />
+<String name="Baelgrim" templateId="2028" gender="" race="" title="Specialty Store" class="" />
+<String name="Bailam" templateId="2113" gender="" race="" title="Veteran" class="" />
+<String name="Baki" templateId="2140" gender="" race="" title="Guardian" class="" />
+<String name="Balderon Defender" templateId="2085" gender="" race="" title="" class="" />
+<String name="Balderon Defender" templateId="2086" gender="" race="" title="" class="" />
+<String name="Balderon Guard" templateId="20000" gender="" race="" title="" class="" />
+<String name="Balderon Guard" templateId="20001" gender="" race="" title="" class="" />
+<String name="Balderon Guard" templateId="20002" gender="" race="" title="" class="" />
+<String name="Balderon Guard" templateId="20003" gender="" race="" title="" class="" />
+<String name="Balderon Guard" templateId="20004" gender="" race="" title="" class="" />
+<String name="Balderon Guard" templateId="20005" gender="" race="" title="" class="" />
+<String name="Balderon Guard" templateId="20006" gender="" race="" title="" class="" />
+<String name="Balderon Memorial" templateId="59007" />
+<String name="Balthor" templateId="2000" gender="" race="" title="Cleric of Restoration" class="" />
+<String name="Barak" templateId="10140" gender="" race="" title="Dungeon Advisor" class="" />
+<String name="Baraka Traveler" templateId="20707" gender="" race="" title="" class="" />
+<String name="Baraka Traveler" templateId="20708" gender="" race="" title="" class="" />
+<String name="Baraka Traveler" templateId="20709" gender="" race="" title="" class="" />
+<String name="Baruga" templateId="10111" gender="" race="" title="Etching Materials" class="" />
+<String name="Baruga" templateId="20810" title="" />
+<String name="Barylen" templateId="2280" gender="" race="" title="" class="" />
+<String name="Baslyn" templateId="2290" gender="" race="" title="Veteran" class="" />
+<String name="Bastor" templateId="2075" gender="" race="" title="" class="" />
+<String name="Beast Farming Crate" templateId="6000" gender="" race="" title="" class="" />
+<String name="Behemun" templateId="2264" gender="" race="" title="&quot;Sulfa&quot; Soldier" class="" />
+<String name="Beleha" templateId="2103" gender="" race="" title="Seeker" class="" />
+<String name="Bestin" templateId="21204" title="" />
+<String name="Bevell" templateId="2257" gender="" race="" title="Seeker Specialist" class="" />
+<String name="Blair" templateId="21201" title="" />
+<String name="Blanco" templateId="10012" gender="" race="" title="Merchant" class="" />
+<String name="Bloodshard Monument" templateId="2003" gender="" race="" title="" class="" />
+<String name="Bloodshard Repository Teleportal" templateId="1502" gender="male" race="" title="" class="" />
+<String name="Bloody Resonance Gate" templateId="2048" gender="" race="" title="" class="" />
+<String name="Bloody Resonance Gate" templateId="580001" gender="" race="" title="" class="" />
+<String name="Blooming Ghilliedhu" templateId="5014" gender="" race="" title="" class="" />
+<String name="Board" templateId="2287" gender="male" race="object" title="Forum" class="" />
+<String name="Book I: The City Gates" templateId="59001" />
+<String name="Book II: Voices of the Square" templateId="59002" />
+<String name="Book III: The Road to Knowledge" templateId="59003" />
+<String name="Book IV: The Keepers Remember" templateId="59004" />
+<String name="Book V: A Quiet Rest" templateId="59005" />
+<String name="Book VI: The Last Page" templateId="59006" />
+<String name="Box of Parts" templateId="5000" gender="male" race="monster" title="" class="" />
+<String name="Braam" templateId="11000" gender="" race="" title="Baldera Settler" class="" />
+<String name="Brokerage (temporary)" templateId="11004" gender="" race="" title="Baldera Settler" class="" />
+<String name="Brown Horse" templateId="20106" title="" />
+<String name="Bruce" templateId="20905" gender="" race="" title="" class="" />
+<String name="Bunbunmin" templateId="9016" gender="male" race="popori" title="Summer Coin Collector" class="" />
+<String name="Caged Argon Kelba" templateId="10020" gender="" race="" title="" class="" />
+<String name="Calidia" templateId="2270" gender="" race="" title="Architect" class="" />
+<String name="Calyndri" templateId="2029" gender="" race="" title="Specialty Store" class="" />
+<String name="Catalepticon Entrance" templateId="3204" gender="" race="" title="Teleportal" class="" />
+<String name="Catherene" templateId="2104" gender="" race="" title="Researcher" class="" />
+<String name="Cayron" templateId="10021" gender="" race="" title="Banker" class="" />
+<String name="Cesseron" templateId="10011" gender="" race="" title="Merchant" class="" />
+<String name="Chanel Elin" templateId="10092" gender="" race="" title="Angler Token Vendor" class="" />
+<String name="Chase the hooded figure through the teleportal." templateId="911" gender="male" race="monster" title="" class="" />
+<String name="Chicken" templateId="20100" title="" />
+<String name="Chiwan" templateId="2105" gender="" race="" title="Guardian" class="" />
+<String name="Chloe" templateId="20102" gender="" race="" title="" class="" />
+<String name="Cinematic Camera 1" templateId="31101" title="" />
+<String name="Cinematic Camera 10" templateId="31110" title="" />
+<String name="Cinematic Camera 2" templateId="31102" title="" />
+<String name="Cinematic Camera 3" templateId="31103" title="" />
+<String name="Cinematic Camera 4" templateId="31104" title="" />
+<String name="Cinematic Camera 5" templateId="31105" title="" />
+<String name="Cinematic Camera 6" templateId="31106" title="" />
+<String name="Cinematic Camera 7" templateId="31107" title="" />
+<String name="Cinematic Camera 8" templateId="31108" title="" />
+<String name="Cinematic Camera 9" templateId="31109" title="" />
+<String name="Corrupted RK-9" templateId="3000" gender="male" race="monster" title="Malfunctioning Masterpiece" class="" />
+<String name="Courtney" templateId="21203" title="" />
+<String name="Croana" templateId="10010" gender="" race="" title="Merchant" class="" />
+<String name="Culten" templateId="2204" gender="" race="" title="Watcher" class="" />
+<String name="Cursed Archdeva" templateId="3007" gender="" race="" title="Morph" class="" />
+<String name="Cyasma Pylon" templateId="7000" gender="" race="" title="Teleportal" class="" />
+<String name="Daersa" templateId="2267" gender="" race="" title="" class="" />
+<String name="Dakon" templateId="2112" gender="" race="" title="Researcher" class="" />
+<String name="Dakuryon" templateId="1001" gender="male" race="" title="3 Imitations" class="" />
+<String name="Dakuryon" templateId="2000" gender="" race="" title="" class="" />
+<String name="Dakuryon" templateId="30100" title="" />
+<String name="Damaroon" templateId="10094" gender="" race="" title="Association Fishmonger" class="" />
+<String name="Damaroon" templateId="2068" gender="" race="" title="Echo Arcana Curator" class="" />
+<String name="Danakka" templateId="10093" gender="" race="" title="Fishing Association Manager" class="" />
+<String name="Danju" templateId="10071" gender="" race="" title="Vanguard Crystal Keeper" class="" />
+<String name="Danju" templateId="11005" gender="" race="" title="Baldera Traveler" class="" />
+<String name="Daram" templateId="10144" gender="" race="" title="Training Ground Master" class="" />
+<String name="Darion" templateId="2037" gender="" race="" title="Tailoring Materials" class="" />
+<String name="Davarn" templateId="9068" gender="male" race="Highelf" title="Veil Defender" class="" />
+<String name="Deactivate All Control Panels" templateId="914" gender="male" race="monster" title="" class="" />
+<String name="Defeat Archdevas" templateId="912" gender="" race="" title="" class="" />
+<String name="Defeat Archdevas" templateId="914" gender="" race="" title="" class="" />
+<String name="Defeat Corrupted RK-9." templateId="916" gender="male" race="monster" title="" class="" />
+<String name="Defeat Dakuryon" templateId="913" gender="" race="" title="" class="" />
+<String name="Defeat Hexapleon" templateId="915" gender="male" race="monster" title="" class="" />
+<String name="Defeat Lumikan." templateId="100" gender="" race="" title="" class="" />
+<String name="Defeat Pahoegar" templateId="911" gender="" race="" title="" class="" />
+<String name="Defeat Rogash." templateId="100" gender="" race="" title="" class="" />
+<String name="Defeat Rogash." templateId="100" gender="" race="" title="" class="" />
+<String name="Defeat Ventarun" templateId="913" gender="male" race="monster" title="" class="" />
+<String name="Defeat the Imperator" templateId="915" gender="" race="" title="" class="" />
+<String name="Delga" templateId="10040" gender="" race="" title="Development Merchant" class="" />
+<String name="Delisk" templateId="2268" gender="" race="" title="Retired &quot;Glora&quot; Commander" class="" />
+<String name="Delline" templateId="2214" gender="" race="" title="Seeker" class="" />
+<String name="Demokron Specimen" templateId="3005" gender="" race="" title="Mutant" class="" />
+<String name="Demokron" templateId="20001" title="" />
+<String name="Dennis" templateId="20503" gender="" race="" title="" class="" />
+<String name="Despacito" templateId="10051" gender="" race="" title="Specialty Store" class="" />
+<String name="Despacito" templateId="2036" gender="" race="" title="Bellicarium Merchant" class="" />
+<String name="Despacito" templateId="21100" title="" />
+<String name="Devane" templateId="21101" title="" />
+<String name="Deviam" templateId="2252" gender="" race="" title="&quot;Daga&quot; Soldier" class="" />
+<String name="Disturbed Shadow Soul" templateId="5024" gender="" race="" title="" class="" />
+<String name="Doapang" templateId="3001" gender="" race="" title="Noble Cleric of Restoration" class="" />
+<String name="Doeron" templateId="2225" gender="" race="" title="Seeker" class="" />
+<String name="Donard V" templateId="10145" gender="" race="" title="Guild Conquest Ranked Battle Administrator" class="" />
+<String name="Dougal" templateId="2271" gender="" race="" title="Vanguard Legate" class="" />
+<String name="Draven" templateId="2032" gender="" race="" title="Minister of Finance" class="" />
+<String name="Drone" templateId="2000" gender="" race="" title="" class="" />
+<String name="Drone" templateId="2000" gender="" race="" title="" class="" />
+<String name="Duke" templateId="20104" gender="" race="" title="" class="" />
+<String name="Dylen" templateId="2137" gender="" race="" title="Sky Cruiser Reputation Merchant" class="" />
+<String name="Eclair" templateId="10123" gender="" race="" title="GvG Goods" class="" />
+<String name="Edison" templateId="2127" gender="" race="" title="Seeker" class="" />
+<String name="Edward" templateId="20504" gender="" race="" title="" class="" />
+<String name="Eleana" templateId="20604" gender="" race="" title="" class="" />
+<String name="Elenia" templateId="2035" gender="" race="" title="Association Fishmonger" class="" />
+<String name="Eleyan" templateId="2246" gender="" race="" title="Baldera Guard" class="" />
+<String name="Elinor" templateId="2039" gender="" race="" title="Ace Dungeon Instructor" class="" />
+<String name="Elite Zalikari Champion" templateId="5005" gender="" race="" title="" class="" />
+<String name="Elite Zalikari Scout" templateId="5006" gender="" race="" title="" class="" />
+<String name="Elite Zalikari Warrior" templateId="5004" gender="" race="" title="" class="" />
+<String name="Elleon" templateId="2044" gender="" race="" title="PvP Executive" class="" />
+<String name="Ellevoss" templateId="10030" gender="" race="" title="Trade Broker" class="" />
+<String name="Elli" templateId="21004" gender="" race="" title="" class="" />
+<String name="Ellonia" templateId="8000" gender="female" race="monster" title="Halloween Guide" class="" />
+<String name="Elumina" templateId="2221" gender="" race="" title="" class="" />
+<String name="Embermaw" templateId="5003" gender="" race="" title="Ancient Beast" class="" />
+<String name="Emilia" templateId="18358" gender="" race="" title="North Arun Explorer" class="" />
+<String name="Emilia" templateId="2041" gender="" race="" title="North Arun Explorer" class="" />
+<String name="Empowered Vulcan" templateId="5000" title="Empowered Beast" />
+<String name="Enrique" templateId="10081" gender="" race="" title="Magic Instructor" class="" />
+<String name="Eorr" templateId="20705" gender="" race="" title="" class="" />
+<String name="Erork" templateId="10112" gender="" race="" title="Alchemy Materials" class="" />
+<String name="Erork" templateId="20507" title="" />
+<String name="Esahk" templateId="2171" gender="" race="" title="Naga Envoy" class="" />
+<String name="Eun" templateId="2168" gender="" race="" title="" class="" />
+<String name="Evitomar" templateId="10014" gender="" race="" title="Merchant" class="" />
+<String name="Exit Teleportal" templateId="1501" gender="male" race="" title="" class="" />
+<String name="Exit Teleportal" templateId="1504" gender="" race="" title="" class="" />
+<String name="Faelivrin" templateId="2006" gender="" race="" title="Fishing Supplies" class="" />
+<String name="Farran" templateId="2172" gender="" race="" title="Noble Cleric" class="" />
+<String name="Faywen" templateId="2265" gender="" race="" title="&quot;Sulfa&quot; Commander" class="" />
+<String name="Feargus" templateId="20903" gender="" race="" title="" class="" />
+<String name="Fenris" templateId="2033" gender="" race="" title="Civil Unrest Guide" class="" />
+<String name="Ferocious Forest Ovolith" templateId="5009" gender="" race="" title="" class="" />
+<String name="Ferus" templateId="2259" gender="" race="" title="Crescentia Aide" class="" />
+<String name="Feryn" templateId="2166" gender="" race="" title="" class="" />
+<String name="Fianar" templateId="2256" gender="" race="" title="&quot;Daga&quot; Commander" class="" />
+<String name="Fiaren" templateId="9069" gender="female" race="" title="Bloody Beach Coin Collector" class="" />
+<String name="Fledgling Basilisk" templateId="3000" title="Tamed Beast" />
+<String name="Fledgling Petrax" templateId="1000" title="Fledgling Beast" />
+<String name="Floere" templateId="2232" gender="" race="" title="" class="" />
+<String name="Forest Raptor" templateId="5027" gender="" race="" title="" class="" />
+<String name="Fraya" templateId="9064" gender="female" race="Highelf" title="Allemantheia Commander" class="" />
+<String name="Fraya" templateId="9067" gender="female" race="Highelf" title="Allemantheia Commander" class="" />
+<String name="Fusion Laboratory Entrance" templateId="1505" gender="" race="object" title="Teleportal" class="" />
+<String name="Fusion Laboratory Entrance" templateId="3205" gender="" race="" title="Teleportal" class="" />
+<String name="Gajuang" templateId="10170" gender="" race="" title="Flight Manager" class="" />
+<String name="Gavin" templateId="10090" gender="" race="" title="Federation Resource Manager" class="" />
+<String name="Geri Morris" templateId="10500" gender="" race="" title="Baldera Settler" class="" />
+<String name="Ghaleon" templateId="2249" gender="" race="" title="Mysterium Contractor" class="" />
+<String name="Giant Bee" templateId="5022" gender="male" race="monster" title="" class="" />
+<String name="Giant Murderous Plant" templateId="5023" gender="male" race="monster" title="" class="" />
+<String name="Giant Queen Bee" templateId="5028" gender="male" race="monster" title="" class="" />
+<String name="Goddess Kaia" templateId="9061" gender="female" race="God" title="" class="" />
+<String name="Golden Cannon" templateId="9070" gender="female" race="" title="Black Pearl Collecting Machine" class="" />
+<String name="Golem Shard" templateId="1001" gender="" race="" title="" class="" />
+<String name="Gorga" templateId="20800" gender="" race="" title="" class="" />
+<String name="Gorkil" templateId="20809" gender="" race="" title="" class="" />
+<String name="Gorlathar" templateId="2007" gender="" race="" title="Fishing Supplies" class="" />
+<String name="Gozzak" templateId="20802" gender="" race="" title="" class="" />
+<String name="Grim" templateId="2034" gender="" race="" title="Association Fishmonger" class="" />
+<String name="Guardian Hydrath" templateId="5015" gender="" race="" title="" class="" />
+<String name="Guzz" templateId="20501" gender="" race="" title="" class="" />
+<String name="Gyao" templateId="20306" gender="" race="" title="" class="" />
+<String name="Gyoguan" templateId="240054" gender="" race="" title="Secret Training Camp Instructor" class="" />
+<String name="Hael" templateId="2047" gender="" race="" title="Dungeon Advisor" class="" />
+<String name="Haiako" templateId="2146" gender="" race="" title="Gatherer" class="" />
+<String name="Haldorin" templateId="2008" gender="" race="" title="Angler Token Vendor" class="" />
+<String name="Halryn" templateId="2165" gender="" race="" title="" class="" />
+<String name="Halveterak's Shade" templateId="5025" gender="" race="" title="Vassal of Shandra Manaya" class="" />
+<String name="Hamele" templateId="2241" gender="" race="" title="Junior Seeker" class="" />
+<String name="Handcart" templateId="20200" title="" />
+<String name="Harne" templateId="2220" gender="" race="" title="" class="" />
+<String name="Harnovog" templateId="2000" gender="male" race="" title="Demon" class="" />
+<String name="Haroom" templateId="10110" gender="" race="" title="Processing Materials" class="" />
+<String name="Hasmina" templateId="10000" gender="Female" race="Castanic" title="Argon War Hero" class="" />
+<String name="Hasmina" templateId="10000" gender="Female" race="Castanic" title="Argon War Hero" class="" />
+<String name="Hasmina" templateId="10000" gender="Female" race="Castanic" title="Argon War Hero" class="" />
+<String name="Hasmina" templateId="10000" gender="Female" race="Castanic" title="Argon War Hero" class="" />
+<String name="Hasmina" templateId="10001" gender="Female" race="Castanic" title="Argon War Hero" class="" />
+<String name="Hasmina" templateId="10002" gender="Female" race="Castanic" title="Argon War Hero" class="" />
+<String name="Hasmina" templateId="10003" gender="Female" race="Castanic" title="Argon War Hero" class="" />
+<String name="Hasmina" templateId="10003" gender="Female" race="Castanic" title="Argon War Hero" class="" />
+<String name="Hasmina" templateId="10004" gender="Female" race="Castanic" title="Argon War Hero" class="" />
+<String name="Hasmina" templateId="10005" gender="Female" race="Castanic" title="Argon War Hero" class="" />
+<String name="Hasmina" templateId="10006" gender="Female" race="Castanic" title="Argon War Hero" class="" />
+<String name="Hasmina" templateId="10007" gender="Female" race="Castanic" title="Argon War Hero" class="" />
+<String name="Hasmina" templateId="10008" gender="Female" race="Castanic" title="Argon War Hero" class="" />
+<String name="Hasmina" templateId="10009" gender="Female" race="Castanic" title="Argon War Hero" class="" />
+<String name="Hasmina" templateId="10011" gender="Female" race="Castanic" title="Argon War Hero" class="" />
+<String name="Hasmina" templateId="10012" gender="Female" race="Castanic" title="Argon War Hero" class="" />
+<String name="Hasmina" templateId="10013" title="" />
+<String name="Hasmina" templateId="10014" title="" />
+<String name="Hasmina" templateId="10015" title="" />
+<String name="Hasmina" templateId="10016" title="" />
+<String name="Hasmina" templateId="2000" gender="Female" race="Castanic" title="Argon War Hero" class="" />
+<String name="Hasmina" templateId="2001" gender="Female" race="Castanic" title="Argon War Hero" class="" />
+<String name="Hasmina" templateId="2002" gender="Female" race="Castanic" title="Argon War Hero" class="" />
+<String name="Hasmina" templateId="2003" gender="Female" race="Castanic" title="Argon War Hero" class="" />
+<String name="Hasmina" templateId="30000" gender="Female" race="Castanic" title="Argon War Hero" class="" />
+<String name="Hasmina" templateId="30001" gender="Female" race="Castanic" title="Argon War Hero" class="" />
+<String name="Hasmina" templateId="30002" gender="Female" race="Castanic" title="Argon War Hero" class="" />
+<String name="Hasmina" templateId="30003" gender="Female" race="Castanic" title="Argon War Hero" class="" />
+<String name="Hasmina" templateId="31010" gender="Female" race="Castanic" title="Argon War Hero" class="" />
+<String name="Hasmina" templateId="31011" gender="Female" race="Castanic" title="Argon War Hero" class="" />
+<String name="Hasmina" templateId="31012" gender="Female" race="Castanic" title="Argon War Hero" class="" />
+<String name="Hasmina" templateId="31013" gender="Female" race="Castanic" title="Argon War Hero" class="" />
+<String name="Hasmina" templateId="31014" gender="Female" race="Castanic" title="Argon War Hero" class="" />
+<String name="Hasmina" templateId="31015" gender="Female" race="Castanic" title="Argon War Hero" class="" />
+<String name="Hasmina" templateId="50000" gender="" race="" title="Argon War Hero" class="" />
+<String name="Hasmina" templateId="50000" gender="" race="" title="Argon War Hero" class="" />
+<String name="Hasmina" templateId="50001" gender="" race="" title="Argon War Hero" class="" />
+<String name="Hasmina" templateId="50001" gender="" race="" title="Argon War Hero" class="" />
+<String name="Hasmina" templateId="9020" gender="female" race="" title="War Hero" class="" />
+<String name="Hasmina" templateId="9021" gender="female" race="" title="War Hero" class="" />
+<String name="Haywen" templateId="2281" gender="" race="" title="Mentor" class="" />
+<String name="Henur" templateId="2191" gender="" race="" title="Prospect" class="" />
+<String name="Hexapleon" templateId="2000" gender="male" race="monster" title="Overlord" class="" />
+<String name="Himmin" templateId="2215" gender="" race="" title="" class="" />
+<String name="Hoakha" templateId="10010" gender="Male" race="Aman" title="" class="" />
+<String name="Hoakha" templateId="10100" gender="Male" race="Aman" title="" class="" />
+<String name="Hoakha" templateId="10101" gender="Male" race="Aman" title="" class="" />
+<String name="Hoakha" templateId="10102" gender="Male" race="Aman" title="" class="" />
+<String name="Hoakha" templateId="10103" gender="Male" race="Aman" title="" class="" />
+<String name="Hoakha" templateId="10104" gender="Male" race="Aman" title="" class="" />
+<String name="Hoakha" templateId="10105" gender="Male" race="Aman" title="" class="" />
+<String name="Hoakha" templateId="10106" gender="Male" race="Aman" title="" class="" />
+<String name="Hoakha" templateId="10107" gender="Male" race="Aman" title="" class="" />
+<String name="Hoakha" templateId="10108" gender="Male" race="Aman" title="" class="" />
+<String name="Hoakha" templateId="10109" gender="Male" race="Aman" title="" class="" />
+<String name="Hoakha" templateId="10110" gender="Male" race="Aman" title="" class="" />
+<String name="Hoakha" templateId="10111" gender="Male" race="Aman" title="" class="" />
+<String name="Hoakha" templateId="10112" gender="Male" race="Aman" title="" class="" />
+<String name="Hoakha" templateId="10113" title="" />
+<String name="Hoakha" templateId="10114" title="" />
+<String name="Hoakha" templateId="10115" title="" />
+<String name="Hoakha" templateId="10116" title="" />
+<String name="Hoakha" templateId="20001" gender="Male" race="Aman" title="Baldera" class="" />
+<String name="Hoakha" templateId="3000" gender="Male" race="Aman" title="" class="" />
+<String name="Hoakha" templateId="3001" gender="Male" race="Aman" title="" class="" />
+<String name="Hoakha" templateId="30010" gender="" race="" title="" class="" />
+<String name="Hoakha" templateId="30011" gender="" race="" title="" class="" />
+<String name="Hoakha" templateId="30012" gender="" race="" title="" class="" />
+<String name="Hoakha" templateId="30013" gender="" race="" title="" class="" />
+<String name="Hoakha" templateId="3002" gender="Male" race="Aman" title="" class="" />
+<String name="Hoakha" templateId="3003" gender="Male" race="Aman" title="" class="" />
+<String name="Hoakha" templateId="31020" gender="" race="" title="" class="" />
+<String name="Hoakha" templateId="31021" gender="" race="" title="" class="" />
+<String name="Hoakha" templateId="31022" gender="" race="" title="" class="" />
+<String name="Hoakha" templateId="31023" gender="" race="" title="" class="" />
+<String name="Hoakha" templateId="31024" gender="" race="" title="" class="" />
+<String name="Hoakha" templateId="31025" gender="" race="" title="" class="" />
+<String name="Hoakha" templateId="50100" gender="" race="" title="" class="" />
+<String name="Hoakha" templateId="50100" gender="" race="" title="" class="" />
+<String name="Hoakha" templateId="50101" gender="" race="" title="" class="" />
+<String name="Hoakha" templateId="50101" gender="" race="" title="" class="" />
+<String name="Hooded Figure" templateId="6002" gender="male" race="" title="" class="" />
+<String name="Horned Basilisk" templateId="5000" gender="" race="" title="" class="" />
+<String name="Humfrick" templateId="20902" gender="" race="" title="" class="" />
+<String name="Husti" templateId="20304" gender="" race="" title="" class="" />
+<String name="Hyrumm" templateId="2094" gender="" race="" title="Vanguard Initiative Crystal Merchant" class="" />
+<String name="Iliathor" templateId="2010" gender="" race="" title="Specialty Merchant" class="" />
+<String name="Immortal Verno" templateId="46704" gender="male" race="monster" title="" class="" />
+<String name="Imperator" templateId="3000" gender="" race="" title="" class="" />
+<String name="Imperator's Sanctum Teleportal" templateId="1503" gender="male" race="" title="" class="" />
+<String name="Incubator" templateId="31000" title="" />
+<String name="Infernal Bloodguard" templateId="5017" gender="male" race="monster" title="" class="" />
+<String name="Infernal Bloodmage" templateId="5021" gender="male" race="monster" title="" class="" />
+<String name="Infernal Bloodmistress" templateId="5018" gender="female" race="monster" title="" class="" />
+<String name="Infernal Bloodweaver" templateId="5019" gender="male" race="monster" title="" class="" />
+<String name="Inra" templateId="2286" gender="" race="" title="" class="" />
+<String name="Invisible Actor" templateId="2001" gender="" race="" title="Cleric of Restoration" class="" />
+<String name="Invisible Actor" templateId="2002" title="" />
+<String name="Invisible Actor" templateId="2003" gender="" race="" title="" class="" />
+<String name="Invisible Actor" templateId="2004" title="" />
+<String name="Invisible Actor" templateId="2005" gender="" race="" title="Flight Manager" class="" />
+<String name="Invisible Actor" templateId="30130" title="" />
+<String name="Invisible Barrier" templateId="20002" title="" />
+<String name="Jach" templateId="21104" title="" />
+<String name="Jalize" templateId="2098" gender="" race="" title="Vigilante" class="" />
+<String name="Janeris" templateId="2269" gender="" race="" title="Architect" class="" />
+<String name="Jarson" templateId="2248" gender="" race="" title="Forest Overseer" class="" />
+<String name="Jarvis" templateId="2153" gender="" race="" title="" class="" />
+<String name="Jascar" templateId="2115" gender="" race="" title="Researcher" class="" />
+<String name="Jasparion" templateId="2009" gender="" race="" title="Vanguard Initiative Quartermaster" class="" />
+<String name="Javren" templateId="2288" gender="" race="" title="Veteran" class="" />
+<String name="Jemaar" templateId="2253" gender="" race="" title="&quot;Daga&quot; Centurion" class="" />
+<String name="Jennie" templateId="21002" gender="" race="" title="" class="" />
+<String name="Joanna" templateId="21005" gender="" race="" title="" class="" />
+<String name="Johann" templateId="21102" title="" />
+<String name="Jotharius" templateId="2278" gender="" race="" title="Balderon Elder" class="" />
+<String name="Kabial" templateId="2212" gender="" race="" title="Cartographer" class="" />
+<String name="Kael" templateId="2038" gender="" race="" title="Cooking Supplies" class="" />
+<String name="Kaelorin" templateId="2011" gender="" race="" title="Specialty Merchant" class="" />
+<String name="Kaia" templateId="10030" gender="female" race="God" title="" class="" />
+<String name="Kaia" templateId="10600" gender="" race="" title="" class="" />
+<String name="Kaia's Faerie" templateId="20000" gender="" race="" title="" class="" />
+<String name="Kallan Reaver" templateId="1" gender="" race="" title="Argon" class="" />
+<String name="Kallan Reaver" templateId="60" gender="" race="" title="Argon" class="" />
+<String name="Kamiel" templateId="2148" gender="" race="" title="Elder Seeker" class="" />
+<String name="Kaon" templateId="2128" gender="" race="" title="Seeker" class="" />
+<String name="Karekas" templateId="2030" gender="" race="" title="Pit of Petrax Overseer" class="" />
+<String name="Keceron" templateId="2080" gender="" race="" title="" class="" />
+<String name="Khioni" templateId="10070" gender="" race="" title="Vanguard Initiative Merchant" class="" />
+<String name="Kiatan" templateId="2244" gender="" race="" title="Elder Seeker" class="" />
+<String name="Kimbe" templateId="2054" gender="" race="" title="Merchant" class="" />
+<String name="Kinie" templateId="20402" gender="" race="" title="" class="" />
+<String name="Kiorn" templateId="2202" gender="" race="" title="" class="" />
+<String name="Krestal" templateId="2230" gender="" race="" title="" class="" />
+<String name="Krumnun" templateId="2222" gender="" race="" title="Seeker" class="" />
+<String name="Kuga" templateId="10113" gender="" race="" title="Smelting Materials" class="" />
+<String name="Kukuri" templateId="20302" gender="" race="" title="" class="" />
+<String name="Kumt" templateId="20805" gender="" race="" title="" class="" />
+<String name="Kuru" templateId="9040" gender="male" race="" title="Dragon Tamer" class="" />
+<String name="Kuumba" templateId="20701" gender="" race="" title="" class="" />
+<String name="Kyle" templateId="20703" gender="" race="" title="" class="" />
+<String name="Kyle" templateId="2079" gender="" race="" title="" class="" />
+<String name="Kyrae" templateId="2273" gender="" race="" title="Wynndar's Assistant" class="" />
+<String name="Kyshar" templateId="2125" gender="" race="" title="Guardian" class="" />
+<String name="Labarin" templateId="2274" gender="" race="" title="&quot;Isthel&quot; Commander" class="" />
+<String name="Laivyn" templateId="2152" gender="" race="" title="" class="" />
+<String name="Lamer" templateId="2053" gender="" race="" title="Merchant" class="" />
+<String name="Lanyl" templateId="2154" gender="" race="" title="" class="" />
+<String name="Large Chicken" templateId="20101" title="" />
+<String name="Latto" templateId="2114" gender="" race="" title="Seeker" class="" />
+<String name="Layshin" templateId="2141" gender="" race="" title="Researcher" class="" />
+<String name="Leslie" templateId="20904" gender="" race="" title="" class="" />
+<String name="Liahsa" templateId="21008" gender="" race="" title="Resonance Researcher" class="" />
+<String name="Liam" templateId="2066" gender="" race="" title="Infernal Covenant" class="" />
+<String name="Lien" templateId="20606" gender="" race="" title="" class="" />
+<String name="Lifeless Body" templateId="2234" gender="" race="" title="" class="" />
+<String name="Lifeless Body" templateId="2235" gender="" race="" title="" class="" />
+<String name="Lifeless Body" templateId="2236" gender="" race="" title="" class="" />
+<String name="Linn" templateId="2110" gender="" race="" title="Traveler" class="" />
+<String name="Lira" templateId="9072" gender="" race="" title="[PvP] Fragment Collector" class="" />
+<String name="Lirien" templateId="2012" gender="" race="" title="Specialty Merchant" class="" />
+<String name="Lisel" templateId="2155" gender="" race="" title="" class="" />
+<String name="Loriah" templateId="2277" gender="" race="" title="" class="" />
+<String name="Lost Naga" templateId="2209" gender="" race="" title="" class="" />
+<String name="Lucas" templateId="2106" gender="" race="" title="Ecoactivist" class="" />
+<String name="Lumi" templateId="2076" gender="" race="" title="" class="" />
+<String name="Lumikan" templateId="1000" gender="female" race="monster" title="" class="" />
+<String name="Lumishe" templateId="2179" gender="" race="" title="Collector" class="" />
+<String name="Luvarin" templateId="2291" gender="" race="" title="Skycastle Guide" class="" />
+<String name="Lylen" templateId="2282" gender="" race="" title="" class="" />
+<String name="Lyndon" templateId="2201" gender="" race="" title="Vigilante" class="" />
+<String name="Lynya" templateId="2045" gender="" race="" title="Explorer" class="" />
+<String name="Maddie" templateId="21205" title="" />
+<String name="Mahadam" templateId="2156" gender="" race="" title="" class="" />
+<String name="Mahar" templateId="20700" gender="" race="" title="" class="" />
+<String name="Manon" templateId="2185" gender="" race="" title="" class="" />
+<String name="Mapron" templateId="2167" gender="" race="" title="Seeker" class="" />
+<String name="Marath" templateId="2145" gender="" race="" title="" class="" />
+<String name="Mariam" templateId="10120" gender="" race="" title="Guild Manager" class="" />
+<String name="Maridu" templateId="2245" gender="" race="" title="Seeker Specialist" class="" />
+<String name="Marilyn" templateId="21003" gender="" race="" title="" class="" />
+<String name="Marol" templateId="2266" gender="" race="" title="" class="" />
+<String name="Marur" templateId="2250" gender="" race="" title="Jascar's Aide" class="" />
+<String name="Mattin" templateId="20502" gender="" race="" title="" class="" />
+<String name="Max" templateId="20103" gender="" race="" title="" class="" />
+<String name="Meandering Forest Earth Spirit" templateId="5" gender="" race="" title="" class="" />
+<String name="Meandering Forest Ghilliedhu" templateId="2" gender="" race="" title="" class="" />
+<String name="Meandering Forest Nature Spirit" templateId="7" gender="" race="" title="" class="" />
+<String name="Meandering Forest Shurian Summoner" templateId="20" gender="" race="" title="" class="" />
+<String name="Meandering Forest Shurian Warrior" templateId="10" gender="" race="" title="" class="" />
+<String name="Meandering Forest Shurian Warrior" templateId="11" gender="" race="" title="" class="" />
+<String name="Meandering Forest Tree Spirit" templateId="1" gender="" race="" title="" class="" />
+<String name="Meandering Forest Water Spirit" templateId="4" gender="" race="" title="" class="" />
+<String name="Mei" templateId="2147" gender="" race="" title="" class="" />
+<String name="Melania" templateId="20605" gender="" race="" title="" class="" />
+<String name="Meram" templateId="2158" gender="" race="" title="" class="" />
+<String name="Mia" templateId="2292" gender="" race="" title="Master Supply Commissioner" class="" />
+<String name="Midiur" templateId="2161" gender="" race="" title="Scout" class="" />
+<String name="Mien" templateId="20401" gender="" race="" title="" class="" />
+<String name="Milen" templateId="2160" gender="" race="" title="Scout" class="" />
+<String name="Milly" templateId="20405" gender="" race="" title="" class="" />
+<String name="Milo" templateId="20107" gender="" race="" title="" class="" />
+<String name="Minion" templateId="1021" gender="" race="monster" title="" class="" />
+<String name="Mirian" templateId="10031" gender="" race="" title="Trade Broker" class="" />
+<String name="Mishu" templateId="2159" gender="" race="" title="" class="" />
+<String name="Monte" templateId="2289" gender="" race="" title="Veteran" class="" />
+<String name="Monument of Dispair" templateId="3003" gender="" race="" title="" class="" />
+<String name="Monument of Fury" templateId="3001" gender="" race="" title="" class="" />
+<String name="Monument of Greed" templateId="3002" gender="" race="" title="" class="" />
+<String name="Monument of Massacre" templateId="3004" gender="" race="" title="" class="" />
+<String name="Mossy Ghilliedhu" templateId="5002" gender="" race="" title="" class="" />
+<String name="Myana" templateId="2255" gender="" race="" title="Seeker Specialist" class="" />
+<String name="Mylen" templateId="2136" gender="" race="" title="Plexus Reputation Merchant" class="" />
+<String name="Myren" templateId="9071" gender="" race="" title="[PvE] Fragment Collector" class="" />
+<String name="Nacum" templateId="2194" gender="" race="" title="Balderon Sentry" class="" />
+<String name="Naderung" templateId="10142" gender="" race="" title="Arena Guide" class="" />
+<String name="Nadine" templateId="10141" gender="" race="" title="Echo Arcana Administrator" class="" />
+<String name="Naila" templateId="20806" gender="" race="" title="" class="" />
+<String name="Namburus's Shade" templateId="5029" gender="" race="" title="Waykeeper" class="" />
+<String name="Nantis" templateId="2284" gender="" race="" title="" class="" />
+<String name="Narvuul Teralith" templateId="5012" gender="" race="" title="" class="" />
+<String name="Nehfotin" templateId="20908" gender="" race="" title="" class="" />
+<String name="Netharis" templateId="2014" gender="" race="" title="Specialty Merchant" class="" />
+<String name="Nezahk" templateId="2213" gender="" race="" title="Balderon Guard" class="" />
+<String name="Nievera" templateId="2258" gender="" race="" title="&quot;Sulfa&quot; Legate" class="" />
+<String name="Nillen" templateId="2217" gender="" race="" title="Seeker" class="" />
+<String name="Nimun" templateId="2139" gender="" race="" title="Seeker" class="" />
+<String name="Niral" templateId="2143" gender="" race="" title="Researcher" class="" />
+<String name="Nur" templateId="2087" gender="" race="" title="Balderon Guard" class="" />
+<String name="Olsen" templateId="8021" gender="" race="object" title="Evil Santa" class="" />
+<String name="Orbak" templateId="20702" gender="" race="" title="" class="" />
+<String name="Ori" templateId="2052" gender="" race="" title="Banker" class="" />
+<String name="Oriax" templateId="2015" gender="" race="" title="Magic Supplies" class="" />
+<String name="Paesyn" templateId="9053" gender="male" race="Popori" title="Love Engineer" class="" />
+<String name="Pahoegar" templateId="1000" gender="" race="" title="Demokron Guardian" class="" />
+<String name="Parched Ghilliedhu" templateId="3" gender="" race="" title="" class="" />
+<String name="Pegasus (temporary)" templateId="11003" gender="" race="" title="Baldera Settler" class="" />
+<String name="Perett" templateId="2211" gender="" race="" title="Guide" class="" />
+<String name="Perkna" templateId="10013" gender="" race="" title="Merchant" class="" />
+<String name="Pherion" templateId="2016" gender="" race="" title="Magic Supplies" class="" />
+<String name="Poisoned Unicorn" templateId="6" gender="" race="" title="" class="" />
+<String name="Polluted Tree Spirit" templateId="5008" gender="" race="" title="" class="" />
+<String name="Pure Resonance Gate" templateId="2050" gender="" race="" title="" class="" />
+<String name="Pure Resonance Gate" templateId="580004" gender="" race="" title="" class="" />
+<String name="Puzzling Monument" templateId="2109" gender="" race="" title="" class="" />
+<String name="Puzzling Monument" templateId="2224" gender="" race="" title="" class="" />
+<String name="Quelanthir" templateId="2017" gender="" race="" title="Banker" class="" />
+<String name="Rain" templateId="20505" gender="" race="" title="" class="" />
+<String name="Rakuni" templateId="20301" gender="" race="" title="" class="" />
+<String name="Ramer" templateId="2111" gender="" race="" title="Seeker" class="" />
+<String name="Rampaging Rogash" templateId="1000" gender="male" race="" title="Supreme Commander" class="" />
+<String name="Randun" templateId="20901" gender="" race="" title="" class="" />
+<String name="Randun" templateId="6003" gender="male" race="" title="" class="" />
+<String name="Randun" templateId="6004" gender="male" race="" title="" class="" />
+<String name="Randun's Belongings" templateId="5001" gender="male" race="monster" title="" class="" />
+<String name="Randun's Journal #14" templateId="6005" gender="male" race="" title="" class="" />
+<String name="Randun's Journal #7" templateId="6006" gender="male" race="" title="" class="" />
+<String name="Raven" templateId="2018" gender="" race="" title="Banker" class="" />
+<String name="Rawon" templateId="2263" gender="" race="" title="&quot;Sulfa&quot; Soldier" class="" />
+<String name="Reckdori" templateId="10091" gender="" race="" title="Fishing Supplies" class="" />
+<String name="Reinel" templateId="2279" gender="" race="" title="" class="" />
+<String name="Rellan" templateId="9030" gender="male" race="" title="Dragon Researcher" class="" />
+<String name="Rellan" templateId="9031" gender="male" race="" title="Dragon Researcher" class="" />
+<String name="Renaii" templateId="20804" gender="" race="" title="" class="" />
+<String name="Resonance Altar" templateId="580002" gender="" race="" title="" class="" />
+<String name="Resonance Gate" templateId="2049" gender="" race="" title="" class="" />
+<String name="Resonance Gate" templateId="580003" gender="" race="" title="" class="" />
+<String name="Rhodos" templateId="2272" gender="" race="" title="Khirian Commander" class="" />
+<String name="Rhodos" templateId="4000" gender="Male" race="" title="" class="" />
+<String name="Rhodos" templateId="4001" gender="Male" race="" title="" class="" />
+<String name="Roasvi" templateId="20704" gender="" race="" title="" class="" />
+<String name="Rob" templateId="20506" gender="" race="" title="" class="" />
+<String name="Roberto" templateId="10050" gender="" race="" title="Specialty Store" class="" />
+<String name="Roberto" templateId="2067" gender="" race="" title="Arena Guide" class="" />
+<String name="Rogash" templateId="1000" gender="male" race="" title="Supreme Commander" class="" />
+<String name="Rogise" templateId="2192" gender="" race="" title="Guardian" class="" />
+<String name="Rolley" templateId="2031" gender="" race="" title="Guild Shop" class="" />
+<String name="Roso" templateId="2126" gender="" race="" title="Gatherer" class="" />
+<String name="Rui" templateId="2123" gender="" race="" title="Guardian" class="" />
+<String name="Runhart" templateId="2233" gender="" race="" title="Prospect" class="" />
+<String name="Ruqii" templateId="5030" gender="" race="" title="Infernal Covenant Commander" class="" />
+<String name="Samuel" templateId="21103" title="" />
+<String name="Saravash's Shade" templateId="5013" gender="" race="" title="Ressurected Vassal of Shandra Manaya" class="" />
+<String name="Saren" templateId="2019" gender="" race="" title="Banker" class="" />
+<String name="Seiara" templateId="2176" gender="" race="" title="" class="" />
+<String name="Seir" templateId="9060" gender="male" race="Human" title="Valkyon Allied Forces Commander" class="" />
+<String name="Seir" templateId="9063" gender="male" race="Human" title="Valkyon Allied Forces Commander" class="" />
+<String name="Selina" templateId="20603" gender="" race="" title="" class="" />
+<String name="Sergio" templateId="10080" gender="" race="" title="Tactics Instructor" class="" />
+<String name="Shade" templateId="1000" gender="Male" race="Castanic" title="Ecosystem Expert" class="" />
+<String name="Shade" templateId="10020" gender="Male" race="Castanic" title="Ecosystem Expert" class="" />
+<String name="Shade" templateId="10021" gender="Male" race="Castanic" title="Ecosystem Expert" class="" />
+<String name="Shade" templateId="10200" gender="Male" race="Castanic" title="Ecosystem Expert" class="" />
+<String name="Shade" templateId="10201" gender="Male" race="Castanic" title="Ecosystem Expert" class="" />
+<String name="Shade" templateId="10202" gender="Male" race="Castanic" title="Ecosystem Expert" class="" />
+<String name="Shade" templateId="10203" gender="Male" race="Castanic" title="Ecosystem Expert" class="" />
+<String name="Shade" templateId="10204" gender="Male" race="Castanic" title="Ecosystem Expert" class="" />
+<String name="Shade" templateId="10205" gender="Male" race="Castanic" title="Ecosystem Expert" class="" />
+<String name="Shade" templateId="10211" gender="Male" race="Castanic" title="Ecosystem Expert" class="" />
+<String name="Shade" templateId="10212" title="" />
+<String name="Shade" templateId="10213" title="" />
+<String name="Shade" templateId="10214" title="" />
+<String name="Shade" templateId="2231" gender="" race="" title="&quot;Explorer&quot;" class="" />
+<String name="Shade" templateId="2239" gender="" race="" title="&quot;Explorer&quot;" class="" />
+<String name="Shade's Notes" templateId="2238" gender="" race="" title="" class="" />
+<String name="Shadow Soul" templateId="5016" gender="" race="" title="" class="" />
+<String name="Shadow Warrior" templateId="5031" gender="" race="" title="" class="" />
+<String name="Shakalla" templateId="21000" gender="" race="" title="" class="" />
+<String name="Shaman Kaisha" templateId="10300" gender="" race="" title="Shurian Shaman" class="" />
+<String name="Shaman Kaisha" templateId="30070" gender="" race="" title="Shurian Shaman" class="" />
+<String name="Shaman Kaisha" templateId="31070" gender="" race="" title="Shurian Shaman" class="" />
+<String name="Shandra Manaya's Shade" templateId="9000" gender="" race="" title="" class="" />
+<String name="Shank" templateId="10143" gender="" race="" title="Ace Dungeon Instructor" class="" />
+<String name="Sharish" templateId="2184" gender="" race="" title="" class="" />
+<String name="Shurian Attendant of the Shaman" templateId="10400" gender="" race="" title="" class="" />
+<String name="Shurian Attendant of the Shaman" templateId="10405" gender="" race="" title="" class="" />
+<String name="Shurian Attendant of the Shaman" templateId="30080" gender="" race="" title="" class="" />
+<String name="Shurian Attendant of the Shaman" templateId="30081" gender="" race="" title="" class="" />
+<String name="Shurian Attendant of the Shaman" templateId="31080" gender="" race="" title="" class="" />
+<String name="Shurian Attendant of the Shaman" templateId="31081" gender="" race="" title="" class="" />
+<String name="Shurian Guardian" templateId="10403" gender="" race="" title="Shaman's Messenger" class="" />
+<String name="Shurian Guardian" templateId="10404" gender="" race="" title="Shaman's Messenger" class="" />
+<String name="Shurian Guide" templateId="10401" gender="" race="" title="" class="" />
+<String name="Shurian Guide" templateId="104011" gender="" race="" title="" class="" />
+<String name="Shurian Guide" templateId="10402" gender="" race="" title="" class="" />
+<String name="Shurian Minion Grenadier" templateId="31" gender="" race="" title="" class="" />
+<String name="Shurian Minion" templateId="30" gender="" race="" title="" class="" />
+<String name="Sibble" templateId="2055" gender="" race="" title="Teleportation Cartographer" class="" />
+<String name="Silauden" templateId="20900" gender="" race="" title="" class="" />
+<String name="Sive" templateId="2142" gender="" race="" title="Researcher" class="" />
+<String name="Snazzle" templateId="9050" gender="" race="" title="Blitz Keeper" class="" />
+<String name="Snowy" templateId="8008" gender="" race="object" title="Wintera Guide" class="" />
+<String name="Sprout" templateId="1001" gender="male" race="monster" title="" class="" />
+<String name="Steve" templateId="10122" gender="" race="" title="GvG Guide" class="" />
+<String name="Steve" templateId="20907" gender="" race="" title="" class="" />
+<String name="Summoner's Corpse" templateId="31050" title="" />
+<String name="Summoner's Corpse" templateId="31051" gender="" race="" title="" class="" />
+<String name="Suuru" templateId="2229" gender="" race="" title="" class="" />
+<String name="Sylan" templateId="2223" gender="" race="" title="" class="" />
+<String name="Sylvia" templateId="21006" gender="" race="" title="" class="" />
+<String name="Tabe" templateId="2081" gender="" race="" title="Vigilante" class="" />
+<String name="Tabea" templateId="20602" gender="" race="" title="" class="" />
+<String name="Tagur" templateId="2219" gender="" race="" title="" class="" />
+<String name="Tairun" templateId="2216" gender="" race="" title="Sentry" class="" />
+<String name="Tamaen" templateId="2177" gender="" race="" title="" class="" />
+<String name="Tame Unicorn" templateId="8" gender="" race="" title="" class="" />
+<String name="Tamed Basilisk" templateId="4000" title="Tamed Beast" />
+<String name="Tamed Petrax" templateId="2000" title="Tamed Beast" />
+<String name="Tamian" templateId="2051" gender="" race="" title="Banker" class="" />
+<String name="Tamur" templateId="9062" gender="male" race="Aman" title="Commander" class="" />
+<String name="Tamur" templateId="9065" gender="male" race="Aman" title="Commander" class="" />
+<String name="Taraam" templateId="2060" gender="" race="" title="" class="" />
+<String name="Tarial" templateId="2195" gender="" race="" title="" class="" />
+<String name="Tarri" templateId="2074" gender="" race="" title="" class="" />
+<String name="Tartur" templateId="10130" gender="" race="" title="Bellicarium Quartermaster" class="" />
+<String name="Tartur" templateId="20803" gender="" race="" title="" class="" />
+<String name="Taylor" templateId="21200" title="" />
+<String name="Tecolt" templateId="2285" gender="" race="" title="" class="" />
+<String name="Teleportal" templateId="100" gender="male" race="" title="Ventilation Room" class="" />
+<String name="Teleportal" templateId="10000" gender="" race="" title="" class="" />
+<String name="Teleportal" templateId="10001" gender="" race="" title="" class="" />
+<String name="Teleportal" templateId="10002" gender="" race="" title="" class="" />
+<String name="Teleportal" templateId="101" gender="male" race="" title="Magnetic Field Testing Room" class="" />
+<String name="Teleportal" templateId="102" gender="male" race="" title="Component Reprocessing Area" class="" />
+<String name="Teleportal" templateId="103" gender="male" race="" title="Observation Room" class="" />
+<String name="Teleportal" templateId="104" gender="male" race="" title="Portal Room" class="" />
+<String name="Teleportal" templateId="1501" gender="" race="" title="" class="" />
+<String name="Teleportal" templateId="1501" gender="" race="" title="" class="" />
+<String name="Teleportal" templateId="1501" gender="" race="" title="" class="" />
+<String name="Teleportal" templateId="1501" gender="" race="" title="" class="" />
+<String name="Teleportal" templateId="1501" gender="" race="object" title="Autumn Grove" class="" />
+<String name="Teleportal" templateId="1501" gender="male" race="monster" title="RK-9 Kennel Entrance" class="" />
+<String name="Teleportal" templateId="1502" gender="" race="" title="" class="" />
+<String name="Teleportal" templateId="1502" gender="" race="" title="" class="" />
+<String name="Teleportal" templateId="1502" gender="" race="" title="" class="" />
+<String name="Teleportal" templateId="1502" gender="" race="" title="" class="" />
+<String name="Teleportal" templateId="1502" gender="" race="" title="" class="" />
+<String name="Teleportal" templateId="1502" gender="" race="object" title="Highwatch" class="" />
+<String name="Teleportal" templateId="1502" gender="male" race="monster" title="Lost Sky Garden" class="" />
+<String name="Teleportal" templateId="1503" gender="" race="" title="Verrak Fortress Cloistered Grotto" class="" />
+<String name="Teleportal" templateId="20000" gender="" race="" title="Dakuryon Depot" class="" />
+<String name="Teleportal" templateId="20000" gender="Male" race="Aman" title="Baldera" class="" />
+<String name="Teleportal" templateId="2042" gender="" race="" title="" class="" />
+<String name="Teleportal" templateId="2043" gender="" race="" title="" class="" />
+<String name="Teleportal" templateId="2170" gender="" race="" title="" class="" />
+<String name="Teleportal" templateId="30020" gender="" race="" title="Desolarus Testing Grounds" class="" />
+<String name="Teleportal" templateId="50200" gender="" race="" title="Verrak Fortress" class="" />
+<String name="Teleportal" templateId="50200" gender="" race="" title="Verrak Fortress" class="" />
+<String name="Teleportal" templateId="50201" gender="" race="" title="Verrak Fortress" class="" />
+<String name="Teleportal" templateId="50201" gender="" race="" title="Verrak Fortress" class="" />
+<String name="Teleportal" templateId="6007" gender="male" race="" title="" class="" />
+<String name="Tenacious Forest Ovolith" templateId="5011" gender="" race="" title="" class="" />
+<String name="Terry" templateId="2083" gender="" race="" title="Fishing Association Executive" class="" />
+<String name="Thalnor" templateId="2020" gender="" race="" title="Trade Broker" class="" />
+<String name="Thalric" templateId="2040" gender="" race="" title="Training Ground Caretaker" class="" />
+<String name="Tiaen" templateId="2210" gender="" race="" title="Balderon Guard" class="" />
+<String name="Time Bomb" templateId="1009" gender="male" race="monster" title="" class="" />
+<String name="Toapang" templateId="3002" gender="" race="" title="Noble Cleric of Restoration" class="" />
+<String name="Tombstone Charm" templateId="104012" gender="" race="" title="" class="" />
+<String name="Tomuri" templateId="10020" gender="" race="" title="Banker" class="" />
+<String name="Treasure Chest" templateId="2999" gender="" race="" title="Trophy left by Dakuryon" class="" />
+<String name="Turu" templateId="9041" gender="male" race="" title="Dragon Overseer" class="" />
+<String name="Tuturu" templateId="20305" gender="" race="" title="" class="" />
+<String name="Tuturu" templateId="2077" gender="" race="" title="" class="" />
+<String name="Tye" templateId="2163" gender="" race="" title="Gatherer" class="" />
+<String name="Umbra" templateId="2021" gender="" race="" title="Trade Broker" class="" />
+<String name="Use the Portal Room teleportal." templateId="912" gender="male" race="monster" title="" class="" />
+<String name="Vaelen" templateId="2022" gender="" race="" title="Merchant" class="" />
+<String name="Valkyon Merchant (temporary)" templateId="11002" gender="" race="" title="Baldera Settler" class="" />
+<String name="Valtor" templateId="2069" gender="" race="" title="Infernal Covenant Officer" class="" />
+<String name="Varia" templateId="10160" gender="" race="" title="Portal Administrator" class="" />
+<String name="Varia" templateId="20706" title="" />
+<String name="Vene" templateId="2135" gender="" race="" title="Festival Guide" class="" />
+<String name="Ventarun" templateId="1000" gender="male" race="monster" title="Sentinel Machine" class="" />
+<String name="Veraas" templateId="2247" gender="" race="" title="Argon Researcher" class="" />
+<String name="Vernbloom" templateId="10041" gender="" race="" title="Development Merchant" class="" />
+<String name="Verran" templateId="2251" gender="" race="" title="&quot;Daga&quot; Recruit" class="" />
+<String name="Vieon" templateId="2237" gender="" race="" title="Infernal Covenant Officer" class="" />
+<String name="Violetta" templateId="20404" gender="" race="" title="" class="" />
+<String name="Volga" templateId="20808" gender="" race="" title="" class="" />
+<String name="Wall of Wordcraft" templateId="2046" gender="" race="" title="" class="" />
+<String name="Wall of Wordcraft" templateId="2064" gender="" race="" title="" class="" />
+<String name="Warrior's Corpse" templateId="31060" title="" />
+<String name="White Horse" templateId="20105" title="" />
+<String name="Whitney" templateId="21001" gender="" race="" title="" class="" />
+<String name="Withering Ghilliedhu" templateId="5001" gender="" race="" title="" class="" />
+<String name="Wooden Barrel" templateId="20201" title="" />
+<String name="Wooden Door" templateId="20202" title="" />
+<String name="Wynndar" templateId="2023" gender="" race="" title="Merchant" class="" />
+<String name="Xalvador" templateId="2024" gender="" race="" title="Processing Materials" class="" />
+<String name="Xannam" templateId="2283" gender="" race="" title="" class="" />
+<String name="Yaeri" templateId="2084" gender="" race="" title="Vigilante" class="" />
+<String name="Yarum" templateId="2203" gender="" race="" title="Balderon Guard" class="" />
+<String name="Ylthari" templateId="2025" gender="" race="" title="Etching Materials" class="" />
+<String name="Yok" templateId="2100" gender="" race="" title="" class="" />
+<String name="Yongmo" templateId="20906" gender="" race="" title="" class="" />
+<String name="Zaelon" templateId="2026" gender="" race="" title="Alchemy Materials" class="" />
+<String name="Zaheen" templateId="10100" gender="" race="" title="Dark Merchant" class="" />
+<String name="Zair Costar" templateId="11001" gender="" race="" title="Baldera Settler" class="" />
+<String name="Zal" templateId="2132" gender="" race="" title="Centurion" class="" />
+<String name="Zandr" templateId="2065" gender="" race="" title="Vigilante" class="" />
+<String name="Zerar" templateId="30060" gender="" race="" title="Wounded Soldier (Human)" class="" />
+<String name="Zirc" templateId="2092" gender="" race="" title="Infernal Covenant" class="" />
+
+=== REMOVED (19) ===
+<String name="(This teleportal will exit Dakuryon's Sanctum.)" templateId="1501" gender="" race="" title="" class="" />
+<String name="(This teleportal will exit Dakuryon's Sanctum.)" templateId="1502" gender="" race="" title="" class="" />
+<String name="(This teleportal will exit Dakuryon's Sanctum.)" templateId="1503" gender="" race="" title="" class="" />
+<String name="(This teleportal will exit Dakuryon's Sanctum.)" templateId="1504" gender="" race="" title="" class="" />
+<String name="Akalath Quarantine Teleportal" templateId="1501" gender="" race="" title="" class="" />
+<String name="Catalepticon (Hard) Entrance" templateId="3204" gender="" race="" title="Teleportal" class="" />
+<String name="Cruel Dragoon" templateId="7" gender="" race="" title="" class="" />
+<String name="Feisty Hellion" templateId="11" gender="" race="" title="" class="" />
+<String name="Ferocious Unicorn" templateId="2" gender="" race="" title="" class="" />
+<String name="Hellion Minion" templateId="30" gender="" race="" title="" class="" />
+<String name="Hellion Rager" templateId="31" gender="" race="" title="" class="" />
+<String name="Ksharan Berserker" templateId="20" gender="" race="" title="" class="" />
+<String name="Prowling Jalmarak" templateId="3" gender="" race="" title="" class="" />
+<String name="Shurian Mangler" templateId="10" gender="" race="" title="" class="" />
+<String name="Skittish Unicorn" templateId="1" gender="" race="" title="" class="" />
+<String name="Sovereign Tomb Knight" templateId="6" gender="" race="" title="" class="" />
+<String name="Stalking Mycanar" templateId="4" gender="" race="" title="" class="" />
+<String name="Tomb Knight" templateId="5" gender="" race="" title="" class="" />
+<String name="Unrelenting Dragoon" templateId="8" gender="" race="" title="" class="" />

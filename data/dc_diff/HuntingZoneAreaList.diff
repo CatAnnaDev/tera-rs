@@ -1,0 +1,61 @@
+# HuntingZoneAreaList  +56 -0
+
+=== ADDED (56) ===
+</Area>
+</Area>
+</Area>
+</Area>
+</Area>
+</Area>
+</Area>
+</Area>
+</Continent>
+</Continent>
+</Continent>
+</Continent>
+</Continent>
+</Continent>
+</Continent>
+</Continent>
+</HuntingZoneList>
+</HuntingZoneList>
+</HuntingZoneList>
+</HuntingZoneList>
+</HuntingZoneList>
+</HuntingZoneList>
+</HuntingZoneList>
+</HuntingZoneList>
+<Area id="3044" name="Kubel_Fortress_RM_P" desc="Stormed Citadel">
+<Area id="3050" name="Guild_DPS_P" desc="협동 던전">
+<Area id="3105" name="Logashi_P" desc="로가쉬(하급)">
+<Area id="3133" name="BF_SummerBattle_P" desc="Shark Guy Arena">
+<Area id="3137" name="Robot_Factory_P" desc="궁극의 RK-9 격납고(상급)">
+<Area id="3205" name="Logashi_P" desc="로가쉬(상급)">
+<Area id="3400" name="Rucmia_P" desc="Catalepticon (Easy)">
+<Area id="3401" name="Durion_Hideout_P" desc="Imperator's Sanctum">
+<Continent id="3044">
+<Continent id="3050">
+<Continent id="3105">
+<Continent id="3133">
+<Continent id="3137">
+<Continent id="3205">
+<Continent id="3400">
+<Continent id="3401">
+<HuntingZone id="3044" name="Stormed Citadel" />
+<HuntingZone id="3050" name="3050" />
+<HuntingZone id="3105" name="로가쉬(하급)" />
+<HuntingZone id="3133" name="Shark Guy Arena" />
+<HuntingZone id="3137" name="궁극의 RK-9 격납고(상급)" />
+<HuntingZone id="3205" name="로가쉬(상급)" />
+<HuntingZone id="3400" name="Catalepticon (Easy)" />
+<HuntingZone id="3401" name="Imperator's Sanctum" />
+<HuntingZoneList>
+<HuntingZoneList>
+<HuntingZoneList>
+<HuntingZoneList>
+<HuntingZoneList>
+<HuntingZoneList>
+<HuntingZoneList>
+<HuntingZoneList>
+
+=== REMOVED (0) ===

@@ -1,0 +1,10 @@
+# ReputationItem  +5 -0
+
+=== ADDED (5) ===
+<Item id="69000" name="Uncommon Card Fragment Box" grade="6" reputationPoint="75" />
+<Item id="69001" name="Common Card Fragment Box" grade="6" reputationPoint="50" />
+<Item id="69007" name="Rare Card Fragment Box" grade="6" reputationPoint="150" />
+<Item id="980001" name="Mahtnan's Option Change Scroll [Halidom]" grade="6" reputationPoint="400" />
+<Item id="980002" name="Mahtnan's Option Change Scroll [Relic]" grade="6" reputationPoint="400" />
+
+=== REMOVED (0) ===

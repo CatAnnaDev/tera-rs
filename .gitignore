@@ -30,3 +30,6 @@ files.json
 loot-stats.json
 *.log
 *.dxvk-cache
+
+captures/
+data/broker/

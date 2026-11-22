@@ -1,0 +1,7 @@
+# TradeBrokerSetting  +1 -1
+
+=== ADDED (1) ===
+<MaxItemLevel value="580" />
+
+=== REMOVED (1) ===
+<MaxItemLevel value="550" />

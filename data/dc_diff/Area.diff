@@ -1,0 +1,532 @@
+# Area  +526 -1
+
+=== ADDED (526) ===
+</Area>
+</Area>
+</Area>
+</Area>
+</Area>
+</Area>
+</Area>
+</Area>
+</Area>
+</Area>
+</Area>
+</Section>
+</Section>
+</Section>
+</Section>
+</Section>
+</Section>
+</Section>
+</Section>
+</Section>
+</Section>
+</Section>
+</Section>
+</Section>
+</Section>
+</Section>
+</Section>
+</Section>
+</Section>
+</Section>
+</Section>
+</Section>
+</Section>
+</Section>
+</Section>
+</Section>
+</Section>
+</Section>
+</Section>
+</Section>
+</Section>
+</Section>
+<Area id="3044" areaName="Kubel_Fortress_RM_P" continentId="3044" nameId="3044" pcMoveCylinder="true" protect="false" recallReviveContinentIdB="0" recallReviveContinentIdC="0" ride="true" worldMapGuardId="5" worldMapWorldId="9999">
+<Area id="3045" areaName="Durion_storage_P" continentId="3045" nameId="3045" pcMoveCylinder="true" protect="false" recallReviveContinentIdB="0" recallReviveContinentIdC="0" ride="true" worldMapGuardId="7" worldMapWorldId="9999">
+<Area id="3048" areaName="EX_UnionTC_SD_CE_P" continentId="3048" nameId="3048001" pcMoveCylinder="true" protect="false" recallReviveContinentIdB="0" recallReviveContinentIdC="0" ride="false" worldMapGuardId="61" worldMapWorldId="9999">
+<Area id="3050" areaName="Guild_DPS_P" continentId="3050" nameId="3050" pcMoveCylinder="true" protect="false" recallReviveContinentIdB="0" recallReviveContinentIdC="0" ride="false" worldMapGuardId="28" worldMapWorldId="9999">
+<Area id="3105" areaName="Logashi_P" continentId="3105" nameId="3105" pcMoveCylinder="true" protect="false" recallReviveContinentIdB="0" recallReviveContinentIdC="0" ride="true" worldMapGuardId="27" worldMapWorldId="9999">
+<Area id="3133" areaName="BF_SummerBattle_P" continentId="3133" nameId="3133" pcMoveCylinder="true" protect="false" recallReviveContinentIdB="0" recallReviveContinentIdC="0" ride="false" worldMapGuardId="60" worldMapWorldId="8888">
+<Area id="3134" areaName="EX_AL_SD2_T41_P" continentId="3134" nameId="3134" pcMoveCylinder="true" protect="false" ride="false" worldMapGuardId="10" worldMapWorldId="9999">
+<Area id="3137" areaName="Robot_Factory_P" continentId="3137" nameId="3137" pcMoveCylinder="true" protect="false" recallReviveContinentIdB="0" recallReviveContinentIdC="0" ride="true" worldMapGuardId="24" worldMapWorldId="9999">
+<Area id="3205" areaName="Logashi_P" continentId="3205" nameId="3205" pcMoveCylinder="true" protect="false" recallReviveContinentIdB="0" recallReviveContinentIdC="0" ride="true" worldMapGuardId="27" worldMapWorldId="9999">
+<Area id="3400" areaName="Rucmia_P" continentId="3400" nameId="3400" pcMoveCylinder="true" protect="false" recallReviveContinentIdB="0" recallReviveContinentIdC="0" ride="false" worldMapGuardId="27" worldMapWorldId="9999">
+<Area id="3401" areaName="Durion_Hideout_P" continentId="3401" nameId="3401" pcMoveCylinder="true" protect="false" recallReviveContinentIdB="0" recallReviveContinentIdC="0" ride="true" worldMapGuardId="24" worldMapWorldId="9999">
+<Fence pos="-10104.88867188,38510.22656250,13748.87109375" />
+<Fence pos="-10116.28125000,38493.24218750,14059.96582031" />
+<Fence pos="-10117.87207031,38666.84375000,14059.96679688" />
+<Fence pos="-10151.41796875,38721.86328125,14199.52929688" />
+<Fence pos="-10155.31835938,38672.63671875,13754.58789063" />
+<Fence pos="-10165.84570313,38481.93359375,13759.16796875" />
+<Fence pos="-10227.68261719,38812.58984375,14066.73242188" />
+<Fence pos="-10240.18164063,37972.67187500,14066.73144531" />
+<Fence pos="-10243.01464844,38357.24218750,14191.74609375" />
+<Fence pos="-10248.88769531,38794.01562500,14059.96679688" />
+<Fence pos="-10248.90429688,38364.55468750,14037.20898438" />
+<Fence pos="-10249.53125000,39485.08593750,13911.67089844" />
+<Fence pos="-10249.63476563,37954.36718750,14027.96093750" />
+<Fence pos="-10252.73925781,39494.97265625,14205.38574219" />
+<Fence pos="-10378.76367188,37966.27734375,13862.04589844" />
+<Fence pos="-10390.51855469,37972.14062500,14066.73242188" />
+<Fence pos="-10396.90527344,39444.18750000,14059.95410156" />
+<Fence pos="-10400.16796875,38380.55859375,14059.96679688" />
+<Fence pos="-10405.24609375,38787.86718750,14059.96679688" />
+<Fence pos="-10414.64746094,39494.97265625,14007.25585938" />
+<Fence pos="-10418.12011719,38362.64843750,14158.55566406" />
+<Fence pos="-10442.32421875,38796.91406250,13748.12890625" />
+<Fence pos="-10528.28125000,38501.41796875,14059.96679688" />
+<Fence pos="-10529.89941406,38659.47656250,14059.96777344" />
+<Fence pos="-10530.73242188,38475.26171875,14054.00781250" />
+<Fence pos="-10543.75000000,38680.58203125,13748.12890625" />
+<Fence pos="-10923.60937500,38643.74218750,14059.96191406" />
+<Fence pos="-10924.56640625,38658.55859375,14066.73046875" />
+<Fence pos="-10941.01660156,38506.76171875,14066.72949219" />
+<Fence pos="-10967.94531250,38515.21484375,13845.96289063" />
+<Fence pos="-129133.5859,-112084.4063,-312.0850" />
+<Fence pos="-129198.4766,-114838.7969,-312.0793" />
+<Fence pos="-129960.5625,-118084.5938,-312.0803" />
+<Fence pos="-130082.42187500,180594.12500000,10283.47363281" />
+<Fence pos="-130103.7266,-115053.2500,-312.0796" />
+<Fence pos="-130141.0859,-111478.6328,-312.0952" />
+<Fence pos="-130926.71093750,178523.68750000,10277.86914063" />
+<Fence pos="-131171.1250,-111585.1094,-312.0872" />
+<Fence pos="-131237.0625,-115083.8359,-312.0813" />
+<Fence pos="-131279.4219,-118124.9063,-312.0793" />
+<Fence pos="-132063.4844,-112088.0469,-312.0825" />
+<Fence pos="-132124.2188,-114749.2891,-312.0862" />
+<Fence pos="-133749.23437500,181236.51562500,10273.60449219" />
+<Fence pos="-133818.09375000,180444.96875000,10525.63085938" />
+<Fence pos="-15907.0459,-185120.3750,10247.1328" />
+<Fence pos="-23608.34960938,125217.54687500,13.68438721" />
+<Fence pos="-23710.09570313,131144.37500000,-83.15661621" />
+<Fence pos="-25955.05273438,126237.03125000,499.61135864" />
+<Fence pos="-25998.20117188,131194.40625000,73.54971313" />
+<Fence pos="-29812.99804688,59505.69921875,-247.39111328" />
+<Fence pos="-30279.78710938,49656.52343750,4616.74707031" />
+<Fence pos="-30372.1289,-136396.6094,11138.6250" />
+<Fence pos="-31590.24609375,59103.73828125,32.04956055" />
+<Fence pos="-31718.51171875,39708.76562500,603.65454102" />
+<Fence pos="-31965.39257813,59815.97656250,43.29248047" />
+<Fence pos="-31987.08593750,58459.87890625,-10.39550781" />
+<Fence pos="-32043.06835938,48767.37890625,178.04411316" />
+<Fence pos="-32088.61523438,48469.67578125,295.24996948" />
+<Fence pos="-32091.84960938,49067.62890625,295.24978638" />
+<Fence pos="-32145.68359375,41338.41796875,751.18041992" />
+<Fence pos="-32211.05078125,39546.85937500,-48.71362305" />
+<Fence pos="-32257.79492188,48228.32421875,295.24990845" />
+<Fence pos="-32262.58593750,49300.09765625,295.24981689" />
+<Fence pos="-32521.15429688,49477.82812500,295.24932861" />
+<Fence pos="-32524.49609375,48068.69140625,295.24911499" />
+<Fence pos="-32780.48046875,47987.29687500,295.24948120" />
+<Fence pos="-32785.78125000,58459.52734375,43.83129883" />
+<Fence pos="-32804.76562500,49492.53125000,125.59675598" />
+<Fence pos="-32805.58593750,59817.44140625,-5.09826660" />
+<Fence pos="-33080.07421875,48000.40234375,295.24514771" />
+<Fence pos="-33080.35546875,49443.33593750,295.24893188" />
+<Fence pos="-33160.73046875,59141.91406250,32.75512695" />
+<Fence pos="-33324.32421875,48234.85937500,136.13130188" />
+<Fence pos="-33339.46875000,49310.80468750,295.24990845" />
+<Fence pos="-33465.12109375,48479.99609375,295.24807739" />
+<Fence pos="-33486.44921875,49045.00390625,295.24945068" />
+<Fence pos="-33519.47656250,48787.11718750,295.24716187" />
+<Fence pos="-33952.01953125,41707.11328125,0.10034180" />
+<Fence pos="-34743.46484375,39415.01562500,420.97216797" />
+<Fence pos="-35518.16406250,41707.11328125,-77.44360352" />
+<Fence pos="-36846.20703125,54057.07421875,-483.15155029" />
+<Fence pos="-37076.49609375,52902.26953125,-483.15252686" />
+<Fence pos="-37485.44531250,41525.79296875,23.24218750" />
+<Fence pos="-37504.64843750,55045.47656250,-483.15563965" />
+<Fence pos="-37564.23046875,39652.03125000,23.24487305" />
+<Fence pos="-38066.59765625,52241.92968750,-483.15063477" />
+<Fence pos="-38657.35937500,55279.56250000,-483.15502930" />
+<Fence pos="-38720.34765625,32830.16796875,476.24316406" />
+<Fence pos="-39058.20703125,38931.11718750,-193.34716797" />
+<Fence pos="-39220.15234375,52476.19921875,-483.14990234" />
+<Fence pos="-39300.70312500,42323.33203125,-185.70800781" />
+<Fence pos="-39653.48828125,54619.05078125,-483.15301514" />
+<Fence pos="-39883.25000000,53462.06250000,-483.15051270" />
+<Fence pos="-43181.86328125,47979.30859375,61.24993896" />
+<Fence pos="-43185.21484375,49515.51953125,61.24874878" />
+<Fence pos="-44355.47656250,62931.81640625,958.23730469" />
+<Fence pos="-44719.05468750,47973.42968750,61.24954224" />
+<Fence pos="-44726.69921875,49510.22265625,61.24957275" />
+<Fence pos="-44779.08203125,38771.74218750,-605.98046875" />
+<Fence pos="-44779.08593750,42474.03515625,-590.63769531" />
+<Fence pos="-45685.62500000,32673.41406250,476.24169922" />
+<Fence pos="-48044.34765625,58849.37500000,1287.22509766" />
+<Fence pos="-5011.01660156,38358.12109375,14202.20800781" />
+<Fence pos="-5013.62548828,38806.58593750,14202.20214844" />
+<Fence pos="-5583.79492188,38668.83203125,14603.12890625" />
+<Fence pos="-5588.88671875,38353.84375000,14603.12500000" />
+<Fence pos="-5594.49804688,38792.23046875,14603.12109375" />
+<Fence pos="-5605.19726563,38478.18750000,14603.12500000" />
+<Fence pos="-5863.06787109,38696.10546875,14603.13085938" />
+<Fence pos="-5906.84472656,38466.66015625,14187.81738281" />
+<Fence pos="-5913.08056641,38690.07031250,14213.41796875" />
+<Fence pos="-5914.07958984,38473.89453125,14198.92480469" />
+<Fence pos="-5914.07958984,38478.58203125,14194.35156250" />
+<Fence pos="-6035.66650391,37982.49609375,14056.66992188" />
+<Fence pos="-6066.99902344,39254.20703125,14056.66796875" />
+<Fence pos="-6090.76611328,38024.42578125,14053.97167969" />
+<Fence pos="-6146.73779297,39155.30468750,14210.03027344" />
+<Fence pos="-62089.88671875,41589.19140625,3412.01269531" />
+<Fence pos="-62329.91406250,45155.67187500,3411.98437500" />
+<Fence pos="-62558.88671875,38602.58984375,3412.00292969" />
+<Fence pos="-62599.62500000,39829.50390625,-303.22814941" />
+<Fence pos="-62616.91796875,39151.84765625,-303.21099854" />
+<Fence pos="-62730.20312500,35570.78906250,3411.98632813" />
+<Fence pos="-62833.78125000,44819.36718750,-534.06555176" />
+<Fence pos="-62949.83203125,42304.39843750,484.45156860" />
+<Fence pos="-62954.71484375,48305.66406250,-3767.34033203" />
+<Fence pos="-63048.50390625,55859.33203125,-3767.30175781" />
+<Fence pos="-63072.29296875,38682.23828125,-303.24307251" />
+<Fence pos="-63083.63281250,40307.52734375,-302.27319336" />
+<Fence pos="-63753.15625000,38683.47656250,-303.19680786" />
+<Fence pos="-63759.39062500,40307.70703125,-302.24093628" />
+<Fence pos="-63798.08593750,42224.11718750,-357.97979736" />
+<Fence pos="-64239.43359375,39828.81640625,-303.22598267" />
+<Fence pos="-64247.21875000,39141.60937500,-308.08523560" />
+<Fence pos="-64328.83593750,52469.31640625,-12870.49609375" />
+<Fence pos="-64339.87500000,53261.01171875,-6739.26953125" />
+<Fence pos="-64426.84765625,43336.59375000,484.45379639" />
+<Fence pos="-64446.39843750,38402.28515625,3411.95166016" />
+<Fence pos="-64613.74609375,41809.14453125,3411.95068359" />
+<Fence pos="-6477.39843750,37822.00000000,14505.80664063" />
+<Fence pos="-6486.07763672,37820.10937500,14228.87597656" />
+<Fence pos="-64901.89453125,53860.51953125,-6739.26953125" />
+<Fence pos="-64928.14843750,51953.89843750,-6661.24609375" />
+<Fence pos="-64975.14843750,46255.44531250,-3799.45410156" />
+<Fence pos="-65312.64062500,-40389.11718750,-3875.87597656" />
+<Fence pos="-65435.60546875,-39751.99609375,-3910.44677734" />
+<Fence pos="-65437.94921875,-41040.05859375,-3840.15893555" />
+<Fence pos="-65453.83984375,35440.21093750,3411.95898438" />
+<Fence pos="-65535.91796875,37401.82421875,3411.96875000" />
+<Fence pos="-65675.69531250,-39280.88281250,-3867.35644531" />
+<Fence pos="-65702.38281250,53859.28515625,-6739.26953125" />
+<Fence pos="-65717.79687500,51927.10546875,-6739.26953125" />
+<Fence pos="-65750.36718750,-41537.16015625,-3726.14062500" />
+<Fence pos="-6587.62255859,39352.07812500,14324.58398438" />
+<Fence pos="-6595.14160156,39386.10156250,14559.07910156" />
+<Fence pos="-66060.61718750,-42045.53515625,-3123.77636719" />
+<Fence pos="-66169.21093750,-38816.39453125,-3868.96069336" />
+<Fence pos="-66255.63281250,53273.47656250,-6739.27343750" />
+<Fence pos="-66268.86718750,52486.87109375,-6739.26953125" />
+<Fence pos="-66501.51562500,-42268.88671875,-2903.08740234" />
+<Fence pos="-66721.87500000,36379.62890625,3411.98437500" />
+<Fence pos="-66749.86718750,-38568.19531250,-3870.01928711" />
+<Fence pos="-66921.17968750,-42379.33984375,-2761.26049805" />
+<Fence pos="-67285.14843750,-42379.34375000,-2632.76538086" />
+<Fence pos="-67360.32031250,-38518.06250000,-3828.07690430" />
+<Fence pos="-67581.53906250,55977.19921875,-3767.30371094" />
+<Fence pos="-67661.35156250,-42321.91796875,-2607.75219727" />
+<Fence pos="-67818.52343750,50901.25390625,-1120.02343750" />
+<Fence pos="-67998.55468750,-38704.91406250,-3835.81713867" />
+<Fence pos="-68097.92187500,-42162.30859375,-2147.77441406" />
+<Fence pos="-68440.21875000,-41919.15625000,-1874.68017578" />
+<Fence pos="-68539.76562500,-41773.35937500,-1874.68017578" />
+<Fence pos="-68548.96875000,-39122.73046875,-3954.15112305" />
+<Fence pos="-68824.89062500,-39522.96093750,-3878.81347656" />
+<Fence pos="-68834.57031250,-41335.47265625,-26.58105469" />
+<Fence pos="-68903.34375000,-39631.15625000,-3801.30346680" />
+<Fence pos="-68965.53125000,-40847.00000000,-26.58160400" />
+<Fence pos="-69035.39843750,45242.17187500,-343.40890503" />
+<Fence pos="-69126.78906250,43780.42187500,484.45062256" />
+<Fence pos="-69126.91406250,-39897.97265625,-3781.15673828" />
+<Fence pos="-69165.38281250,-40904.87109375,-3870.59741211" />
+<Fence pos="-69173.91406250,45636.42187500,3385.67187500" />
+<Fence pos="-6918.59375000,37862.90625000,14452.75781250" />
+<Fence pos="-6943.47705078,37863.52343750,14359.28906250" />
+<Fence pos="-6954.88769531,39298.13671875,14480.11718750" />
+<Fence pos="-6974.62744141,39338.97265625,14559.09082031" />
+<Fence pos="-69748.93750000,-40867.15625000,-3870.60034180" />
+<Fence pos="-70003.96875000,52539.53515625,-1120.02832031" />
+<Fence pos="-70087.97656250,-39902.61328125,-3870.61206055" />
+<Fence pos="-70169.05468750,-38179.25000000,-4100.28320313" />
+<Fence pos="-70230.29687500,-38657.87109375,-4096.50195313" />
+<Fence pos="-70273.39062500,-37866.02734375,-4063.45507813" />
+<Fence pos="-70372.06250000,-37590.04296875,-4095.63037109" />
+<Fence pos="-70380.26562500,-38971.90234375,-4095.50659180" />
+<Fence pos="-70533.11718750,-37371.73828125,-4105.23681641" />
+<Fence pos="-70579.59375000,-39216.16015625,-4080.33813477" />
+<Fence pos="-70596.99218750,-35665.87500000,-4060.99975586" />
+<Fence pos="-70611.78125000,-35451.48437500,-4061.00219727" />
+<Fence pos="-70660.74218750,-35263.94140625,-4061.00537109" />
+<Fence pos="-70664.15625000,-35901.49609375,-4141.74658203" />
+<Fence pos="-70753.50781250,-37182.87890625,-4111.41894531" />
+<Fence pos="-70758.90625000,-36054.01562500,-4132.72070313" />
+<Fence pos="-70772.71875000,-35091.14843750,-4061.00805664" />
+<Fence pos="-70795.68750000,-39375.58593750,-4106.32617188" />
+<Fence pos="-70863.25781250,-36152.32421875,-4060.99731445" />
+<Fence pos="-70915.43750000,44100.80859375,-952.48370361" />
+<Fence pos="-70923.50781250,44483.69531250,-954.75170898" />
+<Fence pos="-70927.42187500,-40859.45312500,-3770.46264648" />
+<Fence pos="-70934.20312500,-34900.98437500,-4061.01220703" />
+<Fence pos="-70999.66406250,-39323.36328125,-3566.84326172" />
+<Fence pos="-71003.78125000,-36241.70703125,-3881.35180664" />
+<Fence pos="-71005.87500000,43834.04687500,-952.48492432" />
+<Fence pos="-71040.17187500,-39863.32421875,-3864.76000977" />
+<Fence pos="-71067.70312500,-37101.17578125,-4343.32861328" />
+<Fence pos="-71131.87500000,-34805.56250000,-4061.01538086" />
+<Fence pos="-71134.19531250,44880.28125000,-952.49414063" />
+<Fence pos="-71146.45312500,-39375.43359375,-3566.84350586" />
+<Fence pos="-71149.82812500,-36323.60937500,-4060.99877930" />
+<Fence pos="-71177.10156250,-40133.83593750,-4086.75170898" />
+<Fence pos="-71187.90625000,-40605.67187500,-4086.75683594" />
+<Fence pos="-71218.65625000,-36353.30078125,-4060.99975586" />
+<Fence pos="-71220.40625000,-39585.85546875,-4089.61376953" />
+<Fence pos="-71231.86718750,-37043.45703125,-4046.69262695" />
+<Fence pos="-71247.91406250,-39812.74609375,-4046.61035156" />
+<Fence pos="-71318.29687500,43503.09375000,-952.47851563" />
+<Fence pos="-71435.75781250,-34729.58984375,-4061.01953125" />
+<Fence pos="-71463.25781250,45104.73046875,-953.85278320" />
+<Fence pos="-71478.63281250,-40500.85937500,-4086.75854492" />
+<Fence pos="-71530.88281250,43404.00781250,-952.49523926" />
+<Fence pos="-71634.91406250,-39638.69921875,-4057.61694336" />
+<Fence pos="-71636.36718750,-34785.86718750,-4061.02075195" />
+<Fence pos="-71640.00781250,-40240.81250000,-4086.75903320" />
+<Fence pos="-71658.46875000,-39800.25390625,-4087.75927734" />
+<Fence pos="-71680.50781250,-37173.71875000,-3662.44653320" />
+<Fence pos="-71702.92968750,-36496.10937500,-4144.79394531" />
+<Fence pos="-71714.60156250,-39504.55078125,-4339.18066406" />
+<Fence pos="-71766.04687500,43358.71093750,-952.48449707" />
+<Fence pos="-71789.21875000,45173.50781250,-952.48480225" />
+<Fence pos="-71790.96875000,-36340.82031250,-4135.75195313" />
+<Fence pos="-71878.59375000,-37221.26171875,-3566.85400391" />
+<Fence pos="-71885.53125000,-34896.02734375,-4061.02221680" />
+<Fence pos="-72016.32031250,43389.87890625,-954.72778320" />
+<Fence pos="-72044.92968750,-36138.48437500,-4061.01220703" />
+<Fence pos="-72055.35937500,-37419.92968750,-3566.85522461" />
+<Fence pos="-72101.87500000,-35118.02343750,-4061.02197266" />
+<Fence pos="-72116.73437500,-35837.23437500,-3911.16894531" />
+<Fence pos="-72209.32031250,-35389.02734375,-4061.02148438" />
+<Fence pos="-72214.61718750,-37525.24218750,-3566.85473633" />
+<Fence pos="-72218.89062500,45075.47265625,-953.56939697" />
+<Fence pos="-72230.16406250,43473.19140625,-954.71948242" />
+<Fence pos="-72271.13281250,-39026.44140625,-3566.84375000" />
+<Fence pos="-72327.28906250,-37668.76562500,-3566.85400391" />
+<Fence pos="-72412.48437500,44935.76953125,-952.48504639" />
+<Fence pos="-72423.12500000,-37950.83984375,-3566.85302734" />
+<Fence pos="-72454.46093750,-38784.34375000,-3566.84716797" />
+<Fence pos="-72475.38281250,-38390.75390625,-3566.85083008" />
+<Fence pos="-72652.33593750,44594.46093750,-952.48895264" />
+<Fence pos="-72708.77343750,44310.03906250,-954.80981445" />
+<Fence pos="-72830.91406250,42982.00781250,-225.75054932" />
+<Fence pos="-72856.62500000,120050.31250000,-829.70898438" />
+<Fence pos="-72858.18750000,121330.71093750,-829.71557617" />
+<Fence pos="-7286.64697266,38070.16406250,14387.09960938" />
+<Fence pos="-7288.33935547,38073.94921875,14480.12207031" />
+<Fence pos="-72952.78906250,122124.92968750,-829.71508789" />
+<Fence pos="-7296.41015625,39110.95312500,14480.12500000" />
+<Fence pos="-73138.59375000,118654.94531250,-829.71435547" />
+<Fence pos="-7347.82421875,39184.26562500,14056.67089844" />
+<Fence pos="-73478.60156250,43110.19921875,-1749.64245605" />
+<Fence pos="-73875.22656250,118569.94531250,-937.62036133" />
+<Fence pos="-7469.87402344,38452.81250000,14559.09570313" />
+<Fence pos="-74978.41406250,121976.18750000,-829.70239258" />
+<Fence pos="-7541.59130859,38712.24218750,14480.12597656" />
+<Fence pos="-7542.33007813,38471.47265625,14480.12695313" />
+<Fence pos="-7572.12353516,38724.34765625,14559.09960938" />
+<Fence pos="-7581.30322266,38666.03515625,14307.45117188" />
+<Fence pos="-7581.97070313,38478.08593750,14480.12988281" />
+<Fence pos="-76008.31250000,51952.56250000,-1120.03027344" />
+<Fence pos="-76273.31250000,118895.10156250,-1689.24975586" />
+<Fence pos="-76601.26562500,121903.06250000,-829.70263672" />
+<Fence pos="-76767.83593750,121438.30468750,-1687.70703125" />
+<Fence pos="-76793.28906250,119932.03125000,-1682.75195313" />
+<Fence pos="-76800.27343750,42866.42578125,-1120.05468750" />
+<Fence pos="-76820.73437500,121128.53906250,-829.71191406" />
+<Fence pos="-76897.59375000,119956.84375000,-1680.91748047" />
+<Fence pos="-76898.86718750,120847.28125000,-1684.49975586" />
+<Fence pos="-77108.92968750,121159.02343750,-829.71923828" />
+<Fence pos="-77132.91406250,118933.36718750,-1363.88476563" />
+<Fence pos="-77256.58593750,118939.32812500,-1341.24414063" />
+<Fence pos="-77478.93750000,119511.89843750,-1114.68115234" />
+<Fence pos="-78067.03906250,121184.11718750,-829.71630859" />
+<Fence pos="-78384.85156250,118458.43750000,-3589.50390625" />
+<Fence pos="-78450.11718750,117490.06250000,-2941.81152344" />
+<Fence pos="-78559.06250000,116652.29687500,-1636.59423828" />
+<Fence pos="-78684.39062500,130873.72656250,3412.08984375" />
+<Fence pos="-78684.39062500,130873.72656250,3412.08984375" />
+<Fence pos="-78848.34375000,121249.82031250,-829.71435547" />
+<Fence pos="-79079.28125000,116159.61718750,-1423.19287109" />
+<Fence pos="-79447.00000000,121262.83593750,-829.71533203" />
+<Fence pos="-79605.48437500,121105.96093750,-829.71435547" />
+<Fence pos="-79944.49218750,120466.71093750,-829.70800781" />
+<Fence pos="-79999.44531250,121169.44531250,-829.71289063" />
+<Fence pos="-80065.47656250,128310.89843750,5958.17382813" />
+<Fence pos="-80065.47656250,128310.89843750,5958.17382813" />
+<Fence pos="-80153.82812500,117125.52343750,-1055.81982422" />
+<Fence pos="-80216.00000000,120108.46093750,-829.70849609" />
+<Fence pos="-80269.97656250,133593.89062500,6338.09375000" />
+<Fence pos="-80269.97656250,133593.89062500,6338.09375000" />
+<Fence pos="-80428.43750000,117630.45312500,-1359.19873047" />
+<Fence pos="-80609.65625000,118979.86718750,-1522.69482422" />
+<Fence pos="-80655.32812500,119528.30468750,-1724.59619141" />
+<Fence pos="-80682.04687500,117902.67968750,-1978.48999023" />
+<Fence pos="-81005.32031250,127318.70312500,5598.96191406" />
+<Fence pos="-81005.32031250,127318.70312500,5598.96191406" />
+<Fence pos="-81305.66406250,134693.29687500,5591.17871094" />
+<Fence pos="-81305.66406250,134693.29687500,5591.17871094" />
+<Fence pos="-83198.38281250,135161.81250000,4629.53076172" />
+<Fence pos="-83198.38281250,135161.81250000,4629.53076172" />
+<Fence pos="-83217.83593750,134911.98437500,4629.51611328" />
+<Fence pos="-83217.83593750,134911.98437500,4629.51611328" />
+<Fence pos="-83313.03125000,134693.84375000,4629.51513672" />
+<Fence pos="-83313.03125000,134693.84375000,4629.51513672" />
+<Fence pos="-83326.61718750,130883.21093750,5163.90185547" />
+<Fence pos="-83326.61718750,130883.21093750,5163.90185547" />
+<Fence pos="-83361.83593750,130694.42968750,5158.46679688" />
+<Fence pos="-83361.83593750,130694.42968750,5158.46679688" />
+<Fence pos="-83364.50781250,131067.21093750,5158.43945313" />
+<Fence pos="-83364.50781250,131067.21093750,5158.43945313" />
+<Fence pos="-83441.07031250,131279.84375000,5158.49902344" />
+<Fence pos="-83441.07031250,131279.84375000,5158.49902344" />
+<Fence pos="-83444.57031250,130466.53125000,5158.47705078" />
+<Fence pos="-83444.57031250,130466.53125000,5158.47705078" />
+<Fence pos="-83468.34375000,134488.82812500,4629.51513672" />
+<Fence pos="-83468.34375000,134488.82812500,4629.51513672" />
+<Fence pos="-83566.56250000,130301.28906250,5179.80419922" />
+<Fence pos="-83566.56250000,130301.28906250,5179.80419922" />
+<Fence pos="-83575.61718750,131460.53125000,5158.49414063" />
+<Fence pos="-83575.61718750,131460.53125000,5158.49414063" />
+<Fence pos="-83672.02343750,134336.54687500,4629.51611328" />
+<Fence pos="-83672.02343750,134336.54687500,4629.51611328" />
+<Fence pos="-83708.73437500,132399.54687500,5147.29443359" />
+<Fence pos="-83708.73437500,132399.54687500,5147.29443359" />
+<Fence pos="-83738.82031250,130157.99218750,5158.49462891" />
+<Fence pos="-83738.82031250,130157.99218750,5158.49462891" />
+<Fence pos="-83759.34375000,131583.50000000,5158.41601563" />
+<Fence pos="-83759.34375000,131583.50000000,5158.41601563" />
+<Fence pos="-83787.53906250,132198.89062500,5147.22949219" />
+<Fence pos="-83787.53906250,132198.89062500,5147.22949219" />
+<Fence pos="-83828.33593750,133680.46875000,4797.34765625" />
+<Fence pos="-83828.33593750,133680.46875000,4797.34765625" />
+<Fence pos="-83840.79687500,131937.46875000,5298.02001953" />
+<Fence pos="-83840.79687500,131937.46875000,5298.02001953" />
+<Fence pos="-83843.17187500,132986.31250000,5005.56054688" />
+<Fence pos="-83843.17187500,132986.31250000,5005.56054688" />
+<Fence pos="-83852.09375000,133173.20312500,4935.20849609" />
+<Fence pos="-83852.09375000,133173.20312500,4935.20849609" />
+<Fence pos="-83857.66406250,132729.09375000,5072.52783203" />
+<Fence pos="-83857.66406250,132729.09375000,5072.52783203" />
+<Fence pos="-83870.53125000,133982.89062500,4701.54589844" />
+<Fence pos="-83870.53125000,133982.89062500,4701.54589844" />
+<Fence pos="-83880.53906250,133447.06250000,4846.37402344" />
+<Fence pos="-83880.53906250,133447.06250000,4846.37402344" />
+<Fence pos="-83900.98437500,134223.79687500,4629.50537109" />
+<Fence pos="-83900.98437500,134223.79687500,4629.50537109" />
+<Fence pos="-83941.78125000,130073.87500000,5179.68896484" />
+<Fence pos="-83941.78125000,130073.87500000,5179.68896484" />
+<Fence pos="-83958.14843750,134231.79687500,4629.51757813" />
+<Fence pos="-83958.14843750,134231.79687500,4629.51757813" />
+<Fence pos="-83985.60156250,131675.06250000,5158.47851563" />
+<Fence pos="-83985.60156250,131675.06250000,5158.47851563" />
+<Fence pos="-84034.83593750,131671.70312500,5163.35546875" />
+<Fence pos="-84034.83593750,131671.70312500,5163.35546875" />
+<Fence pos="-84130.05468750,136601.18750000,1265.63085938" />
+<Fence pos="-84130.05468750,136601.18750000,1265.63085938" />
+<Fence pos="-84151.44531250,130063.31250000,5216.35791016" />
+<Fence pos="-84151.44531250,130063.31250000,5216.35791016" />
+<Fence pos="-84153.81250000,125133.91406250,1265.62890625" />
+<Fence pos="-84153.81250000,125133.91406250,1265.62890625" />
+<Fence pos="-84290.40625000,131660.37500000,5161.41406250" />
+<Fence pos="-84290.40625000,131660.37500000,5161.41406250" />
+<Fence pos="-84328.73437500,131673.04687500,5158.49072266" />
+<Fence pos="-84328.73437500,131673.04687500,5158.49072266" />
+<Fence pos="-84351.70312500,134225.20312500,4629.53417969" />
+<Fence pos="-84351.70312500,134225.20312500,4629.53417969" />
+<Fence pos="-84354.46093750,130069.17968750,5169.93261719" />
+<Fence pos="-84354.46093750,130069.17968750,5169.93261719" />
+<Fence pos="-84357.12500000,134240.45312500,4629.54003906" />
+<Fence pos="-84357.12500000,134240.45312500,4629.54003906" />
+<Fence pos="-84398.37500000,133293.82812500,4895.25097656" />
+<Fence pos="-84398.37500000,133293.82812500,4895.25097656" />
+<Fence pos="-84437.92968750,133955.32812500,4707.49365234" />
+<Fence pos="-84437.92968750,133955.32812500,4707.49365234" />
+<Fence pos="-84444.47656250,132750.71875000,5064.61181641" />
+<Fence pos="-84444.47656250,132750.71875000,5064.61181641" />
+<Fence pos="-84448.89843750,131936.67187500,5131.14746094" />
+<Fence pos="-84448.89843750,131936.67187500,5131.14746094" />
+<Fence pos="-84450.95312500,133587.18750000,4822.80078125" />
+<Fence pos="-84450.95312500,133587.18750000,4822.80078125" />
+<Fence pos="-84467.40625000,133013.21875000,4998.66503906" />
+<Fence pos="-84467.40625000,133013.21875000,4998.66503906" />
+<Fence pos="-84525.28125000,132414.92187500,5147.30322266" />
+<Fence pos="-84525.28125000,132414.92187500,5147.30322266" />
+<Fence pos="-84528.71093750,132190.65625000,5147.18261719" />
+<Fence pos="-84528.71093750,132190.65625000,5147.18261719" />
+<Fence pos="-84574.80468750,130159.44531250,5180.04785156" />
+<Fence pos="-84574.80468750,130159.44531250,5180.04785156" />
+<Fence pos="-84589.58593750,131586.96875000,5158.48828125" />
+<Fence pos="-84589.58593750,131586.96875000,5158.48828125" />
+<Fence pos="-84659.72656250,134334.29687500,4634.76806641" />
+<Fence pos="-84659.72656250,134334.29687500,4634.76806641" />
+<Fence pos="-84735.45312500,130300.40625000,5158.50048828" />
+<Fence pos="-84735.45312500,130300.40625000,5158.50048828" />
+<Fence pos="-84752.53125000,131469.48437500,5161.62548828" />
+<Fence pos="-84752.53125000,131469.48437500,5161.62548828" />
+<Fence pos="-84858.81250000,134493.46875000,4629.53857422" />
+<Fence pos="-84858.81250000,134493.46875000,4629.53857422" />
+<Fence pos="-84866.65625000,130456.14843750,5192.97509766" />
+<Fence pos="-84866.65625000,130456.14843750,5192.97509766" />
+<Fence pos="-84889.28906250,131289.56250000,5158.49951172" />
+<Fence pos="-84889.28906250,131289.56250000,5158.49951172" />
+<Fence pos="-84956.30468750,130657.30468750,5184.95214844" />
+<Fence pos="-84956.30468750,130657.30468750,5184.95214844" />
+<Fence pos="-84973.60937500,131050.71093750,5162.92431641" />
+<Fence pos="-84973.60937500,132050.71093750,5162.92431641" />
+<Fence pos="-84986.85937500,134695.15625000,4629.51855469" />
+<Fence pos="-84986.85937500,134695.15625000,4629.51855469" />
+<Fence pos="-84994.20312500,130872.42968750,5161.41503906" />
+<Fence pos="-84994.20312500,130872.42968750,5161.41503906" />
+<Fence pos="-85077.17968750,134909.37500000,4629.52441406" />
+<Fence pos="-85077.17968750,134909.37500000,4629.52441406" />
+<Fence pos="-85117.88281250,135218.89062500,4629.49316406" />
+<Fence pos="-85117.88281250,135218.89062500,4629.49316406" />
+<Fence pos="-86309.57812500,126626.15625000,5839.01855469" />
+<Fence pos="-86309.57812500,126626.15625000,5839.01855469" />
+<Fence pos="-87588.60937500,134229.82812500,5867.56445313" />
+<Fence pos="-87588.60937500,134229.82812500,5867.56445313" />
+<Fence pos="-87749.43750000,127879.91406250,6322.01269531" />
+<Fence pos="-87749.43750000,127879.91406250,6322.01269531" />
+<Fence pos="-89619.87500000,130878.03125000,3413.62500000" />
+<Fence pos="-89619.87500000,130878.03125000,3413.62500000" />
+<Fence pos="15359.7637,-138243.1094,2072.5706" />
+<Fence pos="30714.6387,-168958.5625,1995.9036" />
+<Section id="1" priority="0" huntingZoneId="-1" nameId="3044" pcMoveCylinder="true" protect="false" ride="true" addMaxZ="256" subtractMinZ="256" campId="0" desTex="false" disableItemId="" fishing="false" floor="1" ignoreObstacleShortTel="false" maze="false" optimizeOption="0" pk="false" restBonus="false" vender="false" worldMapSectionId="3044">
+<Section id="1" priority="0" huntingZoneId="-1" nameId="3105" pcMoveCylinder="true" protect="false" ride="true" addMaxZ="10000" subtractMinZ="2500" campId="0" desTex="false" disableItemId="" fishing="false" floor="1" ignoreObstacleShortTel="false" maze="false" optimizeOption="0" pk="false" restBonus="false" vender="false" worldMapSectionId="3105">
+<Section id="1" priority="0" huntingZoneId="-1" nameId="3137" pcMoveCylinder="true" protect="false" ride="true" addMaxZ="256" subtractMinZ="3000" campId="0" desTex="false" disableItemId="" floor="1" ignoreObstacleShortTel="false" maze="false" pk="false" restBonus="false" vender="false" worldMapSectionId="3137">
+<Section id="1" priority="0" huntingZoneId="126" nameId="3048001" pcMoveCylinder="true" protect="false" ride="false" addMaxZ="1500" subtractMinZ="500" campId="0" desTex="false" disableItemId="139831,139832,139833,216809,216810,216811,88740,88741,88742,88743,143463,143464,143465,206770,204479,204480,204481,204482" floor="1" maze="false" pk="false" restBonus="true" vender="false" worldMapSectionId="9126">
+<Section id="1" priority="0" huntingZoneId="3050" nameId="3050" pcMoveCylinder="true" protect="true" ride="false" addMaxZ="1256" subtractMinZ="1256" campId="0" desTex="false" disableItemId="143463,143464,143465,139831,139832,139833,216809,216810,216811,88740,88741,88742,88743,206770,204479,204480,204481,204482,201235,201236,201237,143561,143562,143586,143587,143588,143589,143590" floor="1" ignoreObstacleShortTel="false" maze="false" pk="false" restBonus="false" vender="false" worldMapSectionId="3050">
+<Section id="1" priority="0" huntingZoneId="3205" nameId="3205" pcMoveCylinder="true" protect="false" ride="true" addMaxZ="10000" subtractMinZ="2500" campId="0" desTex="false" disableItemId="" fishing="false" floor="1" ignoreObstacleShortTel="false" maze="false" optimizeOption="0" pk="false" restBonus="false" vender="false" worldMapSectionId="3205">
+<Section id="1" priority="1" huntingZoneId="3134" nameId="3134" pcMoveCylinder="true" protect="false" ride="false" addMaxZ="5000" subtractMinZ="1000" campId="0" desTex="false" floor="1" maze="false" pk="safe" restBonus="false" vender="false" worldMapSectionId="3134">
+<Section id="2" priority="0" huntingZoneId="-1" nameId="3105" pcMoveCylinder="true" protect="false" ride="false" addMaxZ="256" subtractMinZ="256" campId="0" desTex="false" disableItemId="" fishing="false" floor="1" ignoreObstacleShortTel="false" maze="false" optimizeOption="0" pk="false" restBonus="false" vender="false" worldMapSectionId="3105">
+<Section id="2" priority="0" huntingZoneId="-1" nameId="3137" pcMoveCylinder="true" protect="true" ride="true" addMaxZ="256" subtractMinZ="2500" campId="0" desTex="false" disableItemId="200001" floor="2" ignoreObstacleShortTel="false" maze="false" pk="false" restBonus="false" vender="false" worldMapSectionId="313701">
+<Section id="2" priority="0" huntingZoneId="3205" nameId="3205" pcMoveCylinder="true" protect="false" ride="false" addMaxZ="256" subtractMinZ="256" campId="0" desTex="false" disableItemId="" fishing="false" floor="1" ignoreObstacleShortTel="false" maze="false" optimizeOption="0" pk="false" restBonus="false" vender="false" worldMapSectionId="3205">
+<Section id="2" priority="100" huntingZoneId="-1" nameId="3044" pcMoveCylinder="true" protect="false" ride="false" addMaxZ="256" subtractMinZ="256" campId="0" desTex="false" disableItemId="" fishing="false" floor="1" ignoreObstacleShortTel="false" maze="false" optimizeOption="0" pk="false" restBonus="false" vender="false" worldMapSectionId="3044">
+<Section id="3" priority="0" huntingZoneId="-1" nameId="3044" pcMoveCylinder="true" protect="false" ride="true" addMaxZ="256" subtractMinZ="256" campId="0" desTex="false" disableItemId="" fishing="false" floor="1" ignoreObstacleShortTel="false" maze="false" optimizeOption="0" pk="false" restBonus="false" vender="false" worldMapSectionId="3044">
+<Section id="3" priority="0" huntingZoneId="-1" nameId="3105" pcMoveCylinder="true" protect="false" ride="true" addMaxZ="256" subtractMinZ="256" campId="0" desTex="false" disableItemId="" fishing="false" floor="1" ignoreObstacleShortTel="false" maze="false" optimizeOption="0" pk="false" restBonus="false" vender="false" worldMapSectionId="3105">
+<Section id="3" priority="0" huntingZoneId="-1" nameId="3137" pcMoveCylinder="true" protect="false" ride="false" addMaxZ="2000" subtractMinZ="1000" campId="0" desTex="false" disableItemId="200001" floor="3" ignoreObstacleShortTel="false" maze="false" pk="false" restBonus="false" vender="false" worldMapSectionId="313702">
+<Section id="3" priority="0" huntingZoneId="-1" nameId="9768002" pcMoveCylinder="true" protect="false" ride="false" addMaxZ="256" subtractMinZ="256" campId="0" desTex="false" disableItemId="" floor="1" ignoreObstacleShortTel="false" maze="false" pk="false" restBonus="false" vender="false" worldMapSectionId="3401">
+<Section id="3" priority="0" huntingZoneId="3205" nameId="3205" pcMoveCylinder="true" protect="false" ride="true" addMaxZ="256" subtractMinZ="256" campId="0" desTex="false" disableItemId="" fishing="false" floor="1" ignoreObstacleShortTel="false" maze="false" optimizeOption="0" pk="false" restBonus="false" vender="false" worldMapSectionId="3205">
+<Section id="3" priority="0" huntingZoneId="3400" nameId="3400" pcMoveCylinder="true" protect="false" ride="false" addMaxZ="1256" subtractMinZ="256" campId="0" desTex="false" disableItemId="" floor="1" ignoreObstacleShortTel="false" maze="false" pk="false" restBonus="false" vender="false" worldMapSectionId="3400">
+<Section id="31" priority="0" huntingZoneId="-1" nameId="3133" pcMoveCylinder="true" protect="false" ride="false" addMaxZ="256" subtractMinZ="256" campId="0" desTex="false" floor="1" ignoreObstacleShortTel="false" maze="false" pk="TRUE" restBonus="false" vender="false" worldMapSectionId="31">
+<Section id="4" priority="0" huntingZoneId="-1" nameId="3044" pcMoveCylinder="true" protect="false" ride="true" addMaxZ="256" subtractMinZ="256" campId="0" desTex="false" disableItemId="" fishing="false" floor="1" ignoreObstacleShortTel="false" maze="false" optimizeOption="0" pk="false" restBonus="false" vender="false" worldMapSectionId="3044">
+<Section id="4" priority="0" huntingZoneId="-1" nameId="3045" pcMoveCylinder="true" protect="false" ride="true" addMaxZ="256" subtractMinZ="256" campId="0" desTex="false" disableItemId="" floor="1" ignoreObstacleShortTel="false" maze="false" pk="false" restBonus="false" vender="false" worldMapSectionId="3045">
+<Section id="4" priority="0" huntingZoneId="-1" nameId="3105" pcMoveCylinder="true" protect="false" ride="true" addMaxZ="256" subtractMinZ="256" campId="0" desTex="false" disableItemId="" fishing="false" floor="1" ignoreObstacleShortTel="false" maze="false" optimizeOption="0" pk="false" restBonus="false" vender="false" worldMapSectionId="3105">
+<Section id="4" priority="0" huntingZoneId="-1" nameId="3137" pcMoveCylinder="true" protect="false" ride="false" addMaxZ="256" subtractMinZ="256" campId="0" desTex="false" disableItemId="" floor="4" ignoreObstacleShortTel="false" maze="false" pk="false" restBonus="false" vender="false" worldMapSectionId="313704">
+<Section id="4" priority="0" huntingZoneId="-1" nameId="9768003" pcMoveCylinder="true" protect="false" ride="false" addMaxZ="256" subtractMinZ="256" campId="0" desTex="false" disableItemId="" floor="1" ignoreObstacleShortTel="false" maze="false" pk="false" restBonus="false" vender="false" worldMapSectionId="3401">
+<Section id="4" priority="0" huntingZoneId="3205" nameId="3205" pcMoveCylinder="true" protect="false" ride="true" addMaxZ="256" subtractMinZ="256" campId="0" desTex="false" disableItemId="" fishing="false" floor="1" ignoreObstacleShortTel="false" maze="false" optimizeOption="0" pk="false" restBonus="false" vender="false" worldMapSectionId="3205">
+<Section id="4" priority="0" huntingZoneId="3400" nameId="3400" pcMoveCylinder="true" protect="false" ride="false" addMaxZ="1256" subtractMinZ="256" campId="0" desTex="false" disableItemId="" floor="1" ignoreObstacleShortTel="false" maze="false" pk="false" restBonus="false" vender="false" worldMapSectionId="3400">
+<Section id="5" priority="0" huntingZoneId="-1" nameId="3137" pcMoveCylinder="true" protect="false" ride="false" addMaxZ="2560" subtractMinZ="256" campId="0" desTex="false" disableItemId="" floor="5" ignoreObstacleShortTel="false" maze="false" pk="false" restBonus="false" vender="false" worldMapSectionId="313707">
+<Section id="5" priority="0" huntingZoneId="-1" nameId="9768004" pcMoveCylinder="true" protect="false" ride="false" addMaxZ="256" subtractMinZ="256" campId="0" desTex="false" disableItemId="" floor="1" ignoreObstacleShortTel="false" maze="false" pk="false" restBonus="false" vender="false" worldMapSectionId="3401">
+<Section id="6" priority="0" huntingZoneId="-1" nameId="3137" pcMoveCylinder="true" protect="false" ride="true" addMaxZ="256" subtractMinZ="256" campId="0" desTex="false" disableItemId="" floor="6" ignoreObstacleShortTel="false" maze="false" pk="false" restBonus="false" vender="false" worldMapSectionId="313703">
+<Section id="7" priority="0" huntingZoneId="-1" nameId="3137" pcMoveCylinder="true" protect="false" ride="true" addMaxZ="256" subtractMinZ="256" campId="0" desTex="false" disableItemId="" floor="7" ignoreObstacleShortTel="false" maze="false" pk="false" restBonus="false" vender="false" worldMapSectionId="3137">
+<Section id="7" priority="0" huntingZoneId="-1" nameId="3401" pcMoveCylinder="true" protect="false" ride="true" addMaxZ="256" subtractMinZ="4000" campId="0" desTex="false" disableItemId="" floor="1" ignoreObstacleShortTel="false" maze="false" pk="false" restBonus="false" vender="false" worldMapSectionId="3401">
+<Section id="72" priority="0" huntingZoneId="-1" nameId="152" pcMoveCylinder="true" protect="false" ride="true" addMaxZ="256" subtractMinZ="256" campId="0" desTex="false" disableItemId="960196,111,112,116,114,100452,143210,148379,240506,243417,7219,60481,60482,60483,60484,60485,100704,100718,100720,139161,139188,139695,139738,149034,149297,149308,166593,166594,166595,166596,166597,166682,166683,166684,166685,166686,170001,178813,178814,178815,178816,181117,220218,5270,6217,6218,6219,6220,6221,6252,6253,6254,6309,6489,139206,139216,139218,139500,139521,169364,169373,177636,177645,100739,100748,139220,139221,139222,100772,100773,100774,100902,100903,149488,201023,210535,212781,213301,139297,139298,139299,221634,212977,212978,210896,213845,213854,215150,221539,221541,221542,221543,70052,200997,200998,201005,201006,201007,201008,201022,201220,152898,152899,153103,153104,153105,184659,184660,101212,142974,149295,214860,214915,855604,856055,856056,856057,856058,856059,856060,856263,207546,206054,206055,206058,206059,207226,207227,207291,207292,207464,207465,212982,213820,81212,1303,1302,1301,1300,1230,1210,1206,200920,200921,200929,7218,88801,209202,206010,206011,206012,206013,206014,206015,206016,206017,206018,206019,214418,214191,150534,150535,150543,167001,216616,216617,216618,216619,216815,216816,81179,100260,100523,100998,100999,117529,117530,117533,117534,139501,139536,139694,142795,150542,156031,186782,202015,212979,213348,213828,221224,222693,855593,855594,855972,113,121,122,81227,150538,150539,150540,150541,150941,150942,150943,150944,216812,216813,71418,88800,100368,142789,156027,189068,201223,201237,220428,856264,89067" floor="1" ignoreObstacleShortTel="false" maze="false" pk="false" restBonus="false" vender="false" worldMapSectionId="72">
+<Section id="8" priority="0" huntingZoneId="-1" nameId="9768005" pcMoveCylinder="true" protect="false" ride="false" addMaxZ="256" subtractMinZ="256" campId="0" desTex="false" disableItemId="" floor="1" ignoreObstacleShortTel="false" maze="false" pk="false" restBonus="false" vender="false" worldMapSectionId="0">
+
+=== REMOVED (1) ===
+<Section id="72" priority="0" huntingZoneId="-1" nameId="152" pcMoveCylinder="true" protect="false" ride="true" addMaxZ="256" subtractMinZ="256" campId="0" desTex="false" disableItemId="111,112,116,114,100452,143210,148379,240506,243417,7219,60481,60482,60483,60484,60485,100704,100718,100720,139161,139188,139695,139738,149034,149297,149308,166593,166594,166595,166596,166597,166682,166683,166684,166685,166686,170001,178813,178814,178815,178816,181117,220218,5270,6217,6218,6219,6220,6221,6252,6253,6254,6309,6489,139206,139216,139218,139500,139521,169364,169373,177636,177645,100739,100748,139220,139221,139222,100772,100773,100774,100902,100903,149488,201023,210535,212781,213301,139297,139298,139299,221634,212977,212978,210896,213845,213854,215150,221539,221541,221542,221543,70052,200997,200998,201005,201006,201007,201008,201022,201220,152898,152899,153103,153104,153105,184659,184660,101212,142974,149295,214860,214915,855604,856055,856056,856057,856058,856059,856060,856263,207546,206054,206055,206058,206059,207226,207227,207291,207292,207464,207465,212982,213820,81212,1303,1302,1301,1300,1230,1210,1206,200920,200921,200929,7218,88801,209202,206010,206011,206012,206013,206014,206015,206016,206017,206018,206019,214418,214191,150534,150535,150543,167001,216616,216617,216618,216619,216815,216816,81179,100260,100523,100998,100999,117529,117530,117533,117534,139501,139536,139694,142795,150542,156031,186782,202015,212979,213348,213828,221224,222693,855593,855594,855972,113,121,122,81227,150538,150539,150540,150541,150941,150942,150943,150944,216812,216813,71418,88800,100368,142789,156027,189068,201223,201237,220428,856264,89067" floor="1" ignoreObstacleShortTel="false" maze="false" pk="false" restBonus="false" vender="false" worldMapSectionId="72">

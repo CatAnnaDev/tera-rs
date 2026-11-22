@@ -33,16 +33,26 @@ pub struct Entity {
     pub hunting_zone: u16,
     pub player_id: u32,
     pub level: i32,
+    pub hp: i64,
     pub max_hp: i64,
     pub location: Vec3,
     pub heading: i32,
     pub alive: bool,
     pub villager: bool,
+    pub enraged: bool,
+    pub target: u64,
 }
 
 impl Entity {
     pub fn is_boss_candidate(&self) -> bool {
         self.kind == EntityKind::Npc && self.max_hp >= 1_000_000
+    }
+
+    pub fn hp_pct(&self) -> f64 {
+        if self.max_hp <= 0 {
+            return 0.0;
+        }
+        (self.hp.max(0) as f64 / self.max_hp as f64 * 100.0).clamp(0.0, 100.0)
     }
 }
 
@@ -61,10 +71,20 @@ pub struct Player {
     pub zone: i32,
 }
 
+#[derive(Clone, Copy, Default, Debug)]
+pub struct InvItem {
+    pub id: i32,
+    pub amount: i32,
+    pub enchant: i32,
+    pub pocket: i32,
+    pub slot: u32,
+}
+
 #[derive(Default)]
 pub struct World {
     pub player: Player,
     pub entities: HashMap<u64, Entity>,
+    pub inventory: HashMap<(i32, u32), InvItem>,
     pub inventory_slots: usize,
     pub money: i64,
     pub spawns: u64,
@@ -110,6 +130,7 @@ impl World {
                 self.player.template_id = int(object, "templateId") as i32;
                 self.player.level = uint(object, "level") as u16;
                 self.entities.clear();
+                self.inventory.clear();
             }
             "S_SPAWN_ME" => {
                 self.player.game_id = uint(object, "gameId");
@@ -141,11 +162,14 @@ impl World {
                         hunting_zone: uint(object, "huntingZoneId") as u16,
                         player_id: 0,
                         level: int(object, "level") as i32,
+                        hp: int(object, "maxHp"),
                         max_hp: int(object, "maxHp"),
                         location: location(object, "loc"),
                         heading: int(object, "w") as i32,
                         alive: int(object, "status") != 4,
                         villager: uint(object, "villager") != 0,
+                        enraged: false,
+                        target: 0,
                     },
                 );
                 self.spawns += 1;
@@ -161,11 +185,14 @@ impl World {
                         hunting_zone: 0,
                         player_id: uint(object, "playerId") as u32,
                         level: 0,
+                        hp: 0,
                         max_hp: 0,
                         location: location(object, "loc"),
                         heading: int(object, "w") as i32,
                         alive: true,
                         villager: false,
+                        enraged: false,
+                        target: 0,
                     },
                 );
                 self.spawns += 1;
@@ -180,6 +207,26 @@ impl World {
                 let alive = uint(object, "alive") != 0;
                 if let Some(entity) = self.entities.get_mut(&uint(object, "gameId")) {
                     entity.alive = alive;
+                    if alive && entity.hp <= 0 {
+                        entity.hp = entity.max_hp;
+                    }
+                }
+            }
+            "S_CREATURE_CHANGE_HP" => {
+                let cur = int(object, "curHp");
+                let max = int(object, "maxHp");
+                if let Some(entity) = self.entities.get_mut(&uint(object, "target")) {
+                    entity.hp = cur;
+                    if max > 0 {
+                        entity.max_hp = max;
+                    }
+                    entity.alive = cur > 0;
+                }
+            }
+            "S_NPC_STATUS" => {
+                if let Some(entity) = self.entities.get_mut(&uint(object, "gameId")) {
+                    entity.enraged = uint(object, "enraged") != 0;
+                    entity.target = uint(object, "target");
                 }
             }
             "S_DESPAWN_NPC" | "S_DESPAWN_USER" => {
@@ -188,10 +235,35 @@ impl World {
                 }
             }
             "S_ITEMLIST" => {
-                if let Some(Value::Array(items)) = object.get("items") {
-                    self.inventory_slots = items.len();
-                }
+                let container = int(object, "container");
                 self.money = int(object, "money");
+                if container != 0 {
+                    return;
+                }
+                let pocket = int(object, "pocket") as i32;
+                if matches!(object.get("first"), Some(Value::Bool(true))) {
+                    self.inventory.retain(|(p, _), _| *p != pocket);
+                }
+                if let Some(Value::Array(items)) = object.get("items") {
+                    for fields in items {
+                        let id = fields.get("id").and_then(Value::as_int).unwrap_or(0) as i32;
+                        if id == 0 {
+                            continue;
+                        }
+                        let slot = fields.get("slot").and_then(Value::as_uint).unwrap_or(0) as u32;
+                        self.inventory.insert(
+                            (pocket, slot),
+                            InvItem {
+                                id,
+                                amount: fields.get("amount").and_then(Value::as_int).unwrap_or(1) as i32,
+                                enchant: fields.get("enchant").and_then(Value::as_int).unwrap_or(0) as i32,
+                                pocket,
+                                slot,
+                            },
+                        );
+                    }
+                }
+                self.inventory_slots = self.inventory.len();
             }
             _ => {}
         }
@@ -220,5 +292,51 @@ impl World {
                 let db = b.location.distance_to(self.player.location);
                 da.total_cmp(&db)
             })
+    }
+
+    pub fn nearest_villager(&self) -> Option<&Entity> {
+        self.entities
+            .values()
+            .filter(|entity| entity.kind == EntityKind::Npc && entity.alive && entity.villager)
+            .min_by(|a, b| {
+                let da = a.location.distance_to(self.player.location);
+                let db = b.location.distance_to(self.player.location);
+                da.total_cmp(&db)
+            })
+    }
+
+    pub fn npcs_by_distance(&self) -> Vec<&Entity> {
+        let me = self.player.location;
+        let mut list: Vec<&Entity> = self
+            .entities
+            .values()
+            .filter(|entity| entity.kind == EntityKind::Npc)
+            .collect();
+        list.sort_by(|a, b| a.location.distance_to(me).total_cmp(&b.location.distance_to(me)));
+        list
+    }
+
+    pub fn inventory_sorted(&self) -> Vec<InvItem> {
+        let mut items: Vec<InvItem> = self.inventory.values().copied().collect();
+        items.sort_by(|a, b| a.pocket.cmp(&b.pocket).then_with(|| a.slot.cmp(&b.slot)));
+        items
+    }
+
+    pub fn boss_count(&self) -> usize {
+        self.entities
+            .values()
+            .filter(|entity| entity.kind == EntityKind::Npc && entity.alive && entity.is_boss_candidate())
+            .count()
+    }
+
+    pub fn aggro_on_me(&self) -> usize {
+        let me = self.player.game_id;
+        if me == 0 {
+            return 0;
+        }
+        self.entities
+            .values()
+            .filter(|entity| entity.kind == EntityKind::Npc && entity.alive && entity.target == me)
+            .count()
     }
 }

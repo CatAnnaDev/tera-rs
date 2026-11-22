@@ -1,0 +1,57 @@
+# NewWorldMapData  +37 -15
+
+=== ADDED (37) ===
+</Guard>
+<Guard id="7">
+<Npc type="MARKER_CAMP_TELEPORT" pos="129972.13281250,-117597.64843750,17516.72851563" continentId="2000" nameId="2000,3" />
+<Npc type="MARKER_CAMP_TELEPORT" pos="134690.01562500,-66596.41406250,12541.00390625" continentId="2000" nameId="2000,3" />
+<Npc type="MARKER_CAMP_TELEPORT" pos="97000,-52500,14134.24804688" continentId="2000" nameId="2000,3" />
+<Npc type="MARKER_CITYBATTLE" pos="132439.5781,35614.1250,3754.5325" continentId="7006" nameId="99,8001" />
+<Npc type="MARKER_COMBAT_SKILL_LEARN" pos="133149.0000,35643.3008,3766.9565" continentId="7006" nameId="99,18314" />
+<Npc type="MARKER_DUNGEON_ARENA" pos="132322.8125,35538.3438,3745.9714" continentId="7006" nameId="99,30000" />
+<Npc type="MARKER_DUNGEON_ARENA" pos="132560.8750,36308.9297,4015.3066" continentId="7006" nameId="99,7001" />
+<Npc type="MARKER_DUNGEON_ARENA" pos="132591.5781,36453.1563,4014.4180" continentId="7006" nameId="99,10006" />
+<Npc type="MARKER_DUNGEON_SCENARIO" pos="132381.9375,36448.7930,4014.7500" continentId="7006" nameId="99,7003" />
+<Npc type="MARKER_DUNGEON_SOLO" pos="132401.3281,36301.4141,4014.7500" continentId="7006" nameId="99,7002" />
+<Npc type="MARKER_DUNGEON_SOLO" pos="132486.7969,36518.8828,4014.7500" continentId="7006" nameId="99,10005" />
+<Npc type="MARKER_ENTER_DUNGEON" pos="103524,-77714,14402" continentId="2000" nameId="99,3202" />
+<Npc type="MARKER_MAGIC_SKILL_LEARN" pos="132986.5469,35641.6680,3767.1812" continentId="7006" nameId="99,18315" />
+<Npc type="MARKER_RECOVERY" pos="132967.9219,36514.0977,4016.4004" continentId="7006" nameId="99,1838" />
+<Npc type="MARKER_RECOVERY" pos="135512.0156,31616.5293,3765.6738" continentId="7006" nameId="99,1824" />
+<Npc type="MARKER_REPUTATION_STORE" pos="131985.9375,35579.9414,3754.6313" continentId="7006" nameId="99,35" />
+<Npc type="MARKER_REPUTATION_STORE" pos="134060.6719,35538.5625,3764.5625" continentId="7006" nameId="99,1839" />
+<Npc type="MARKER_REPUTATION_STORE" pos="95500,-53000,14133.24804688" continentId="2000" nameId="2000,1" />
+<Npc type="MARKER_ROYAL_MERCHANT" pos="131162.5625,34401.0977,3732.2493" continentId="7006" nameId="99,8" />
+<Npc type="MARKER_ROYAL_MERCHANT" pos="131309.4844,34400.4414,3732.2480" continentId="7006" nameId="99,10009" />
+<Npc type="MARKER_enter_Dungeon" pos="133792,36555,4014" continentId="7006" nameId="99,58999" />
+<Section id="3041" nameId="3041" floor="1" mapId="WMap_DG_Kubel_Fortress_RM" height="7680" width="7680" left="34560" mode="5" top="-3840" />
+<Section id="3044" nameId="3044" floor="1" mapId="WMap_DG_Kubel_Fortress_RM_02" height="7680" width="7680" left="34560" mode="5" top="-3840" />
+<Section id="3045" type="dungeon" nameId="3045" floor="1" mapId="WMap_Durion_storage_P" height="7680" width="7680" left="-42240" mode="5" top="-65280" />
+<Section id="3105" nameId="3105" floor="0" mapId="WMap_DG_Logashi_01" height="15360" width="15360" left="122880" mode="5" top="-76800" />
+<Section id="3108" type="dungeon" nameId="3108" floor="1" mapId="WMap_DG_MagicalPrison_Extreme" height="15360" width="15360" left="-107520" mode="5" top="46080" />
+<Section id="3137" nameId="3137" floor="1" mapId="WMap_DG_RobotFactory_all_Hard_tom" height="15360" width="15360" left="30720" mode="5" top="-30720" />
+<Section id="313701" nameId="3137" floor="2" mapId="WMap_DG_RobotFactory_Lobby_Hard_tom" height="15360" width="15360" left="30720" mode="5" top="-30720" />
+<Section id="313702" nameId="3137" floor="3" mapId="WMap_DG_RobotFactory_A_Hard_tom" height="15360" width="15360" left="46080" mode="5" top="-30720" />
+<Section id="313703" nameId="3137" floor="6" mapId="WMap_DG_RobotFactory_B_Hard_tom" height="15360" width="15360" left="46080" mode="5" top="-30720" />
+<Section id="313704" nameId="3137" floor="4" mapId="WMap_DG_RobotFactory_D_Hard_tom" height="15360" width="15360" left="46080" mode="5" top="-30720" />
+<Section id="313707" nameId="3137" floor="5" mapId="WMap_DG_RobotFactory_Boss_Hard_tom" height="15360" width="15360" left="30720" mode="5" top="-30720" />
+<Section id="3205" nameId="3205" floor="0" mapId="WMap_DG_Logashi" height="15360" width="15360" left="122880" mode="5" top="-76800" />
+<Section id="3400" nameId="3400" floor="0" mapId="WMap_DG_Rucmia_3104" height="15360" width="15360" left="107520" mode="5" top="-69120" />
+<Section id="3401" type="dungeon" nameId="3401" floor="1" mapId="WMap_DG_Durion_01" height="15360" width="30720" left="30720" mode="5" top="-61440" />
+
+=== REMOVED (15) ===
+<Npc type="MARKER_CAMP_TELEPORT" pos="129972.13281250,-117597.64843750,17516.72851563" continentId="2000" nameId="2000,3" showRequireQuestTaskId="5" showRequireQuestTemplateId="200305" />
+<Npc type="MARKER_CAMP_TELEPORT" pos="134690.01562500,-66596.41406250,12541.00390625" continentId="2000" nameId="2000,3" showRequireQuestTaskId="5" showRequireQuestTemplateId="200305" />
+<Npc type="MARKER_CAMP_TELEPORT" pos="97000,-52500,14134.24804688" continentId="2000" nameId="2000,3" showRequireQuestTaskId="5" showRequireQuestTemplateId="200305" />
+<Npc type="MARKER_DUNGEON_ARENA" pos="131902.47, 33992.75, 3617.63" continentId="7006" nameId="99,7001" />
+<Npc type="MARKER_DUNGEON_SCENARIO" pos="131913.30, 34126.39, 3624.84" continentId="7006" nameId="99,7003" />
+<Npc type="MARKER_DUNGEON_SOLO" pos="131858.28, 33703.16, 3593.45" continentId="7006" nameId="99,7002" />
+<Npc type="MARKER_ENTER_DUNGEON" pos="103524,-77714,14402" continentId="2000" nameId="99,3202" showRequireQuestTaskId="7" showRequireQuestTemplateId="210502" />
+<Npc type="MARKER_MERCHANT" pos="132835.64,33296.20,3591.75" continentId="7006" nameId="99,12" />
+<Npc type="MARKER_REPUTATION_STORE" pos="132852.09, 33182.57, 3591.75" continentId="7006" nameId="99,1839" />
+<Npc type="MARKER_REPUTATION_STORE" pos="132991.64, 34083.79, 3630.89" continentId="7006" nameId="99,40" />
+<Npc type="MARKER_REPUTATION_STORE" pos="133097.75, 34010.89, 3627.65" continentId="7006" nameId="99,40" />
+<Npc type="MARKER_REPUTATION_STORE" pos="133228.89, 33954.47, 3626.41" continentId="7006" nameId="99,35" />
+<Npc type="MARKER_REPUTATION_STORE" pos="95500,-53000,14133.24804688" continentId="2000" nameId="2000,1" showRequireQuestTaskId="5" showRequireQuestTemplateId="200305" />
+<Npc type="MARKER_ROYAL_MERCHANT" pos="132873.97, 33528.08, 3591.75" continentId="7006" nameId="99,8" />
+<Npc type="MARKER_ROYAL_MERCHANT" pos="132882.64,33410.80,3591.75" continentId="7006" nameId="99,10050" />

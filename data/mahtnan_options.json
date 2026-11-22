@@ -1,0 +1,354 @@
+{
+  "internalName": "Starshimmer",
+  "note": "method 2 = additive flat. Crit Power value 0.025 = +2.5%.",
+  "randomOption": {
+    "slotCategories": {
+      "986000": "weapons",
+      "986001": "hand armor",
+      "986002": "body+feet armor",
+      "986003": "(spare, identical)",
+      "986004": "(spare, identical)"
+    },
+    "stats": [
+      {
+        "stat": "Physical Amplification",
+        "type": "1001",
+        "Rare": "1931",
+        "Legendary": "2297",
+        "Mythical": "2730"
+      },
+      {
+        "stat": "Magic Amplification",
+        "type": "1002",
+        "Rare": "1931",
+        "Legendary": "2297",
+        "Mythical": "2730"
+      },
+      {
+        "stat": "Physical Crit Power",
+        "type": "1005",
+        "Rare": "0.025",
+        "Legendary": "0.029",
+        "Mythical": "0.035"
+      },
+      {
+        "stat": "Magic Crit Power",
+        "type": "1006",
+        "Rare": "0.025",
+        "Legendary": "0.029",
+        "Mythical": "0.035"
+      },
+      {
+        "stat": "Physical Resistance",
+        "type": "1003",
+        "Rare": "966",
+        "Legendary": "1148",
+        "Mythical": "1365"
+      },
+      {
+        "stat": "Magic Resistance",
+        "type": "1004",
+        "Rare": "966",
+        "Legendary": "1148",
+        "Mythical": "1365"
+      },
+      {
+        "stat": "Physical Piercing",
+        "type": "1007",
+        "Rare": "387",
+        "Legendary": "460",
+        "Mythical": "547"
+      },
+      {
+        "stat": "Magic Piercing",
+        "type": "1008",
+        "Rare": "387",
+        "Legendary": "460",
+        "Mythical": "547"
+      },
+      {
+        "stat": "Ignore Physical Resistance",
+        "type": "1009",
+        "Rare": "774",
+        "Legendary": "920",
+        "Mythical": "1094"
+      },
+      {
+        "stat": "Ignore Magic Resistance",
+        "type": "1010",
+        "Rare": "774",
+        "Legendary": "920",
+        "Mythical": "1094"
+      },
+      {
+        "stat": "Crit Factor",
+        "type": "6",
+        "Rare": "12",
+        "Legendary": "14",
+        "Mythical": "17"
+      },
+      {
+        "stat": "Maximum HP",
+        "type": "1",
+        "Rare": "3869",
+        "Legendary": "4602",
+        "Mythical": "5470"
+      },
+      {
+        "stat": "Maximum MP",
+        "type": "2",
+        "Rare": "387",
+        "Legendary": "460",
+        "Mythical": "547"
+      }
+    ]
+  },
+  "supportOption": {
+    "weapon": [
+      {
+        "passivityId": "210908",
+        "stat": "MP replenishment per second",
+        "type": "21",
+        "method": "2",
+        "value": "47"
+      },
+      {
+        "passivityId": "510053",
+        "stat": "type#25",
+        "type": "25",
+        "method": "3",
+        "value": "1.045"
+      },
+      {
+        "passivityId": "9301592",
+        "stat": "type#71",
+        "type": "71",
+        "method": "3",
+        "value": "0.856"
+      },
+      {
+        "passivityId": "150478",
+        "stat": "type#109",
+        "type": "109",
+        "method": "2",
+        "value": "84776"
+      },
+      {
+        "passivityId": "5000057",
+        "stat": "Damage",
+        "type": "152",
+        "method": "3",
+        "value": "1.14"
+      },
+      {
+        "passivityId": "5012331",
+        "stat": "Damage",
+        "type": "152",
+        "method": "3",
+        "value": "1.20"
+      },
+      {
+        "passivityId": "510191",
+        "stat": "Damage",
+        "type": "152",
+        "method": "3",
+        "value": "0.2"
+      },
+      {
+        "passivityId": "510192",
+        "stat": "Damage",
+        "type": "102",
+        "method": "3",
+        "value": "1.75"
+      }
+    ],
+    "body": [
+      {
+        "passivityId": "4999999",
+        "stat": "Damage",
+        "type": "102",
+        "method": "3",
+        "value": "0.7"
+      },
+      {
+        "passivityId": "4999983",
+        "stat": "Damage",
+        "type": "102",
+        "method": "3",
+        "value": "0.8"
+      },
+      {
+        "passivityId": "4999984",
+        "stat": "Damage",
+        "type": "102",
+        "method": "3",
+        "value": "0.85"
+      },
+      {
+        "passivityId": "4999985",
+        "stat": "Damage",
+        "type": "152",
+        "method": "3",
+        "value": "1.1"
+      },
+      {
+        "passivityId": "4999995",
+        "stat": "Maximum HP",
+        "type": "1",
+        "method": "2",
+        "value": "42212"
+      },
+      {
+        "passivityId": "191980",
+        "stat": "Maximum MP",
+        "type": "2",
+        "method": "2",
+        "value": "1012"
+      },
+      {
+        "passivityId": "520512",
+        "stat": "Crit Resist Factor",
+        "type": "7",
+        "method": "2",
+        "value": "30"
+      },
+      {
+        "passivityId": "5012335",
+        "stat": "PvP Defense",
+        "type": "113",
+        "method": "2",
+        "value": "35"
+      },
+      {
+        "passivityId": "4999982",
+        "stat": "MP Replenishment",
+        "type": "52",
+        "method": "2",
+        "value": "400"
+      },
+      {
+        "passivityId": "510191",
+        "stat": "Damage",
+        "type": "152",
+        "method": "3",
+        "value": "0.2"
+      },
+      {
+        "passivityId": "510192",
+        "stat": "Damage",
+        "type": "102",
+        "method": "3",
+        "value": "1.75"
+      }
+    ],
+    "hand": [
+      {
+        "passivityId": "4999986",
+        "stat": "Damage",
+        "type": "152",
+        "method": "3",
+        "value": "1.05"
+      },
+      {
+        "passivityId": "9990570",
+        "stat": "Crit Factor",
+        "type": "6",
+        "method": "2",
+        "value": "35"
+      },
+      {
+        "passivityId": "5000003",
+        "stat": "type#25",
+        "type": "25",
+        "method": "3",
+        "value": "1.045"
+      },
+      {
+        "passivityId": "4999997",
+        "stat": "Maximum HP",
+        "type": "1",
+        "method": "2",
+        "value": "14070"
+      },
+      {
+        "passivityId": "5012337",
+        "stat": "PvP Defense",
+        "type": "113",
+        "method": "2",
+        "value": "25"
+      },
+      {
+        "passivityId": "5012336",
+        "stat": "Maximum MP",
+        "type": "2",
+        "method": "2",
+        "value": "500"
+      },
+      {
+        "passivityId": "510191",
+        "stat": "Damage",
+        "type": "152",
+        "method": "3",
+        "value": "0.2"
+      },
+      {
+        "passivityId": "510192",
+        "stat": "Damage",
+        "type": "102",
+        "method": "3",
+        "value": "1.75"
+      }
+    ],
+    "foot": [
+      {
+        "passivityId": "4999987",
+        "stat": "Damage",
+        "type": "152",
+        "method": "3",
+        "value": "1.05"
+      },
+      {
+        "passivityId": "5000007",
+        "stat": "Movement Speed",
+        "type": "5",
+        "method": "3",
+        "value": "1.2"
+      },
+      {
+        "passivityId": "5012338",
+        "stat": "Maximum HP",
+        "type": "1",
+        "method": "2",
+        "value": "28141"
+      },
+      {
+        "passivityId": "524220",
+        "stat": "Crit Resist Factor",
+        "type": "7",
+        "method": "2",
+        "value": "24"
+      },
+      {
+        "passivityId": "5012337",
+        "stat": "PvP Defense",
+        "type": "113",
+        "method": "2",
+        "value": "25"
+      },
+      {
+        "passivityId": "510191",
+        "stat": "Damage",
+        "type": "152",
+        "method": "3",
+        "value": "0.2"
+      },
+      {
+        "passivityId": "510192",
+        "stat": "Damage",
+        "type": "102",
+        "method": "3",
+        "value": "1.75"
+      }
+    ]
+  }
+}

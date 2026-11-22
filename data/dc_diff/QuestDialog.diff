@@ -1,0 +1,643 @@
+# QuestDialog  +579 -59
+
+=== ADDED (579) ===
+</QuestDialog>
+</QuestDialog>
+</QuestDialog>
+</QuestDialog>
+</QuestDialog>
+</QuestDialog>
+</QuestDialog>
+</QuestDialog>
+</QuestDialog>
+</QuestDialog>
+</QuestDialog>
+</QuestDialog>
+</QuestDialog>
+</QuestDialog>
+</QuestDialog>
+</QuestDialog>
+</QuestDialog>
+</QuestDialog>
+</QuestDialog>
+</QuestDialog>
+</QuestDialog>
+</QuestDialog>
+</QuestDialog>
+</QuestDialog>
+</QuestDialog>
+</QuestDialog>
+</QuestDialog>
+</QuestDialog>
+</QuestDialog>
+</QuestDialog>
+</QuestDialog>
+</QuestDialog>
+</QuestDialog>
+</QuestDialog>
+</QuestDialog>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+</Text>
+<Page social="0" voiceTypeId="0">The barrier between Arborea and Agaia grows thinner, &lt;PCNAME&gt;. The equipment that served you so far will not hold against what is coming.&lt;BR&gt;{@linkcreature:183#1401#Mystel} is waiting for you at the Highwatch.</Page>
+<Page social="0">&lt;PCNAME&gt;! &lt;BR&gt;There are argons in the Corrupted Skynest, as I'm sure you know. &lt;BR&gt;Until now, it was believed that argons only existed in Exodor, but I have also seen argons active in Arborea.&lt;BR&gt;Kaia has heard about this and is concerned that Arborea might be in danger. Visit me in the Kaiator Headquarters.</Page>
+<Page social="0">&lt;PCNAME&gt;! So, you've heard about Dungeon Resonance too. &lt;NEXTPAGEBUTTON&gt;"Did you report to Kaia?"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="0">&lt;PCNAME&gt;, an urgent matter requires my attention.&lt;BR&gt;&lt;BR&gt;I've left something there.&lt;BR&gt;&lt;BR&gt;I won't be gone long.</Page>
+<Page social="0">*cough* &lt;PCNAME&gt;, an urgent matter requires my attention.&lt;BR&gt;&lt;BR&gt;I've left something there.&lt;BR&gt;&lt;BR&gt;I won't be gone long. &lt;NEXTPAGEBUTTON&gt;"What is it?"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="0">*cough* ... The argons have only recently appeared again.&lt;BR&gt;&lt;BR&gt;They don't travel in groups, but appear individually, watch, and then disappear.&lt;BR&gt;Why are you interested?&lt;NEXTPAGEBUTTON&gt;"I'm on a mission to search for the argons."&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="0">*cough* I've figured it out! I knew it, I'm amazing!&lt;BR&gt;&lt;BR&gt;By analyzing the wavelength of the Resonance Gate, I found similarities between it and the amplitude of Exodor. If I connect this median line with the peak value... and you look at this line and the value of the tangent of the circle... &lt;NEXTPAGEBUTTON&gt;"I have no idea what you're talking about."&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="0">Ahead of us are Red Argon Incubators.&lt;BR&gt;&lt;BR&gt;When argons evolve, they turn red. This evolution requires a lot of energy, however, so they are very rare. I've never seen so many incubators.&lt;BR&gt;&lt;BR&gt;The argons must be trying to utilize the power of the spring. &lt;NEXTPAGEBUTTON&gt;"Are they planning to evolve large numbers of argons?"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="0">Akasha's Machine is located near the spring. Sabotage the machine. We are bound by an ancient pact, so there's nothing we can do ourselves.&lt;BR&gt;&lt;BR&gt;If you sabotage the machine, we'll help you get out of here.</Page>
+<Page social="0">Any news?&lt;BR&gt;&lt;BR&gt;Oh! Hey, &lt;PCCLASS&gt;!&lt;BR&gt;I teach ecology and am writing a paper on the argons in this regard.&lt;BR&gt;But I don't have enough data.&lt;BR&gt;&lt;BR&gt;Take me along with you.&lt;NEXTPAGEBUTTON&gt;"But... it's bound to be exhausting for you."&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="0">Argons? Hmm... I didn't know that they'd appeared around here. But perhaps I'm not the best source for rumors.&lt;BR&gt;&lt;BR&gt;Why don't you ask the Fishing Trader? He's friendly and always well-informed.</Page>
+<Page social="0">Did Kaia tell you everything?&lt;BR&gt;&lt;BR&gt;We must go to Castanica to find the argons and the new power.&lt;BR&gt;&lt;BR&gt;Hurry. Are you ready?</Page>
+<Page social="0">Did we really find the Spring of Arun?&lt;BR&gt;&lt;BR&gt;According to legend, the water flowed from Arun's heart, leaving behind a spring. Every child in Arborea knows the tale.&lt;BR&gt;&lt;BR&gt;And this is that spring there in front of us? Don't you get the feeling that something isn't right with the spring? I don't sense the healing influence of the gods here nor from the spring.</Page>
+<Page social="0">Do you remember how the argons kept appearing in Baldera from time to time?&lt;BR&gt;&lt;BR&gt;They would suddenly appear and then just disappear again. I have finally been able to find out what they're up to.&lt;BR&gt;&lt;BR&gt;They want to argonize Baldera.&lt;BR&gt;&lt;BR&gt;They launched a surprise attack, injuring many of our soldiers, and some of them even died.&lt;BR&gt;We must question the surviving soldiers and use the information to stop the argons.&lt;BR&gt;&lt;BR&gt;You'll help us, won't you?</Page>
+<Page social="0">Excellent!&lt;BR&gt;&lt;BR&gt;Can I see the samples you brought me? Hmm... I see... *cough*&lt;BR&gt;&lt;BR&gt;The same constituents as we know from creatures in the Ruinweald. Maybe that's why the unicorns and the ghilliedhus have become aggressive.&lt;BR&gt;&lt;BR&gt;Why are the same constituents found in both creatures, despite the fact that they are completely unrelated?</Page>
+<Page social="0">Fantastic!&lt;BR&gt;&lt;BR&gt;Isn't it great that we found such a beautiful city?&lt;NEXTPAGEBUTTON&gt;"We should focus on Hasmina's mission."&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="0">For this place to have remained hidden by the barrier...!&lt;BR&gt;&lt;BR&gt;It has preserved ancient Arborea, just as it was long before our time.&lt;BR&gt;&lt;BR&gt;Amazing! &lt;PCNAME&gt;, I would like to ask a favor of you. Help me study this area. I'll take care of the plants, and you deal with the unicorns and ghilliedhus.&lt;BR&gt;I need a few samples of each.</Page>
+<Page social="0">Hahaha! I knew it!&lt;BR&gt;&lt;BR&gt;Not only does an adventurer need to be physically strong, but as intelligent as I am.&lt;BR&gt;&lt;BR&gt;*cough* When are you leaving?&lt;NEXTPAGEBUTTON&gt;"I'll set off now."&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="0">Have I ever seen argons?&lt;BR&gt;&lt;BR&gt;Of course I have! The first time I saw them was near the entrance to Baldera. Recently, I've spotted them near the spring. Haven't you seen any?&lt;BR&gt;&lt;BR&gt;That may well be the case. They're not always around. Sometimes they turn up briefly, then disappear again. They don't seem to pose much of a threat right now, but then they are still Argon, aren't they?&lt;BR&gt;&lt;BR&gt;They will never change. &lt;BR&gt;&lt;BR&gt;Have you ever heard of the Resonance Gate? &lt;NEXTPAGEBUTTON&gt;"Resonance Gate?"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="0">Have I heard any rumors about sightings of argons near Balderon?&lt;BR&gt;&lt;BR&gt;And here I was, thinking you'd come here to buy bait...&lt;BR&gt;&lt;BR&gt;So, is the rumor true? It seems like argons have been sighted again. I'm sure the Pegasus Steward must have seen their movements from a Pegasus.</Page>
+<Page social="0">How sad...&lt;BR&gt;&lt;BR&gt;My friends were once poisoned and lived like monsters. And now they've been argonized too and will forever be tormented by pain.&lt;BR&gt;&lt;BR&gt;Please help them find eternal rest.&lt;BR&gt;&lt;BR&gt;I'm begging you...</Page>
+<Page social="0">Huh, you're interested in those dreadful things too?&lt;BR&gt;&lt;BR&gt;Rumor has it that active argons have been running around before disappearing. But no one has really seen them.&lt;BR&gt;&lt;BR&gt;Even Shade couldn't find them.&lt;BR&gt;&lt;BR&gt;Who's Shade? Hmm... He's researching... some kind of animals? Or plants? Something along those lines.&lt;BR&gt;&lt;BR&gt;He was planning to leave today. He's on the second floor right now. You could speak to him if you like.</Page>
+<Page social="0">I am here at the shaman's behest.&lt;BR&gt;&lt;BR&gt;I was told that you might be in trouble. That's why I came.&lt;BR&gt;&lt;BR&gt;Your castanic friend hauled someone off to Ruinweald. He was young and tall, but he didn't appear to be conscious.&lt;BR&gt;&lt;BR&gt;Perhaps they were on their way to the Spring of Arun?&lt;BR&gt;What are you going to do now? Do you want to set off for the spring to find your castanic friend?&lt;BR&gt;&lt;BR&gt;I'll help you whatever you decide to do.</Page>
+<Page social="0">I could even feel the shock from the core explosion in Exodor here in Arborea. &lt;BR&gt;&lt;BR&gt;The shock destabilized the dimension.&lt;BR&gt;&lt;BR&gt;I suspect it was this that led to the argons being reactivated.&lt;BR&gt;&lt;BR&gt;But I sense something other than the unstable dimension.&lt;NEXTPAGEBUTTON&gt;"What do you mean?"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="0">I could only stand by and watch them plant the root in the spring.&lt;BR&gt;&lt;BR&gt;We haven't given up the fight yet, but the argons have captured the spring. The situation is tense.&lt;BR&gt;&lt;BR&gt;There is only one reason why the argons would use the power of the spring.&lt;NEXTPAGEBUTTON&gt;"To resurrect Manahan?"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="0">I knew you'd ask that.&lt;BR&gt;&lt;BR&gt;Watch. &lt;BR&gt;&lt;BR&gt;I caught this argon near Castanica. It probably doesn't have very much energy left, that's why it isn't moving very much.&lt;BR&gt;&lt;BR&gt;But be careful! You never know when that might change.</Page>
+<Page social="0">I need more samples. Please bring me some.</Page>
+<Page social="0">I've forgotten my research materials. *cough* *cough*&lt;BR&gt;&lt;BR&gt;It's all in my head, but still I shouldn't just leave it lying around. I'll be right back. You don't need to accompany me.</Page>
+<Page social="0">Is Dakuryon not dead after all? I was foolish enough to lose a cherished friend because Shade had concealed his true identity.&lt;BR&gt;&lt;BR&gt;That voice... When I heard that voice, I couldn't move a muscle. That voice was not of this world. What was that? That's extremely disturbing. &lt;NEXTPAGEBUTTON&gt;"Pull yourself together."&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="0">Is that an argon transport plane?&lt;BR&gt;&lt;BR&gt;They must have used it to get here.&lt;BR&gt;&lt;BR&gt;Wait... There's a teleportal over there that wasn't there before. Let's see where it leads to.</Page>
+<Page social="0">It can be no coincidence that we discovered argons, Baldera, and then the Spring of Arun, can it?&lt;BR&gt;&lt;BR&gt;It is clear that it's him who spoke to us through Rhodos.</Page>
+<Page social="0">It may be that our fates are already laid out. But it may also be that it makes us stronger.&lt;BR&gt;&lt;BR&gt;But none of this matters as I firmly believe that you will overcome any challenge. My sword, I must return to my station.</Page>
+<Page social="0">It's been a long time since I came to Castanica.&lt;BR&gt;It hasn't changed much.&lt;BR&gt;&lt;BR&gt;We should start by asking the residents whether they have any information about the argons.&lt;BR&gt;To the tavern on Pleasure Street! You'll hear all kinds of rumors from Arborea there.&lt;BR&gt;&lt;BR&gt;Ah! We should take Rhodos with us. He pretty much lives in the tavern.&lt;BR&gt;Do you remember Rhodos? He's a Khirian captain.</Page>
+<Page social="0">Kaia gave me this Faerie for you.&lt;BR&gt;&lt;BR&gt;It will show you the right way.</Page>
+<Page social="0">Kaia's Faerie will show you the way.&lt;BR&gt;&lt;BR&gt;Speak to Kaia's Faerie to find out more.</Page>
+<Page social="0">Let me explain from the beginning.&lt;BR&gt;&lt;BR&gt;We Shurians used to be very powerful and possessed magic powers. Even the giants from the holy realm were afraid of us and gave up trying to conquer the northern regions. After the age of the giants, we helped Akasha take control of the Spring of Arun. That was the beginning of the end for us. Akasha constructed a machine with which we Shurians could use the power of the spring. In doing so, we were slowly but steadily poisoned by the spring.&lt;BR&gt;&lt;BR&gt;That machine and our greed cost us everything. And so our proud culture perished. The power of the spring makes everyone who uses it completely dependent. You lose your mind and forget about everything else.&lt;BR&gt;&lt;BR&gt;Please help our tribe.&lt;NEXTPAGEBUTTON&gt;"How can I help you?"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="0">Lumikan holds a Primal Ember in Catalepticon (Easy).&lt;BR&gt;&lt;BR&gt;Defeat her and bring me the ember. Its power will be enough to complete the anvil.</Page>
+<Page social="0">Most visitors to Balderon come here because they've heard of the Resonance Gate. I'm surprised you don't know what it is.&lt;BR&gt;&lt;BR&gt;In Baldera there's a way to connect this dimension with other dimensions. This phenomenon is called "Dungeon Resonance". The Resonance Gate allows you to enter dungeons in other dimensions. You can see it if you go to the end of the bridge. You can't miss it.</Page>
+<Page social="0">My horoscope predicted that I'd meet an important person standing by the water today. It is fate that we met.&lt;BR&gt;&lt;BR&gt;Don't be afraid, &lt;PCRACE&gt;.&lt;BR&gt;&lt;BR&gt;As you can see, we pose no danger. Quite the opposite: we need your help.&lt;NEXTPAGEBUTTON&gt;"What can I do for you?"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="0">My knowledge of the argons will be extremely useful to you.&lt;BR&gt;Their characteristics, the way they fight, and their sociology... I know everything there is to know about them.&lt;BR&gt;&lt;BR&gt;I'm also the foremost expert in the lifeforms and environment of Arborea.&lt;BR&gt;My knowledge will be invaluable to you. &lt;BR&gt;&lt;BR&gt;*cough*</Page>
+<Page social="0">My sword.&lt;BR&gt;&lt;BR&gt;It is as you think. It is the god Manahan, who was banished by the gods of creation. Since his prison was becoming weaker and weaker, he was able to show his face again in Arborea. However, he still cannot draw on his full strength. That's why he must have tasked Dakuryon with finding his son Armen Manaya.&lt;BR&gt;&lt;BR&gt;If Dakuryon and Armen join forces, they will gather the argons here to resurrect Manahan. &lt;NEXTPAGEBUTTON&gt;"You know that Dakuryon is alive?"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="0">Oh no! Those giant Shurians have been argonized too.&lt;BR&gt;&lt;BR&gt;Do they really intend to argonize all life in Arborea?</Page>
+<Page social="0">Precisely. That power is necessary to bring Manahan into this world.&lt;BR&gt;&lt;BR&gt;I was unable to stop them, even though I knew their plan.&lt;BR&gt;&lt;BR&gt;My own weakness makes me angry. Just look at that greedy root...</Page>
+<Page social="0">Rhodos isn't moving. You take Rhodos out of the test chamber.</Page>
+<Page social="0">Rhodos's heart is no longer beating. We're too late to save Rhodos.</Page>
+<Page social="0">Rhodos? Rhodos...&lt;BR&gt;&lt;BR&gt;Ah, the giant!&lt;BR&gt;&lt;BR&gt;Hmm... I haven't seen him recently. He's usually here every day.&lt;NEXTPAGEBUTTON&gt;"What do you know about the argons?"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="0">Shade has been gone for a while now to get his materials.&lt;BR&gt;&lt;BR&gt;He didn't seem to be in the best of shape. Maybe something has happened?&lt;BR&gt;We should probably go look for him, but we have to set out for the Spring of Arun on Kaia's orders. This is a dilemma.&lt;BR&gt;&lt;BR&gt;What should we do?</Page>
+<Page social="0">Shade said he'd be back soon, but he still hasn't returned. We can't wait any longer for him.&lt;BR&gt;&lt;BR&gt;When I think of the argons roaming around near the Spring of Arun, it only leads me to one conclusion: that they want to exploit the spring for their own purposes. We cannot sit by and leave the Spring of Arun to the argons. &lt;BR&gt;&lt;BR&gt;If we leave a note for Shade telling him where we're going, we can surely meet up with him later.</Page>
+<Page social="0">Thank you for coming so quickly.&lt;BR&gt;&lt;BR&gt;As you know, the argons have attacked Baldera and are spreading.&lt;BR&gt;&lt;BR&gt;I've learned that Dakuryon is aiding Manahan. As we expected, the argons have planted their vile root in the Spring of Arun.&lt;BR&gt;&lt;BR&gt;Unfortunately, our soldiers were too weak to stop them.</Page>
+<Page social="0">Thanks for coming to see me so quickly, &lt;PCNAME&gt;.&lt;BR&gt;&lt;BR&gt;We may have encountered argons in Exodor, but we believed Arborea to be a safe place. It turns out we were wrong.&lt;NEXTPAGEBUTTON&gt;"What happened?"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="0">That seems the only logical answer. The argons are trying to bolster their army.&lt;BR&gt;&lt;BR&gt;We need to get an overview of the situation.</Page>
+<Page social="0">That's right! Armen Manaya! He is Manahan's son.&lt;BR&gt;&lt;BR&gt;The fact that the root leads to Manaya's Core and the situation in general suggest that the argons are following a plan for the capture of Baldera.&lt;BR&gt;&lt;BR&gt;We must stop them. Let's head to the base and consider how to proceed.</Page>
+<Page social="0">The Argon Priests are trying to use the spring. Take them out.</Page>
+<Page social="0">The ancient power.&lt;BR&gt;&lt;BR&gt;The power believed to be lost...&lt;BR&gt;&lt;BR&gt;The power originated somewhere in Castanica.&lt;BR&gt;&lt;BR&gt;The argons must have been attracted to this power.&lt;BR&gt;&lt;BR&gt;Be my sword and follow the power's trail.</Page>
+<Page social="0">The argons appear near the ruins from time to time.&lt;BR&gt;&lt;BR&gt;They don't do anything to us, other than roam around and then disappear again.</Page>
+<Page social="0">The argons in Arborea were deactivated after the war against Shandra Manaya.&lt;BR&gt;&lt;BR&gt;However, I have discovered that they are currently active again.&lt;BR&gt;&lt;BR&gt;As only a few argons are active, some believe they are faulty argons. However, many are inclined to think that the argons only move secretly when they're not being watched.&lt;BR&gt;That's what I think too.&lt;NEXTPAGEBUTTON&gt;"Can they really be activated?"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="0">The argons suddenly appeared, and we thought they would disappear again as they always do.&lt;BR&gt;&lt;BR&gt;So we left down our guard. That should never have been allowed to happen...&lt;BR&gt;&lt;BR&gt;The argons have captured the Shurians' territory, and they must have argonized it all by now.</Page>
+<Page social="0">The barrier disappeared some time ago.&lt;BR&gt;&lt;BR&gt;The area has been deserted for quite some time, which is why many people are coming now, hoping to find undiscovered riches. Head to Balderon. Balderon will soon be transformed into a thriving metropolis of Arborea. &lt;BR&gt;&lt;BR&gt;Take this path and you will come across a large bridge. It'll take you to Balderon.&lt;NEXTPAGEBUTTON&gt;"What do you know about the argons?"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="0">The barrier that was blocking access to Baldera has disappeared.&lt;BR&gt;&lt;BR&gt;Go to Baldera.</Page>
+<Page social="0">The magisters are evolved argons. It's a bad sign for us that they're here.&lt;BR&gt;&lt;BR&gt;Let's follow the root. If you own a flying mount, use it to get up there.</Page>
+<Page social="0">The root has spread toward Manaya's Core in Granarkus.&lt;BR&gt;&lt;BR&gt;I remember the name... something Manaya...&lt;NEXTPAGEBUTTON&gt;"Do you mean Armen Manaya?"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="0">This argon kelba was caught by Hasmina.&lt;BR&gt;It barely moves, but its body is shaking a little. It has surely been activated.</Page>
+<Page social="0">This is the place Kaia's Faerie led us to.&lt;BR&gt;&lt;BR&gt;Wait... Doesn't this path led to Baldera?&lt;BR&gt;There definitely used to be a barrier up ahead.&lt;BR&gt;But now it's gone!&lt;BR&gt;That's why the Faerie brought us here.</Page>
+<Page social="0">Tsk, tsk, dummy.&lt;BR&gt;&lt;BR&gt;Simply put, this means that the Resonance Gate was created by the destruction of the core in Exodor. The energy that was released combined with the fragments of the Veil.&lt;BR&gt;&lt;BR&gt;It's an unusual phenomenon that connects other dimensions to Balderon. The Spring of Arun alone had already piqued my interest, but the existence of Resonance Gates is really impressive. Hahaha. *cough* *cough*</Page>
+<Page social="0">Under orders from Kaia, you traveled to Castanica to search for the argons and gather information about the new power. There, you discovered that the barrier that had previously blocked access to Baldera no longer existed.</Page>
+<Page social="0">Using the power of the spring isn't so easy.&lt;BR&gt;&lt;BR&gt;Don't forget that my clan became addicted when trying to harness it. Without precise knowledge, it is extremely dangerous to try to control its power.&lt;BR&gt;&lt;BR&gt;The argons still don't know how to use the power. You have to stop them.</Page>
+<Page social="0">We're in Balderon! I didn't know there was an ancient city here.&lt;BR&gt;&lt;BR&gt;Hoakha and I will go look for Kaia and tell her about the Spring of Arun.&lt;BR&gt;&lt;BR&gt;&lt;PCNAME&gt;, please ask the villagers whether argons have been sighted in Baldera.</Page>
+<Page social="0">Welcome.&lt;BR&gt;We have a new wine. It's very fresh and fruity. Would you like to try it?&lt;NEXTPAGEBUTTON&gt;"Where's Rhodos?"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="0">What kind of place is this? I've never heard of a place before where argons and demokrons conduct experiments together. We should investigate this place. Please take them out.</Page>
+<Page social="0">What? You can do that on your own later, can't you?&lt;BR&gt;&lt;BR&gt;I want to explore this beautiful city a little more. We can meet up again later. Hmm... perhaps on the bridge over there.</Page>
+<Page social="0">Where has Dakuryon gone with the Argon Magister?&lt;BR&gt;&lt;BR&gt;Why has he joined forces with the argons? I have to find out what he's up to.</Page>
+<Page social="0">While investigating the argons' activities in Baldera in the name of the goddess Kaia, you discovered that Shade was actually Dakuryon. &lt;BR&gt;Meanwhile, Dakuryon kidnapped Rhodos to perform experiments on him to strengthen his own body and to attempt to make contact with Manahan.</Page>
+<Page social="0">Yes. Kaia had sensed this new energy, but she wasn't able to attribute it to the Spring of Arun. &lt;BR&gt;&lt;BR&gt;The energy has grown much weaker recently. She was delighted at the news of the discovery of the Spring of Arun. Of course, she was distressed about the contamination of the spring, but she firmly believed that the spring could be cleansed again.&lt;BR&gt;&lt;BR&gt;Can you tell me what this is? This Resonance Gate?</Page>
+<Page social="0">Yes.&lt;BR&gt;&lt;BR&gt;Have you seen Dakuryon's depot, full of his clones? I learned that Dakuryon is storing his memories and implanting them in clones. This way, he can be resurrected as many times as he likes.&lt;BR&gt;&lt;BR&gt;A repository full of clones has already been destroyed elsewhere. Judging from the large number of clones, it seems like he has to change bodies frequently. He surely must be nervous.&lt;BR&gt;&lt;BR&gt;My sword, what are your thoughts about fate? &lt;NEXTPAGEBUTTON&gt;"Have the gods of creation already decided my fate?"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="0">You are my sword.&lt;BR&gt;&lt;BR&gt;It's good to see you again. At the same time, I am sorry to have to impose a heavy burden on you.&lt;NEXTPAGEBUTTON&gt;"Go on."&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="0">You found the Spring of Arun, which was previously thought to be a legend from the Ruinweald. The creatures near the Spring of Arun have been poisoned as it is contaminated. You destroyed Akasha's Machine, the cause of the pollution, and went to Balderon.</Page>
+<Page social="0">You go ahead and I will follow you.</Page>
+<Page social="0">You go on ahead and I'll catch up with you once I've packed my research tools. How about we meet later at the entrance to the Vexatus Swamp?</Page>
+<Page social="0">You have found the Spring of Arun and arrived in Balderon.&lt;BR&gt;&lt;BR&gt;Ask the inhabitants of Balderon about the argons while Hasmina reports to Kaia about the spring.</Page>
+<Page social="0">You have found the Spring of Arun and arrived in Balderon.&lt;BR&gt;&lt;BR&gt;For a long time, it was believed that the ancient city of Balderon had been destroyed in a forgotten war, but in fact it is untouched and is as resplendent as ever. &lt;BR&gt;&lt;BR&gt;Additionally, there is a connection to another dimension here.</Page>
+<Page social="0">You have my thanks. But even now the machine has been destroyed, it will take some time to clear the spring of the contamination. The machine may have been the cause of the contamination, but the self-healing of the spring is a very slow process.&lt;BR&gt;&lt;BR&gt;Once the spring is completely pure again, we too will be able to return to our former glory.&lt;BR&gt;&lt;BR&gt;We have one last request for you. This Tombstone Charm needs to be placed at the North Gate.&lt;BR&gt;&lt;BR&gt;We fear that misfortune may befall our tribe, so we've crafted a charm.</Page>
+<Page social="0">You met an injured soldier who had been attacked by argons. He told you that the Shurians' territory was slowly being argonized. You then departed for the argon-occupied territory.&lt;BR&gt;There you saw that plants and Shurian warriors had been argonized.&lt;BR&gt;&lt;BR&gt;The argons have set up an argon teleportal and are using it to teleport argons to Balderon. You watched the Argon Priests did Dakuryon's bidding, who had adopted Manahan's voice</Page>
+<Page social="0">You read Hasmina's letter and met your companions at the Central Baldera Camp.&lt;BR&gt;&lt;BR&gt;The argons have attacked Baldera again, and Shandra's root has spread to the Spring of Arun.&lt;BR&gt;&lt;BR&gt;The root originates in Shandra's Nest. You found out that the argons want to use the power of the spring to resurrect Manahan. They also have a special plan to capture Baldera.&lt;BR&gt;&lt;BR&gt;You have decided to take action against Manahan and the argons.</Page>
+<Page social="0">You want to know where Shade went?&lt;BR&gt;&lt;BR&gt;Haha. Well, I know how whether that rude guy's name is Shade, but a castanic man in a blue robe passed by here. He was complaining that my big body was getting in his way. He hurled that and other insults at me. &lt;BR&gt;&lt;BR&gt;I never thought I would encounter someone so nasty here in Balderon, on my search for the true home of the Baraka.</Page>
+<Page social="0">You're right. We should return to Balderon first and analyze the situation.&lt;BR&gt;&lt;BR&gt;Let's go.</Page>
+<Page social="0">Your reputation precedes you, &lt;PCNAME&gt;. It's a pleasure to meet you in Balderon.&lt;BR&gt;&lt;BR&gt;No one knows why the barrier disappeared. But as it has only just happened, many people still don't know that you can live here. But soon more will come and Balderon will be transformed into a big city.&lt;NEXTPAGEBUTTON&gt;"What do you know about the argons?"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="0">[Akalath Quarantine] Defeat Akalath Kashir!</Page>
+<Page social="0">[Antaroth Abyss] Defeat Antaroth!</Page>
+<Page social="0">[Antaroth's Abyss (Hard)] Defeat Nightmare Antaroth!</Page>
+<Page social="0">[Bahaar's Sanctum] Defeat Bahaar!</Page>
+<Page social="0">[Broken Prison] Defeat Balbatos!</Page>
+<Page social="0">[Catalepticon (Easy)] Defeat Lumikan!</Page>
+<Page social="0">[Catalepticon (Hard)] Defeat Nightmare Lumikan!</Page>
+<Page social="0">[Corrupted Skynest (Hard)] Defeat Nightmare Kelsaik!</Page>
+<Page social="0">[Corrupted Skynest] Defeat Kelsaik!</Page>
+<Page social="0">[Cursed Fusion Laboratory] Defeat Rampaging Rogash!</Page>
+<Page social="0">[Damned Citadel] Defeat the demon Harnovog!</Page>
+<Page social="0">[Draakon Arena] Defeat Commander Kalligar!</Page>
+<Page social="0">[Exalted Dreadspire] Defeat Shandra Manaya's Shade!</Page>
+<Page social="0">[Forbidden Arena] Defeat Hagufna!</Page>
+<Page social="0">[Forbidden Arena] Defeat the Nightmare Undying Warlord!</Page>
+<Page social="0">[Fusion Laboratory] Defeat Rogash!</Page>
+<Page social="0">[Gossamer Vault (Hard)] Defeat Nightmare Gossamer Regent!</Page>
+<Page social="0">[Gossamer Vault] Defeat the Gossamer Regent!</Page>
+<Page social="0">[Grotto of Lost Souls (Hard)] Defeat Nightmare Kylos!</Page>
+<Page social="0">[Hall of the Argon Queen (Hard)] Defeat Revivified Shandra Manaya!</Page>
+<Page social="0">[Ice Throne] Defeat Rampaging Hellen!</Page>
+<Page social="0">[Imperator's Sanctum] Defeat Imperator!</Page>
+<Page social="0">[Kezzel Gorge] Defeat Kezzel!</Page>
+<Page social="0">[Lilith Keep] Defeat Lilith!</Page>
+<Page social="0">[Shadow Sanguinary (Hard)] Defeat Nightmare Dakuryon!</Page>
+<Page social="0">[Sky Cruiser Endeavor (Extreme)] Defeat Nightmare Darkan!</Page>
+<Page social="0">[The Abscess] Defeat Krakatox!</Page>
+<Page social="0">[Urgent Letter]&lt;BR&gt;&lt;BR&gt;&lt;PCNAME&gt;!&lt;BR&gt;&lt;BR&gt;Do you remember how the argons kept appearing in Baldera from time to time?&lt;BR&gt;&lt;BR&gt;They would suddenly appear and then just disappear again. I have finally been able to find out what they're up to.&lt;BR&gt;&lt;BR&gt;Please come to Balderon as quickly as possible. I could really use your help.</Page>
+<Page social="0">[Urgent Letter]&lt;BR&gt;&lt;BR&gt;Do you remember when the argons attacked Baldera? I have finally found out what they are up to.&lt;BR&gt;&lt;BR&gt;When you read this letter, please come to the ancient ruins at the Central Baldera Camp. It's urgent.&lt;BR&gt;&lt;BR&gt;Hasmina</Page>
+<Page social="0">[Velik's Hold] Defeat Veldeg!</Page>
+<Page social="0">[Velik's Sanctuary] Defeat Lakan!</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it!&lt;BR&gt;&lt;BR&gt;[Akalath Quarantine] Defeat Akalath Kashir!&lt;NEXTPAGEBUTTON&gt;"Accept mission"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it!&lt;BR&gt;&lt;BR&gt;[Antaroth Abyss] Defeat Antaroth!&lt;NEXTPAGEBUTTON&gt;"Accept mission"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it!&lt;BR&gt;&lt;BR&gt;[Antaroth's Abyss (Hard)] Defeat Nightmare Antaroth!&lt;NEXTPAGEBUTTON&gt;"Accept mission"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it!&lt;BR&gt;&lt;BR&gt;[Bahaar's Sanctum] Defeat Bahaar!&lt;NEXTPAGEBUTTON&gt;"Accept mission"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it!&lt;BR&gt;&lt;BR&gt;[Broken Prison] Defeat Balbatos!&lt;NEXTPAGEBUTTON&gt;"Accept mission"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it!&lt;BR&gt;&lt;BR&gt;[Catalepticon (Easy)] Defeat Lumikan!&lt;NEXTPAGEBUTTON&gt;"Accept mission"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it!&lt;BR&gt;&lt;BR&gt;[Catalepticon (Hard)] Defeat Nightmare Lumikan!&lt;NEXTPAGEBUTTON&gt;"Accept mission"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it!&lt;BR&gt;&lt;BR&gt;[Corrupted Skynest (Hard)] Defeat Nightmare Kelsaik!&lt;NEXTPAGEBUTTON&gt;"Accept mission"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it!&lt;BR&gt;&lt;BR&gt;[Corrupted Skynest] Defeat Kelsaik!&lt;NEXTPAGEBUTTON&gt;"Accept mission"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it!&lt;BR&gt;&lt;BR&gt;[Cursed Fusion Laboratory] Defeat Rampaging Rogash!&lt;NEXTPAGEBUTTON&gt;"Accept mission"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it!&lt;BR&gt;&lt;BR&gt;[Damned Citadel] Defeat the demon Harnovog!&lt;NEXTPAGEBUTTON&gt;"Accept mission"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it!&lt;BR&gt;&lt;BR&gt;[Draakon Arena] Defeat Commander Kalligar!&lt;NEXTPAGEBUTTON&gt;"Accept mission"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it!&lt;BR&gt;&lt;BR&gt;[Exalted Dreadspire] Defeat Shandra Manaya's Shade!&lt;NEXTPAGEBUTTON&gt;"Accept mission"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it!&lt;BR&gt;&lt;BR&gt;[Forbidden Arena] Defeat Hagufna!&lt;NEXTPAGEBUTTON&gt;"Accept mission"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it!&lt;BR&gt;&lt;BR&gt;[Forbidden Arena] Defeat the Nightmare Undying Warlord!&lt;NEXTPAGEBUTTON&gt;"Accept mission"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it!&lt;BR&gt;&lt;BR&gt;[Fusion Laboratory] Defeat Rogash!&lt;NEXTPAGEBUTTON&gt;"Accept mission"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it!&lt;BR&gt;&lt;BR&gt;[Gossamer Vault (Hard)] Defeat Nightmare Gossamer Regent!&lt;NEXTPAGEBUTTON&gt;"Accept mission"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it!&lt;BR&gt;&lt;BR&gt;[Gossamer Vault] Defeat the Gossamer Regent!&lt;NEXTPAGEBUTTON&gt;"Accept the mission"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it!&lt;BR&gt;&lt;BR&gt;[Grotto of Lost Souls (Hard)] Defeat Nightmare Kylos!&lt;NEXTPAGEBUTTON&gt;"Accept mission"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it!&lt;BR&gt;&lt;BR&gt;[Hall of the Argon Queen (Hard)] Defeat Revivified Shandra Manaya!&lt;NEXTPAGEBUTTON&gt;"Accept mission"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it!&lt;BR&gt;&lt;BR&gt;[Ice Throne] Defeat Rampaging Hellen!&lt;NEXTPAGEBUTTON&gt;"Accept mission"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it!&lt;BR&gt;&lt;BR&gt;[Imperator's Sanctum] Defeat Imperator!&lt;NEXTPAGEBUTTON&gt;"Accept mission"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it!&lt;BR&gt;&lt;BR&gt;[Kezzel Gorge] Defeat Kezzel!&lt;NEXTPAGEBUTTON&gt;"Accept mission"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it!&lt;BR&gt;&lt;BR&gt;[Lilith Keep] Defeat Lilith!&lt;NEXTPAGEBUTTON&gt;"Accept mission"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it!&lt;BR&gt;&lt;BR&gt;[Shadow Sanguinary (Hard)] Defeat Nightmare Dakuryon!&lt;NEXTPAGEBUTTON&gt;"Accept mission"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it!&lt;BR&gt;&lt;BR&gt;[Sky Cruiser Endeavor (Extreme)] Defeat Nightmare Darkan!&lt;NEXTPAGEBUTTON&gt;"Accept the mission"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it!&lt;BR&gt;&lt;BR&gt;[The Abscess] Defeat Krakatox!&lt;NEXTPAGEBUTTON&gt;"Accept mission"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it!&lt;BR&gt;&lt;BR&gt;[Velik's Hold] Defeat Veldeg!&lt;NEXTPAGEBUTTON&gt;"Accept mission"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it!&lt;BR&gt;&lt;BR&gt;[Velik's Sanctuary] Defeat Lakan!&lt;NEXTPAGEBUTTON&gt;"Accept mission"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Mission accomplished! The heroes of Arborea thank you for your help. Here is your reward.&lt;NEXTPAGEBUTTON&gt;"Claim your reward!"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Mission accomplished! The heroes of Arborea thank you for your help. Here is your reward.&lt;NEXTPAGEBUTTON&gt;"Claim your reward!"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Mission accomplished! The heroes of Arborea thank you for your help. Here is your reward.&lt;NEXTPAGEBUTTON&gt;"Get Reward"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Mission accomplished! The heroes of Arborea thank you for your help. Here is your reward.&lt;NEXTPAGEBUTTON&gt;"Get Reward"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Mission accomplished! The heroes of Arborea thank you for your help. Here is your reward.&lt;NEXTPAGEBUTTON&gt;"Get Reward"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Mission accomplished! The heroes of Arborea thank you for your help. Here is your reward.&lt;NEXTPAGEBUTTON&gt;"Get Reward"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Mission accomplished! The heroes of Arborea thank you for your help. Here is your reward.&lt;NEXTPAGEBUTTON&gt;"Get Reward"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Mission accomplished! The heroes of Arborea thank you for your help. Here is your reward.&lt;NEXTPAGEBUTTON&gt;"Get Reward"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Mission accomplished! The heroes of Arborea thank you for your help. Here is your reward.&lt;NEXTPAGEBUTTON&gt;"Get Reward"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Mission accomplished! The heroes of Arborea thank you for your help. Here is your reward.&lt;NEXTPAGEBUTTON&gt;"Get Reward"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Mission accomplished! The heroes of Arborea thank you for your help. Here is your reward.&lt;NEXTPAGEBUTTON&gt;"Get Reward"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Mission accomplished! The heroes of Arborea thank you for your help. Here is your reward.&lt;NEXTPAGEBUTTON&gt;"Get Reward"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Mission accomplished! The heroes of Arborea thank you for your help. Here is your reward.&lt;NEXTPAGEBUTTON&gt;"Get Reward"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Mission accomplished! The heroes of Arborea thank you for your help. Here is your reward.&lt;NEXTPAGEBUTTON&gt;"Get Reward"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Mission accomplished! The heroes of Arborea thank you for your help. Here is your reward.&lt;NEXTPAGEBUTTON&gt;"Get Reward"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Mission accomplished! The heroes of Arborea thank you for your help. Here is your reward.&lt;NEXTPAGEBUTTON&gt;"Get Reward"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Mission accomplished! The heroes of Arborea thank you for your help. Here is your reward.&lt;NEXTPAGEBUTTON&gt;"Get Reward"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Mission accomplished! The heroes of Arborea thank you for your help. Here is your reward.&lt;NEXTPAGEBUTTON&gt;"Get Reward"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Mission accomplished! The heroes of Arborea thank you for your help. Here is your reward.&lt;NEXTPAGEBUTTON&gt;"Get Reward"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Mission accomplished! The heroes of Arborea thank you for your help. Here is your reward.&lt;NEXTPAGEBUTTON&gt;"Get Reward"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Mission accomplished! The heroes of Arborea thank you for your help. Here is your reward.&lt;NEXTPAGEBUTTON&gt;"Get Reward"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Mission accomplished! The heroes of Arborea thank you for your help. Here is your reward.&lt;NEXTPAGEBUTTON&gt;"Get Reward"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Mission accomplished! The heroes of Arborea thank you for your help. Here is your reward.&lt;NEXTPAGEBUTTON&gt;"Get Reward"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Mission accomplished! The heroes of Arborea thank you for your help. Here is your reward.&lt;NEXTPAGEBUTTON&gt;"Get Reward"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Mission accomplished! The heroes of Arborea thank you for your help. Here is your reward.&lt;NEXTPAGEBUTTON&gt;"Get Reward"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Mission accomplished! The heroes of Arborea thank you for your help. Here is your reward.&lt;NEXTPAGEBUTTON&gt;"Get Reward"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Mission accomplished! The heroes of Arborea thank you for your help. Here is your reward.&lt;NEXTPAGEBUTTON&gt;"Get Reward"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Mission accomplished! The heroes of Arborea thank you for your help. Here is your reward.&lt;NEXTPAGEBUTTON&gt;"Get Reward"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Mission accomplished! The heroes of Arborea thank you for your help. Here is your reward.&lt;NEXTPAGEBUTTON&gt;"Get Reward"&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="4" voiceTypeId="0">&lt;PCNAME&gt;, you and I have seen firsthand that the Argons can never be defeated, but I at least hoped we had them contained.&lt;BR&gt;&lt;BR&gt;But this latest atrocity must not...they dare...they DARE to mutilate the body of a god! This is an outrage I cannot forgive—or forget.&lt;BR&gt;&lt;BR&gt;You must bring me some of their new weapons. Bring them to me, and I will help you forge weapons and armor more powerful than any mortal smith can imagine.&lt;BR&gt;&lt;BR&gt;Defeat Krakatox and Thalweg in The Abscess, &lt;PCNAME&gt;, and bring me an Argon Weapon and an Argon Core.</Page>
+<Page social="4" voiceTypeId="0">Take this Mahtnan equipment, &lt;PCNAME&gt;. For now it is only the beginning.&lt;BR&gt;Temper it in battle, and it will reveal its true strength. Arborea is counting on you.</Page>
+<Page social="4" voiceTypeId="0">You came, &lt;PCNAME&gt;. Before Barak left, he brought back ore from the rift between the worlds. The smiths of the Highwatch call it Mahtnan.&lt;BR&gt;They forged equipment for you from it, but the metal is still asleep — the gear is incomplete. It will awaken only in battle, together with its owner.</Page>
+<QuestDialog id="1" huntingZoneId="1" voiceTypeId="0">
+<QuestDialog id="1" huntingZoneId="3107" voiceTypeId="0">
+<QuestDialog id="2" huntingZoneId="1" voiceTypeId="0">
+<QuestDialog id="20" huntingZoneId="7005" voiceTypeId="0">
+<QuestDialog id="20" huntingZoneId="7006" voiceTypeId="0">
+<QuestDialog id="21" huntingZoneId="3500" voiceTypeId="0">
+<QuestDialog id="22" huntingZoneId="3500" voiceTypeId="0">
+<QuestDialog id="23" huntingZoneId="3500" voiceTypeId="0">
+<QuestDialog id="24" huntingZoneId="3500" voiceTypeId="0">
+<QuestDialog id="25" huntingZoneId="3500" voiceTypeId="0">
+<QuestDialog id="26" huntingZoneId="3500" voiceTypeId="0">
+<QuestDialog id="26" huntingZoneId="7000" voiceTypeId="0">
+<QuestDialog id="26" huntingZoneId="7001" voiceTypeId="0">
+<QuestDialog id="27" huntingZoneId="3500" voiceTypeId="0">
+<QuestDialog id="28" huntingZoneId="3500" voiceTypeId="0">
+<QuestDialog id="29" huntingZoneId="3500" voiceTypeId="0">
+<QuestDialog id="3" huntingZoneId="1" voiceTypeId="0">
+<QuestDialog id="30" huntingZoneId="3500" voiceTypeId="0">
+<QuestDialog id="36" huntingZoneId="7005" voiceTypeId="0">
+<QuestDialog id="36" huntingZoneId="7006" voiceTypeId="0">
+<QuestDialog id="38" huntingZoneId="7005" voiceTypeId="0">
+<QuestDialog id="38" huntingZoneId="7006" voiceTypeId="0">
+<QuestDialog id="39" huntingZoneId="7005" voiceTypeId="0">
+<QuestDialog id="39" huntingZoneId="7006" voiceTypeId="0">
+<QuestDialog id="4" huntingZoneId="1" voiceTypeId="0">
+<QuestDialog id="43" huntingZoneId="7005" voiceTypeId="0">
+<QuestDialog id="43" huntingZoneId="7006" voiceTypeId="0">
+<QuestDialog id="44" huntingZoneId="7005" voiceTypeId="0">
+<QuestDialog id="44" huntingZoneId="7006" voiceTypeId="0">
+<QuestDialog id="5" huntingZoneId="1" voiceTypeId="0">
+<QuestDialog id="6" huntingZoneId="7000" voiceTypeId="0">
+<QuestDialog id="6" huntingZoneId="7001" voiceTypeId="0">
+<QuestDialog id="6" huntingZoneId="7005" voiceTypeId="0">
+<QuestDialog id="6" huntingZoneId="7006" voiceTypeId="0">
+<QuestDialog id="7" huntingZoneId="1183" voiceTypeId="0">
+<Text id="1" huntingZoneId="0" prevId="0" villagerId="0" />
+<Text id="1" huntingZoneId="0" prevId="0" villagerId="0" />
+<Text id="1" huntingZoneId="0" prevId="0" villagerId="0" />
+<Text id="1" huntingZoneId="0" prevId="0" villagerId="0" />
+<Text id="1" huntingZoneId="0" prevId="0" villagerId="0" />
+<Text id="1" huntingZoneId="0" prevId="0" villagerId="0" />
+<Text id="1" huntingZoneId="0" prevId="0" villagerId="0" />
+<Text id="1" huntingZoneId="0" prevId="0" villagerId="0" />
+<Text id="1" huntingZoneId="0" prevId="0" villagerId="0" />
+<Text id="1" huntingZoneId="0" prevId="0" villagerId="0" />
+<Text id="1" huntingZoneId="0" prevId="0" villagerId="0" />
+<Text id="1" huntingZoneId="0" prevId="0" villagerId="0" />
+<Text id="1" huntingZoneId="0" prevId="0" villagerId="0" />
+<Text id="1" huntingZoneId="0" prevId="0" villagerId="0" />
+<Text id="1" huntingZoneId="0" prevId="0" villagerId="0" />
+<Text id="1" huntingZoneId="0" prevId="0" villagerId="0" />
+<Text id="1" huntingZoneId="0" prevId="0" villagerId="0" />
+<Text id="1" huntingZoneId="0" prevId="0" villagerId="0" />
+<Text id="1" huntingZoneId="0" prevId="0" villagerId="0" />
+<Text id="1" huntingZoneId="0" prevId="0" villagerId="0" />
+<Text id="1" huntingZoneId="0" prevId="0" villagerId="0" />
+<Text id="1" huntingZoneId="0" prevId="0" villagerId="0" />
+<Text id="1" huntingZoneId="0" prevId="0" villagerId="0" />
+<Text id="1" huntingZoneId="0" prevId="0" villagerId="0" />
+<Text id="1" huntingZoneId="0" prevId="0" villagerId="0" />
+<Text id="1" huntingZoneId="0" prevId="0" villagerId="0" />
+<Text id="1" huntingZoneId="0" prevId="0" villagerId="0" />
+<Text id="1" huntingZoneId="0" prevId="0" villagerId="0" />
+<Text id="1" huntingZoneId="0" prevId="0" villagerId="0">
+<Text id="1" huntingZoneId="0" prevId="0" villagerId="0">
+<Text id="1" huntingZoneId="0" prevId="0" villagerId="0">
+<Text id="1" huntingZoneId="0" prevId="0" villagerId="0">
+<Text id="1" huntingZoneId="0" prevId="0" villagerId="0">
+<Text id="1" huntingZoneId="0" prevId="0" villagerId="0">
+<Text id="1" huntingZoneId="0" prevId="0" villagerId="0">
+<Text id="10" huntingZoneId="1" prevId="8" villagerId="10500">
+<Text id="10" huntingZoneId="3045" prevId="9" villagerId="4001">
+<Text id="10" huntingZoneId="61" prevId="9" villagerId="10021">
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="100" huntingZoneId="7000" prevId="0" villagerId="7000" />
+<Text id="100" huntingZoneId="7000" prevId="0" villagerId="7000" />
+<Text id="100" huntingZoneId="7001" prevId="0" villagerId="7001" />
+<Text id="100" huntingZoneId="7001" prevId="0" villagerId="7001" />
+<Text id="100" huntingZoneId="7005" prevId="0" villagerId="7005" />
+<Text id="100" huntingZoneId="7005" prevId="0" villagerId="7005" />
+<Text id="100" huntingZoneId="7005" prevId="0" villagerId="7005" />
+<Text id="100" huntingZoneId="7005" prevId="0" villagerId="7005" />
+<Text id="100" huntingZoneId="7005" prevId="0" villagerId="7005" />
+<Text id="100" huntingZoneId="7005" prevId="0" villagerId="7005" />
+<Text id="100" huntingZoneId="7005" prevId="0" villagerId="7005" />
+<Text id="100" huntingZoneId="7006" prevId="0" villagerId="7006" />
+<Text id="100" huntingZoneId="7006" prevId="0" villagerId="7006" />
+<Text id="100" huntingZoneId="7006" prevId="0" villagerId="7006" />
+<Text id="100" huntingZoneId="7006" prevId="0" villagerId="7006" />
+<Text id="100" huntingZoneId="7006" prevId="0" villagerId="7006" />
+<Text id="100" huntingZoneId="7006" prevId="0" villagerId="7006" />
+<Text id="100" huntingZoneId="7006" prevId="0" villagerId="7006" />
+<Text id="11" huntingZoneId="1" prevId="10" villagerId="10004">
+<Text id="11" huntingZoneId="3045" prevId="10" villagerId="3003">
+<Text id="11" huntingZoneId="61" prevId="10" villagerId="10003">
+<Text id="12" huntingZoneId="1" prevId="11" villagerId="10012">
+<Text id="12" huntingZoneId="1" prevId="11" villagerId="10204">
+<Text id="12" huntingZoneId="61" prevId="11" villagerId="20000">
+<Text id="13" huntingZoneId="1" prevId="12" villagerId="10600">
+<Text id="13" huntingZoneId="3" prevId="12" villagerId="10000">
+<Text id="2" huntingZoneId="0" prevId="0" villagerId="0">
+<Text id="2" huntingZoneId="0" prevId="0" villagerId="0">
+<Text id="2" huntingZoneId="0" prevId="0" villagerId="0">
+<Text id="2" huntingZoneId="0" prevId="0" villagerId="0">
+<Text id="2" huntingZoneId="0" prevId="0" villagerId="0">
+<Text id="2" huntingZoneId="0" prevId="0" villagerId="0">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="1400">
+<Text id="2" huntingZoneId="183" prevId="1" villagerId="1401">
+<Text id="3" huntingZoneId="1" prevId="1" villagerId="10012">
+<Text id="3" huntingZoneId="1" prevId="1" villagerId="10200">
+<Text id="3" huntingZoneId="1" prevId="1" villagerId="10205">
+<Text id="3" huntingZoneId="1" prevId="1" villagerId="11000">
+<Text id="3" huntingZoneId="1" prevId="1" villagerId="31010">
+<Text id="3" huntingZoneId="183" prevId="2" villagerId="1400">
+<Text id="3" huntingZoneId="183" prevId="2" villagerId="1400">
+<Text id="3" huntingZoneId="183" prevId="2" villagerId="1400">
+<Text id="3" huntingZoneId="183" prevId="2" villagerId="1400">
+<Text id="3" huntingZoneId="183" prevId="2" villagerId="1400">
+<Text id="3" huntingZoneId="183" prevId="2" villagerId="1400">
+<Text id="3" huntingZoneId="183" prevId="2" villagerId="1400">
+<Text id="3" huntingZoneId="183" prevId="2" villagerId="1400">
+<Text id="3" huntingZoneId="183" prevId="2" villagerId="1400">
+<Text id="3" huntingZoneId="183" prevId="2" villagerId="1400">
+<Text id="3" huntingZoneId="183" prevId="2" villagerId="1400">
+<Text id="3" huntingZoneId="183" prevId="2" villagerId="1400">
+<Text id="3" huntingZoneId="183" prevId="2" villagerId="1400">
+<Text id="3" huntingZoneId="183" prevId="2" villagerId="1400">
+<Text id="3" huntingZoneId="183" prevId="2" villagerId="1400">
+<Text id="3" huntingZoneId="183" prevId="2" villagerId="1400">
+<Text id="3" huntingZoneId="183" prevId="2" villagerId="1400">
+<Text id="3" huntingZoneId="183" prevId="2" villagerId="1400">
+<Text id="3" huntingZoneId="183" prevId="2" villagerId="1400">
+<Text id="3" huntingZoneId="183" prevId="2" villagerId="1400">
+<Text id="3" huntingZoneId="183" prevId="2" villagerId="1400">
+<Text id="3" huntingZoneId="183" prevId="2" villagerId="1400">
+<Text id="3" huntingZoneId="183" prevId="2" villagerId="1400">
+<Text id="3" huntingZoneId="183" prevId="2" villagerId="1400">
+<Text id="3" huntingZoneId="183" prevId="2" villagerId="1400">
+<Text id="3" huntingZoneId="183" prevId="2" villagerId="1400">
+<Text id="3" huntingZoneId="183" prevId="2" villagerId="1400">
+<Text id="3" huntingZoneId="183" prevId="2" villagerId="1400">
+<Text id="3" huntingZoneId="183" prevId="2" villagerId="1400">
+<Text id="3" huntingZoneId="528" prevId="1" villagerId="10000">
+<Text id="4" huntingZoneId="1" prevId="3" villagerId="10105">
+<Text id="4" huntingZoneId="1" prevId="3" villagerId="10201">
+<Text id="4" huntingZoneId="1" prevId="3" villagerId="30060">
+<Text id="4" huntingZoneId="1" prevId="3" villagerId="31020">
+<Text id="4" huntingZoneId="528" prevId="3" villagerId="10020">
+<Text id="4" huntingZoneId="58" prevId="3" villagerId="10092">
+<Text id="5" huntingZoneId="1" prevId="3" villagerId="10201">
+<Text id="5" huntingZoneId="1" prevId="4" villagerId="10005">
+<Text id="5" huntingZoneId="1" prevId="4" villagerId="30001">
+<Text id="5" huntingZoneId="1" prevId="4" villagerId="31070">
+<Text id="5" huntingZoneId="528" prevId="4" villagerId="10030">
+<Text id="5" huntingZoneId="58" prevId="4" villagerId="10170">
+<Text id="6" huntingZoneId="1" prevId="4" villagerId="10002">
+<Text id="6" huntingZoneId="1" prevId="5" villagerId="10005">
+<Text id="6" huntingZoneId="1" prevId="5" villagerId="11005">
+<Text id="6" huntingZoneId="1" prevId="5" villagerId="30070">
+<Text id="6" huntingZoneId="1" prevId="5" villagerId="31011">
+<Text id="6" huntingZoneId="528" prevId="5" villagerId="10010">
+<Text id="7" huntingZoneId="1" prevId="6" villagerId="10205">
+<Text id="7" huntingZoneId="1" prevId="6" villagerId="10300">
+<Text id="7" huntingZoneId="1" prevId="6" villagerId="10403">
+<Text id="7" huntingZoneId="1" prevId="6" villagerId="30000">
+<Text id="7" huntingZoneId="1" prevId="6" villagerId="31012">
+<Text id="7" huntingZoneId="183" prevId="2" villagerId="1401">
+<Text id="7" huntingZoneId="61" prevId="6" villagerId="10000">
+<Text id="8" huntingZoneId="1" prevId="7" villagerId="10300">
+<Text id="8" huntingZoneId="1" prevId="7" villagerId="30003">
+<Text id="8" huntingZoneId="1" prevId="7" villagerId="31023">
+<Text id="8" huntingZoneId="3045" prevId="7" villagerId="2000">
+<Text id="8" huntingZoneId="61" prevId="7" villagerId="1028">
+<Text id="9" huntingZoneId="1" prevId="8" villagerId="10401">
+<Text id="9" huntingZoneId="1" prevId="8" villagerId="31014">
+<Text id="9" huntingZoneId="3045" prevId="8" villagerId="4000">
+<Text id="9" huntingZoneId="61" prevId="8" villagerId="10020">
+
+=== REMOVED (59) ===
+<Page social="0">Within Kelsaik.&lt;BR&gt;&lt;BR&gt;Even though the Azart have resurrected him with Argon power, some portion of his former life as the god Sikander must remain.&lt;BR&gt;&lt;BR&gt;Engage him in battle, and bring back a Primal Ember formed from his essense.</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it! &lt;NEXTPAGEBUTTON&gt;"Very well."&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it! &lt;NEXTPAGEBUTTON&gt;"Very well."&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it! &lt;NEXTPAGEBUTTON&gt;"Very well."&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it! &lt;NEXTPAGEBUTTON&gt;"Very well."&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it! &lt;NEXTPAGEBUTTON&gt;"Very well."&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it! &lt;NEXTPAGEBUTTON&gt;"Very well."&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it! &lt;NEXTPAGEBUTTON&gt;"Very well."&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it! &lt;NEXTPAGEBUTTON&gt;"Very well."&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it! &lt;NEXTPAGEBUTTON&gt;"Very well."&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it! &lt;NEXTPAGEBUTTON&gt;"Very well."&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it! &lt;NEXTPAGEBUTTON&gt;"Very well."&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it! &lt;NEXTPAGEBUTTON&gt;"Very well."&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it! &lt;NEXTPAGEBUTTON&gt;"Very well."&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it! &lt;NEXTPAGEBUTTON&gt;"Very well."&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it! &lt;NEXTPAGEBUTTON&gt;"Very well."&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it! &lt;NEXTPAGEBUTTON&gt;"Very well."&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it! &lt;NEXTPAGEBUTTON&gt;"Very well."&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Greetings, Guardian! Every day brings us new challenges! Help the heroes of Arborea defeat their enemies and receive valuable rewards for it! &lt;NEXTPAGEBUTTON&gt;"Very well."&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="1" voiceTypeId="0">Здравствуй, Хранитель! Каждый день приносит нам новые испытания! Помоги героям Арбореи победить врагов и получи за это ценные награды! &lt;NEXTPAGEBUTTON&gt;"Хорошо."&lt;/NEXTPAGEBUTTON&gt;</Page>
+<Page social="4" voiceTypeId="0">&lt;PCNAME&gt;, you and I have seen firsthand that the Argons can never be defeated, but I at least hoped we had them contained.&lt;BR&gt;&lt;BR&gt;But this latest atrocity must not...they dare...they DARE to mutilate the body of a god! This is an outrage I cannot forgive—or forget.&lt;BR&gt;&lt;BR&gt;You must bring me some of their new weapons. Bring them to me, and I will help you forge weapons and armor more powerful than any mortal smith can imagine.&lt;BR&gt;&lt;BR&gt;Return to Exodor, &lt;PCNAME&gt;, and be my sword again.</Page>
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1015" />
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1015" />
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1015" />
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1015" />
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1015" />
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1015" />
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1015" />
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1015" />
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1015" />
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1015" />
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1015" />
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1015" />
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1015" />
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1015" />
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1015" />
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1015" />
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1015" />
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1015" />
+<Text id="100" huntingZoneId="183" prevId="0" villagerId="1015" />
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="0">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="0">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="0">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="0">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="0">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="0">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="0">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="0">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="0">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="0">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="0">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="0">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="0">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="0">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="0">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="0">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="0">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="0">
+<Text id="2" huntingZoneId="183" prevId="0" villagerId="0">

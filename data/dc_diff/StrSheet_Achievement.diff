@@ -1,0 +1,213 @@
+# StrSheet_Achievement  +208 -0
+
+=== ADDED (208) ===
+<String id="2218001" string="Calm the Madness" />
+<String id="2218002" string="Server's first to defeat Rampaging Rogash in the Cursed Fusion Laboratory." />
+<String id="2218003" string="Server's first to defeat Rampaging Rogash in the Cursed Fusion Laboratory." />
+<String id="2218004" string="Valkyon Federation" />
+<String id="2218501" string="Madness Calmed" />
+<String id="2218800" string="Server's first player to defeat Rampaging Rogash in the Cursed Fusion Laboratory." />
+<String id="2219001" string="Electrifyingly Red" />
+<String id="2219002" string="Receive Red Lightning 20 times in the Cursed Fusion Laboratory." />
+<String id="2219003" string="Receive Red Lightning 20 times in the Cursed Fusion Laboratory." />
+<String id="2219004" string="Valkyon Federation" />
+<String id="2219800" string="Received Red Lightning 20 times in the Cursed Fusion Laboratory." />
+<String id="2220001" string="Electrifyingly Blue" />
+<String id="2220002" string="Receive Blue Lightning 20 times in the Cursed Fusion Laboratory." />
+<String id="2220003" string="Receive Blue Lightning 20 times in the Cursed Fusion Laboratory." />
+<String id="2220004" string="Valkyon Federation" />
+<String id="2220800" string="Received Blue Lightning 20 times in the Cursed Fusion Laboratory." />
+<String id="2221001" string="Does It Come in Other Colors?" />
+<String id="2221002" string="Complete the achievements listed below." />
+<String id="2221003" string="Complete the achievements listed below." />
+<String id="2221004" string="Valkyon Federation" />
+<String id="2221501" string="Polarizing" />
+<String id="2221800" string="Electrifyingly Red" />
+<String id="2221801" string="Electrifyingly Blue" />
+<String id="2222001" string="That's me." />
+<String id="2222002" string="Defeat Rampaging Rogash in the Cursed Fusion Laboratory without dying." />
+<String id="2222003" string="Defeat Rampaging Rogash in the Cursed Fusion Laboratory without dying." />
+<String id="2222004" string="Valkyon Federation" />
+<String id="2222800" string="Defeated Rampaging Rogash in the Cursed Fusion Laboratory without dying." />
+<String id="2223001" string="Get lost!" />
+<String id="2223002" string="Defeat Rampaging Rogash in the Cursed Fusion Laboratory within 7 minutes." />
+<String id="2223003" string="Defeat Rampaging Rogash in the Cursed Fusion Laboratory within 7 minutes." />
+<String id="2223004" string="Valkyon Federation" />
+<String id="2223800" string="Defeated Rampaging Rogash in the Cursed Fusion Laboratory within 7 minutes." />
+<String id="2224001" string="That was only self-defense." />
+<String id="2224002" string="Defeat Rampaging Rogash in the Cursed Fusion Laboratory 10 times." />
+<String id="2224003" string="Defeat Rampaging Rogash in the Cursed Fusion Laboratory 10 times." />
+<String id="2224004" string="Valkyon Federation" />
+<String id="2224800" string="Defeated Rampaging Rogash in the Cursed Fusion Laboratory 10 times." />
+<String id="2225001" string="Rogash! Stop!" />
+<String id="2225002" string="Defeat Rampaging Rogash in the Cursed Fusion Laboratory 50 times." />
+<String id="2225003" string="Defeat Rampaging Rogash in the Cursed Fusion Laboratory 50 times." />
+<String id="2225004" string="Valkyon Federation" />
+<String id="2225800" string="Defeated Rampaging Rogash in the Cursed Fusion Laboratory 50 times." />
+<String id="2226001" string="Just go back to Lumikan." />
+<String id="2226002" string="Complete the achievements listed below." />
+<String id="2226003" string="Complete the achievements listed below." />
+<String id="2226004" string="Valkyon Federation" />
+<String id="2226501" string="From Insanity to Dream Fantasy" />
+<String id="2226800" string="That's me." />
+<String id="2226801" string="Get lost!" />
+<String id="2226802" string="That was only self-defense." />
+<String id="2226803" string="Rogash! Stop!" />
+<String id="2227001" string="Stay electric!" />
+<String id="2227002" string="Receive Weak Current 50 times in the Splitting Fusion Laboratory." />
+<String id="2227003" string="Receive Weak Current 50 times in the Splitting Fusion Laboratory." />
+<String id="2227004" string="Valkyon Federation" />
+<String id="2227501" string="Electrifying" />
+<String id="2227800" string="Received Weak Current 50 times in the Splitting Fusion Laboratory." />
+<String id="2228001" string="Did everyone else see that? How great am I!" />
+<String id="2228002" string="Defeat Rogash in the Fusion Laboratory without dying." />
+<String id="2228003" string="Defeat Rogash in the Fusion Laboratory without dying." />
+<String id="2228004" string="Valkyon Federation" />
+<String id="2228800" string="Defeated Rogash in the Fusion Laboratory without dying." />
+<String id="2229001" string="Absolutely Pathetic" />
+<String id="2229002" string="Defeat Rogash in the Fusion Laboratory 1 time." />
+<String id="2229003" string="Defeat Rogash in the Fusion Laboratory 1 time." />
+<String id="2229004" string="Valkyon Federation" />
+<String id="2229800" string="Defeated Rogash in the Fusion Laboratory 1 time." />
+<String id="2230001" string="You attacked me first?" />
+<String id="2230002" string="Defeat Rogash in the Fusion Laboratory 10 times." />
+<String id="2230003" string="Defeat Rogash in the Fusion Laboratory 10 times." />
+<String id="2230004" string="Valkyon Federation" />
+<String id="2230800" string="Defeated Rogash in the Fusion Laboratory 10 times." />
+<String id="2231001" string="Let it go, Rogash." />
+<String id="2231002" string="Defeat Rogash in the Fusion Laboratory 30 times." />
+<String id="2231003" string="Defeat Rogash in the Fusion Laboratory 30 times." />
+<String id="2231004" string="Valkyon Federation" />
+<String id="2231800" string="Defeated Rogash in the Fusion Laboratory 30 times." />
+<String id="2232001" string="You should have listened to me from the start." />
+<String id="2232002" string="Complete the achievements listed below." />
+<String id="2232003" string="Complete the achievements listed below." />
+<String id="2232004" string="Valkyon Federation" />
+<String id="2232501" string="Strike first, ask questions later." />
+<String id="2232800" string="Did everyone else see that? How great am I!" />
+<String id="2232801" string="Absolutely Pathetic" />
+<String id="2232802" string="You attacked me first?" />
+<String id="2232803" string="Let it go, Rogash." />
+<String id="2251001" string="Baldera: Meandering Forest Tree Spirit" />
+<String id="2251002" string="Defeat 50 tree spirits in the Meandering Forest." />
+<String id="2251003" string="Defeat 50 tree spirits in the Meandering Forest." />
+<String id="2251004" string="Valkyon Federation" />
+<String id="2251800" string="Hunting tree spirits in the Meandering Forest." />
+<String id="2252001" string="Baldera: Meandering Forest Ghilliedhu" />
+<String id="2252002" string="Defeat 50 ghilliedhus in the Meandering Forest." />
+<String id="2252003" string="Defeat 50 ghilliedhus in the Meandering Forest." />
+<String id="2252004" string="Valkyon Federation" />
+<String id="2252800" string="Hunting ghilliedhus in the Meandering Forest." />
+<String id="2254001" string="Baldera: Meandering Forest Earth Spirit" />
+<String id="2254002" string="Defeat 50 earth spirits in the Meandering Forest." />
+<String id="2254003" string="Defeat 50 earth spirits in the Meandering Forest." />
+<String id="2254004" string="Valkyon Federation" />
+<String id="2254800" string="Hunting earth spirits in the Meandering Forest." />
+<String id="2255001" string="Baldera: Poisoned Unicorn" />
+<String id="2255002" string="Defeat 50 poisoned unicorns." />
+<String id="2255003" string="Defeat 50 poisoned unicorns." />
+<String id="2255004" string="Valkyon Federation" />
+<String id="2255800" string="Hunting poisoned unicorns." />
+<String id="2256001" string="Baldera: Meandering Forest Nature Spirit" />
+<String id="2256002" string="Defeat 50 nature spirits in the Meandering Forest." />
+<String id="2256003" string="Defeat 50 nature spirits in the Meandering Forest." />
+<String id="2256004" string="Valkyon Federation" />
+<String id="2256800" string="Hunting nature spirits in the Meandering Forest." />
+<String id="2257001" string="Baldera: Meandering Forest Shurian Warrior" />
+<String id="2257002" string="Defeat 50 Shurian warriors in the Meandering Forest." />
+<String id="2257003" string="Defeat 50 Shurian warriors in the Meandering Forest." />
+<String id="2257004" string="Valkyon Federation" />
+<String id="2257800" string="Hunting Shurian warriors in the Meandering Forest." />
+<String id="2258001" string="Baldera: Meandering Forest Shurian Summoner" />
+<String id="2258002" string="Defeat 50 Shurian summoners in the Meandering Forest." />
+<String id="2258003" string="Defeat 50 Shurian summoners in the Meandering Forest." />
+<String id="2258004" string="Valkyon Federation" />
+<String id="2258800" string="Hunting Shurian summoners in the Meandering Forest." />
+<String id="2259001" string="Baldera: Shurian Minion" />
+<String id="2259002" string="Defeat 200 Shurian minions." />
+<String id="2259003" string="Defeat 200 Shurian minions." />
+<String id="2259004" string="Valkyon Federation" />
+<String id="2259800" string="Hunting Shurian minions." />
+<String id="2261001" string="Whew! I guess everyone has gotten to know you by now, right?" />
+<String id="2261002" string="Completed the achievements listed below." />
+<String id="2261003" string="Completed the achievements listed below." />
+<String id="2261004" string="Valkyon Federation" />
+<String id="2261501" string="Baldera Pioneer" />
+<String id="2261800" string="Baldera: Meandering Forest Tree Spirit" />
+<String id="2261801" string="Baldera: Meandering Forest Ghilliedhu" />
+<String id="2261802" string="Baldera: Meandering Forest Earth Spirit" />
+<String id="2261803" string="Baldera: Poisoned Unicorn" />
+<String id="2261804" string="Baldera: Meandering Forest Nature Spirit" />
+<String id="2261805" string="Baldera: Meandering Forest Shurian Warrior" />
+<String id="2261806" string="Baldera: Meandering Forest Shurian Summoner" />
+<String id="2261807" string="Baldera: Shurian Minion" />
+<String id="2262001" string="Baldera: Baldera" />
+<String id="2262002" string="Visit Baldera for the first time." />
+<String id="2262003" string="Visit Baldera for the first time." />
+<String id="2262004" string="Valkyon Federation" />
+<String id="2262800" string="Visited Baldera" />
+<String id="2263001" string="Baldera: Balderon" />
+<String id="2263002" string="Visit Balderon for the first time." />
+<String id="2263003" string="Visit Balderon for the first time." />
+<String id="2263004" string="Valkyon Federation" />
+<String id="2263800" string="Visited Balderon" />
+<String id="2264001" string="Baldera: Spring of Arun" />
+<String id="2264002" string="Visit the Spring of Arun for the first time." />
+<String id="2264003" string="Visit the Spring of Arun for the first time." />
+<String id="2264004" string="Valkyon Federation" />
+<String id="2264800" string="Visited the Spring of Arun" />
+<String id="2265001" string="In Memory of Baldera" />
+<String id="2265002" string="Completed the following quests:" />
+<String id="2265003" string="Completed the following quests:" />
+<String id="2265004" string="Valkyon Federation" />
+<String id="2265501" string="A Knife in the Back" />
+<String id="2265800" string="Journey to Baldera" />
+<String id="2265801" string="Spring of Arun" />
+<String id="2265802" string="The Forgotten City of Balderon" />
+<String id="2265803" string="Shade's Whereabouts" />
+<String id="59001001" string="Pages of the Forgotten City" />
+<String id="59001002" string="Find all six books scattered around Balderon." />
+<String id="59001003" string="Find all six books scattered around Balderon." />
+<String id="59001004" string="Balderon Archive" />
+<String id="59001800" string="Book I: The City Gates" />
+<String id="59001801" string="Book II: Voices of the Square" />
+<String id="59001802" string="Book III: The Road to Knowledge" />
+<String id="59001803" string="Book IV: The Keepers Remember" />
+<String id="59001804" string="Book V: A Quiet Rest" />
+<String id="59001805" string="Book VI: The Last Page" />
+<String id="59002001" string="Above the City" />
+<String id="59002002" string="Find the memorial on the upper terrace of Balderon." />
+<String id="59002003" string="Find the memorial on the upper terrace of Balderon." />
+<String id="59002004" string="Balderon Archive" />
+<String id="59002800" string="Find the memorial on the upper terrace of Balderon." />
+<String id="59003001" string="Keeper of Balderon" />
+<String id="59003002" string="Visit Balderon and find its six books and memorial." />
+<String id="59003003" string="Visit Balderon and find its six books and memorial." />
+<String id="59003004" string="Balderon Archive" />
+<String id="59003800" string="Baldera: Balderon" />
+<String id="59003801" string="Pages of the Forgotten City" />
+<String id="59003802" string="Above the City" />
+<String id="98020001" string="Kylos Tamer" />
+<String id="98020002" string="Defeat Nightmare Kylos in the Grotto of Lost Souls (Hard) 50 times to earn Summoning Book: Kylos." />
+<String id="98020003" string="Defeat Nightmare Kylos in the Grotto of Lost Souls (Hard) 50 times to earn Summoning Book: Kylos." />
+<String id="98020004" string="Valkyon Federation" />
+<String id="98020800" string="Defeat Nightmare Kylos 50 times." />
+<String id="99323001" string="Cursed Fusion Laboratory: 1st Place" />
+<String id="99323002" string="1st place in the current season" />
+<String id="99323003" string="1st place in the current season" />
+<String id="99323004" string="Valkyon Federation" />
+<String id="99323501" string="Fusion Champion" />
+<String id="99324001" string="Cursed Fusion Laboratory: 2nd or 3rd Place" />
+<String id="99324002" string="2nd or 3rd place in the current season" />
+<String id="99324003" string="2nd or 3rd place in the current season" />
+<String id="99324004" string="Valkyon Federation" />
+<String id="99324501" string="Fusion Guardian" />
+<String id="99325001" string="Harbinger of Disaster" />
+<String id="99325002" string="Unlocked the Harbinger of Disaster title." />
+<String id="99325003" string="Activate the Harbinger of Disaster chronoscroll for your account and enter the game." />
+<String id="99325004" string="Valkyon Federation" />
+<String id="99325501" string="Harbinger of Disaster" />
+<String id="99325800" string="Unlock the Harbinger of Disaster title for your account." />
+<String id="99999999" string="Developer" />
+
+=== REMOVED (0) ===

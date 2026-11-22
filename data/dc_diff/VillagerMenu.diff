@@ -1,0 +1,225 @@
+# VillagerMenu  +195 -25
+
+=== ADDED (195) ===
+<Villager id="1,10000" />
+<Villager id="1,10001" />
+<Villager id="1,10002" />
+<Villager id="1,10003" />
+<Villager id="1,10004" />
+<Villager id="1,10005" />
+<Villager id="1,10006" />
+<Villager id="1,10007" />
+<Villager id="1,10008" />
+<Villager id="1,10009" />
+<Villager id="1,10011" />
+<Villager id="1,10012" />
+<Villager id="1,10013" />
+<Villager id="1,10014" />
+<Villager id="1,10015" />
+<Villager id="1,10016" />
+<Villager id="1,10100" />
+<Villager id="1,10101" />
+<Villager id="1,10102" />
+<Villager id="1,10103" />
+<Villager id="1,10104" />
+<Villager id="1,10105" />
+<Villager id="1,10106" />
+<Villager id="1,10107" />
+<Villager id="1,10108" />
+<Villager id="1,10109" />
+<Villager id="1,10110" />
+<Villager id="1,10111" />
+<Villager id="1,10112" />
+<Villager id="1,10113" />
+<Villager id="1,10114" />
+<Villager id="1,10115" />
+<Villager id="1,10116" />
+<Villager id="1,10200" />
+<Villager id="1,10201" />
+<Villager id="1,10202" />
+<Villager id="1,10203" />
+<Villager id="1,10204" />
+<Villager id="1,10205" />
+<Villager id="1,10211" />
+<Villager id="1,10212" />
+<Villager id="1,10213" />
+<Villager id="1,10214" />
+<Villager id="1,10300" />
+<Villager id="1,10400" />
+<Villager id="1,10401" />
+<Villager id="1,104011" />
+<Villager id="1,104012" />
+<Villager id="1,10402" />
+<Villager id="1,10403" />
+<Villager id="1,10404" />
+<Villager id="1,10405" />
+<Villager id="1,10500" />
+<Villager id="1,10600" />
+<Villager id="1,11000" />
+<Villager id="1,11001" />
+<Villager id="1,11002" />
+<Villager id="1,11003" />
+<Villager id="1,11004" />
+<Villager id="1,11005" />
+<Villager id="1,20000" />
+<Villager id="1,20001" />
+<Villager id="1,30000" />
+<Villager id="1,30001" />
+<Villager id="1,30002" />
+<Villager id="1,30003" />
+<Villager id="1,30010" />
+<Villager id="1,30011" />
+<Villager id="1,30012" />
+<Villager id="1,30013" />
+<Villager id="1,30020" />
+<Villager id="1,30030" />
+<Villager id="1,30040" />
+<Villager id="1,30050" />
+<Villager id="1,30060" />
+<Villager id="1,30070" />
+<Villager id="1,30080" />
+<Villager id="1,30081" />
+<Villager id="1,30100" />
+<Villager id="1,30110" />
+<Villager id="1,30130" />
+<Villager id="1,31000" />
+<Villager id="1,31010" />
+<Villager id="1,31011" />
+<Villager id="1,31012" />
+<Villager id="1,31013" />
+<Villager id="1,31014" />
+<Villager id="1,31015" />
+<Villager id="1,31020" />
+<Villager id="1,31021" />
+<Villager id="1,31022" />
+<Villager id="1,31023" />
+<Villager id="1,31024" />
+<Villager id="1,31025" />
+<Villager id="1,31030" />
+<Villager id="1,31040" />
+<Villager id="1,31050" />
+<Villager id="1,31051" />
+<Villager id="1,31060" />
+<Villager id="1,31070" />
+<Villager id="1,31080" />
+<Villager id="1,31081" />
+<Villager id="1,31101" />
+<Villager id="1,31102" />
+<Villager id="1,31103" />
+<Villager id="1,31104" />
+<Villager id="1,31105" />
+<Villager id="1,31106" />
+<Villager id="1,31107" />
+<Villager id="1,31108" />
+<Villager id="1,31109" />
+<Villager id="1,31110" />
+<Villager id="183,18358" />
+<Villager id="3,10000" />
+<Villager id="3041,1501" />
+<Villager id="3041,1502" />
+<Villager id="3044,1501" />
+<Villager id="3044,1502" />
+<Villager id="3045,1000" />
+<Villager id="3045,1001" />
+<Villager id="3045,2000" />
+<Villager id="3045,20000" />
+<Villager id="3045,20001" />
+<Villager id="3045,2001" />
+<Villager id="3045,2002" />
+<Villager id="3045,2003" />
+<Villager id="3045,3000" />
+<Villager id="3045,3001" />
+<Villager id="3045,3002" />
+<Villager id="3045,3003" />
+<Villager id="3045,4000" />
+<Villager id="3045,4001" />
+<Villager id="3048,1501" />
+<Villager id="3048,1502" />
+<Villager id="3105,1501" />
+<Villager id="3105,1502" />
+<Villager id="3134,1502" />
+<Villager id="3205,1501" />
+<Villager id="3205,1502" />
+<Villager id="3400,1503" />
+<Villager id="3400,1504" />
+<Villager id="3401,1501" />
+<Villager id="3401,1502" />
+<Villager id="3401,1503" />
+<Villager id="528,10000" />
+<Villager id="528,10010" />
+<Villager id="528,10020" />
+<Villager id="528,10030" />
+<Villager id="58,10000" />
+<Villager id="58,10001" />
+<Villager id="58,10002" />
+<Villager id="58,10011" guideEffectId="102" />
+<Villager id="58,10012" guideEffectId="102" />
+<Villager id="58,10013" guideEffectId="102" />
+<Villager id="58,10014" guideEffectId="102" />
+<Villager id="58,10040" guideEffectId="102" />
+<Villager id="58,10051" guideEffectId="103" />
+<Villager id="58,10060" guideEffectId="103" />
+<Villager id="58,10080" />
+<Villager id="58,10081" />
+<Villager id="58,10091" guideEffectId="102" />
+<Villager id="58,10094" guideEffectId="113" />
+<Villager id="58,10100" guideEffectId="102" />
+<Villager id="58,10110" guideEffectId="102" />
+<Villager id="58,10111" guideEffectId="102" />
+<Villager id="58,10112" guideEffectId="102" />
+<Villager id="58,10113" guideEffectId="102" />
+<Villager id="58,10120" guideEffectId="112" />
+<Villager id="58,10121" guideEffectId="102" />
+<Villager id="58,10122" guideEffectId="112" />
+<Villager id="58,10123" guideEffectId="102" />
+<Villager id="58,10130" guideEffectId="104" />
+<Villager id="58,10131" guideEffectId="103" />
+<Villager id="58,10145" guideEffectId="109" />
+<Villager id="58,10160" guideEffectId="117" />
+<Villager id="58,10170" guideEffectId="106" />
+<Villager id="58,3000" guideEffectId="105" />
+<Villager id="58,3001" guideEffectId="105" />
+<Villager id="58,3002" guideEffectId="105" />
+<Villager id="58,580001" />
+<Villager id="58,580002" />
+<Villager id="58,580003" />
+<Villager id="58,580004" />
+<Villager id="58,59001" />
+<Villager id="58,59002" />
+<Villager id="58,59003" />
+<Villager id="58,59004" />
+<Villager id="58,59005" />
+<Villager id="58,59006" />
+<Villager id="58,59007" />
+<Villager id="61,10000" />
+<Villager id="61,10003" />
+<Villager id="61,10020" />
+<Villager id="61,10021" />
+<Villager id="61,20000" />
+
+=== REMOVED (25) ===
+<Villager id="58,10011" />
+<Villager id="58,1005" />
+<Villager id="58,10051" />
+<Villager id="58,10091" guideEffectId="113" />
+<Villager id="58,10094" guideEffectId="102" />
+<Villager id="58,10110" />
+<Villager id="58,10111" />
+<Villager id="58,10112" />
+<Villager id="58,10113" />
+<Villager id="58,1012" />
+<Villager id="58,10120" />
+<Villager id="58,10170" />
+<Villager id="58,11205" guideEffectId="102" />
+<Villager id="58,1602" />
+<Villager id="58,1603" />
+<Villager id="58,200024" guideEffectId="103" />
+<Villager id="58,2042" />
+<Villager id="58,2043" />
+<Villager id="58,2045" guideEffectId="104" />
+<Villager id="58,3000" />
+<Villager id="58,3001" />
+<Villager id="58,3002" />
+<Villager id="58,5802" />
+<Villager id="58,6115" guideEffectId="104" />
+<Villager id="58,9000" />

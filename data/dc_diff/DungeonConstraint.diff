@@ -1,0 +1,12 @@
+# DungeonConstraint  +7 -0
+
+=== ADDED (7) ===
+<Constraint continentId="3045" requiredActPoint="0" />
+<Constraint continentId="3048" requiredActPoint="0" />
+<Constraint continentId="3050" requiredActPoint="280" />
+<Constraint continentId="3105" requiredActPoint="0" />
+<Constraint continentId="3205" requiredActPoint="0" />
+<Constraint continentId="3400" requiredActPoint="0" />
+<Constraint continentId="3401" requiredActPoint="0" />
+
+=== REMOVED (0) ===

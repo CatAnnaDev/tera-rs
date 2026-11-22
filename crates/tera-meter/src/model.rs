@@ -2,7 +2,7 @@ use std::collections::{HashMap, HashSet};
 use std::time::{Duration, Instant};
 
 use crate::data::GameData;
-use crate::net::Event;
+use crate::net::{Event, Stats};
 
 pub const KIND_DAMAGE: u8 = 1;
 pub const KIND_HEAL: u8 = 2;
@@ -53,6 +53,9 @@ pub struct EntityStats {
     pub damage: i64,
     pub damage_taken: i64,
     pub heal: i64,
+    pub absorbed: i64,
+    pub blocks: u64,
+    pub perfect_blocks: u64,
     pub hits: u64,
     pub crits: u64,
     pub crit_amount: i64,
@@ -73,6 +76,9 @@ impl EntityStats {
             damage: 0,
             damage_taken: 0,
             heal: 0,
+            absorbed: 0,
+            blocks: 0,
+            perfect_blocks: 0,
             hits: 0,
             crits: 0,
             crit_amount: 0,
@@ -106,6 +112,7 @@ pub struct Encounter {
     pub total_damage: i64,
     pub total_heal: i64,
     pub total_taken: i64,
+    pub total_absorbed: i64,
     pub ended: bool,
 }
 
@@ -120,7 +127,30 @@ impl Encounter {
             total_damage: 0,
             total_heal: 0,
             total_taken: 0,
+            total_absorbed: 0,
             ended: false,
+        }
+    }
+
+    fn record_absorb(&mut self, target: u64, amount: i64, now: Instant) {
+        if self.ended {
+            return;
+        }
+        let e = self.entities.entry(target).or_insert_with(|| EntityStats::new(target, now));
+        e.end = now;
+        e.absorbed += amount;
+        self.total_absorbed += amount;
+    }
+
+    fn record_defend(&mut self, source: u64, perfect: bool, now: Instant) {
+        if self.ended {
+            return;
+        }
+        let e = self.entities.entry(source).or_insert_with(|| EntityStats::new(source, now));
+        e.end = now;
+        e.blocks += 1;
+        if perfect {
+            e.perfect_blocks += 1;
         }
     }
 
@@ -207,12 +237,17 @@ pub struct MemberState {
     pub cur_mp: i64,
     pub max_mp: i64,
     pub alive: bool,
+    pub buffs: HashSet<u32>,
 }
 
 #[derive(Default)]
 struct AbnState {
     begin: Option<Instant>,
     total: Duration,
+    applied: Option<Instant>,
+    duration_ms: i64,
+    stacks: u32,
+    source: u64,
 }
 
 #[derive(Default)]
@@ -221,10 +256,16 @@ pub struct AbnormalityTracker {
 }
 
 impl AbnormalityTracker {
-    fn begin(&mut self, target: u64, id: u32, now: Instant) {
+    fn begin(&mut self, target: u64, id: u32, stacks: u32, duration_ms: i64, source: u64, now: Instant) {
         let st = self.per_target.entry(target).or_default().entry(id).or_default();
         if st.begin.is_none() {
             st.begin = Some(now);
+        }
+        st.applied = Some(now);
+        st.duration_ms = duration_ms;
+        st.stacks = stacks.max(1);
+        if source != 0 {
+            st.source = source;
         }
     }
     fn end(&mut self, target: u64, id: u32, now: Instant) {
@@ -233,8 +274,31 @@ impl AbnormalityTracker {
                 if let Some(b) = st.begin.take() {
                     st.total += now.saturating_duration_since(b);
                 }
+                st.applied = None;
             }
         }
+    }
+
+    pub fn details(&self, target: u64, now: Instant) -> Vec<(u32, u32, f64, u64)> {
+        let Some(map) = self.per_target.get(&target) else { return Vec::new() };
+        let mut rows: Vec<(u32, u32, f64, u64)> = map
+            .iter()
+            .filter(|(_, st)| st.begin.is_some())
+            .map(|(id, st)| {
+                let remaining = if st.duration_ms <= 0 || st.duration_ms > 1_000_000_000 {
+                    -1.0
+                } else {
+                    let elapsed = st
+                        .applied
+                        .map(|a| now.saturating_duration_since(a).as_secs_f64())
+                        .unwrap_or(0.0);
+                    (st.duration_ms as f64 / 1000.0 - elapsed).max(0.0)
+                };
+                (*id, st.stacks, remaining, st.source)
+            })
+            .collect();
+        rows.sort_by(|a, b| b.2.partial_cmp(&a.2).unwrap_or(std::cmp::Ordering::Equal));
+        rows
     }
     pub fn active(&self, target: u64) -> HashSet<u32> {
         match self.per_target.get(&target) {
@@ -285,6 +349,8 @@ pub struct Meter {
     pub auto_reset: bool,
     pub reset_idle: Duration,
     last_combat: Option<Instant>,
+    pub my_stats: Option<Stats>,
+    pub loot: Vec<(u64, i64)>,
     pub me: u64,
     pub data: GameData,
 }
@@ -308,6 +374,8 @@ impl Meter {
             auto_reset: false,
             reset_idle: Duration::from_secs(8),
             last_combat: None,
+            my_stats: None,
+            loot: Vec::new(),
             me: 0,
             data,
         }
@@ -349,12 +417,18 @@ impl Meter {
     }
 
     pub fn player_name(&self, gid: u64) -> String {
-        if let Some(p) = self.players.get(&gid) {
-            p.name.clone()
-        } else if gid == self.me {
-            "You".into()
-        } else {
-            format!("{gid:x}")
+        if gid == self.me {
+            if let Some(p) = self.players.get(&gid) {
+                if !p.name.is_empty() {
+                    return p.name.clone();
+                }
+            }
+            return "You".into();
+        }
+        match self.players.get(&gid) {
+            Some(p) if !p.name.is_empty() => p.name.clone(),
+            Some(p) => p.class.map(str::to_owned).unwrap_or_else(|| format!("{gid:x}")),
+            None => format!("{gid:x}"),
         }
     }
 
@@ -435,7 +509,25 @@ impl Meter {
                     self.npcs.remove(&game_id);
                 }
             }
-            Event::Hit { source, target, value, kind, crit, skill } => {
+            Event::Hit { source, target, value, kind, crit, skill, template_id } => {
+                let race = (template_id / 100) % 100;
+                let class_slot = template_id % 100;
+                if (10000..12000).contains(&template_id)
+                    && (1..=11).contains(&race)
+                    && (1..=13).contains(&class_slot)
+                    && !self.npcs.contains_key(&source)
+                {
+                    let class = crate::data::player_class(template_id);
+                    let entry = self.players.entry(source).or_insert_with(|| PlayerInfo {
+                        name: String::new(),
+                        class,
+                        server_id: 0,
+                        player_id: 0,
+                    });
+                    if entry.class.is_none() {
+                        entry.class = class;
+                    }
+                }
                 if value <= 0 && kind == KIND_DAMAGE {
                     return;
                 }
@@ -514,8 +606,26 @@ impl Meter {
                     *self.deaths.entry(game_id).or_default() += 1;
                 }
             }
-            Event::AbnBegin { target, id } => self.abnormals.begin(target, id, now),
+            Event::AbnBegin { target, id, stacks, duration_ms, source } => {
+                self.abnormals.begin(target, id, stacks, duration_ms, source, now)
+            }
             Event::AbnEnd { target, id } => self.abnormals.end(target, id, now),
+            Event::Absorb { target, amount } => {
+                if amount > 0 && self.is_player(target) {
+                    self.total.record_absorb(target, amount, now);
+                    if let Some(enc) = self.bosses.iter_mut().rev().find(|e| !e.ended) {
+                        enc.record_absorb(target, amount, now);
+                    }
+                }
+            }
+            Event::Defend { source, perfect } => {
+                if self.is_player(source) {
+                    self.total.record_defend(source, perfect, now);
+                    if let Some(enc) = self.bosses.iter_mut().rev().find(|e| !e.ended) {
+                        enc.record_defend(source, perfect, now);
+                    }
+                }
+            }
             Event::Party { members } => {
                 self.party = members.iter().map(|(s, p, _)| (*s, *p)).collect();
                 let mut fresh = HashMap::new();
@@ -542,6 +652,27 @@ impl Meter {
                 let m = self.party_members.entry((server_id, player_id)).or_default();
                 m.cur_mp = cur_mp;
                 m.max_mp = max_mp;
+            }
+            Event::PartyAbn { server_id, player_id, id, add } => {
+                let m = self.party_members.entry((server_id, player_id)).or_default();
+                if add {
+                    m.buffs.insert(id);
+                } else {
+                    m.buffs.remove(&id);
+                }
+            }
+            Event::PartyBuffs { server_id, player_id, ids } => {
+                let m = self.party_members.entry((server_id, player_id)).or_default();
+                m.buffs = ids.into_iter().collect();
+            }
+            Event::MyStats(stats) => {
+                self.my_stats = Some(*stats);
+            }
+            Event::Loot { item, amount } => {
+                self.loot.push((item, amount));
+                if self.loot.len() > 500 {
+                    self.loot.remove(0);
+                }
             }
             Event::PartyStat { server_id, player_id, hp, max_hp, mp, max_mp, alive } => {
                 let m = self.party_members.entry((server_id, player_id)).or_default();

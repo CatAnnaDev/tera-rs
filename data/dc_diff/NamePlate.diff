@@ -1,0 +1,11 @@
+# NamePlate  +6 -0
+
+=== ADDED (6) ===
+<Effect grade="100" materialInstanceConstant="S1UI_Nameplate_Developer.MI.WDC_winner_002_MI" particleSystem="S1UI_Nameplate_Developer.PS.WDC_winner_02_PS" attachParticle="false" />
+<Effect grade="300" materialInstanceConstant="S1UI_Nameplate_Harbinger.MI.MI_PVE_Tournament_1TH" particleSystem="S1UI_Nameplate_Harbinger.PS.PVE_Tournament_1TH_PS" attachParticle="false" />
+<Title grade="100" blue="66" red="245" green="194" />
+<Title grade="300" blue="240" red="240" green="240" />
+<Title grade="81" blue="255" red="102" green="178" />
+<Title grade="82" blue="255" red="102" green="178" />
+
+=== REMOVED (0) ===

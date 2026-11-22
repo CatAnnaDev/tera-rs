@@ -1,0 +1,16 @@
+# BossGage  +11 -0
+
+=== ADDED (11) ===
+<Boss templateId="1000" huntingZoneId="3044" layer="30" range="2000" />
+<Boss templateId="1000" huntingZoneId="3105" layer="30" range="2000" />
+<Boss templateId="1000" huntingZoneId="3137" layer="30" range="1500" />
+<Boss templateId="1000" huntingZoneId="3205" layer="30" range="2000" />
+<Boss templateId="1000" huntingZoneId="3400" layer="30" range="2000" />
+<Boss templateId="2000" huntingZoneId="3041" layer="30" range="2000" />
+<Boss templateId="2000" huntingZoneId="3044" layer="30" range="2000" />
+<Boss templateId="2000" huntingZoneId="3137" layer="30" range="1500" />
+<Boss templateId="3000" huntingZoneId="3137" layer="30" range="2000" />
+<Boss templateId="3000" huntingZoneId="3401" layer="20" range="2000" />
+<Boss templateId="46704" huntingZoneId="3050" layer="30" range="2000" />
+
+=== REMOVED (0) ===

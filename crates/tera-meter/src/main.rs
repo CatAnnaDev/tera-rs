@@ -94,6 +94,7 @@ fn seed_demo(meter: &mut Meter) {
                     kind: model::KIND_DAMAGE,
                     crit: h < crit_hits,
                     skill: 10100 + (h as u32 % 4) * 100,
+                    template_id: 0,
                 },
                 now,
             );
@@ -109,6 +110,7 @@ fn seed_demo(meter: &mut Meter) {
                     kind: model::KIND_HEAL,
                     crit: h % 3 == 0,
                     skill: 400000 + (h as u32 % 3) * 100,
+                    template_id: 0,
                 },
                 now,
             );
@@ -123,6 +125,7 @@ fn seed_demo(meter: &mut Meter) {
                 kind: model::KIND_DAMAGE,
                 crit: false,
                 skill: 0,
+                template_id: 0,
             },
             now,
         );
@@ -151,6 +154,45 @@ fn seed_demo(meter: &mut Meter) {
             },
             now,
         );
+    }
+    for h in 0..24u64 {
+        meter.apply(Event::Absorb { target: 2, amount: 6000 + (h as i64 % 4) * 800 }, now);
+    }
+    for h in 0..17u64 {
+        meter.apply(Event::Defend { source: 2, perfect: h % 3 == 0 }, now);
+    }
+    meter.apply(
+        Event::AbnBegin { target: 100, id: 8888888, stacks: 5, duration_ms: 12000, source: 3 },
+        now,
+    );
+    meter.apply(
+        Event::AbnBegin { target: 100, id: 201, stacks: 1, duration_ms: 2147483647, source: 1 },
+        now,
+    );
+    for pid in [1u64, 2, 3, 4, 5] {
+        meter.apply(
+            Event::PartyBuffs { server_id: 1, player_id: pid, ids: vec![10153090, 201, 8888888] },
+            now,
+        );
+    }
+    meter.apply(
+        Event::MyStats(Box::new(net::Stats {
+            max_hp: 117625,
+            max_mp: 6688,
+            power: 35,
+            endurance: 80,
+            crit_rate: 33.0,
+            crit_power: 2.0,
+            attack: 37928,
+            defense: 40149,
+            heal_value: 12627.6,
+        })),
+        now,
+    );
+    for (item, amount, times) in [(202451u64, 1i64, 4u64), (6562, 1, 2), (19997, 3, 1)] {
+        for _ in 0..times {
+            meter.apply(Event::Loot { item, amount }, now);
+        }
     }
     let started = now.checked_sub(Duration::from_secs(83)).unwrap_or(now);
     meter.total.begin = started;
@@ -229,6 +271,8 @@ struct App {
     show_party: bool,
     show_settings: bool,
     show_graph: bool,
+    show_stats: bool,
+    show_loot: bool,
     opacity: u8,
     view: u8,
     last_rows: usize,
@@ -495,7 +539,7 @@ impl App {
             }
             2 => {
                 let dtps = enc.total_taken as f64 / enc.interval_secs();
-                ("SUBIS/s", format!("{}/s", format_value(dtps)), "SUBIS", format_value(enc.total_taken as f64))
+                ("SUBIS/s", format!("{}/s", format_value(dtps)), "ABSORB", format_value(enc.total_absorbed as f64))
             }
             _ => ("DPS", format!("{}/s", format_value(enc.dps())), "TOTAL", format_value(enc.total_damage as f64)),
         };
@@ -661,6 +705,26 @@ impl App {
                             egui::RichText::new(format!("☠ {deaths}")).color(DAMAGE_COLOR).strong(),
                         );
                     }
+                    if let Some(e) = self.meter.current().entities.get(&source) {
+                        if e.absorbed > 0 || e.blocks > 0 {
+                            ui.separator();
+                            if e.absorbed > 0 {
+                                ui.label(
+                                    egui::RichText::new(format!(
+                                        "bouclier {}",
+                                        format_value(e.absorbed as f64)
+                                    ))
+                                    .color(MANA_COLOR),
+                                );
+                            }
+                            if e.blocks > 0 {
+                                ui.label(format!(
+                                    "block {} ({} parfait)",
+                                    e.blocks, e.perfect_blocks
+                                ));
+                            }
+                        }
+                    }
                 });
                 ui.separator();
                 let enc = self.meter.current();
@@ -746,7 +810,7 @@ impl App {
         }
         let mut open = true;
         egui::Window::new("Groupe").open(&mut open).default_width(250.0).show(ctx, |ui| {
-            let mut members: Vec<(&'static str, String, f32, f32, i64, i64, bool)> = self
+            let mut members: Vec<(&'static str, String, f32, f32, bool, usize, Vec<String>)> = self
                 .meter
                 .party_members
                 .iter()
@@ -754,7 +818,10 @@ impl App {
                     let name = m.name.clone().unwrap_or_else(|| format!("{s}-{p}"));
                     let hpp = if m.max_hp > 0 { m.cur_hp as f32 / m.max_hp as f32 } else { 0.0 };
                     let mpp = if m.max_mp > 0 { m.cur_mp as f32 / m.max_mp as f32 } else { 0.0 };
-                    (m.class.unwrap_or("?"), name, hpp, mpp, m.cur_hp, m.max_hp, m.alive)
+                    let mut buffs: Vec<String> =
+                        m.buffs.iter().map(|id| self.meter.abnormality_name(*id)).collect();
+                    buffs.sort();
+                    (m.class.unwrap_or("?"), name, hpp, mpp, m.alive, m.buffs.len(), buffs)
                 })
                 .collect();
             if members.is_empty() {
@@ -763,8 +830,8 @@ impl App {
             }
             members.sort_by(|a, b| a.2.partial_cmp(&b.2).unwrap_or(std::cmp::Ordering::Equal));
             let width = ui.available_width();
-            for (class, name, hpp, mpp, cur, max, alive) in members {
-                let (rect, _) = ui.allocate_exact_size(egui::vec2(width, 32.0), egui::Sense::hover());
+            for (class, name, hpp, mpp, alive, buff_count, buff_names) in members {
+                let (rect, resp) = ui.allocate_exact_size(egui::vec2(width, 32.0), egui::Sense::hover());
                 let painter = ui.painter();
                 if let Some(tex) = self.icons.get(class) {
                     let icon = egui::Rect::from_min_size(egui::pos2(rect.left(), rect.top() + 3.0), egui::vec2(18.0, 18.0));
@@ -787,11 +854,93 @@ impl App {
                 if !alive {
                     painter.text(rect.center(), egui::Align2::CENTER_CENTER, "☠ MORT", egui::FontId::proportional(12.0), egui::Color32::from_rgb(0xff, 0x55, 0x55));
                 }
-                let _ = (cur, max);
+                if buff_count > 0 {
+                    painter.text(
+                        egui::pos2(mp_rect.right() - 4.0, mp_rect.center().y),
+                        egui::Align2::RIGHT_CENTER,
+                        format!("◆{buff_count}"),
+                        egui::FontId::proportional(9.0),
+                        egui::Color32::from_rgb(0x9a, 0xd0, 0xff),
+                    );
+                    resp.on_hover_text(buff_names.join("\n"));
+                }
                 ui.add_space(3.0);
             }
         });
         self.show_party = open;
+    }
+
+    fn loot_window(&mut self, ctx: &egui::Context) {
+        if !self.show_loot {
+            return;
+        }
+        let mut open = true;
+        egui::Window::new("Loot").open(&mut open).default_width(260.0).show(ctx, |ui| {
+            if self.meter.loot.is_empty() {
+                ui.label("aucun loot ramassé pour l'instant.");
+                return;
+            }
+            let mut agg: std::collections::HashMap<u64, (u64, i64)> = std::collections::HashMap::new();
+            for &(item, amount) in &self.meter.loot {
+                let e = agg.entry(item).or_default();
+                e.0 += 1;
+                e.1 += amount;
+            }
+            let mut rows: Vec<(u64, u64, i64)> = agg.into_iter().map(|(i, (n, t))| (i, n, t)).collect();
+            rows.sort_by(|a, b| b.1.cmp(&a.1).then(b.2.cmp(&a.2)));
+            ui.label(format!("{} objets ramassés", self.meter.loot.len()));
+            egui::ScrollArea::vertical().max_height(460.0).show(ui, |ui| {
+                egui::Grid::new("loot").striped(true).num_columns(3).spacing([14.0, 4.0]).show(
+                    ui,
+                    |ui| {
+                        for h in ["Objet", "Fois", "Total"] {
+                            ui.label(egui::RichText::new(h).strong());
+                        }
+                        ui.end_row();
+                        for (item, times, total) in rows {
+                            ui.label(format!("#{item}"));
+                            ui.label(times.to_string());
+                            ui.label(total.to_string());
+                            ui.end_row();
+                        }
+                    },
+                );
+            });
+        });
+        self.show_loot = open;
+    }
+
+    fn stats_window(&mut self, ctx: &egui::Context) {
+        if !self.show_stats {
+            return;
+        }
+        let mut open = true;
+        egui::Window::new("Stats").open(&mut open).default_width(240.0).show(ctx, |ui| {
+            let Some(s) = self.meter.my_stats.clone() else {
+                ui.label("en attente de tes stats (change de zone / ouvre ta fiche)…");
+                return;
+            };
+            egui::Grid::new("stats").num_columns(2).spacing([16.0, 4.0]).striped(true).show(
+                ui,
+                |ui| {
+                    let mut row = |ui: &mut egui::Ui, k: &str, v: String| {
+                        ui.label(k);
+                        ui.label(egui::RichText::new(v).strong());
+                        ui.end_row();
+                    };
+                    row(ui, "PV max", format_value(s.max_hp as f64));
+                    row(ui, "PM max", format_value(s.max_mp as f64));
+                    row(ui, "Puissance", s.power.to_string());
+                    row(ui, "Endurance", s.endurance.to_string());
+                    row(ui, "Attaque", format_value(s.attack as f64));
+                    row(ui, "Défense", format_value(s.defense as f64));
+                    row(ui, "Crit", format!("{:.0}%", s.crit_rate));
+                    row(ui, "Puiss. crit", format!("{:.2}", s.crit_power));
+                    row(ui, "Soin", format_value(s.heal_value));
+                },
+            );
+        });
+        self.show_stats = open;
     }
 
     fn resize_grip(&mut self, ctx: &egui::Context) {
@@ -897,22 +1046,52 @@ impl App {
                 ui.label("Sélectionne un boss (pas TOTAL) pour voir l'uptime.");
                 return;
             };
+            let now = Instant::now();
             let window = self.meter.current().interval_secs();
-            let rows = self.meter.abnormals.uptime(boss, Instant::now(), window);
+            let rows = self.meter.abnormals.uptime(boss, now, window);
             if rows.is_empty() {
                 ui.label("aucune abnormality observée sur ce boss.");
                 return;
             }
+            let live: std::collections::HashMap<u32, (u32, f64, u64)> = self
+                .meter
+                .abnormals
+                .details(boss, now)
+                .into_iter()
+                .map(|(id, stacks, remaining, source)| (id, (stacks, remaining, source)))
+                .collect();
             egui::ScrollArea::vertical().max_height(460.0).show(ui, |ui| {
-                egui::Grid::new("buffs").striped(true).num_columns(2).spacing([14.0, 4.0]).show(
+                egui::Grid::new("buffs").striped(true).num_columns(5).spacing([12.0, 4.0]).show(
                     ui,
                     |ui| {
-                        ui.label(egui::RichText::new("Abnormality").strong());
-                        ui.label(egui::RichText::new("Uptime").strong());
+                        for h in ["Abnormality", "Stacks", "Restant", "Uptime", "Par"] {
+                            ui.label(egui::RichText::new(h).strong());
+                        }
                         ui.end_row();
                         for (id, pct) in rows {
                             ui.label(self.meter.abnormality_name(id));
-                            ui.label(format!("{pct:.0}%"));
+                            match live.get(&id) {
+                                Some(&(stacks, remaining, source)) => {
+                                    ui.label(if stacks > 1 { format!("x{stacks}") } else { String::new() });
+                                    ui.label(if remaining < 0.0 {
+                                        "∞".to_string()
+                                    } else {
+                                        format!("{remaining:.0}s")
+                                    });
+                                    ui.label(format!("{pct:.0}%"));
+                                    ui.label(if source != 0 {
+                                        self.meter.player_name(source)
+                                    } else {
+                                        String::new()
+                                    });
+                                }
+                                None => {
+                                    ui.label("");
+                                    ui.label("");
+                                    ui.label(format!("{pct:.0}%"));
+                                    ui.label("");
+                                }
+                            }
                             ui.end_row();
                         }
                     },
@@ -982,6 +1161,8 @@ impl eframe::App for App {
                     }
                     ui.toggle_value(&mut self.show_settings, "⚙");
                     ui.toggle_value(&mut self.show_party, "Groupe");
+                    ui.toggle_value(&mut self.show_loot, "Loot");
+                    ui.toggle_value(&mut self.show_stats, "Stats");
                     ui.toggle_value(&mut self.show_graph, "Graphe");
                     ui.toggle_value(&mut self.show_buffs, "Buffs");
                     ui.checkbox(&mut self.meter.party_only, "Party");
@@ -1028,6 +1209,8 @@ impl eframe::App for App {
         self.resize_grip(ctx);
         self.detail_window(ctx);
         self.graph_window(ctx);
+        self.stats_window(ctx);
+        self.loot_window(ctx);
         self.buffs_window(ctx);
         self.party_window(ctx);
         self.settings_window(ctx);
@@ -1171,6 +1354,8 @@ fn main() -> eframe::Result<()> {
                 show_party: false,
                 show_settings: false,
                 show_graph: false,
+                show_stats: false,
+                show_loot: false,
                 dps_history: std::collections::VecDeque::with_capacity(90),
                 last_sample: Instant::now(),
                 last_total: 0,

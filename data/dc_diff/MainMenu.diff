@@ -1,0 +1,8 @@
+# MainMenu  +2 -1
+
+=== ADDED (2) ===
+<MenuItem id="BuffManageWindow" uiName="BuffManageWindow" readableId="SMT_MENU_BUFF_MANAGEMENT" />
+<MenuItem id="TeraPass" uiName="BattlePassWidget" readableId="SMT_MENU_TERA_PASS" excludedGameModeList="2" />
+
+=== REMOVED (1) ===
+<MenuItem id="HomunManager" uiName="HomunManager" readableId="SMT_MENU_HOMUN" />

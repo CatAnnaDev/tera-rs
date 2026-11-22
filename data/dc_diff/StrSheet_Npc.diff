@@ -1,0 +1,21 @@
+# StrSheet_Npc  +14 -2
+
+=== ADDED (14) ===
+<String id="1901" string="Materials and Tools" />
+<String id="1937" string="Mahtnan Gear Designs" />
+<String id="61910" string="Materials" />
+<String id="690260" string="Mileage Points Shop" />
+<String id="690261" string="NPC" />
+<String id="690262" string="Monster" />
+<String id="690263" string="Gatherables/Fish" />
+<String id="690264" string="Panorama/Mounts" />
+<String id="9604010" string="Mystel's Blessing" />
+<String id="9604011" string="Rewards" />
+<String id="9604040" string="Primal Mount Selection" />
+<String id="9604041" string="Primal Mounts" />
+<String id="9604060" string="Rare Card Fragment Exchange" />
+<String id="9604061" string="Rare Card Fragments" />
+
+=== REMOVED (2) ===
+<String id="1901" string="Materials" />
+<String id="1904" string="Gathering Tool Designs" />

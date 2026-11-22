@@ -1,11 +1,12 @@
 use std::path::PathBuf;
 use std::sync::mpsc::Sender;
+use std::sync::{Arc, Mutex};
 
 use anyhow::{bail, Context, Result};
 
 use crate::dump::Dumper;
 use crate::net::Event;
-use crate::sniff::{load_tables, Tracker};
+use crate::sniff::{load_tables, SharedDumper, Tracker};
 
 pub struct Config {
     pub opcodes: PathBuf,
@@ -55,7 +56,6 @@ fn capture(iface: &str, mut tracker: Tracker) -> Result<()> {
             }
         }
     }
-    tracker.finish();
     Ok(())
 }
 
@@ -70,19 +70,11 @@ pub fn run(cfg: Config, tx: Sender<Event>) -> Result<()> {
     }
     eprintln!("[live] interfaces: {}", ifaces.join(", "));
 
-    let dump_iface = cfg.dump.is_some().then(|| ifaces[0].clone());
-    if cfg.dump.is_some() && ifaces.len() > 1 {
-        eprintln!("[live] dump limite a {} (une seule interface)", ifaces[0]);
-    }
+    let dumper: SharedDumper = cfg.dump.as_deref().map(|p| Arc::new(Mutex::new(Dumper::new(p))));
 
     let mut handles = Vec::with_capacity(ifaces.len());
     for iface in ifaces {
-        let tables = tables.clone();
-        let tx = tx.clone();
-        let dumper = (Some(&iface) == dump_iface.as_ref())
-            .then(|| cfg.dump.as_deref().map(Dumper::new))
-            .flatten();
-        let tracker = Tracker::labelled(tables, dumper, tx, "live");
+        let tracker = Tracker::labelled(tables.clone(), dumper.clone(), tx.clone(), "live");
         handles.push(std::thread::spawn(move || {
             if let Err(e) = capture(&iface, tracker) {
                 eprintln!("[live] {iface}: {e:#}");
@@ -91,6 +83,9 @@ pub fn run(cfg: Config, tx: Sender<Event>) -> Result<()> {
     }
     for h in handles {
         let _ = h.join();
+    }
+    if let Some(d) = &dumper {
+        d.lock().unwrap().summary(&tables.0);
     }
     Ok(())
 }

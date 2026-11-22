@@ -1,0 +1,10 @@
+# WorkObjectShape  +5 -0
+
+=== ADDED (5) ===
+</Shape>
+<Cylinder radius="200" height="200" />
+<Shape id="10201" animSet="NPC_Mana_Contrivance_ANI.Anim.NPC_Mana_Contrivance_Anim" mesh="NPC_Mana_Contrivance.Skel.NPC_Mana_Contrivance_Skel" resourceSize="100" resourceType="medium" animTree="S1Prototype.SimpleAnimTree">
+<State id="0" waitAnim="unarmedwait" effect="121062501" transitionAnim="wait" />
+<State id="1" waitAnim="deathwait" effect="0" transitionAnim="death" />
+
+=== REMOVED (0) ===

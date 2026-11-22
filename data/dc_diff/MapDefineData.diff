@@ -1,0 +1,37 @@
+# MapDefineData  +31 -1
+
+=== ADDED (31) ===
+</MapDefineData>
+</MapDefineData>
+</MapDefineData>
+</MapDefineData>
+</MapDefineData>
+</MapDefineData>
+</MapDefineData>
+</MapDefineData>
+</MapDefineData>
+</MapDefineData>
+<MapDefine id="WMap_DG_Kubel_Fortress_RM_02" backgroundImage="WMap_DG_Kubel_Fortress_RM.WMap_DG_Kubel_Fortress_RM" titleStringId="3044" height="256" width="256" leftMargin="370" overlayMapId="img://__WMap_DG_Kubel_Fortress_RM.WMap_DG_Kubel_Fortress_RM" overlayMapType="dungeon" topMargin="220" />
+<MapDefine id="WMap_DG_Logashi_01" backgroundImage="WMap_DG_Logashi.WMap_DG_Logashi" titleStringId="3105" height="512" width="512" leftMargin="200" overlayMapId="img://__WMap_DG_Logashi.WMap_DG_Logashi" overlayMapType="dungeon" topMargin="150" />
+<MapDefine id="WMap_DG_Logashi_01" backgroundImage="WMap_DG_Logashi.WMap_DG_Logashi" titleStringId="3205" height="512" width="512" leftMargin="200" overlayMapId="img://__WMap_DG_Logashi.WMap_DG_Logashi" overlayMapType="dungeon" topMargin="150" />
+<MapDefine id="WMap_DG_RobotFactory_A_Hard_tom" backgroundImage="WMap_DG_RobotFactory.WMap_DG_RobotFactory_A" titleStringId="3137" height="512" width="512" leftMargin="250" overlayMapId="img://__WMap_DG_RobotFactory.WMap_DG_RobotFactory_A" overlayMapType="dungeon" topMargin="80" />
+<MapDefine id="WMap_DG_RobotFactory_B_Hard_tom" backgroundImage="WMap_DG_RobotFactory.WMap_DG_RobotFactory_B" titleStringId="3137" height="512" width="512" leftMargin="420" overlayMapId="img://__WMap_DG_RobotFactory.WMap_DG_RobotFactory_B" overlayMapType="dungeon" topMargin="-100" />
+<MapDefine id="WMap_DG_RobotFactory_Boss_Hard_tom" backgroundImage="WMap_DG_RobotFactory.WMap_DG_RobotFactory_Boss" titleStringId="3137" height="512" width="512" leftMargin="170" overlayMapId="img://__WMap_DG_RobotFactory.WMap_DG_RobotFactory_Boss" overlayMapType="dungeon" topMargin="220" />
+<MapDefine id="WMap_DG_RobotFactory_D_Hard_tom" backgroundImage="WMap_DG_RobotFactory.WMap_DG_RobotFactory_D" titleStringId="3137" height="512" width="512" leftMargin="80" overlayMapId="img://__WMap_DG_RobotFactory.WMap_DG_RobotFactory_D" overlayMapType="dungeon" topMargin="280" />
+<MapDefine id="WMap_DG_RobotFactory_Lobby_Hard_tom" backgroundImage="WMap_DG_RobotFactory.WMap_DG_RobotFactory_Lobby" titleStringId="3137" height="512" width="512" leftMargin="190" overlayMapId="img://__WMap_DG_RobotFactory.WMap_DG_RobotFactory_Lobby" overlayMapType="dungeon" topMargin="-25" />
+<MapDefine id="WMap_DG_RobotFactory_all_Hard_tom" backgroundImage="WMap_DG_RobotFactory.WMap_DG_RobotFactory_all" titleStringId="3137" height="512" width="1024" leftMargin="-100" overlayMapId="img://__WMap_DG_RobotFactory.WMap_DG_RobotFactory_all" overlayMapType="dungeon" topMargin="100" />
+<MapDefine id="WMap_Durion_storage_P" backgroundImage="WMap_DG_Durion_Storage.WMap_DG_Durion_Storage" titleStringId="3045" height="256" width="256" leftMargin="400" overlayMapId="img://__WMap_DG_Durion_Storage.WMap_DG_Durion_Storage" overlayMapType="dungeon" topMargin="200" />
+<MapDefineData>
+<MapDefineData>
+<MapDefineData>
+<MapDefineData>
+<MapDefineData>
+<MapDefineData>
+<MapDefineData>
+<MapDefineData>
+<MapDefineData>
+<MapDefineData>
+<Text x="810" y="540" stringId="2000104" click="WMap_FDI_Vill_01" align="center" fontStyle="village" />
+
+=== REMOVED (1) ===
+<Text x="810" y="540" stringId="2000104" click="WMap_FDI_Vill_01" align="center" fontStyle="village" showRequireQuestTaskId="6" showRequireQuestTemplateId="200305" />

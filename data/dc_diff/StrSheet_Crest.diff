@@ -1,0 +1,7 @@
+# StrSheet_Crest  +1 -1
+
+=== ADDED (1) ===
+<String id="21000" name="Swift Evasive Roll" tooltip="60% chance to increase Attack Speed by 15% for 10 seconds." skillName="Evasive Roll" />
+
+=== REMOVED (1) ===
+<String id="21000" name="Swift Evasive Roll" tooltip="$prob chance to increase Attack Speed by 15% for 10 seconds." skillName="Evasive Roll" />

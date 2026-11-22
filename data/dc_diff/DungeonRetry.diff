@@ -1,0 +1,56 @@
+# DungeonRetry  +51 -0
+
+=== ADDED (51) ===
+</Class>
+</Class>
+</Class>
+</Class>
+</Class>
+</Class>
+</Class>
+</Class>
+</Class>
+</Retry>
+</Retry>
+</Retry>
+</Show>
+</Show>
+</Show>
+</Show>
+</Show>
+</Show>
+</Show>
+</Show>
+</Show>
+<Class type="0,1,2,3,5,8,9,10,12">
+<Class type="0,1,2,3,5,8,9,10,12">
+<Class type="0,1,2,3,5,8,9,10,12">
+<Class type="4,11">
+<Class type="4,11">
+<Class type="4,11">
+<Class type="6,7">
+<Class type="6,7">
+<Class type="6,7">
+<Item templateId="200999" />
+<Item templateId="200999" />
+<Item templateId="200999" />
+<Item templateId="200999" />
+<Item templateId="200999" />
+<Item templateId="200999" />
+<Item templateId="200999" />
+<Item templateId="200999" />
+<Item templateId="200999" />
+<Retry id="13" clearCount="9999" reviveLimit="10">
+<Retry id="14" clearCount="10" reviveLimit="5">
+<Retry id="15" clearCount="10" reviveLimit="1">
+<Show>
+<Show>
+<Show>
+<Show>
+<Show>
+<Show>
+<Show>
+<Show>
+<Show>
+
+=== REMOVED (0) ===

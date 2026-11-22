@@ -1,0 +1,9 @@
+# StrSheet_Leaderboards  +4 -0
+
+=== ADDED (4) ===
+<String id="3023" string="Dungeon Competition Ranking Rewards (Corrupted RK-9 Kennel)" />
+<String id="3024" string="Dungeon Competition Ranking Rewards (Corrupted Skynest (Hard))" />
+<String id="3025" string="Dungeon Competition Ranking Rewards (Cursed Fusion Laboratory)" />
+<String id="3205" string="*Rank shows when your ranking is within rank 1000&lt;br&gt;*Faster kill time increases your rank&lt;br&gt;*When combat against the boss starts, party member info binds to dungeon. The dungeon clear record will not register if there is a change in the party.&lt;br&gt;The dungeon clear record will not register if there is a change in the party after the boss enters combat mode." />
+
+=== REMOVED (0) ===

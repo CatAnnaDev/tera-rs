@@ -1,0 +1,13 @@
+# BattleMusicData  +8 -0
+
+=== ADDED (8) ===
+<Monster templateId="1000" huntingZoneId="3041" fadeTime="1" minPlayTime="30" soundQue="Boss_Battle.NewBattle_Music_Cue.NewBattle_01_Cue" />
+<Monster templateId="1000" huntingZoneId="3044" fadeTime="1" minPlayTime="30" soundQue="Boss_Battle.NewBattle_Music_Cue.NewBattle_01_Cue" />
+<Monster templateId="1000" huntingZoneId="3105" fadeTime="1" minPlayTime="30" soundQue="Boss_Battle.Battle_Music_Cue.Mid_Battle_9" />
+<Monster templateId="1000" huntingZoneId="3205" fadeTime="1" minPlayTime="30" soundQue="Boss_Battle.Battle_Music_Cue.Mid_Battle_9" />
+<Monster templateId="1000" huntingZoneId="3400" fadeTime="1" finishQue="Boss_Battle.MonsterFanfare_Cue.MonsterFanfare_02Cue" minPlayTime="30" soundQue="Boss_Battle.Battle_Music_Cue.Mid_Battle_6A" />
+<Monster templateId="2000" huntingZoneId="3041" fadeTime="1" finishQue="Boss_Battle.MonsterFanfare_Cue.MonsterFanfare_01Cue" minPlayTime="30" soundQue="Boss_Battle.NewBattle_Music_Cue.NewBattle_01_Cue" />
+<Monster templateId="2000" huntingZoneId="3044" fadeTime="1" finishQue="Boss_Battle.MonsterFanfare_Cue.MonsterFanfare_01Cue" minPlayTime="30" soundQue="Boss_Battle.NewBattle_Music_Cue.NewBattle_01_Cue" />
+<Monster templateId="3000" huntingZoneId="3401" fadeTime="1" minPlayTime="30" soundQue="Boss_Battle.NewBattle_Music_Cue.NewBattle_01_Cue" />
+
+=== REMOVED (0) ===

@@ -1,0 +1,7 @@
+# BGMList  +2 -0
+
+=== ADDED (2) ===
+<BGM string="잠식된 테네브레스 성채" templateId="3044" fadeTime="2" music="Ambience_Field.Amb_MysteryCUE.Amb_Mystery_13CUE" />
+<BGM string="테네브레스 성채" templateId="3041" fadeTime="2" music="Ambience_Field.Amb_MysteryCUE.Amb_Mystery_13CUE" />
+
+=== REMOVED (0) ===

@@ -1,0 +1,35 @@
+# StrSheet_TerritoryLoc  +30 -0
+
+=== ADDED (30) ===
+<String string="3045#-67291,-40410,-4094" templateId="304500030" huntingZoneId="3045" />
+<String string="3045#-69200,-40385,-4306" templateId="304500022" huntingZoneId="3045" />
+<String string="3045#-71422,-39668,-4267" templateId="304500018" huntingZoneId="3045" />
+<String string="3045#-71450,-35605,-4383" templateId="304500023" huntingZoneId="3045" />
+<String string="3105#-84127,131934,5295" templateId="310500009" huntingZoneId="3105" />
+<String string="3105#-84172,134957,4630" templateId="310500010" huntingZoneId="3105" />
+<String string="7001#121780,15818,2438" templateId="321331" huntingZoneId="3" />
+<String string="7004#79846,72526,1711" templateId="6100087" huntingZoneId="61" />
+<String string="7004#85282,74804,1880" templateId="6100086" huntingZoneId="61" />
+<String string="7004#85927,74382,1929" templateId="6100079" huntingZoneId="61" />
+<String string="7004#89880,74443,2489" templateId="6100078" huntingZoneId="61" />
+<String string="7006#123891,14184,2191" templateId="100280" huntingZoneId="1" />
+<String string="7006#126164,20176,1585" templateId="100332" huntingZoneId="1" />
+<String string="7006#130010,24254,2433" templateId="100293" huntingZoneId="1" />
+<String string="7006#130586,30527,3706" templateId="100294" huntingZoneId="1" />
+<String string="7006#131104,30785,3675" templateId="100316" huntingZoneId="1" />
+<String string="7006#133462,36299,4014" templateId="100390" huntingZoneId="1" />
+<String string="7006#133689,36357,4213" templateId="100301" huntingZoneId="1" />
+<String string="7006#136775,18854,2203" templateId="100290" huntingZoneId="1" />
+<String string="7006#137264,10178,2523" templateId="100285" huntingZoneId="1" />
+<String string="7006#138002,11594,2462" templateId="100450" huntingZoneId="1" />
+<String string="7006#138864,13304,2384" templateId="100328" huntingZoneId="1" />
+<String string="7006#139653,15381,2497" templateId="100446" huntingZoneId="1" />
+<String string="7006#142067.76953125,9696.734130859375,2214.0865478515625" templateId="100436" huntingZoneId="1" />
+<String string="7006#142598,9132,2084" templateId="100455" huntingZoneId="1" />
+<String string="7006#143036,15216,2349" templateId="100444" huntingZoneId="1" />
+<String string="7006#144179,17043,2158" templateId="100289" huntingZoneId="1" />
+<String string="7006#146867,4320,2305" templateId="100461" huntingZoneId="1" />
+<String string="7006#146947,9253,2276" templateId="100388" huntingZoneId="1" />
+<String string="7006#146966,4881,2411" templateId="100389" huntingZoneId="1" />
+
+=== REMOVED (0) ===

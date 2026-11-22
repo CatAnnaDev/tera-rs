@@ -1,0 +1,16 @@
+# ChangeableLevel  +0 -10
+
+=== ADDED (0) ===
+
+
+=== REMOVED (10) ===
+</Level>
+</VisibleBGGroup>
+<Condition id="1" groupId="1" questId="200303" revertGroupId="1" taskId="20" />
+<Condition id="2" groupId="2" questId="200305" revertGroupId="2" taskId="5" />
+<Level continentId="2000">
+<VisibleBG name="FDI_Core_Demolition" groupId="1" />
+<VisibleBG name="FDI_Core_Demolition" groupId="2" />
+<VisibleBG name="FDI_Core_Normal" groupId="0" />
+<VisibleBG name="FDI_Exodore_Base" groupId="2" />
+<VisibleBGGroup defaultGroupId="0">

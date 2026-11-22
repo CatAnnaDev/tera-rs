@@ -1,0 +1,8 @@
+# NpcDeathEffect  +3 -0
+
+=== ADDED (3) ===
+<DeathEffect effectId="300004" name="다크리퍼(인던형)_사령_보스" duration="2000" startTime="7000" shapeId="300874" />
+<DeathEffect effectId="300005" name="거대벌통벌" duration="2000" startTime="7000" shapeId="302481" />
+<DeathEffect effectId="300005" name="거대식충식물" duration="2000" startTime="7000" shapeId="302361" />
+
+=== REMOVED (0) ===

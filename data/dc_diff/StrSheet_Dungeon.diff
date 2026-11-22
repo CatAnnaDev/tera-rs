@@ -1,0 +1,131 @@
+# StrSheet_Dungeon  +123 -3
+
+=== ADDED (123) ===
+</StrSheet_Dungeon>
+</StrSheet_Dungeon>
+</StrSheet_Dungeon>
+</StrSheet_Dungeon>
+</StrSheet_Dungeon>
+</StrSheet_Dungeon>
+<StrSheet_Dungeon>
+<StrSheet_Dungeon>
+<StrSheet_Dungeon>
+<StrSheet_Dungeon>
+<StrSheet_Dungeon>
+<StrSheet_Dungeon>
+<String id="3037010" string="Bahaar’s Sanctum is actually a &lt;font color='#ffe761'&gt;5-person dungeon&lt;/font&gt;. (Cannot enter with fewer players)" styleId="66" />
+<String id="3041000" string="The combat area is closed." styleId="71" />
+<String id="3041100" string="I beg you, demon, my soul..." styleId="71" />
+<String id="3041101" string="Master Harnovog..." styleId="71" />
+<String id="3041103" string="Harnovog's Demonization" styleId="71" />
+<String id="3041104" string="Pure Soul Suck" styleId="71" />
+<String id="3041105" string="Witness the power of a true demon!" styleId="71" />
+<String id="3041200" string="Something went wrong." styleId="71" />
+<String id="3041201" string="Bashing the Demon Minions 1" styleId="71" />
+<String id="3041202" string="Bashing the Demon Minions 2" styleId="71" />
+<String id="3041203" string="Bashing the Demon Minions 3" styleId="71" />
+<String id="3041204" string="Bashing the Demon Minions 4" styleId="71" />
+<String id="3041205" string="You vile creatures." styleId="71" />
+<String id="3041206" string="There you are." styleId="71" />
+<String id="3041207" string="Are you the ones...?" styleId="71" />
+<String id="3041208" string="How dare you...? Master Harnovog..." styleId="71" />
+<String id="3041209" string="I won't forget you." styleId="71" />
+<String id="3044" string="Stormed Citadel" />
+<String id="3044" string="Stormed Citadel" />
+<String id="3044000" string="The combat area is closed." styleId="71" />
+<String id="3044100" string="I beg you, demon, my soul..." styleId="71" />
+<String id="3044101" string="Master Harnovog..." styleId="71" />
+<String id="3044103" string="Harnovog's Demonization" styleId="71" />
+<String id="3044104" string="Pure Soul Suck" styleId="71" />
+<String id="3044105" string="Witness the power of a true demon!" styleId="71" />
+<String id="3044205" string="You vile creatures." styleId="71" />
+<String id="3044206" string="There you are." styleId="71" />
+<String id="3044207" string="Are you the ones...?" styleId="71" />
+<String id="3044208" string="How dare you...? Master Harnovog..." styleId="71" />
+<String id="3044209" string="I won't forget you." styleId="71" />
+<String id="3044300" string="It's time. Open your eyes." styleId="71" />
+<String id="3045" string="Dakuryon Depot" />
+<String id="3048" string="Secret Training Camp" />
+<String id="3048" string="Secret Training Camp" styleId="71" />
+<String id="30480001" string="Training complete." styleId="71" />
+<String id="30480002" string="Your opponent is enraged!" styleId="71" />
+<String id="30480101" string="Fledgling Petrax has been summoned." styleId="71" />
+<String id="30480102" string="Tamed Petrax has been summoned." styleId="71" />
+<String id="30480103" string="Fledgling Basilisk has been summoned." styleId="71" />
+<String id="30480104" string="Tamed Basilisk has been summoned." styleId="71" />
+<String id="30480105" string="Empowered Vulcan has been summoned." styleId="71" />
+<String id="3050" string="Lost Sky Garden" />
+<String id="31050001" string="The combat area is closed." styleId="71" />
+<String id="31050002" string="Panels of Core Energy are summoned." styleId="71" />
+<String id="31050003" string="A hidden drone appears." styleId="71" />
+<String id="3134" string="Autumn Grove" />
+<String id="3137" string="Corrupted RK-9 Kennel" />
+<String id="31370422" string="Fight me you cowards!" />
+<String id="313705" string="Unidentified creature detected: Tracking..." styleId="66" />
+<String id="313706" string="Unidentified energy detected: Tracking..." styleId="66" />
+<String id="313707" string="Target Lock-on: {targetName}" styleId="67" />
+<String id="31371031" string="System Corruption" />
+<String id="313711" string="NOTICE: Outer area not verified" styleId="67" />
+<String id="313712" string="NOTICE: Outer area verified" styleId="67" />
+<String id="31371202" string="Unsightly insect!" />
+<String id="31371203" string="I will make sure you don't live to see my invasion of this world!" />
+<String id="31371208" string="This world yearns for its true master, not those playing with my power." />
+<String id="31371217" string="Beg for mercy!" />
+<String id="31371219" string="Useless, as expected." />
+<String id="31371225" string="Giving up so soon? You have a prophecy to fulfill, Veilbreakers..." />
+<String id="31371228" string="Soon, my Harbingers will walk this world once more." />
+<String id="31371232" string="And they call you the guardians of Arborea..." />
+<String id="313713" string="Destroy the barrier to stop annihilation!" styleId="71" />
+<String id="31371411" string="System restart: Timeout" styleId="67" />
+<String id="31371418" string="Protocol Transferred: Melee Detection" styleId="67" />
+<String id="31371428" string="Protocol Transferred: Melee Detection" styleId="67" />
+<String id="31371429" string="All quadrants have been deactivated." styleId="67" />
+<String id="31372104" string="Protocol Transferred: Range Detection" styleId="67" />
+<String id="31372105" string="Arboreans... While you're busy here, your precious Veil is under attack..." />
+<String id="31372106" string="Targets dispatched. Combat mode disengaged." />
+<String id="31372107" string="Scan Progress" />
+<String id="31372109" string="I will keep you busy while they carve a path through Mystel and her Veil!" />
+<String id="31372113" string="Know your place!" />
+<String id="31372115" string="System Warning: Shard Protection Removed" styleId="67" />
+<String id="31372116" string="Playtime is almost over, and the day of reckoning is near." />
+<String id="31372121" string="System: Teleportal Created" styleId="67" />
+<String id="31372124" string="Can't you see?! Mystel, Velik and Kaia are failing to protect you..." />
+<String id="31372126" string="Pathetic, as usual." />
+<String id="31372166" string="Protocol Transferred: Range Detection" styleId="67" />
+<String id="31373104" string="Protocol Transferred: Range Detection" styleId="67" />
+<String id="31373120" string="You can stop a puppet, but can you stop the inevitable..?" />
+<String id="31373212" string="Failed to activate energy transmission matrix..." styleId="66" />
+<String id="31373233" string="Protocol Transferred: Full-Range Detection" styleId="67" />
+<String id="31373235" string="Protocol Transferred: Full-Range Detection" styleId="67" />
+<String id="31374104" string="System Parameter Adjustment: 1" styleId="67" />
+<String id="31374301" string="Heat Detection Protocol: Transmitting..." styleId="66" />
+<String id="31374327" string="Reset process activated..." styleId="66" />
+<String id="31374334" string="System Parameter Adjustment: 1" styleId="67" />
+<String id="31374351" string="Heat Detection Protocol: Transmitting..." styleId="66" />
+<String id="31374359" string="System Parameter Adjustment: 1" styleId="67" />
+<String id="31374365" string="Heat Detection Protocol: Transmitting..." styleId="66" />
+<String id="31374394" string="Heat Detection Protocol: Transmitting..." styleId="66" />
+<String id="31374398" string="System Parameter Adjustment: 1" styleId="67" />
+<String id="31374451" string="Heat Detection Protocol: Transmitting..." styleId="66" />
+<String id="31374510" string="Deactivating..." styleId="67" />
+<String id="31374523" string="Your gods guide you to certain death." />
+<String id="31374642" string="System Parameter Adjustment: 1" styleId="67" />
+<String id="31374945" string="Heat Detection Protocol: Transmitting..." styleId="66" />
+<String id="31375064" string="System Parameter Adjustment: 0" styleId="67" />
+<String id="31375214" string="Isn't this a familiar face? Why do you struggle?" />
+<String id="31375430" string="System Parameter Adjustment: 0" styleId="67" />
+<String id="31375464" string="System Parameter Adjustment: 0" styleId="67" />
+<String id="31375984" string="System Parameter Adjustment: 0" styleId="67" />
+<String id="31375986" string="System Parameter Adjustment: 0" styleId="67" />
+<String id="32050001" string="The combat area is closed." styleId="71" />
+<String id="32050002" string="Panels of Core Energy are summoned." styleId="71" />
+<String id="32050003" string="A hidden drone appears." styleId="71" />
+<String id="3400" string="Catalepticon (Easy)" />
+<String id="3401" string="Imperator's Sanctum" />
+<String id="9511" string="The Abscess" />
+<String id="9811" string="The Abscess" />
+
+=== REMOVED (3) ===
+<String id="3037010" string="Velik’s Sanctum is actually a &lt;font color='#ffe761'&gt;5-person dungeon&lt;/font&gt;. (Cannot enter with fewer players)" styleId="66" />
+<String id="9511" string="The Abscess (7-Person)" />
+<String id="9811" string="The Abscess (7-Person)" />

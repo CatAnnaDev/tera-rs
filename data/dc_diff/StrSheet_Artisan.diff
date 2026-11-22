@@ -1,0 +1,13 @@
+# StrSheet_Artisan  +6 -2
+
+=== ADDED (6) ===
+<String id="12006" string="Mahtnan Weapon" />
+<String id="12007" string="Mahtnan Armor" />
+<String id="12008" string="Mahtnan Hand Armor" />
+<String id="12009" string="Mahtnan Foot Armor" />
+<String id="16001" string="Item Conversion" />
+<String id="25" string="Blacksmithing" toolTip="Allows you to craft combat equipment" />
+
+=== REMOVED (2) ===
+<String id="16001" string="Craft artifact and relic" />
+<String id="25" string="Blacksmith craft" toolTip="Allows you to craft combat equipment" />

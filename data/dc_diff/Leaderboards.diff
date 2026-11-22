@@ -1,0 +1,10 @@
+# Leaderboards  +4 -1
+
+=== ADDED (4) ===
+<ContentInfo id="3126" conditionTooltipId="3126" sort="17" stageShow="false" />
+<ContentInfo id="3137" conditionTooltipId="9126" sort="16" stageShow="false" />
+<ContentInfo id="3205" conditionTooltipId="3205" sort="18" stageShow="false" />
+<ContentInfo id="9034" conditionTooltipId="9034" sort="15" stageShow="true" />
+
+=== REMOVED (1) ===
+<ContentInfo id="9034" conditionTooltipId="9126" sort="15" stageShow="true" />

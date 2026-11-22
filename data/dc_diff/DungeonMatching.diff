@@ -1,0 +1,93 @@
+# DungeonMatching  +28 -60
+
+=== ADDED (28) ===
+<Dungeon id="3012" name="Training Ground" matchingRoleId="17" dungeonLevel="99" dungeonMaxLevel="99" dungeonMinLevel="99" minItemLevel="999" />
+<Dungeon id="3023" name="Akalath Quarantine" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="554" />
+<Dungeon id="3026" name="Corrupted Skynest" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="551" />
+<Dungeon id="3041" name="Damned Citadel" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="551" />
+<Dungeon id="3048" name="Secret Training Camp" matchingRoleId="1000" dungeonLevel="99" dungeonMaxLevel="99" dungeonMinLevel="99" minItemLevel="999" />
+<Dungeon id="3101" name="Gossamer Vault" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="547" />
+<Dungeon id="3102" name="Draakon Arena" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="547" />
+<Dungeon id="3105" name="Fusion Laboratory" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="551" />
+<Dungeon id="3109" name="Ice Throne" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="551" />
+<Dungeon id="3126" name="Corrupted Skynest (Hard)" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="558" />
+<Dungeon id="3201" name="Gossamer Vault (Hard)" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="554" />
+<Dungeon id="3203" name="Forbidden Arena: Undying Warlord (Hard)" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="554" />
+<Dungeon id="3205" name="Cursed Fusion Laboratory" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="554" />
+<Dungeon id="3400" name="Catalepticon (Easy)" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="547" />
+<Dungeon id="3401" name="Imperator's Sanctum" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="543" />
+<Dungeon id="9025" name="발더의 신전" matchingRoleId="23" dungeonLevel="60" dungeonMaxLevel="69" dungeonMinLevel="60" minItemLevel="242">
+<Dungeon id="9026" name="아르곤 멜디티아(하급)" matchingRoleId="23" dungeonLevel="60" dungeonMaxLevel="69" dungeonMinLevel="60" minItemLevel="242" />
+<Dungeon id="9029" name="Сокровищница Капримы" matchingRoleId="17" dungeonLevel="65" dungeonMaxLevel="69" dungeonMinLevel="65" minItemLevel="448" />
+<Dungeon id="9034" name="Exalted Dreadspire" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="558" />
+<Dungeon id="9044" name="Bahaar's Sanctum" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="558" />
+<Dungeon id="9511" name="The Abscess" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="543" />
+<Dungeon id="9710" name="Broken Prison" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="551" />
+<Dungeon id="9727" name="샨드라 마나이아(하급)" matchingRoleId="23" dungeonLevel="64" dungeonMaxLevel="69" dungeonMinLevel="64" minItemLevel="309" />
+<Dungeon id="9780" name="Velik's Hold" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="543" />
+<Dungeon id="9781" name="Velik's Sanctuary" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="551" />
+<Dungeon id="9809" name="데모크론 실험실" matchingRoleId="11" dungeonLevel="65" dungeonMaxLevel="69" dungeonMinLevel="65" minItemLevel="448">
+<Dungeon id="9920" name="Antaroth Abyss (Hard)" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="554" />
+<Dungeon id="9982" name="Grotto of Lost Souls (Hard)" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="554" />
+
+=== REMOVED (60) ===
+<Dungeon id="3023" name="Секретное подземелье крепости Берарк" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="507" />
+<Dungeon id="3026" name="Логово Келсаика" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="461" />
+<Dungeon id="3027" name="Арена Безумия" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="531" />
+<Dungeon id="3030" name="Рейд Махнак" matchingRoleId="33" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="503" />
+<Dungeon id="3034" name="РК Экстрим" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="535" />
+<Dungeon id="3036" name="Крейсер Экстрим" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="535" />
+<Dungeon id="3047" name="Hall of the Argon Queen" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="539" />
+<Dungeon id="3102" name="Командный центр" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="507" />
+<Dungeon id="3104" name="Catalepticon" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="527" />
+<Dungeon id="3105" name="Cursed Fusion Laboratory" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="516" />
+<Dungeon id="3105" name="Fusion Laboratory" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="516" />
+<Dungeon id="3106" name="Killing Grounds" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="527" />
+<Dungeon id="3109" name="Ice Throne Normal" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="531" />
+<Dungeon id="3126" name="Логово Бессмертного Келсаика" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="480" />
+<Dungeon id="3131" name="Логово Деда Мороза" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="498" />
+<Dungeon id="3131" name="Новая Гойда" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="498" />
+<Dungeon id="3132" name="Резиденция Махаона" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="523" />
+<Dungeon id="3147" name="Hall of the Argon Queen (Hard)" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="542" />
+<Dungeon id="3201" name="ГПХ" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="507" />
+<Dungeon id="3202" name="Командный центр (сложно)" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="535" />
+<Dungeon id="3203" name="Крушитель Хард" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="531" />
+<Dungeon id="3204" name="Catalepticon (Hard)" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="535" />
+<Dungeon id="3206" name="Crimson Killing Grounds" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="531" />
+<Dungeon id="3209" name="Ice Throne Hard" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="539" />
+<Dungeon id="3320" name="Проклятое Судно" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="512" />
+<Dungeon id="3920" name="Омут Антароса Экстрим" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="535" />
+<Dungeon id="3927" name="Uwufna" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="519" />
+<Dungeon id="9025" name="발더의 신전" matchingRoleId="23" dungeonLevel="60" dungeonMaxLevel="70" dungeonMinLevel="60" minItemLevel="242">
+<Dungeon id="9026" name="아르곤 멜디티아(하급)" matchingRoleId="23" dungeonLevel="60" dungeonMaxLevel="70" dungeonMinLevel="60" minItemLevel="242" />
+<Dungeon id="9027" name="Обитель Манайи (Сложно)" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="507" />
+<Dungeon id="9029" name="Сокровищница Капримы" matchingRoleId="17" dungeonLevel="65" dungeonMaxLevel="70" dungeonMinLevel="65" minItemLevel="448" />
+<Dungeon id="9034" name="Exalted Dreadspire" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="542" />
+<Dungeon id="9044" name="Бахаар" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="511" />
+<Dungeon id="9053" name="거인의 숲" matchingRoleId="17" dungeonLevel="68" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="519" />
+<Dungeon id="9055" name="Алчное ущелье" matchingRoleId="32" dungeonLevel="65" dungeonMaxLevel="70" dungeonMinLevel="65" minItemLevel="518" />
+<Dungeon id="9056" name="Хроноплоскость Хард" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="507" />
+<Dungeon id="9059" name="Остров Мёртвых" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="523" />
+<Dungeon id="9710" name="РАЛ" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="498" />
+<Dungeon id="9716" name="Крейсер Нормал" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="523" />
+<Dungeon id="9720" name="Омут Антароса Нормал" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="527" />
+<Dungeon id="9727" name="샨드라 마나이아(하급)" matchingRoleId="23" dungeonLevel="64" dungeonMaxLevel="70" dungeonMinLevel="64" minItemLevel="309" />
+<Dungeon id="9735" name="RK-9 격납고" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="503" />
+<Dungeon id="9739" name="Лагерь Повстанцев Нормал" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="68" minItemLevel="498" />
+<Dungeon id="9750" name="Край Разлома Нормал" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="527" />
+<Dungeon id="9754" name="Глубинный Храм" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="498" />
+<Dungeon id="9756" name="Хроноплоскость" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="456" />
+<Dungeon id="9760" name="Корабль Келивана" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="523" />
+<Dungeon id="9768" name="УДН" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="523" />
+<Dungeon id="9769" name="Замок Лилит" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="523" />
+<Dungeon id="9770" name="Руины Абнукты" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="519" />
+<Dungeon id="9777" name="Каналы" matchingRoleId="32" dungeonLevel="65" dungeonMaxLevel="70" dungeonMinLevel="65" minItemLevel="518" />
+<Dungeon id="9780" name="벨리카 지하 관문" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="498" />
+<Dungeon id="9781" name="벨릭의 신전" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="503" />
+<Dungeon id="9794" name="Сайрекс" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="519" />
+<Dungeon id="9809" name="데모크론 실험실" matchingRoleId="11" dungeonLevel="65" dungeonMaxLevel="70" dungeonMinLevel="65" minItemLevel="448">
+<Dungeon id="9920" name="Омут Антароса Хард" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="511" />
+<Dungeon id="9935" name="RK-9 Хард" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="69" minItemLevel="460" />
+<Dungeon id="9939" name="СЛП" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="531" />
+<Dungeon id="9970" name="Руины Кошмарной Абнукты" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="535" />
+<Dungeon id="9982" name="Заброшка Леандра Хард" matchingRoleId="17" dungeonLevel="70" dungeonMaxLevel="70" dungeonMinLevel="70" minItemLevel="507" />
