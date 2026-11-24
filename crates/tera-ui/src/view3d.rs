@@ -124,6 +124,7 @@ impl Camera {
     }
 }
 
+#[derive(Clone)]
 pub struct Triangle {
     pub points: [Vector; 3],
     pub uv: [[f32; 2]; 3],

@@ -40,6 +40,10 @@ pub enum GpkCommand {
     Names(NamesArgs),
     #[command(about = "Hexdump the raw serialized bytes of an export by path suffix")]
     ExportHex(ExportHexArgs),
+    #[command(about = "Print the summary header offsets of each sub-package")]
+    Summary(TargetArgs),
+    #[command(about = "Re-serialize a single-package file through the table-rewriting writer (identity check)")]
+    Resave(RepackArgs),
 }
 
 #[derive(Args)]
@@ -249,7 +253,74 @@ pub fn run(command: GpkCommand) -> Result<()> {
         GpkCommand::SetActor(args) => set_actor(&args),
         GpkCommand::Names(args) => names(&args),
         GpkCommand::ExportHex(args) => export_hex(&args),
+        GpkCommand::Summary(args) => summary(&args),
+        GpkCommand::Resave(args) => resave(&args),
     }
+}
+
+fn resave(args: &RepackArgs) -> Result<()> {
+    let data = map(&args.file)?;
+    let package = Package::parse(&data, 0)?;
+    let out = tera_package::writer::reserialize(
+        &package,
+        &BTreeMap::new(),
+        &[],
+        &[],
+    )?;
+    std::fs::write(&args.out, &out)?;
+    println!(
+        "wrote {} ({} bytes) from {} exports / {} names",
+        args.out.display(),
+        out.len(),
+        package.exports.len(),
+        package.names.len()
+    );
+    Ok(())
+}
+
+fn summary(args: &TargetArgs) -> Result<()> {
+    let data = map(&args.file)?;
+    for (pkg_index, package) in Bundle::new(&data).enumerate() {
+        let Ok(package) = package else { break };
+        let s = &package.summary;
+        println!(
+            "[{pkg_index}] {} v{}/{} header_end={} total_header_size={}",
+            package.package_name(),
+            s.version,
+            s.licensee,
+            s.header_end,
+            s.total_header_size
+        );
+        println!(
+            "    names   off={} count={}",
+            s.name_offset, s.name_count
+        );
+        println!(
+            "    imports off={} count={}",
+            s.import_offset, s.import_count
+        );
+        println!(
+            "    exports off={} count={}",
+            s.export_offset, s.export_count
+        );
+        println!(
+            "    depends off={}  guids off={}  thumbs off={}",
+            s.depends_offset, s.import_export_guids_offset, s.thumbnail_table_offset
+        );
+        let first_entry = package.export_entry_offsets.first().copied().unwrap_or(0);
+        let last_entry = package.export_entry_offsets.last().copied().unwrap_or(0);
+        println!(
+            "    first_export_entry={first_entry} last_export_entry={last_entry} min_serial={}",
+            package
+                .exports
+                .iter()
+                .map(|export| export.serial_offset)
+                .filter(|offset| *offset > 0)
+                .min()
+                .unwrap_or(0)
+        );
+    }
+    Ok(())
 }
 
 fn export_hex(args: &ExportHexArgs) -> Result<()> {
@@ -258,8 +329,8 @@ fn export_hex(args: &ExportHexArgs) -> Result<()> {
     for package in Bundle::new(&data) {
         let Ok(package) = package else { break };
         for (index, export) in package.exports.iter().enumerate() {
-            let path = package.export_path(index);
-            if !path.to_ascii_lowercase().ends_with(&needle) && !path.to_ascii_lowercase().contains(&needle) {
+            let path = package.export_path(index).to_ascii_lowercase();
+            if path != needle && !path.ends_with(&format!(".{needle}")) {
                 continue;
             }
             let Ok(blob) = package.export_data(export) else { continue };
