@@ -34,6 +34,8 @@ drop it on targets without those instructions. The Windows launcher stub builds 
 | AES key/IV recovery | files, dumps, live process | n/a |
 | `.gpk` / `.upk` packages (LZO + zlib chunks) | yes | yes, rebuilt uncompressed |
 | UE3 tagged properties | yes | per-property patch |
+| UE3 level actors (location / rotation / scale) | yes | in-place transform patch |
+| Particle systems / physics assets (structure) | yes | n/a |
 | `Texture2D` ↔ DDS/PNG, DXT1/3/5, BC4/BC5 | own decoder | own encoder |
 | `SoundNodeWave` → Ogg Vorbis | yes | n/a |
 | `StaticMesh` / `SkeletalMesh` → OBJ | yes | n/a |
@@ -134,6 +136,12 @@ gpk new-texture     <image> --package <name> --object <name> --out <gpk> [--form
 gpk repack          <file> --out <gpk>               rebuild (uncompressed)
 gpk replace-texture <file> --object <name> --dds <dds> --out <gpk>
 gpk set-folder      <file> --folder <text> --out <gpk>   retag a package (e.g. OmiMapper mod)
+gpk edit-props      <file> [filter] [--all]          editable scalar properties per object
+gpk set-prop        <file> --object <name> --set NAME=VALUE... -o <out>
+gpk actors          <file> [filter]                  level actors + transforms
+gpk set-actor       <file> --object <name> [--loc x,y,z] [--rot p,y,r] [--scale x,y,z] -o <out>
+gpk names           <file> [filter] [--package N] [--raw]   name table dump
+gpk export-hex      <file> <object> [--bytes N]      raw export hexdump
 ```
 
 Rebuilding always writes uncompressed (the LZO path has no encoder; the client reads
@@ -352,11 +360,23 @@ disasm <file> [--base ADDR] [--out FILE] [--limit N] [--skip-filler]
 ## `tera-ui`
 
 `tera-studio`, the egui desktop app — a front end over the same crates, so everything it does is
-also a `tera` subcommand. The asset browser filters 20 million objects live and decodes the
-selection: `Texture2D` to an image (export PNG/DDS, replace pixels, author a new mod package),
-meshes to a software-rendered 3D view and OBJ, `SoundNodeWave` to a waveform and Ogg, anything
-else to its property table. It also opens a data center for query/edit/export, browses the
-mapper files, and runs the key scanner. Deep links drive and test it:
+also a `tera` subcommand. A left navigation rail groups the work: Explore (Assets, Maps,
+DataCenter), Create (Materials, Properties, Composite, Mods) and Tools (Interfaces, Keys);
+Cmd/Ctrl + 1–9 switch sections.
+
+The asset browser indexes the whole `S1Game` tree and shows it as the real folder hierarchy
+(Art_Data, Sound_Data, Maps, …) down to each package, lazily listing a package's objects on
+expand; search filters across every object and auto-reveals the matches. Selecting an object
+decodes it: `Texture2D` to an image (export PNG/DDS, replace pixels, author a new mod package),
+meshes to a software-rendered 3D view and OBJ/glTF, `SoundNodeWave` to a waveform and Ogg,
+container classes (particle systems, physics assets, anim sets) to a structural outline of their
+sub-objects, and everything else to colour swatches, a hex view and a parsed property table.
+Scalar properties and material colours are editable in place and written back to the original
+(with a `.clean` backup), saved as a copy, or installed as a reversible composite mod.
+
+It also opens a data center for query/edit/node ops/export, edits map-actor transforms, browses
+the mapper files, recolours materials, replaces Scaleform movies, and runs the key scanner. Deep
+links drive and test it:
 
 ```sh
 tera-studio --query LoadingProgress --class Texture2D --pick 0
