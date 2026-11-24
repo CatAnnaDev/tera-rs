@@ -28,6 +28,72 @@ pub enum GpkCommand {
     ReplaceTexture(ReplaceTextureArgs),
     #[command(about = "Rewrite a package folder_name, e.g. to tag it as an OmiMapper composite mod")]
     SetFolder(SetFolderArgs),
+    #[command(about = "List editable scalar properties (float/int/bool/byte) per object")]
+    EditProps(EditPropsArgs),
+    #[command(about = "Set scalar properties on an object and rebuild the package")]
+    SetProp(SetPropArgs),
+    #[command(about = "List level actors (StaticMeshActor/InterpActor/DynamicSMActor) with transforms")]
+    Actors(EditPropsArgs),
+    #[command(about = "Move/rotate/scale a level actor in place and rebuild the package")]
+    SetActor(SetActorArgs),
+    #[command(about = "Dump the raw name table of each sub-package")]
+    Names(NamesArgs),
+    #[command(about = "Hexdump the raw serialized bytes of an export by path suffix")]
+    ExportHex(ExportHexArgs),
+}
+
+#[derive(Args)]
+pub struct ExportHexArgs {
+    pub file: PathBuf,
+    pub object: String,
+    #[arg(long, default_value_t = 256)]
+    pub bytes: usize,
+}
+
+#[derive(Args)]
+pub struct NamesArgs {
+    pub file: PathBuf,
+    #[arg(help = "Only names containing this substring")]
+    pub filter: Option<String>,
+    #[arg(long, help = "Only the sub-package at this bundle index")]
+    pub package: Option<usize>,
+    #[arg(long, help = "Hexdump the raw name-table bytes from the decompressed image")]
+    pub raw: bool,
+}
+
+#[derive(Args)]
+pub struct SetActorArgs {
+    pub file: PathBuf,
+    #[arg(long, help = "Actor object path or suffix to patch")]
+    pub object: String,
+    #[arg(long, value_name = "X,Y,Z", help = "New Location")]
+    pub loc: Option<String>,
+    #[arg(long, value_name = "P,Y,R", help = "New Rotation (rotator units)")]
+    pub rot: Option<String>,
+    #[arg(long, value_name = "X,Y,Z", help = "New DrawScale3D")]
+    pub scale: Option<String>,
+    #[arg(long, short = 'o')]
+    pub out: PathBuf,
+}
+
+#[derive(Args)]
+pub struct EditPropsArgs {
+    pub file: PathBuf,
+    #[arg(help = "Only objects whose path contains this substring")]
+    pub filter: Option<String>,
+    #[arg(long, help = "Show every property, not just the editable scalars")]
+    pub all: bool,
+}
+
+#[derive(Args)]
+pub struct SetPropArgs {
+    pub file: PathBuf,
+    #[arg(long, help = "Object path or suffix to patch")]
+    pub object: String,
+    #[arg(long = "set", value_name = "NAME=VALUE", help = "Property assignment, repeatable")]
+    pub set: Vec<String>,
+    #[arg(long, short = 'o')]
+    pub out: PathBuf,
 }
 
 #[derive(Args)]
@@ -177,7 +243,215 @@ pub fn run(command: GpkCommand) -> Result<()> {
         GpkCommand::Repack(args) => repack(&args),
         GpkCommand::ReplaceTexture(args) => replace_texture(&args),
         GpkCommand::SetFolder(args) => set_folder(&args),
+        GpkCommand::EditProps(args) => edit_props(&args),
+        GpkCommand::SetProp(args) => set_prop(&args),
+        GpkCommand::Actors(args) => actors(&args),
+        GpkCommand::SetActor(args) => set_actor(&args),
+        GpkCommand::Names(args) => names(&args),
+        GpkCommand::ExportHex(args) => export_hex(&args),
     }
+}
+
+fn export_hex(args: &ExportHexArgs) -> Result<()> {
+    let data = map(&args.file)?;
+    let needle = args.object.to_ascii_lowercase();
+    for package in Bundle::new(&data) {
+        let Ok(package) = package else { break };
+        for (index, export) in package.exports.iter().enumerate() {
+            let path = package.export_path(index);
+            if !path.to_ascii_lowercase().ends_with(&needle) && !path.to_ascii_lowercase().contains(&needle) {
+                continue;
+            }
+            let Ok(blob) = package.export_data(export) else { continue };
+            println!(
+                "{} [{}] serial {} bytes (showing {})",
+                path,
+                package.export_class(export),
+                blob.len(),
+                blob.len().min(args.bytes)
+            );
+            let slice = &blob[..blob.len().min(args.bytes)];
+            for (row, chunk) in slice.chunks(16).enumerate() {
+                let hex: String = chunk.iter().map(|b| format!("{b:02x} ")).collect();
+                let i32s: String = chunk
+                    .chunks(4)
+                    .filter(|c| c.len() == 4)
+                    .map(|c| format!("{} ", i32::from_le_bytes([c[0], c[1], c[2], c[3]])))
+                    .collect();
+                println!("  {:04x}  {hex:<48}  {i32s}", row * 16);
+            }
+        }
+    }
+    Ok(())
+}
+
+fn names(args: &NamesArgs) -> Result<()> {
+    let data = map(&args.file)?;
+    let filter = args.filter.as_deref().map(str::to_ascii_lowercase);
+    for (pkg_index, package) in Bundle::new(&data).enumerate() {
+        let package = package?;
+        if let Some(only) = args.package {
+            if only != pkg_index {
+                continue;
+            }
+        }
+        println!(
+            "[{pkg_index}] {} names@{} count {}",
+            package.package_name(),
+            package.summary.name_offset,
+            package.names.len()
+        );
+        if args.raw {
+            let start = package.summary.name_offset.max(0) as usize;
+            let end = (package.summary.import_offset.max(0) as usize).min(start + 512);
+            let image = package.image();
+            let slice = image.get(start..end.min(image.len())).unwrap_or(&[]);
+            for (row, chunk) in slice.chunks(16).enumerate() {
+                let hex: String = chunk.iter().map(|b| format!("{b:02x} ")).collect();
+                let ascii: String = chunk
+                    .iter()
+                    .map(|b| if b.is_ascii_graphic() { *b as char } else { '.' })
+                    .collect();
+                println!("  {:08x}  {hex:<48} {ascii}", start + row * 16);
+            }
+            continue;
+        }
+        for (index, name) in package.names.iter().enumerate() {
+            if let Some(needle) = &filter {
+                if !name.to_ascii_lowercase().contains(needle) {
+                    continue;
+                }
+            }
+            let flag = if name.contains(',') { " <MERGED?>" } else { "" };
+            println!("  {index:>5}: {name:?}{flag}");
+        }
+    }
+    Ok(())
+}
+
+fn parse_f3(text: &str) -> Result<[f32; 3]> {
+    let parts: Vec<&str> = text.split(',').collect();
+    if parts.len() != 3 {
+        bail!("expected X,Y,Z, got `{text}`");
+    }
+    Ok([
+        parts[0].trim().parse()?,
+        parts[1].trim().parse()?,
+        parts[2].trim().parse()?,
+    ])
+}
+
+fn parse_i3(text: &str) -> Result<[i32; 3]> {
+    let parts: Vec<&str> = text.split(',').collect();
+    if parts.len() != 3 {
+        bail!("expected P,Y,R, got `{text}`");
+    }
+    Ok([
+        parts[0].trim().parse()?,
+        parts[1].trim().parse()?,
+        parts[2].trim().parse()?,
+    ])
+}
+
+fn actors(args: &EditPropsArgs) -> Result<()> {
+    let bytes = std::fs::read(&args.file)
+        .with_context(|| format!("reading {}", args.file.display()))?;
+    let filter = args.filter.as_deref().unwrap_or("").to_ascii_lowercase();
+    let actors = tera_package::level_actors(&bytes);
+    let mut shown = 0usize;
+    for actor in &actors {
+        if !filter.is_empty() && !actor.object.to_ascii_lowercase().contains(&filter) {
+            continue;
+        }
+        shown += 1;
+        let placement = &actor.placement;
+        println!("[{}] {} mesh={}", actor.class, actor.object, placement.mesh);
+        println!(
+            "    loc={:?} rot={:?} scale={:?}",
+            placement.location, placement.rotation, placement.scale
+        );
+    }
+    println!("{shown} actor(s)");
+    Ok(())
+}
+
+fn set_actor(args: &SetActorArgs) -> Result<()> {
+    let bytes = std::fs::read(&args.file)
+        .with_context(|| format!("reading {}", args.file.display()))?;
+    let transform = tera_package::Transform {
+        location: args.loc.as_deref().map(parse_f3).transpose()?,
+        rotation: args.rot.as_deref().map(parse_i3).transpose()?,
+        scale: args.scale.as_deref().map(parse_f3).transpose()?,
+    };
+    if transform.location.is_none() && transform.rotation.is_none() && transform.scale.is_none() {
+        bail!("nothing to set: pass --loc, --rot and/or --scale");
+    }
+    let replaced = tera_package::set_actor_transform(&bytes, &args.object, transform)?;
+    std::fs::write(&args.out, &replaced.bytes)
+        .with_context(|| format!("writing {}", args.out.display()))?;
+    println!(
+        "wrote {} ({} bytes), patched {} actor(s): {}",
+        args.out.display(),
+        replaced.bytes.len(),
+        replaced.textures.len(),
+        replaced.textures.join(", ")
+    );
+    Ok(())
+}
+
+fn edit_props(args: &EditPropsArgs) -> Result<()> {
+    let bytes = std::fs::read(&args.file)
+        .with_context(|| format!("reading {}", args.file.display()))?;
+    let filter = args.filter.as_deref().unwrap_or("");
+    let objects = tera_package::object_properties(&bytes, filter);
+    let mut shown = 0usize;
+    for object in &objects {
+        let fields: Vec<&tera_package::PropView> = object
+            .props
+            .iter()
+            .filter(|property| args.all || property.editable)
+            .collect();
+        if fields.is_empty() {
+            continue;
+        }
+        shown += 1;
+        println!("[{}] {}", object.class, object.path);
+        for property in fields {
+            let mark = if property.editable { " " } else { "x" };
+            println!(
+                "  {mark} {:<14} {:<28} = {}",
+                property.type_name, property.name, property.value
+            );
+        }
+    }
+    println!("{shown} object(s) with properties");
+    Ok(())
+}
+
+fn set_prop(args: &SetPropArgs) -> Result<()> {
+    let bytes = std::fs::read(&args.file)
+        .with_context(|| format!("reading {}", args.file.display()))?;
+    let mut set = Vec::with_capacity(args.set.len());
+    for pair in &args.set {
+        let (name, value) = pair
+            .split_once('=')
+            .with_context(|| format!("expected NAME=VALUE, got `{pair}`"))?;
+        set.push((name.trim().to_string(), value.trim().to_string()));
+    }
+    if set.is_empty() {
+        bail!("no --set NAME=VALUE provided");
+    }
+    let replaced = tera_package::set_object_properties(&bytes, &args.object, &set)?;
+    std::fs::write(&args.out, &replaced.bytes)
+        .with_context(|| format!("writing {}", args.out.display()))?;
+    println!(
+        "wrote {} ({} bytes), patched {} object(s): {}",
+        args.out.display(),
+        replaced.bytes.len(),
+        replaced.textures.len(),
+        replaced.textures.join(", ")
+    );
+    Ok(())
 }
 
 fn set_folder(args: &SetFolderArgs) -> Result<()> {

@@ -4482,6 +4482,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "tera-guessmap"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "clap",
+ "serde_json",
+ "tera-protocol",
+]
+
+[[package]]
 name = "tera-hook"
 version = "0.1.0"
 dependencies = [
@@ -4509,6 +4519,7 @@ dependencies = [
 name = "tera-mapper"
 version = "0.1.0"
 dependencies = [
+ "tera-package",
  "thiserror 2.0.20",
 ]
 
@@ -4604,6 +4615,15 @@ dependencies = [
  "serde_json",
  "tera-protocol",
  "tera-world",
+]
+
+[[package]]
+name = "tera-scanner"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "clap",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]

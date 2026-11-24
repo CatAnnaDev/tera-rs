@@ -35,25 +35,25 @@ pub struct Colors {
 }
 
 pub const DARK: Colors = Colors {
-    background: Color32::from_rgb(0x14, 0x15, 0x17),
-    panel: Color32::from_rgb(0x1c, 0x1e, 0x21),
-    raised: Color32::from_rgb(0x26, 0x29, 0x2d),
-    line: Color32::from_rgb(0x33, 0x37, 0x3c),
-    bone: Color32::from_rgb(0xdc, 0xdf, 0xe4),
-    dim: Color32::from_rgb(0x8b, 0x93, 0x9c),
-    accent: Color32::from_rgb(0x3b, 0x6e, 0xa5),
-    accent_high: Color32::from_rgb(0x5b, 0x93, 0xd0),
+    background: Color32::from_rgb(0x0e, 0x0f, 0x11),
+    panel: Color32::from_rgb(0x16, 0x18, 0x1b),
+    raised: Color32::from_rgb(0x20, 0x23, 0x28),
+    line: Color32::from_rgb(0x2e, 0x32, 0x38),
+    bone: Color32::from_rgb(0xe3, 0xe6, 0xec),
+    dim: Color32::from_rgb(0x82, 0x8b, 0x96),
+    accent: Color32::from_rgb(0xcf, 0x8a, 0x3c),
+    accent_high: Color32::from_rgb(0xe7, 0xa9, 0x58),
 };
 
 pub const LIGHT: Colors = Colors {
-    background: Color32::from_rgb(0xf6, 0xf7, 0xf8),
-    panel: Color32::from_rgb(0xec, 0xee, 0xf1),
-    raised: Color32::from_rgb(0xe0, 0xe3, 0xe7),
-    line: Color32::from_rgb(0xc6, 0xcb, 0xd1),
-    bone: Color32::from_rgb(0x1d, 0x20, 0x24),
-    dim: Color32::from_rgb(0x5d, 0x65, 0x6e),
-    accent: Color32::from_rgb(0x2f, 0x6b, 0xb0),
-    accent_high: Color32::from_rgb(0x1d, 0x53, 0x93),
+    background: Color32::from_rgb(0xf4, 0xf5, 0xf7),
+    panel: Color32::from_rgb(0xe9, 0xeb, 0xee),
+    raised: Color32::from_rgb(0xdd, 0xe0, 0xe5),
+    line: Color32::from_rgb(0xc3, 0xc8, 0xcf),
+    bone: Color32::from_rgb(0x1a, 0x1d, 0x21),
+    dim: Color32::from_rgb(0x5a, 0x62, 0x6c),
+    accent: Color32::from_rgb(0xb2, 0x6c, 0x1c),
+    accent_high: Color32::from_rgb(0x8f, 0x53, 0x0f),
 };
 
 pub fn colors(palette: Palette) -> &'static Colors {
@@ -131,7 +131,7 @@ pub fn apply(ctx: &egui::Context, palette: Palette) {
     visuals.selection.bg_fill = c.accent.gamma_multiply(0.55);
     visuals.selection.stroke = Stroke::new(1.0, c.accent_high);
 
-    let radius = CornerRadius::same(3);
+    let radius = CornerRadius::same(5);
     for widget in [
         &mut visuals.widgets.noninteractive,
         &mut visuals.widgets.inactive,
@@ -154,15 +154,60 @@ pub fn apply(ctx: &egui::Context, palette: Palette) {
     visuals.widgets.active.weak_bg_fill = c.accent;
     visuals.widgets.active.bg_stroke = Stroke::new(1.0, c.accent_high);
 
-    style.spacing.item_spacing = Vec2::new(8.0, 6.0);
-    style.spacing.button_padding = Vec2::new(8.0, 3.0);
-    style.spacing.window_margin = Margin::same(8);
-    style.spacing.menu_margin = Margin::same(6);
+    style.spacing.item_spacing = Vec2::new(9.0, 7.0);
+    style.spacing.button_padding = Vec2::new(11.0, 5.0);
+    style.spacing.window_margin = Margin::same(10);
+    style.spacing.menu_margin = Margin::same(7);
     style.spacing.indent = 16.0;
+    style.spacing.scroll = egui::style::ScrollStyle::thin();
+    style.visuals.widgets.inactive.corner_radius = CornerRadius::same(5);
 
     let style = std::sync::Arc::new(style);
     ctx.set_style_of(theme, style);
     ctx.set_theme(theme);
+}
+
+pub fn nav_item(ui: &mut egui::Ui, palette: Palette, label: &str, active: bool) -> bool {
+    let c = colors(palette);
+    let (rect, response) =
+        ui.allocate_exact_size(Vec2::new(ui.available_width(), 32.0), egui::Sense::click());
+    let painter = ui.painter();
+    if active {
+        painter.rect_filled(rect, CornerRadius::same(6), c.accent.gamma_multiply(0.16));
+        let bar = egui::Rect::from_min_max(
+            rect.left_top() + Vec2::new(0.0, 5.0),
+            egui::pos2(rect.left() + 3.0, rect.bottom() - 5.0),
+        );
+        painter.rect_filled(bar, CornerRadius::same(2), c.accent_high);
+    } else if response.hovered() {
+        painter.rect_filled(rect, CornerRadius::same(6), c.raised);
+    }
+    let color = if active {
+        c.bone
+    } else if response.hovered() {
+        c.bone
+    } else {
+        c.dim
+    };
+    painter.text(
+        rect.left_center() + Vec2::new(16.0, 0.0),
+        egui::Align2::LEFT_CENTER,
+        label,
+        FontId::proportional(13.5),
+        color,
+    );
+    response.clicked()
+}
+
+pub fn nav_group(ui: &mut egui::Ui, palette: Palette, text: &str) {
+    ui.add_space(10.0);
+    ui.add(egui::Label::new(
+        egui::RichText::new(text)
+            .size(10.0)
+            .color(colors(palette).dim)
+            .extra_letter_spacing(2.0),
+    ));
+    ui.add_space(2.0);
 }
 
 pub fn eyebrow(ui: &mut egui::Ui, palette: Palette, text: impl Into<String>) {

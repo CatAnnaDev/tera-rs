@@ -48,6 +48,91 @@ pub fn read_properties(package: &Package, data: &[u8]) -> Result<(Vec<Property>,
     read_properties_depth(package, data, 0)
 }
 
+const PROPERTY_BLOCK_SCAN_LIMIT: usize = 128;
+
+fn resolved_name<'p>(package: &'p Package<'_>, index: i32) -> Option<&'p str> {
+    if index < 0 {
+        return None;
+    }
+    package.names.get(index as usize).map(String::as_str)
+}
+
+fn score_property_block(package: &Package, data: &[u8]) -> Option<usize> {
+    let mut reader = Reader::new(data);
+    let mut count = 0usize;
+    loop {
+        if reader.remaining() < 8 {
+            return None;
+        }
+        let name_index = reader.i32().ok()?;
+        let _name_number = reader.i32().ok()?;
+        let name = resolved_name(package, name_index)?;
+        if name == "None" {
+            return Some(count);
+        }
+        if name.is_empty() || reader.remaining() < 16 {
+            return None;
+        }
+        let type_index = reader.i32().ok()?;
+        let _type_number = reader.i32().ok()?;
+        let type_name = resolved_name(package, type_index)?;
+        if !type_name.ends_with("Property") {
+            return None;
+        }
+        let size = reader.i32().ok()?;
+        let _array_index = reader.i32().ok()?;
+        match type_name {
+            "StructProperty" | "ByteProperty" => {
+                reader.i32().ok()?;
+                reader.i32().ok()?;
+            }
+            "BoolProperty" => {
+                reader.u8().ok()?;
+            }
+            _ => {}
+        }
+        if size < 0 || size as usize > reader.remaining() {
+            return None;
+        }
+        reader.take(size as usize).ok()?;
+        count += 1;
+    }
+}
+
+fn find_property_block_start(package: &Package, data: &[u8]) -> Option<usize> {
+    let limit = data.len().saturating_sub(8).min(PROPERTY_BLOCK_SCAN_LIMIT);
+    let mut best: Option<(usize, usize)> = None;
+    for start in 0..=limit {
+        if let Some(count) = score_property_block(package, &data[start..]) {
+            let better = match best {
+                Some((best_count, _)) => count > best_count,
+                None => true,
+            };
+            if better {
+                best = Some((count, start));
+            }
+        }
+    }
+    best.map(|(_, start)| start)
+}
+
+pub fn read_export_properties_auto(package: &Package, data: &[u8]) -> Result<(Vec<Property>, usize)> {
+    let direct = read_export_properties(package, data)?;
+    if !direct.0.is_empty() {
+        return Ok(direct);
+    }
+    let Some(start) = find_property_block_start(package, data) else {
+        return Ok(direct);
+    };
+    let (mut properties, consumed) = read_properties(package, &data[start..])?;
+    for property in &mut properties {
+        property.value_offset += start;
+        property.offset += start;
+        property.end += start;
+    }
+    Ok((properties, consumed + start))
+}
+
 const MAX_PROPERTY_DEPTH: u32 = 96;
 
 fn read_properties_depth(package: &Package, data: &[u8], depth: u32) -> Result<(Vec<Property>, usize)> {

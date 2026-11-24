@@ -147,8 +147,8 @@ impl MapsTab {
         egui::Panel::top("maps_head").show(ui, |ui| {
             ui.add_space(4.0);
             ui.horizontal(|ui| {
-                ui.label(theme::display(palette, "niveaux", 15.0));
-                ui.add(egui::TextEdit::singleline(&mut self.filter).hint_text("filtrer").desired_width(240.0));
+                ui.label(theme::display(palette, "levels", 15.0));
+                ui.add(egui::TextEdit::singleline(&mut self.filter).hint_text("filter").desired_width(240.0));
                 theme::eyebrow(ui, palette, format!("{} packages", self.levels.len()));
             });
             ui.add_space(4.0);
@@ -164,12 +164,12 @@ impl MapsTab {
             } else if self.preview_pending {
                 ui.horizontal(|ui| {
                     ui.spinner();
-                    theme::eyebrow(ui, palette, "construction de la preview…");
+                    theme::eyebrow(ui, palette, "building preview…");
                 });
             } else if let Some(selected) = self.selected {
                 if let Some((file, count)) = self.levels.get(selected).cloned() {
                     ui.horizontal(|ui| {
-                        if ui.button(format!("prévisualiser ({count} placements)")).clicked() {
+                        if ui.button(format!("preview ({count} placements)")).clicked() {
                             let level_file = paths.cooked().join(&file);
                             let index_path = paths.index.clone();
                             let cooked = paths.cooked();
@@ -220,7 +220,7 @@ impl MapsTab {
                     });
                 }
             } else {
-                theme::eyebrow(ui, palette, "choisis un niveau à gauche");
+                theme::eyebrow(ui, palette, "pick a level on the left");
             }
             ui.add_space(4.0);
         });
@@ -230,7 +230,7 @@ impl MapsTab {
             if let Some(preview) = &mut self.preview {
                 ui.add_space(4.0);
                 ui.horizontal(|ui| {
-                    if ui.button("← fermer la preview").clicked() {
+                    if ui.button("← close preview").clicked() {
                         close_preview = true;
                     }
                     if ui.checkbox(&mut preview.textured, "textures").changed() {
@@ -570,7 +570,7 @@ fn collect_map_data(
         }
     }
     if placements.is_empty() {
-        return Err("aucun placement dans cette zone".into());
+        return Err("no placement in this zone".into());
     }
     let placements = tera_package::dedup_placements(placements);
     let mut unique: Vec<String> = placements.iter().map(|p| p.mesh.clone()).collect();

@@ -1,11 +1,10 @@
-use anyhow::{bail, Context, Result};
+use anyhow::{Context, Result};
 use clap::{Args, Subcommand};
-use std::path::{Path, PathBuf};
+use std::path::PathBuf;
 use tera_mapper::{
-    CompositeEntry, CompositeMapper, DirCache, PairMapper, COMPOSITE_MOD_PREFIX,
+    install_mod, restore_mapper, uninstall_mod, CompositeMapper, DirCache, PairMapper,
     OBJECT_REDIRECTOR_MAGIC, PKG_MAPPER_MAGIC,
 };
-use tera_package::package::Package;
 
 #[derive(Subcommand)]
 pub enum MapperCommand {
@@ -146,145 +145,43 @@ fn composite_list(args: &CompositeArgs) -> Result<()> {
     Ok(())
 }
 
-fn mapper_path(game: &Path) -> PathBuf {
-    game.join("CompositePackageMapper.dat")
-}
-
-fn backup_mapper(dat: &Path) -> Result<()> {
-    let clean = dat.with_extension("clean");
-    if !clean.exists() {
-        std::fs::copy(dat, &clean).with_context(|| format!("backing up to {}", clean.display()))?;
-        println!("backup -> {}", clean.display());
-    }
-    let bak = dat.with_extension("dat.bak");
-    std::fs::copy(dat, &bak).ok();
-    Ok(())
-}
-
-fn mod_entries(mod_file: &Path) -> Result<Vec<CompositeEntry>> {
-    let bytes = std::fs::read(mod_file)
-        .with_context(|| format!("reading {}", mod_file.display()))?;
-    let mut entries = Vec::new();
-    let mut offset = 0usize;
-    while offset < bytes.len() {
-        let package = Package::parse(&bytes, offset)
-            .with_context(|| format!("parsing sub-package at offset {offset}"))?;
-        let span = package.span;
-        if span == 0 {
-            break;
-        }
-        let folder = package.summary.folder_name.value.clone();
-        let object_path = folder
-            .strip_prefix(COMPOSITE_MOD_PREFIX)
-            .map(|rest| rest.to_string());
-        if let Some(object_path) = object_path {
-            let composite_name = object_path
-                .split('.')
-                .next()
-                .unwrap_or(&object_path)
-                .to_string();
-            entries.push(CompositeEntry {
-                object_path,
-                composite_name,
-                offset: offset as u64,
-                size: span as u64,
-            });
-        }
-        offset += span;
-    }
-    if entries.is_empty() {
-        bail!(
-            "no OmiMapper sub-packages found in {} (folder_name must start with \"{}\")",
-            mod_file.display(),
-            COMPOSITE_MOD_PREFIX
-        );
-    }
-    Ok(entries)
-}
-
 fn composite_install(args: &CompositeInstallArgs) -> Result<()> {
-    let dat = mapper_path(&args.game);
-    if !dat.exists() {
-        bail!("{} not found", dat.display());
+    let report = install_mod(&args.game, &args.mod_file, args.name.as_deref())?;
+    if let Some(backup) = &report.backup {
+        println!("backup -> {}", backup.display());
     }
-    let container = match &args.name {
-        Some(name) => name.clone(),
-        None => args
-            .mod_file
-            .file_stem()
-            .and_then(|stem| stem.to_str())
-            .context("mod file has no usable name")?
-            .to_string(),
-    };
-    let entries = mod_entries(&args.mod_file)?;
-    backup_mapper(&dat)?;
-    let destination = args.game.join(format!("{container}.gpk"));
-    std::fs::copy(&args.mod_file, &destination)
-        .with_context(|| format!("copying mod to {}", destination.display()))?;
-    let mut mapper = CompositeMapper::read(&dat)?;
-    for entry in entries {
+    for entry in &report.registered {
         println!(
             "register {} -> {} off {} size {}",
-            entry.composite_name, container, entry.offset, entry.size
+            entry.composite_name, report.container, entry.offset, entry.size
         );
-        mapper.upsert(&container, entry);
     }
-    mapper.write(&dat)?;
-    println!("installed {} -> {}", args.mod_file.display(), destination.display());
+    println!(
+        "installed {} -> {}",
+        args.mod_file.display(),
+        report.destination.display()
+    );
     Ok(())
 }
 
 fn composite_uninstall(args: &CompositeUninstallArgs) -> Result<()> {
-    let dat = mapper_path(&args.game);
-    let mut mapper = CompositeMapper::read(&dat)?;
-    let composites: Vec<String> = if mapper.groups.iter().any(|group| group.filename == args.target)
-    {
-        mapper
-            .groups
-            .iter()
-            .filter(|group| group.filename == args.target)
-            .flat_map(|group| group.entries.iter().map(|entry| entry.composite_name.clone()))
-            .collect()
-    } else if mapper.find_composite(&args.target).is_some() {
-        vec![args.target.clone()]
-    } else {
-        bail!("no entry matched {}", args.target);
-    };
-    backup_mapper(&dat)?;
-    let clean = dat.with_extension("clean");
-    let pristine = if clean.exists() {
-        Some(CompositeMapper::read(&clean)?)
-    } else {
-        None
-    };
-    for composite in &composites {
-        mapper.remove_composite(composite);
-        if let Some(pristine) = &pristine {
-            if let Some((filename, entry)) = pristine.find_composite(composite) {
-                mapper.upsert(filename, entry.clone());
-                println!("restored {} -> base shard {}", composite, filename);
-            }
-        }
+    let report = uninstall_mod(&args.game, &args.target, args.delete_file)?;
+    for (composite, filename) in &report.restored {
+        println!("restored {composite} -> base shard {filename}");
     }
-    mapper.write(&dat)?;
-    if args.delete_file {
-        let container = args.game.join(format!("{}.gpk", args.target));
-        if container.exists() {
-            std::fs::remove_file(&container).ok();
-            println!("deleted {}", container.display());
-        }
+    if let Some(deleted) = &report.deleted_file {
+        println!("deleted {}", deleted.display());
     }
-    println!("removed {} ({} composite route(s))", args.target, composites.len());
+    println!(
+        "removed {} ({} composite route(s))",
+        report.target,
+        report.removed.len()
+    );
     Ok(())
 }
 
 fn composite_restore(args: &CompositeRestoreArgs) -> Result<()> {
-    let dat = mapper_path(&args.game);
-    let clean = dat.with_extension("clean");
-    if !clean.exists() {
-        bail!("{} not found", clean.display());
-    }
-    std::fs::copy(&clean, &dat).with_context(|| format!("restoring {}", dat.display()))?;
-    println!("restored {} from {}", dat.display(), clean.display());
+    let dat = restore_mapper(&args.game)?;
+    println!("restored {} from its .clean backup", dat.display());
     Ok(())
 }

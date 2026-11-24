@@ -2,9 +2,14 @@ use std::collections::HashMap;
 use std::path::Path;
 
 pub mod composite;
+pub mod install;
 pub use composite::{
     composite_decrypt, composite_encrypt, CompositeEntry, CompositeGroup, CompositeMapper,
     COMPOSITE_KEY1, COMPOSITE_KEY2, COMPOSITE_MOD_PREFIX,
+};
+pub use install::{
+    author_composite, install_mod, mapper_path, mod_entries, restore_mapper, set_folder_name,
+    uninstall_mod, InstallReport, UninstallReport,
 };
 
 pub const PKG_MAPPER_MAGIC: u32 = 0x6a87_ac80;
@@ -22,6 +27,16 @@ pub enum MapperError {
     Encoding { index: usize },
     #[error("trailing data: {0} bytes left unread")]
     Trailing(usize),
+    #[error("{0} not found")]
+    Missing(std::path::PathBuf),
+    #[error("no OmiMapper sub-packages in {0}: folder_name must start with \"OmiMapper: \"")]
+    NoModEntries(std::path::PathBuf),
+    #[error("no composite route matched {0}")]
+    NoMatch(String),
+    #[error("mod file has no usable name: {0}")]
+    BadName(std::path::PathBuf),
+    #[error("package parse failed: {0}")]
+    Package(String),
 }
 
 pub type Result<T> = std::result::Result<T, MapperError>;

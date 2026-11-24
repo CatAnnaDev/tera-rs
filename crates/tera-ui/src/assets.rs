@@ -10,8 +10,22 @@ use std::sync::Arc;
 use std::time::Instant;
 use tera_index::Index;
 use tera_package::mesh::Mesh;
-use tera_package::properties::read_export_properties;
-use tera_package::{Bundle, Package, SoundNodeWave, Texture2D};
+use tera_package::properties::{read_export_properties_auto, PropertyValue};
+use tera_package::{set_object_properties, Bundle, Package, SoundNodeWave, Texture2D};
+
+enum EditWrite {
+    Overwrite,
+    Copy(PathBuf),
+    Author,
+}
+
+struct EditRequest {
+    source: PathBuf,
+    object: String,
+    container: String,
+    edits: Vec<(String, String)>,
+    write: EditWrite,
+}
 
 pub enum Preview {
     None,
@@ -43,7 +57,33 @@ pub enum Preview {
         channels: i32,
         peaks: Vec<(f32, f32)>,
     },
+    Outline {
+        kind: &'static str,
+        rows: Vec<OutlineRow>,
+        truncated: bool,
+    },
     Raw,
+}
+
+pub struct OutlineRow {
+    pub depth: usize,
+    pub class: String,
+    pub name: String,
+    pub detail: String,
+}
+
+pub struct AssetField {
+    pub name: String,
+    pub type_name: String,
+    pub original: String,
+    pub value: String,
+    pub editable: bool,
+}
+
+impl AssetField {
+    fn changed(&self) -> bool {
+        self.editable && self.value.trim() != self.original.trim()
+    }
 }
 
 pub struct Loaded {
@@ -55,8 +95,51 @@ pub struct Loaded {
     pub export: usize,
     pub size: usize,
     pub properties: Vec<(String, String, String)>,
+    pub fields: Vec<AssetField>,
+    pub swatches: Vec<(String, [f32; 3])>,
+    pub raw_head: Vec<u8>,
     pub preview: Preview,
     pub load_ms: f64,
+}
+
+impl Loaded {
+    fn pending(&self) -> Vec<(String, String)> {
+        self.fields
+            .iter()
+            .filter(|field| field.changed())
+            .map(|field| (field.name.clone(), field.value.trim().to_string()))
+            .collect()
+    }
+
+    fn color_field(&self, channel: &str) -> Option<usize> {
+        self.fields.iter().position(|field| {
+            field.editable && field.type_name == "FloatProperty" && field.name == channel
+        })
+    }
+}
+
+enum ListRow {
+    Folder { path: String, name: String, depth: usize, count: usize },
+    File { path: String, name: String, depth: usize, count: usize },
+    Item { hit: u32, depth: usize },
+}
+
+#[derive(Default)]
+struct PathTree {
+    folders: std::collections::BTreeMap<String, PathTree>,
+    files: std::collections::BTreeMap<String, u32>,
+}
+
+impl PathTree {
+    fn insert(&mut self, segments: &[String], file: u32) {
+        match segments {
+            [] => {}
+            [name] => {
+                self.files.insert(name.clone(), file);
+            }
+            [head, rest @ ..] => self.folders.entry(head.clone()).or_default().insert(rest, file),
+        }
+    }
 }
 
 pub struct Assets {
@@ -66,12 +149,17 @@ pub struct Assets {
     class_filter: usize,
     classes: Vec<String>,
     hits: Vec<u32>,
+    list_rows: Vec<ListRow>,
+    file_packages: Vec<Vec<u32>>,
+    package_objects: Vec<Vec<u32>>,
+    expanded: std::collections::HashSet<String>,
     selected: Option<u32>,
     loaded: Option<Loaded>,
     search_ms: f64,
     search_rx: Option<Receiver<(Vec<u32>, f64)>>,
     dirty_search: bool,
     job: Option<Job>,
+    edit_job: Option<Job>,
     audio: Option<(rodio::OutputStream, rodio::OutputStreamHandle)>,
     sink: Option<rodio::Sink>,
     new_package: String,
@@ -88,12 +176,17 @@ impl Assets {
             class_filter: 0,
             classes: Vec::new(),
             hits: Vec::new(),
+            list_rows: Vec::new(),
+            file_packages: Vec::new(),
+            package_objects: Vec::new(),
+            expanded: std::collections::HashSet::new(),
             selected: None,
             loaded: None,
             search_ms: 0.0,
             search_rx: None,
             dirty_search: true,
             job: None,
+            edit_job: None,
             audio: rodio::OutputStream::try_default().ok(),
             sink: None,
             new_package: String::new(),
@@ -130,6 +223,22 @@ impl Assets {
                 names.sort();
                 classes.extend(names);
                 self.classes = classes;
+                let mut file_packages = vec![Vec::new(); index.file_count()];
+                for package_id in 0..index.package_count() {
+                    let file = index.package(package_id).file as usize;
+                    if let Some(bucket) = file_packages.get_mut(file) {
+                        bucket.push(package_id as u32);
+                    }
+                }
+                let mut package_objects = vec![Vec::new(); index.package_count()];
+                for object_id in 0..index.object_count() {
+                    let package = index.object(object_id).package as usize;
+                    if let Some(bucket) = package_objects.get_mut(package) {
+                        bucket.push(object_id as u32);
+                    }
+                }
+                self.file_packages = file_packages;
+                self.package_objects = package_objects;
                 self.index = Some(Arc::new(index));
                 self.index_error = None;
                 self.dirty_search = true;
@@ -180,6 +289,7 @@ impl Assets {
                 self.hits = hits;
                 self.search_ms = elapsed;
                 self.search_rx = None;
+                self.rebuild_list_rows();
                 if let Some(pick) = self.pending_pick.take() {
                     if let Some(hit) = self.hits.get(pick).copied() {
                         self.selected = Some(hit);
@@ -206,6 +316,20 @@ impl Assets {
                 context.request_repaint_after(std::time::Duration::from_millis(80));
             }
         }
+        if let Some(job) = &mut self.edit_job {
+            if let Some(outcome) = job.poll() {
+                *status = match outcome {
+                    Ok(message) => message,
+                    Err(error) => format!("error: {error}"),
+                };
+                self.edit_job = None;
+                if let Some(hit) = self.selected {
+                    self.load(hit);
+                }
+            } else {
+                context.request_repaint_after(std::time::Duration::from_millis(80));
+            }
+        }
 
         if self.index.is_none() {
             self.index_prompt(ui, palette, paths, status);
@@ -217,9 +341,12 @@ impl Assets {
             .default_size(470.0)
             .size_range(300.0..=900.0)
             .show(ui, |ui| self.list_ui(ui, palette));
-        egui::CentralPanel::default().show(ui, |ui| {
-            self.detail_ui(ui, context, palette, paths, status)
-        });
+        let request = egui::CentralPanel::default()
+            .show(ui, |ui| self.detail_ui(ui, context, palette, paths, status))
+            .inner;
+        if let Some(request) = request {
+            self.spawn_edit(request, paths.cooked(), status);
+        }
     }
 
     fn index_prompt(
@@ -236,7 +363,7 @@ impl Assets {
             theme::eyebrow(
                 ui,
                 palette,
-                format!("target · {}", paths.cooked().display()),
+                format!("target · {}", paths.library().display()),
             );
             if let Some(error) = &self.index_error {
                 ui.add_space(4.0);
@@ -246,7 +373,7 @@ impl Assets {
             if let Some(job) = &self.job {
                 ui.add(egui::ProgressBar::new(job.fraction()).text(job.detail.clone()));
             } else if ui.button("build the asset index").clicked() {
-                let root = paths.cooked();
+                let root = paths.library();
                 let out = paths.index.clone();
                 *status = "indexing…".into();
                 self.job = Some(Job::spawn("index", move |sender| {
@@ -268,6 +395,148 @@ impl Assets {
                 }));
             }
         });
+    }
+
+    fn rebuild_list_rows(&mut self) {
+        self.list_rows.clear();
+        let Some(index) = self.index.clone() else {
+            return;
+        };
+        let filtering = !self.query.trim().is_empty() || self.class_filter != 0;
+        let hit_files: std::collections::HashSet<u32> = if filtering {
+            self.hits
+                .iter()
+                .map(|&hit| index.package(index.object(hit as usize).package as usize).file)
+                .collect()
+        } else {
+            std::collections::HashSet::new()
+        };
+        let hit_set: std::collections::HashSet<u32> =
+            if filtering { self.hits.iter().copied().collect() } else { std::collections::HashSet::new() };
+        let mut tree = PathTree::default();
+        for file in 0..index.file_count() {
+            if filtering && !hit_files.contains(&(file as u32)) {
+                continue;
+            }
+            let relative = index.file_name(file).replace('\\', "/");
+            let segments: Vec<String> = relative
+                .split('/')
+                .filter(|part| !part.is_empty())
+                .map(str::to_string)
+                .collect();
+            if segments.is_empty() {
+                continue;
+            }
+            tree.insert(&segments, file as u32);
+        }
+        let mut rows = Vec::new();
+        self.flatten_tree(&index, &tree, String::new(), 0, filtering, &hit_set, &mut rows);
+        self.list_rows = rows;
+    }
+
+    fn file_objects(&self, file: u32, filtering: bool, hit_set: &std::collections::HashSet<u32>) -> Vec<u32> {
+        let mut objects = Vec::new();
+        for &package in self.file_packages.get(file as usize).into_iter().flatten() {
+            for &object in self.package_objects.get(package as usize).into_iter().flatten() {
+                if !filtering || hit_set.contains(&object) {
+                    objects.push(object);
+                }
+            }
+        }
+        objects
+    }
+
+    fn file_object_count(&self, file: u32, filtering: bool, hit_set: &std::collections::HashSet<u32>) -> usize {
+        if !filtering {
+            return self
+                .file_packages
+                .get(file as usize)
+                .into_iter()
+                .flatten()
+                .map(|&package| self.package_objects.get(package as usize).map_or(0, Vec::len))
+                .sum();
+        }
+        self.file_objects(file, filtering, hit_set).len()
+    }
+
+    #[allow(clippy::too_many_arguments)]
+    fn flatten_tree(
+        &self,
+        index: &Index,
+        node: &PathTree,
+        prefix: String,
+        depth: usize,
+        filtering: bool,
+        hit_set: &std::collections::HashSet<u32>,
+        rows: &mut Vec<ListRow>,
+    ) -> usize {
+        let mut total = 0;
+        for (name, child) in &node.folders {
+            let path = if prefix.is_empty() {
+                name.clone()
+            } else {
+                format!("{prefix}/{name}")
+            };
+            let header_at = rows.len();
+            rows.push(ListRow::Folder {
+                path: path.clone(),
+                name: name.clone(),
+                depth,
+                count: 0,
+            });
+            let open = filtering || self.expanded.contains(&path);
+            let count = if open {
+                self.flatten_tree(index, child, path, depth + 1, filtering, hit_set, rows)
+            } else {
+                self.count_tree(child, filtering, hit_set)
+            };
+            if let ListRow::Folder { count: slot, .. } = &mut rows[header_at] {
+                *slot = count;
+            }
+            total += count;
+        }
+        for (name, &file) in &node.files {
+            let path = if prefix.is_empty() {
+                name.clone()
+            } else {
+                format!("{prefix}/{name}")
+            };
+            let count = self.file_object_count(file, filtering, hit_set);
+            rows.push(ListRow::File {
+                path: path.clone(),
+                name: name.clone(),
+                depth,
+                count,
+            });
+            total += count;
+            if filtering || self.expanded.contains(&path) {
+                let mut objects = self.file_objects(file, filtering, hit_set);
+                objects.sort_by(|a, b| {
+                    index
+                        .class_name(index.object(*a as usize).class)
+                        .cmp(index.class_name(index.object(*b as usize).class))
+                        .then_with(|| {
+                            index
+                                .object_name(*a as usize)
+                                .cmp(index.object_name(*b as usize))
+                        })
+                });
+                rows.extend(objects.into_iter().map(|hit| ListRow::Item { hit, depth: depth + 1 }));
+            }
+        }
+        total
+    }
+
+    fn count_tree(&self, node: &PathTree, filtering: bool, hit_set: &std::collections::HashSet<u32>) -> usize {
+        let mut total: usize = node
+            .files
+            .values()
+            .map(|&file| self.file_object_count(file, filtering, hit_set))
+            .sum();
+        for child in node.folders.values() {
+            total += self.count_tree(child, filtering, hit_set);
+        }
+        total
     }
 
     fn list_ui(&mut self, ui: &mut egui::Ui, palette: Palette) {
@@ -317,61 +586,102 @@ impl Assets {
         theme::rule(ui, palette);
         let row_height = 18.0;
         let mut clicked = None;
+        let mut toggle = None;
         egui::ScrollArea::vertical().auto_shrink([false; 2]).show_rows(
             ui,
             row_height,
-            self.hits.len(),
+            self.list_rows.len(),
             |ui, range| {
+                let font = egui::FontId::monospace(11.5);
+                let colors = theme::colors(palette);
                 for row in range {
-                    let hit = self.hits[row];
-                    let entry = index.object(hit as usize);
-                    let class = index.class_name(entry.class);
-                    let selected = self.selected == Some(hit);
-                    let name = index.object_name(hit as usize);
                     let (rect, response) = ui.allocate_exact_size(
                         egui::vec2(ui.available_width(), row_height),
                         egui::Sense::click(),
                     );
-                    if selected {
-                        ui.painter().rect_filled(
-                            rect,
-                            2.0,
-                            theme::colors(palette).accent.gamma_multiply(0.45),
-                        );
-                    } else if response.hovered() {
-                        ui.painter()
-                            .rect_filled(rect, 2.0, theme::colors(palette).raised);
-                    }
-                    let font = egui::FontId::monospace(11.5);
-                    ui.painter().text(
-                        rect.left_center() + egui::vec2(4.0, 0.0),
-                        egui::Align2::LEFT_CENTER,
-                        format!("{class:.18}"),
-                        font.clone(),
-                        theme::class_color(class),
-                    );
-                    let target = name.len().saturating_sub(64);
-                    let cut = (target..=name.len())
-                        .find(|index| name.is_char_boundary(*index))
-                        .unwrap_or(name.len());
-                    let short = if cut > 0 {
-                        format!("…{}", &name[cut..])
-                    } else {
-                        name.to_string()
-                    };
-                    ui.painter().text(
-                        rect.left_center() + egui::vec2(150.0, 0.0),
-                        egui::Align2::LEFT_CENTER,
-                        short,
-                        font,
-                        theme::colors(palette).bone,
-                    );
-                    if response.clicked() {
-                        clicked = Some(hit);
+                    match &self.list_rows[row] {
+                        ListRow::Folder { path, name, depth, count } => {
+                            if response.hovered() {
+                                ui.painter().rect_filled(rect, 2.0, colors.raised);
+                            }
+                            let marker = if self.expanded.contains(path) { 'v' } else { '>' };
+                            let indent = 4.0 + *depth as f32 * 12.0;
+                            ui.painter().text(
+                                rect.left_center() + egui::vec2(indent, 0.0),
+                                egui::Align2::LEFT_CENTER,
+                                format!("{marker} {name}/  ({count})"),
+                                font.clone(),
+                                colors.accent_high,
+                            );
+                            if response.clicked() {
+                                toggle = Some(path.clone());
+                            }
+                            response.on_hover_text(path);
+                        }
+                        ListRow::File { path, name, depth, count } => {
+                            if response.hovered() {
+                                ui.painter().rect_filled(rect, 2.0, colors.raised);
+                            }
+                            let marker = if self.expanded.contains(path) { 'v' } else { '>' };
+                            let indent = 4.0 + *depth as f32 * 12.0;
+                            ui.painter().text(
+                                rect.left_center() + egui::vec2(indent, 0.0),
+                                egui::Align2::LEFT_CENTER,
+                                format!("{marker} {name}  ({count})"),
+                                font.clone(),
+                                colors.bone,
+                            );
+                            if response.clicked() {
+                                toggle = Some(path.clone());
+                            }
+                            response.on_hover_text(path);
+                        }
+                        ListRow::Item { hit, depth } => {
+                            let hit = *hit;
+                            let entry = index.object(hit as usize);
+                            let class = index.class_name(entry.class);
+                            let selected = self.selected == Some(hit);
+                            let name = index.object_name(hit as usize);
+                            if selected {
+                                ui.painter().rect_filled(
+                                    rect,
+                                    2.0,
+                                    colors.accent.gamma_multiply(0.45),
+                                );
+                            } else if response.hovered() {
+                                ui.painter().rect_filled(rect, 2.0, colors.raised);
+                            }
+                            let indent = 10.0 + *depth as f32 * 12.0;
+                            ui.painter().text(
+                                rect.left_center() + egui::vec2(indent, 0.0),
+                                egui::Align2::LEFT_CENTER,
+                                format!("{class:.14}"),
+                                font.clone(),
+                                theme::class_color(class),
+                            );
+                            let leaf = name.rsplit('.').next().unwrap_or(name);
+                            ui.painter().text(
+                                rect.left_center() + egui::vec2(indent + 120.0, 0.0),
+                                egui::Align2::LEFT_CENTER,
+                                format!("{leaf:.42}"),
+                                font.clone(),
+                                colors.bone,
+                            );
+                            if response.clicked() {
+                                clicked = Some(hit);
+                            }
+                            response.on_hover_text(name);
+                        }
                     }
                 }
             },
         );
+        if let Some(package) = toggle {
+            if !self.expanded.remove(&package) {
+                self.expanded.insert(package);
+            }
+            self.rebuild_list_rows();
+        }
         if let Some(hit) = clicked {
             self.selected = Some(hit);
             self.load(hit);
@@ -385,8 +695,16 @@ impl Assets {
         let started = Instant::now();
         let object = index.object(hit as usize);
         let package_entry = index.package(object.package as usize);
-        let root = crate::Paths::default().cooked();
-        let file = root.join(index.file_name(package_entry.file as usize));
+        let relative = index.file_name(package_entry.file as usize);
+        let paths = crate::Paths::default();
+        let file = [
+            paths.library().join(relative),
+            paths.cooked().join(relative),
+            paths.library().join("CookedPC").join(relative),
+        ]
+        .into_iter()
+        .find(|candidate| candidate.exists())
+        .unwrap_or_else(|| paths.library().join(relative));
         self.loaded = match load_object(
             &file,
             package_entry.offset,
@@ -415,6 +733,9 @@ impl Assets {
                     export: object.export as usize,
                     size: 0,
                     properties: vec![("error".into(), String::new(), error)],
+                    fields: Vec::new(),
+                    swatches: Vec::new(),
+                    raw_head: Vec::new(),
                     preview: Preview::None,
                     load_ms: started.elapsed().as_secs_f64() * 1000.0,
                 })
@@ -429,30 +750,23 @@ impl Assets {
         palette: Palette,
         paths: &Paths,
         status: &mut String,
-    ) {
+    ) -> Option<EditRequest> {
+        let busy = self.edit_job.is_some();
         let Some(loaded) = &mut self.loaded else {
-            ui.add_space(60.0);
-            ui.vertical_centered(|ui| {
-                ui.label(theme::display(palette, "select an object", 22.0));
-            });
-            return;
+            asset_empty_state(ui, palette);
+            return None;
         };
-        ui.add_space(6.0);
-        ui.label(theme::display(palette, &loaded.path, 20.0));
+        let mut request = None;
+        ui.add_space(8.0);
+        breadcrumb(ui, palette, loaded);
+        ui.add_space(2.0);
+        ui.label(theme::display(palette, loaded.path.rsplit('.').next().unwrap_or(&loaded.path), 20.0));
         theme::eyebrow(
             ui,
             palette,
             format!(
-                "{} · {} · {} bytes · {} · loaded in {:.1} ms",
-                loaded.class,
-                loaded.package,
-                loaded.size,
-                loaded
-                    .file
-                    .file_name()
-                    .map(|name| name.to_string_lossy().to_string())
-                    .unwrap_or_default(),
-                loaded.load_ms
+                "{} · {} bytes · loaded in {:.1} ms",
+                loaded.class, loaded.size, loaded.load_ms
             ),
         );
         theme::rule(ui, palette);
@@ -468,30 +782,156 @@ impl Assets {
             paths.cooked(),
         );
         theme::rule(ui, palette);
-        ui.horizontal_wrapped(|ui| {
-            for action in actions {
-                if ui.button(action.label).clicked() {
-                    match (action.run)(loaded, paths) {
-                        Ok(message) => *status = message,
-                        Err(error) => *status = format!("error: {error}"),
-                    }
-                }
+        let mut exports: Vec<Action> = Vec::new();
+        let mut others: Vec<Action> = Vec::new();
+        for action in actions {
+            if action.label.starts_with("export") {
+                exports.push(action);
+            } else {
+                others.push(action);
             }
-            if matches!(loaded.preview, Preview::Texture { .. }) {
-                if ui.button("replace with an image…").clicked() {
-                    match replace_texture(loaded) {
-                        Ok(message) => *status = message,
-                        Err(error) => *status = format!("error: {error}"),
+        }
+        if !exports.is_empty() {
+            theme::eyebrow(ui, palette, "export");
+            ui.horizontal_wrapped(|ui| {
+                for action in exports {
+                    if ui.button(action.label).clicked() {
+                        match (action.run)(loaded, paths) {
+                            Ok(message) => *status = message,
+                            Err(error) => *status = format!("error: {error}"),
+                        }
                     }
                 }
-                if ui.button("create a mod from an image…").clicked() {
-                    match create_mod(loaded, paths, &self.new_package, &self.new_object) {
-                        Ok(message) => *status = message,
-                        Err(error) => *status = format!("error: {error}"),
+            });
+        }
+        let has_replace = !others.is_empty() || matches!(loaded.preview, Preview::Texture { .. });
+        if has_replace {
+            ui.add_space(4.0);
+            theme::eyebrow(ui, palette, "edit / replace");
+            ui.horizontal_wrapped(|ui| {
+                for action in others {
+                    if ui.button(action.label).clicked() {
+                        match (action.run)(loaded, paths) {
+                            Ok(message) => *status = message,
+                            Err(error) => *status = format!("error: {error}"),
+                        }
                     }
                 }
+                if matches!(loaded.preview, Preview::Texture { .. }) {
+                    if ui.button("replace with an image…").clicked() {
+                        match replace_texture(loaded) {
+                            Ok(message) => *status = message,
+                            Err(error) => *status = format!("error: {error}"),
+                        }
+                    }
+                    if ui.button("create a mod from an image…").clicked() {
+                        match create_mod(loaded, paths, &self.new_package, &self.new_object) {
+                            Ok(message) => *status = message,
+                            Err(error) => *status = format!("error: {error}"),
+                        }
+                    }
+                }
+            });
+        }
+
+        let editable_count = loaded.fields.iter().filter(|field| field.editable).count();
+        if editable_count > 0 {
+            theme::rule(ui, palette);
+            theme::eyebrow(ui, palette, format!("edit · {editable_count} editable field(s)"));
+            if let (Some(ri), Some(gi), Some(bi)) = (
+                loaded.color_field("R"),
+                loaded.color_field("G"),
+                loaded.color_field("B"),
+            ) {
+                let mut rgb = [
+                    loaded.fields[ri].value.trim().parse::<f32>().unwrap_or(0.0),
+                    loaded.fields[gi].value.trim().parse::<f32>().unwrap_or(0.0),
+                    loaded.fields[bi].value.trim().parse::<f32>().unwrap_or(0.0),
+                ];
+                ui.horizontal(|ui| {
+                    ui.label("color (R,G,B):");
+                    if ui.color_edit_button_rgb(&mut rgb).changed() {
+                        loaded.fields[ri].value = format!("{}", rgb[0]);
+                        loaded.fields[gi].value = format!("{}", rgb[1]);
+                        loaded.fields[bi].value = format!("{}", rgb[2]);
+                    }
+                });
             }
-        });
+            egui::ScrollArea::vertical()
+                .id_salt("editable")
+                .max_height(220.0)
+                .auto_shrink([false, true])
+                .show(ui, |ui| {
+                    egui::Grid::new("edit_fields")
+                        .num_columns(3)
+                        .striped(true)
+                        .show(ui, |ui| {
+                            for field in loaded.fields.iter_mut().filter(|field| field.editable) {
+                                ui.label(&field.name);
+                                ui.colored_label(theme::colors(palette).dim, &field.type_name);
+                                if field.type_name == "BoolProperty" {
+                                    let mut on = field.value.trim().eq_ignore_ascii_case("true");
+                                    if ui.checkbox(&mut on, "").changed() {
+                                        field.value = on.to_string();
+                                    }
+                                } else {
+                                    ui.add(
+                                        egui::TextEdit::singleline(&mut field.value)
+                                            .desired_width(160.0),
+                                    );
+                                }
+                                ui.end_row();
+                            }
+                        });
+                });
+            let pending = loaded.pending();
+            let dirty = !pending.is_empty();
+            ui.add_enabled_ui(dirty && !busy, |ui| {
+                ui.horizontal_wrapped(|ui| {
+                    if ui.button("apply to original (.clean backup)").clicked() {
+                        request = Some(EditRequest {
+                            source: loaded.file.clone(),
+                            object: loaded.path.clone(),
+                            container: loaded.package.clone(),
+                            edits: pending.clone(),
+                            write: EditWrite::Overwrite,
+                        });
+                    }
+                    if ui.button("save a copy…").clicked() {
+                        if let Some(target) = rfd::FileDialog::new()
+                            .set_file_name(
+                                loaded
+                                    .file
+                                    .file_name()
+                                    .map(|name| name.to_string_lossy().to_string())
+                                    .unwrap_or_else(|| "copie.gpk".into()),
+                            )
+                            .save_file()
+                        {
+                            request = Some(EditRequest {
+                                source: loaded.file.clone(),
+                                object: loaded.path.clone(),
+                                container: loaded.package.clone(),
+                                edits: pending.clone(),
+                                write: EditWrite::Copy(target),
+                            });
+                        }
+                    }
+                    if ui.button("create a composite mod (install)").clicked() {
+                        request = Some(EditRequest {
+                            source: loaded.file.clone(),
+                            object: loaded.path.clone(),
+                            container: loaded.package.clone(),
+                            edits: pending.clone(),
+                            write: EditWrite::Author,
+                        });
+                    }
+                });
+            });
+            if busy {
+                theme::eyebrow(ui, palette, "writing…");
+            }
+        }
 
         theme::rule(ui, palette);
         egui::ScrollArea::vertical()
@@ -510,12 +950,113 @@ impl Assets {
                         }
                     });
             });
+        request
+    }
+
+    fn spawn_edit(&mut self, request: EditRequest, cooked: PathBuf, status: &mut String) {
+        *status = "writing…".into();
+        self.edit_job = Some(Job::spawn("edit asset", move |_| {
+            let EditRequest {
+                source,
+                object,
+                container,
+                edits,
+                write,
+            } = request;
+            let mut bytes = std::fs::read(&source).map_err(|error| error.to_string())?;
+            bytes = set_object_properties(&bytes, &object, &edits)
+                .map_err(|error| error.to_string())?
+                .bytes;
+            match write {
+                EditWrite::Overwrite => {
+                    let mut clean = source.clone().into_os_string();
+                    clean.push(".clean");
+                    let clean = PathBuf::from(clean);
+                    if !clean.exists() {
+                        std::fs::copy(&source, &clean).map_err(|error| error.to_string())?;
+                    }
+                    std::fs::write(&source, &bytes).map_err(|error| error.to_string())?;
+                    Ok(format!("wrote {} ({} field(s))", source.display(), edits.len()))
+                }
+                EditWrite::Copy(target) => {
+                    std::fs::write(&target, &bytes).map_err(|error| error.to_string())?;
+                    Ok(format!("wrote {} ({} field(s))", target.display(), edits.len()))
+                }
+                EditWrite::Author => {
+                    let report = tera_mapper::author_composite(&cooked, &bytes, &container)
+                        .map_err(|error| error.to_string())?;
+                    Ok(format!(
+                        "composite mod installed: {} ({} route(s)) -> {}",
+                        report.container,
+                        report.registered.len(),
+                        report.destination.display()
+                    ))
+                }
+            }
+        }));
     }
 }
 
 pub struct Action {
     pub label: &'static str,
     pub run: fn(&Loaded, &Paths) -> Result<String, String>,
+}
+
+fn breadcrumb(ui: &mut egui::Ui, palette: Palette, loaded: &Loaded) {
+    let colors = theme::colors(palette);
+    let gpk = loaded
+        .file
+        .file_name()
+        .map(|name| name.to_string_lossy().to_string())
+        .unwrap_or_default();
+    ui.horizontal_wrapped(|ui| {
+        ui.spacing_mut().item_spacing.x = 4.0;
+        ui.add(egui::Label::new(
+            egui::RichText::new(gpk).size(11.5).color(colors.accent_high),
+        ));
+        for segment in loaded.path.split('.') {
+            ui.add(egui::Label::new(
+                egui::RichText::new("›").size(11.5).color(colors.dim),
+            ));
+            ui.add(egui::Label::new(
+                egui::RichText::new(segment).size(11.5).color(colors.dim),
+            ));
+        }
+    });
+}
+
+fn asset_empty_state(ui: &mut egui::Ui, palette: Palette) {
+    let colors = theme::colors(palette);
+    ui.add_space(90.0);
+    ui.vertical_centered(|ui| {
+        let (rect, _) = ui.allocate_exact_size(egui::vec2(96.0, 72.0), egui::Sense::hover());
+        let painter = ui.painter();
+        let stroke = egui::Stroke::new(1.5, colors.line);
+        let accent = egui::Stroke::new(1.5, colors.accent.gamma_multiply(0.7));
+        let w = 44.0;
+        let o = egui::vec2(16.0, 10.0);
+        let c = rect.center();
+        let front = egui::Rect::from_min_size(c - egui::vec2(w * 0.5, w * 0.5) + egui::vec2(-6.0, 6.0), egui::vec2(w, w));
+        painter.rect_stroke(front, 3.0, stroke, egui::StrokeKind::Inside);
+        painter.line_segment([front.left_top(), front.left_top() + o], accent);
+        painter.line_segment([front.right_top(), front.right_top() + o], accent);
+        painter.line_segment([front.left_top() + o, front.right_top() + o], accent);
+        painter.line_segment([front.right_top() + o, front.right_bottom() + o], accent);
+        painter.line_segment([front.right_top(), front.right_top() + o], accent);
+        ui.add_space(14.0);
+        ui.label(theme::display(palette, "Select an object", 20.0));
+        ui.add_space(4.0);
+        ui.add(egui::Label::new(
+            egui::RichText::new("Browse the tree, or search to jump straight to anything.")
+                .size(12.5)
+                .color(colors.dim),
+        ));
+        ui.add(egui::Label::new(
+            egui::RichText::new("Cmd/Ctrl + 1–9 switches sections.")
+                .size(11.5)
+                .color(colors.dim),
+        ));
+    });
 }
 
 fn preview_ui(
@@ -529,6 +1070,29 @@ fn preview_ui(
     cooked: PathBuf,
 ) -> Vec<Action> {
     let mut actions = Vec::new();
+    if !loaded.swatches.is_empty() {
+        theme::eyebrow(ui, palette, "colors");
+        ui.horizontal_wrapped(|ui| {
+            for (name, [r, g, b]) in &loaded.swatches {
+                let color = egui::Color32::from_rgb(
+                    (r.clamp(0.0, 1.0) * 255.0) as u8,
+                    (g.clamp(0.0, 1.0) * 255.0) as u8,
+                    (b.clamp(0.0, 1.0) * 255.0) as u8,
+                );
+                let (rect, response) =
+                    ui.allocate_exact_size(egui::vec2(34.0, 34.0), egui::Sense::hover());
+                ui.painter().rect_filled(rect, 4.0, color);
+                ui.painter().rect_stroke(
+                    rect,
+                    4.0,
+                    egui::Stroke::new(1.0, theme::colors(palette).line),
+                    egui::StrokeKind::Inside,
+                );
+                response.on_hover_text(format!("{name}  rgb({r:.3}, {g:.3}, {b:.3})"));
+            }
+        });
+        theme::rule(ui, palette);
+    }
     let mesh_leaf = loaded.path.rsplit('.').next().unwrap_or("mesh").to_string();
     match &mut loaded.preview {
         Preview::Texture {
@@ -598,7 +1162,7 @@ fn preview_ui(
                 ui,
                 palette,
                 format!(
-                    "{} sommets · {} triangles",
+                    "{} vertices · {} triangles",
                     mesh.vertices.len(),
                     mesh.triangle_count()
                 ),
@@ -666,7 +1230,7 @@ fn preview_ui(
             if mesh.skin.is_some() {
                 ui.add_space(6.0);
                 if !*anims_loaded {
-                    if ui.button("charger les animations").clicked() {
+                    if ui.button("load animations").clicked() {
                         let bones: std::collections::HashSet<String> =
                             mesh.skin.as_ref().unwrap().bones.iter().map(|bone| bone.name.clone()).collect();
                         let skeleton = bones.len().max(1);
@@ -682,7 +1246,7 @@ fn preview_ui(
                         *dirty = true;
                     }
                 } else if animations.is_empty() {
-                    theme::eyebrow(ui, palette, "aucune animation dans ce fichier");
+                    theme::eyebrow(ui, palette, "no animation in this file");
                 } else {
                     ui.horizontal(|ui| {
                         let selected = animations.get(*anim).map(|clip| clip.name.clone()).unwrap_or_default();
@@ -709,7 +1273,7 @@ fn preview_ui(
                     theme::eyebrow(
                         ui,
                         palette,
-                        format!("{} clips · squelette {} os", animations.len(), mesh.skin.as_ref().unwrap().bones.len()),
+                        format!("{} clips · skeleton {} bones", animations.len(), mesh.skin.as_ref().unwrap().bones.len()),
                     );
                 }
             }
@@ -724,6 +1288,10 @@ fn preview_ui(
             actions.push(Action {
                 label: "export glTF (Blender)",
                 run: export_glb,
+            });
+            actions.push(Action {
+                label: "replace vertices (.obj) on the original",
+                run: replace_mesh_action,
             });
         }
         Preview::Sound {
@@ -762,11 +1330,79 @@ fn preview_ui(
                 label: "export OGG",
                 run: export_ogg,
             });
+            actions.push(Action {
+                label: "replace with a .ogg on the original",
+                run: replace_sound_action,
+            });
+        }
+        Preview::Outline { kind, rows, truncated } => {
+            let header = if *truncated {
+                format!("{kind} · {}+ sub-objects", rows.len())
+            } else {
+                format!("{kind} · {} sub-objects", rows.len())
+            };
+            theme::eyebrow(ui, palette, header);
+            let colors = theme::colors(palette);
+            egui::ScrollArea::vertical()
+                .id_salt("outline")
+                .max_height(360.0)
+                .auto_shrink([false, true])
+                .show(ui, |ui| {
+                    let font = egui::FontId::monospace(11.5);
+                    for row in rows.iter() {
+                        let (rect, _) = ui.allocate_exact_size(
+                            egui::vec2(ui.available_width(), 18.0),
+                            egui::Sense::hover(),
+                        );
+                        let indent = 4.0 + row.depth as f32 * 14.0;
+                        ui.painter().text(
+                            rect.left_center() + egui::vec2(indent, 0.0),
+                            egui::Align2::LEFT_CENTER,
+                            format!("{:.22}", row.class),
+                            font.clone(),
+                            theme::class_color(&row.class),
+                        );
+                        ui.painter().text(
+                            rect.left_center() + egui::vec2(indent + 185.0, 0.0),
+                            egui::Align2::LEFT_CENTER,
+                            &row.name,
+                            font.clone(),
+                            colors.bone,
+                        );
+                        if !row.detail.is_empty() {
+                            ui.painter().text(
+                                rect.right_center() - egui::vec2(6.0, 0.0),
+                                egui::Align2::RIGHT_CENTER,
+                                &row.detail,
+                                font.clone(),
+                                colors.dim,
+                            );
+                        }
+                    }
+                });
         }
         Preview::Raw | Preview::None => {
-            theme::eyebrow(ui, palette, "no preview for this class");
+            if loaded.properties.is_empty() {
+                theme::eyebrow(ui, palette, "no tagged properties · native data");
+            } else {
+                theme::eyebrow(ui, palette, "structured properties below");
+            }
+            if !loaded.raw_head.is_empty() {
+                theme::eyebrow(ui, palette, format!("hex · first {} bytes", loaded.raw_head.len()));
+                egui::ScrollArea::vertical()
+                    .id_salt("raw_hex")
+                    .max_height(200.0)
+                    .auto_shrink([false, true])
+                    .show(ui, |ui| {
+                        ui.label(egui::RichText::new(hex_dump(&loaded.raw_head)).monospace().size(10.5));
+                    });
+            }
         }
     }
+    actions.push(Action {
+        label: "export properties (JSON)",
+        run: export_properties_json,
+    });
     actions.push(Action {
         label: "export raw object",
         run: export_raw,
@@ -895,6 +1531,127 @@ fn build_scene(mesh: &Mesh, positions: &[[f32; 3]], texture: Option<&(u32, u32, 
     scene
 }
 
+fn struct_field_float(fields: &[tera_package::Property], name: &str) -> Option<f32> {
+    fields.iter().find(|field| field.name == name).and_then(|field| {
+        if let PropertyValue::Float(value) = field.value {
+            Some(value)
+        } else {
+            None
+        }
+    })
+}
+
+fn color_of(property: &tera_package::Property) -> Option<[f32; 3]> {
+    if let PropertyValue::Struct { fields, .. } = &property.value {
+        let r = struct_field_float(fields, "R")?;
+        let g = struct_field_float(fields, "G")?;
+        let b = struct_field_float(fields, "B")?;
+        return Some([r, g, b]);
+    }
+    None
+}
+
+fn constant_color(properties: &[tera_package::Property]) -> Option<[f32; 3]> {
+    let channel = |name: &str| {
+        properties.iter().find(|property| property.name == name).and_then(|property| {
+            if let PropertyValue::Float(value) = property.value {
+                Some(value)
+            } else {
+                None
+            }
+        })
+    };
+    let r = channel("R")?;
+    let g = channel("G")?;
+    let b = channel("B")?;
+    Some([r, g, b])
+}
+
+fn outline_kind(class: &str) -> &'static str {
+    if class.contains("ParticleSystem") || class.contains("Emitter") {
+        "particle system"
+    } else if class.contains("Physics") || class.starts_with("RB_") {
+        "physics asset"
+    } else if class.contains("AnimSet") || class.contains("AnimTree") {
+        "animation set"
+    } else if class.contains("SoundCue") {
+        "sound cue"
+    } else if class == "Package" {
+        "package"
+    } else {
+        "contents"
+    }
+}
+
+const OUTLINE_LIMIT: usize = 2000;
+
+fn export_outline(package: &Package<'_>, root_index: usize) -> (Vec<OutlineRow>, bool) {
+    let mut children: std::collections::HashMap<i32, Vec<usize>> = std::collections::HashMap::new();
+    for (index, export) in package.exports.iter().enumerate() {
+        children.entry(export.outer_index).or_default().push(index);
+    }
+    let mut rows = Vec::new();
+    let mut truncated = false;
+    let mut stack: Vec<(i32, usize)> = vec![(root_index as i32 + 1, 0)];
+    while let Some((id, depth)) = stack.pop() {
+        let Some(kids) = children.get(&id) else { continue };
+        let mut kids = kids.clone();
+        kids.sort_by(|a, b| {
+            package
+                .export_class(&package.exports[*a])
+                .cmp(&package.export_class(&package.exports[*b]))
+                .then_with(|| package.exports[*a].object_name.index.cmp(&package.exports[*b].object_name.index))
+        });
+        for child in kids.into_iter().rev() {
+            if rows.len() >= OUTLINE_LIMIT {
+                truncated = true;
+                return (rows, truncated);
+            }
+            let export = &package.exports[child];
+            let class = package.export_class(export);
+            let name = package.name_text(export.object_name);
+            let name = name.rsplit('.').next().unwrap_or(&name).to_string();
+            let detail = outline_detail(package, export);
+            rows.push(OutlineRow { depth, class, name, detail });
+            stack.push((child as i32 + 1, depth + 1));
+        }
+    }
+    (rows, truncated)
+}
+
+fn outline_detail(package: &Package<'_>, export: &tera_package::Export) -> String {
+    let Ok(blob) = package.export_data(export) else {
+        return String::new();
+    };
+    let Ok((properties, _)) = read_export_properties_auto(package, blob) else {
+        return String::new();
+    };
+    for key in ["Constant", "ParticleName", "EmitterName", "BoneName", "LODMethod"] {
+        if let Some(property) = properties.iter().find(|property| property.name == key) {
+            let value = property.value.describe();
+            if !value.is_empty() {
+                return format!("{key} = {value}");
+            }
+        }
+    }
+    if properties.is_empty() {
+        String::new()
+    } else {
+        format!("{} props", properties.len())
+    }
+}
+
+fn package_by_name<'a>(map: &'a [u8], package_name: &str) -> Option<Package<'a>> {
+    let wanted = package_name.to_ascii_lowercase();
+    for package in Bundle::new(map) {
+        let Ok(package) = package else { break };
+        if package.detected_package_name().to_ascii_lowercase() == wanted {
+            return Some(package);
+        }
+    }
+    None
+}
+
 fn load_object(
     file: &Path,
     package_offset: u64,
@@ -903,8 +1660,11 @@ fn load_object(
 ) -> Result<Loaded, String> {
     let handle = std::fs::File::open(file).map_err(|error| error.to_string())?;
     let map = unsafe { Mmap::map(&handle) }.map_err(|error| error.to_string())?;
-    let mut package =
-        Package::parse(&map, package_offset as usize).map_err(|error| error.to_string())?;
+    let mut package = match Package::parse(&map, package_offset as usize) {
+        Ok(package) => package,
+        Err(_) => package_by_name(&map, package_name)
+            .ok_or_else(|| format!("package {package_name} introuvable dans {}", file.display()))?,
+    };
     package.name_hint = Some(package_name.to_string());
     let export = package
         .exports
@@ -914,15 +1674,34 @@ fn load_object(
     let path = package.export_path(export_index);
     let blob = package.export_data(export).map_err(|error| error.to_string())?;
     let mut properties = Vec::new();
-    if let Ok((parsed, _)) = read_export_properties(&package, blob) {
+    let mut swatches = Vec::new();
+    let mut fields = Vec::new();
+    if let Ok((parsed, _)) = read_export_properties_auto(&package, blob) {
+        for property in &parsed {
+            if let Some(color) = color_of(property) {
+                swatches.push((property.name.clone(), color));
+            }
+        }
+        if let Some(color) = constant_color(&parsed) {
+            swatches.push(("Constant".into(), color));
+        }
         for property in parsed {
-            properties.push((
-                property.name,
-                property.type_name,
-                property.value.describe(),
-            ));
+            let editable = matches!(
+                property.type_name.as_str(),
+                "IntProperty" | "FloatProperty" | "BoolProperty" | "ByteProperty"
+            ) && !property.resizes();
+            let described = property.value.describe();
+            fields.push(AssetField {
+                name: property.name.clone(),
+                type_name: property.type_name.clone(),
+                original: described.clone(),
+                value: described.clone(),
+                editable,
+            });
+            properties.push((property.name, property.type_name, described));
         }
     }
+    let raw_head = blob[..blob.len().min(4096)].to_vec();
     let preview = match class.as_str() {
         "Texture2D" => match Texture2D::parse(&package, export) {
             Ok(texture) => match texture.decode_rgba() {
@@ -985,7 +1764,18 @@ fn load_object(
                 None => Preview::Raw,
             }
         }
-        _ => Preview::Raw,
+        other => {
+            let (rows, truncated) = export_outline(&package, export_index);
+            if rows.is_empty() {
+                Preview::Raw
+            } else {
+                Preview::Outline {
+                    kind: outline_kind(other),
+                    rows,
+                    truncated,
+                }
+            }
+        }
     };
     Ok(Loaded {
         package: package.package_name(),
@@ -996,6 +1786,9 @@ fn load_object(
         export: export_index,
         size: blob.len(),
         properties,
+        fields,
+        swatches,
+        raw_head,
         preview,
         load_ms: 0.0,
     })
@@ -1046,6 +1839,54 @@ fn export_dds_action(loaded: &Loaded, _paths: &Paths) -> Result<String, String> 
     })
 }
 
+fn backup_clean(file: &Path) -> Result<(), String> {
+    let mut clean = file.to_path_buf().into_os_string();
+    clean.push(".clean");
+    let clean = PathBuf::from(clean);
+    if !clean.exists() {
+        std::fs::copy(file, &clean).map_err(|error| error.to_string())?;
+    }
+    Ok(())
+}
+
+fn replace_sound_action(loaded: &Loaded, _paths: &Paths) -> Result<String, String> {
+    let Preview::Sound { .. } = &loaded.preview else {
+        return Err("not a sound".into());
+    };
+    let Some(source) = rfd::FileDialog::new()
+        .add_filter("ogg", &["ogg"])
+        .pick_file()
+    else {
+        return Ok("cancelled".into());
+    };
+    let ogg = std::fs::read(&source).map_err(|error| error.to_string())?;
+    let bytes = std::fs::read(&loaded.file).map_err(|error| error.to_string())?;
+    let replaced = tera_package::replace_sounds(&bytes, &[(loaded.path.as_str(), ogg.as_slice())])
+        .map_err(|error| error.to_string())?;
+    backup_clean(&loaded.file)?;
+    std::fs::write(&loaded.file, &replaced.bytes).map_err(|error| error.to_string())?;
+    Ok(format!("sound replaced in {}", loaded.file.display()))
+}
+
+fn replace_mesh_action(loaded: &Loaded, _paths: &Paths) -> Result<String, String> {
+    let Preview::Mesh { .. } = &loaded.preview else {
+        return Err("not a mesh".into());
+    };
+    let Some(source) = rfd::FileDialog::new()
+        .add_filter("obj", &["obj"])
+        .pick_file()
+    else {
+        return Ok("cancelled".into());
+    };
+    let obj = std::fs::read(&source).map_err(|error| error.to_string())?;
+    let bytes = std::fs::read(&loaded.file).map_err(|error| error.to_string())?;
+    let replaced = tera_package::replace_meshes(&bytes, &[(loaded.path.as_str(), obj.as_slice())])
+        .map_err(|error| error.to_string())?;
+    backup_clean(&loaded.file)?;
+    std::fs::write(&loaded.file, &replaced.bytes).map_err(|error| error.to_string())?;
+    Ok(format!("vertices replaced in {}", loaded.file.display()))
+}
+
 fn export_ogg(loaded: &Loaded, _paths: &Paths) -> Result<String, String> {
     let Preview::Sound { ogg, .. } = &loaded.preview else {
         return Err("not a sound".into());
@@ -1084,7 +1925,7 @@ fn export_glb(loaded: &Loaded, paths: &Paths) -> Result<String, String> {
     let glb = tera_package::write_glb_multi(mesh, leaf, &materials);
     std::fs::write(&target, glb).map_err(|error| error.to_string())?;
     Ok(format!(
-        "wrote {} ({} matériaux, {diffuse} diffuse, {normal} normal)",
+        "wrote {} ({} materials, {diffuse} diffuse, {normal} normal)",
         target.display(),
         materials.len()
     ))
@@ -1116,7 +1957,7 @@ fn export_glb_anim(loaded: &Loaded, paths: &Paths) -> Result<String, String> {
     let normal = materials.iter().filter(|m| m.normal.is_some()).count();
     let emissive = materials.iter().filter(|m| m.emissive.is_some()).count();
     Ok(format!(
-        "wrote {} — {} matériaux ({diffuse} diff, {normal} norm, {emissive} emis), {} clips",
+        "wrote {} — {} materials ({diffuse} diff, {normal} norm, {emissive} emis), {} clips",
         target.display(),
         materials.len(),
         animations.len()
@@ -1239,6 +2080,68 @@ fn resolve_materials(
     tera_package::mesh_materials_or_diffuse(&package, mesh, leaf, cooked)
 }
 
+
+fn hex_dump(bytes: &[u8]) -> String {
+    let mut out = String::with_capacity(bytes.len() * 4);
+    for (row, chunk) in bytes.chunks(16).enumerate() {
+        out.push_str(&format!("{:04x}  ", row * 16));
+        for byte in chunk {
+            out.push_str(&format!("{byte:02x} "));
+        }
+        for _ in chunk.len()..16 {
+            out.push_str("   ");
+        }
+        out.push(' ');
+        for byte in chunk {
+            out.push(if byte.is_ascii_graphic() { *byte as char } else { '.' });
+        }
+        out.push('\n');
+    }
+    out
+}
+
+fn export_properties_json(loaded: &Loaded, _paths: &Paths) -> Result<String, String> {
+    let Some(target) = save_dialog(loaded, "json") else {
+        return Ok("cancelled".into());
+    };
+    let mut json = String::new();
+    json.push_str("{\n");
+    json.push_str(&format!("  \"object\": {},\n", json_string(&loaded.path)));
+    json.push_str(&format!("  \"class\": {},\n", json_string(&loaded.class)));
+    json.push_str(&format!("  \"package\": {},\n", json_string(&loaded.package)));
+    json.push_str(&format!("  \"size\": {},\n", loaded.size));
+    json.push_str("  \"properties\": [\n");
+    for (position, (name, kind, value)) in loaded.properties.iter().enumerate() {
+        let comma = if position + 1 < loaded.properties.len() { "," } else { "" };
+        json.push_str(&format!(
+            "    {{ \"name\": {}, \"type\": {}, \"value\": {} }}{comma}\n",
+            json_string(name),
+            json_string(kind),
+            json_string(value)
+        ));
+    }
+    json.push_str("  ]\n}\n");
+    std::fs::write(&target, json).map_err(|error| error.to_string())?;
+    Ok(format!("wrote {}", target.display()))
+}
+
+fn json_string(value: &str) -> String {
+    let mut out = String::with_capacity(value.len() + 2);
+    out.push('"');
+    for ch in value.chars() {
+        match ch {
+            '"' => out.push_str("\\\""),
+            '\\' => out.push_str("\\\\"),
+            '\n' => out.push_str("\\n"),
+            '\r' => out.push_str("\\r"),
+            '\t' => out.push_str("\\t"),
+            c if (c as u32) < 0x20 => out.push_str(&format!("\\u{:04x}", c as u32)),
+            c => out.push(c),
+        }
+    }
+    out.push('"');
+    out
+}
 
 fn export_raw(loaded: &Loaded, _paths: &Paths) -> Result<String, String> {
     let Some(target) = save_dialog(loaded, "bin") else {

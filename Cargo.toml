@@ -22,6 +22,8 @@ members = [
     "crates/tera-stats-tui",
     "crates/tera-account-tui",
     "crates/tera-sniff",
+    "crates/tera-scanner",
+    "crates/tera-guessmap",
     "crates/mod-example",
     "crates/mod-antiafk",
     "crates/mod-radar",

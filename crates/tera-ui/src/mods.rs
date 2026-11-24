@@ -94,7 +94,7 @@ impl ModsTab {
             Some(outcome) => {
                 *status = match outcome {
                     Ok(message) => message,
-                    Err(error) => format!("erreur : {error}"),
+                    Err(error) => format!("error: {error}"),
                 };
                 self.job = None;
                 self.scan(paths);

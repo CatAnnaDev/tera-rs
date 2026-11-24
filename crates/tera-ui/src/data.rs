@@ -5,19 +5,33 @@ use eframe::egui;
 use std::path::PathBuf;
 use std::sync::Arc;
 use std::time::Instant;
-use tera_datacenter::{Address, DataCenter, Node, RefIndex};
+use tera_datacenter::{Address, DataCenter, Node};
+
+#[derive(Clone)]
+pub enum Op {
+    Set { attribute: String, value: String },
+    RemoveAttribute { attribute: String },
+    InsertChild { name: String },
+    Clone,
+    RemoveNode,
+}
+
+impl Op {
+    fn describe(&self) -> String {
+        match self {
+            Op::Set { attribute, value } => format!("{attribute} = {value}"),
+            Op::RemoveAttribute { attribute } => format!("remove attribute {attribute}"),
+            Op::InsertChild { name } => format!("add child <{name}>"),
+            Op::Clone => "clone node".into(),
+            Op::RemoveNode => "delete node".into(),
+        }
+    }
+}
 
 #[derive(Clone)]
 pub struct Edit {
     pub select: String,
-    pub attribute: String,
-    pub value: String,
-}
-
-struct NavState {
-    query: String,
-    results: Vec<Row>,
-    selected: Option<usize>,
+    pub op: Op,
 }
 
 #[derive(Default)]
@@ -36,8 +50,6 @@ pub struct DataTab {
     job: Option<Job>,
     query_ms: f64,
     open_error: Option<String>,
-    refs: Option<Arc<RefIndex>>,
-    history: Vec<NavState>,
     pending_asset: Option<String>,
 }
 
@@ -46,7 +58,6 @@ pub struct Row {
     pub name: String,
     pub attributes: Vec<(String, String)>,
     pub address: Address,
-    pub id: Option<i32>,
 }
 
 impl DataTab {
@@ -79,7 +90,6 @@ impl DataTab {
                 );
                 self.sheets = sheets;
                 let center = Arc::new(center);
-                self.refs = Some(Arc::new(RefIndex::build(&center)));
                 self.center = Some(center);
                 self.file = Some(path);
                 self.open_error = None;
@@ -98,7 +108,6 @@ impl DataTab {
         let started = Instant::now();
         self.results.clear();
         self.selected = None;
-        self.history.clear();
         let Ok(root) = center.root() else { return };
         if let Ok(nodes) = tera_datacenter::query(root, &self.query) {
             for node in nodes.iter().take(500) {
@@ -112,51 +121,10 @@ impl DataTab {
                     name: node.name().unwrap_or("?").to_string(),
                     attributes,
                     address: node.address(),
-                    id: node.get("id").and_then(|value| value.as_i32()),
                 });
             }
         }
         self.query_ms = started.elapsed().as_secs_f64() * 1000.0;
-    }
-
-    fn row_from_address(center: &DataCenter, address: Address) -> Option<Row> {
-        let node = Node::new(center, address).ok()?;
-        let mut attributes = Vec::new();
-        for attribute in node.attributes() {
-            if let (Ok(name), Ok(value)) = (attribute.name(), attribute.value()) {
-                attributes.push((name.to_string(), value.to_text().to_string()));
-            }
-        }
-        Some(Row {
-            name: node.name().unwrap_or("?").to_string(),
-            attributes,
-            address,
-            id: node.get("id").and_then(|value| value.as_i32()),
-        })
-    }
-
-    fn navigate_to(&mut self, address: Address) {
-        let Some(center) = self.center.clone() else {
-            return;
-        };
-        let Some(row) = Self::row_from_address(&center, address) else {
-            return;
-        };
-        self.history.push(NavState {
-            query: self.query.clone(),
-            results: std::mem::take(&mut self.results),
-            selected: self.selected.take(),
-        });
-        self.results = vec![row];
-        self.selected = Some(0);
-    }
-
-    fn back(&mut self) {
-        if let Some(state) = self.history.pop() {
-            self.query = state.query;
-            self.results = state.results;
-            self.selected = state.selected;
-        }
     }
 
     pub fn take_asset_request(&mut self) -> Option<String> {
@@ -254,10 +222,7 @@ impl DataTab {
                     });
             });
 
-        let refs = self.refs.clone();
         let center = self.center.clone();
-        let mut nav_target: Option<Address> = None;
-        let mut go_back = false;
         let mut asset_open: Option<String> = None;
         egui::CentralPanel::default().show(ui, |ui| {
             ui.horizontal(|ui| {
@@ -330,81 +295,11 @@ impl DataTab {
             theme::rule(ui, palette);
             if let (Some(index), Some(center)) = (self.selected, center.as_ref()) {
                 if let Some(row) = self.results.get(index) {
-                    if !self.history.is_empty() && ui.button("← retour").clicked() {
-                        go_back = true;
-                    }
-                    if let (Some(refs), Ok(node)) =
-                        (refs.as_ref(), Node::new(center, row.address))
-                    {
-                        let outbound = refs.outbound(&node);
-                        if !outbound.is_empty() {
-                            theme::eyebrow(ui, palette, "references sortantes");
-                            egui::ScrollArea::vertical()
-                                .id_salt("dc_outbound")
-                                .max_height(150.0)
-                                .auto_shrink([false, true])
-                                .show(ui, |ui| {
-                                    for reference in &outbound {
-                                        ui.horizontal_wrapped(|ui| {
-                                            ui.label(format!(
-                                                "{} = {}",
-                                                reference.attribute, reference.value
-                                            ));
-                                            if reference.targets.is_empty() {
-                                                ui.weak("(cible introuvable)");
-                                            }
-                                            for target in &reference.targets {
-                                                if ui
-                                                    .small_button(format!("→ {}", target.sheet))
-                                                    .clicked()
-                                                {
-                                                    nav_target = Some(target.address);
-                                                }
-                                            }
-                                            let shown = reference.targets.len();
-                                            if reference.total > shown {
-                                                ui.weak(format!("(+{})", reference.total - shown));
-                                            }
-                                            if reference.ambiguous && shown > 0 {
-                                                ui.weak("?");
-                                            }
-                                        });
-                                    }
-                                });
-                        }
-                        if let Some(id) = row.id {
-                            let incoming = refs.incoming(id);
-                            if !incoming.is_empty() {
-                                theme::rule(ui, palette);
-                                theme::eyebrow(
-                                    ui,
-                                    palette,
-                                    format!("référencé par {} (id {})", incoming.len(), id),
-                                );
-                                egui::ScrollArea::vertical()
-                                    .id_salt("dc_backlinks")
-                                    .max_height(160.0)
-                                    .auto_shrink([false, false])
-                                    .show(ui, |ui| {
-                                        for backlink in incoming.iter().take(1000) {
-                                            if ui
-                                                .small_button(format!(
-                                                    "{} .{}",
-                                                    refs.sheet_name(backlink.sheet),
-                                                    refs.attr_name(backlink.attribute)
-                                                ))
-                                                .clicked()
-                                            {
-                                                nav_target = Some(backlink.address);
-                                            }
-                                        }
-                                    });
-                            }
-                        }
+                    if let Ok(node) = Node::new(center, row.address) {
                         let assets = tera_datacenter::asset_references(&node);
                         if !assets.is_empty() {
                             theme::rule(ui, palette);
-                            theme::eyebrow(ui, palette, "assets liés");
+                            theme::eyebrow(ui, palette, "linked assets");
                             for (name, value) in &assets {
                                 ui.horizontal_wrapped(|ui| {
                                     ui.label(format!("{name} ="));
@@ -421,21 +316,50 @@ impl DataTab {
             ui.horizontal(|ui| {
                 ui.add(
                     egui::TextEdit::singleline(&mut self.edit_attribute)
-                        .hint_text("attribute")
+                        .hint_text("attribute / child name")
                         .desired_width(160.0),
                 );
                 ui.add(
                     egui::TextEdit::singleline(&mut self.edit_value)
-                        .hint_text("new value")
-                        .desired_width(260.0),
+                        .hint_text("value")
+                        .desired_width(240.0),
                 );
-                if ui.button("queue this edit").clicked()
-                    && !self.edit_attribute.is_empty()
-                {
+                let select = self.query.clone();
+                if ui.button("set").clicked() && !self.edit_attribute.is_empty() {
                     self.edits.push(Edit {
-                        select: self.query.clone(),
-                        attribute: self.edit_attribute.clone(),
-                        value: self.edit_value.clone(),
+                        select: select.clone(),
+                        op: Op::Set {
+                            attribute: self.edit_attribute.clone(),
+                            value: self.edit_value.clone(),
+                        },
+                    });
+                }
+                if ui.button("remove attribute").clicked() && !self.edit_attribute.is_empty() {
+                    self.edits.push(Edit {
+                        select: select.clone(),
+                        op: Op::RemoveAttribute {
+                            attribute: self.edit_attribute.clone(),
+                        },
+                    });
+                }
+                if ui.button("add child").clicked() && !self.edit_attribute.is_empty() {
+                    self.edits.push(Edit {
+                        select: select.clone(),
+                        op: Op::InsertChild {
+                            name: self.edit_attribute.clone(),
+                        },
+                    });
+                }
+                if ui.button("clone node").clicked() {
+                    self.edits.push(Edit {
+                        select: select.clone(),
+                        op: Op::Clone,
+                    });
+                }
+                if ui.button("delete node").clicked() {
+                    self.edits.push(Edit {
+                        select,
+                        op: Op::RemoveNode,
                     });
                 }
                 if !self.edits.is_empty() && ui.button("clear").clicked() {
@@ -446,7 +370,7 @@ impl DataTab {
                 theme::eyebrow(
                     ui,
                     palette,
-                    format!("{}  ·  {} = {}", edit.select, edit.attribute, edit.value),
+                    format!("{}  ·  {}", edit.select, edit.op.describe()),
                 );
             }
             ui.add_space(6.0);
@@ -479,12 +403,6 @@ impl DataTab {
                 }
             });
         });
-        if go_back {
-            self.back();
-        }
-        if let Some(address) = nav_target {
-            self.navigate_to(address);
-        }
         if let Some(name) = asset_open {
             self.pending_asset = Some(name);
         }
@@ -542,9 +460,29 @@ impl DataTab {
                 let targets = tera_datacenter::query_builder(&builder, &edit.select)
                     .map_err(|error| error.to_string())?;
                 for id in targets {
-                    builder
-                        .set_attribute(id, &edit.attribute, &edit.value)
-                        .map_err(|error| error.to_string())?;
+                    match &edit.op {
+                        Op::Set { attribute, value } => {
+                            builder
+                                .set_attribute(id, attribute, value)
+                                .map_err(|error| error.to_string())?;
+                        }
+                        Op::RemoveAttribute { attribute } => {
+                            builder.remove_attribute(id, attribute);
+                        }
+                        Op::InsertChild { name } => {
+                            builder.insert(id, name);
+                        }
+                        Op::Clone => {
+                            let copy = builder.duplicate(id);
+                            if let Some(parent) = builder.parent_of(id) {
+                                builder.attach(parent, copy);
+                                builder.adopt_key(parent, copy);
+                            }
+                        }
+                        Op::RemoveNode => {
+                            builder.remove(id);
+                        }
+                    }
                     touched += 1;
                 }
             }

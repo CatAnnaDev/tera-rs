@@ -88,7 +88,7 @@ pub fn collect_package_files(root: &Path) -> Vec<PathBuf> {
                 .extension()
                 .map(|value| value.to_string_lossy().to_ascii_lowercase())
                 .unwrap_or_default();
-            if matches!(extension.as_str(), "gpk" | "upk" | "umap") {
+            if matches!(extension.as_str(), "gpk" | "upk" | "umap" | "gmp") {
                 out.push(path);
             }
         }

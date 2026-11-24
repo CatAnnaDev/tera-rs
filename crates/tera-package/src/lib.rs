@@ -7,6 +7,7 @@ pub mod error;
 pub mod gfx;
 pub mod gltf;
 pub mod level;
+pub mod expressions;
 pub mod material;
 pub mod mesh;
 pub mod meshtex;
@@ -25,14 +26,21 @@ pub mod writer;
 
 pub use error::{PackageError, Result};
 pub use gfx::{movies, replace_movie, Movie};
-pub use level::{dedup_placements, parse_level, rotator_to_quaternion, zone_base, zone_siblings, Placement};
+pub use level::{
+    dedup_placements, level_actors, parse_level, rotator_to_quaternion, set_actor_transform,
+    zone_base, zone_siblings, LevelActor, Placement, Transform,
+};
+pub use expressions::{
+    color_nodes, object_properties, set_floats, set_object_properties, ColorNode, ObjectProps,
+    PropView,
+};
 pub use material::{materials, set_parameters, Material};
 pub use mesh::{parse_skeletal_mesh, parse_static_mesh, Mesh};
 pub use meshtex::{mesh_diffuse_rgba, mesh_material_inputs, mesh_materials_or_diffuse, mesh_texture_index, package_materials, texture_stem};
 pub use gltf::{write_glb, write_glb_animated, write_glb_multi, write_map_glb, MapInstance, MaterialInput};
 pub use package::{Bundle, Export, Import, Name, Package, ParseMode};
 pub use objects::{find, set_properties, Edited, Found};
-pub use properties::{read_export_properties, read_properties, Property, PropertyValue};
+pub use properties::{read_export_properties, read_export_properties_auto, read_properties, Property, PropertyValue};
 pub use summary::{CompressedChunk, Summary, PACKAGE_MAGIC};
 pub use anim::{animations, Animation, AnimTrack};
 pub use author::{build_texture_package, texture_package, NewTexture, TextureSpec};

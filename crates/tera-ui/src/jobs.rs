@@ -29,7 +29,7 @@ impl Job {
         let thread_sender = sender.clone();
         std::thread::spawn(move || {
             let outcome = std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| work(&thread_sender)))
-                .unwrap_or_else(|_| Err("la tâche a planté".into()));
+                .unwrap_or_else(|_| Err("the task crashed".into()));
             let _ = thread_sender.send(Message::Done(outcome));
         });
         Self {

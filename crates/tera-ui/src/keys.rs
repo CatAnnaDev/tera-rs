@@ -32,7 +32,7 @@ impl KeysTab {
             if let Some(outcome) = job.poll() {
                 *status = match outcome {
                     Ok(message) => message,
-                    Err(error) => format!("erreur : {error}"),
+                    Err(error) => format!("error: {error}"),
                 };
                 self.job = None;
             } else {

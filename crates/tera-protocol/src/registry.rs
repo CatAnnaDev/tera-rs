@@ -39,6 +39,10 @@ impl Registry {
         self.definitions.get(name).map(|(_, definition)| definition)
     }
 
+    pub fn names(&self) -> impl Iterator<Item = &str> {
+        self.definitions.keys().map(String::as_str)
+    }
+
     pub fn version(&self, name: &str) -> Option<u32> {
         self.definitions.get(name).map(|(version, _)| *version)
     }
